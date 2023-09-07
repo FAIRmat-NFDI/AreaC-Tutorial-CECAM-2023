@@ -1,4 +1,4 @@
-# Area C - Tutorial 10 on 14.06.2023
+# Area C - Tutorial for CECAM flagship workshop "Fair and True Data Processing for Soft Matter Simulations"
 
 ### How to launch locally for debugging
 
