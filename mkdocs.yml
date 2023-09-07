@@ -1,34 +1,53 @@
-site_name: Area C - Tutorial 10
+site_name: NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23
 site_description: |
   FAIRmat Area C tutorial 10.
 site_author: FAIRmat consortium
 nav:
   - Introduction: index.md
   - Part I - Exploring NOMAD: part1.md
-  - Part II - Making an upload: part2.md
-  - Part III - Numerical precision in NOMAD: part3.md
-  - Part IV - Workflows in NOMAD: part4.md
-  - Part V - Knowledge-based XC functionals exploration: part5.md
+  - Part II - Making an upload:
+    - upload doc - new how-to: upload.md
+    - MD example: Tutorial-1_Uploading_MD_Data.md
+    - oldpart2-TBR: part2.md
+  # - Part III - Numerical precision in NOMAD: part3.md
+  - Part III - overview page and workflows:
+    - MD example: Tutorial-2_Overview_Page_and_Worfklow_Visualizer.md
+    - oldpart4-TBRorI: part4.md
+  # - Part V - Knowledge-based XC functionals exploration: part5.md
+  - MD 3: Tutorial-3_Extracting_Data_and_Trajectory_Analysis.md
 theme:
   name: material
   palette:
-    primary: '#2A4CDF'
-    accent: '#008A67'
+    - media: "(prefers-color-scheme: light)"
+      # primary: '#2A4CDF'
+      # accent: '#008A67'
+      scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   font:
     text: 'Titillium Web'
   logo: assets/nomad-logo.png
   favicon: assets/favicon.png
   features:
     - navigation.instant
+    - navigation.footer
+  icon:
+    repo: fontawesome/brands/github
+plugins:
+  - search
+  - bibtex:
+      bib_file: docs/assets/refs.bib
 markdown_extensions:
   - attr_list
   - md_in_html
   - admonition
   - footnotes
-  - markdown.extensions.extra
-  - markdown.extensions.codehilite
-  - markdown.extensions.toc
-  - mdx_math
   - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true
@@ -44,11 +63,15 @@ markdown_extensions:
       toc_depth: 3
   - pymdownx.arithmatex:
       generic: true
-plugins:
-  - search
-  - bibtex:
-      bib_file: "docs/assets/refs.bib"
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
-  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - 'https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js'
+  - 'https://unpkg.com/cytoscape@3.19.1/dist/cytoscape.min.js'
+  # - assets/code/parse.js
+extra:
+  version: 0.1
+  generator: false
