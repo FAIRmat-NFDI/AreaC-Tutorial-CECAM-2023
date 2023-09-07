@@ -105,7 +105,7 @@ Both cutoff types can safely be increased to retrieve entries with progressively
 !!! note "What about _grid spacing_?"
     At the moment, the mesh of the reciprocal or fast Fourier-transformed (FFT) space is not yet extracted.
     It is on the _planned feature_ list, though with low priority, considering that most of the convergence is already captured by the cutoff.
-    If an upload or analysis ever requires a new feature, feel free to reach out to us via [fairmat@physik.hu-berlin.de](fairmat@physik.hu-berlin.de).
+    If an upload or analysis ever requires a new feature, feel free to reach out to us via [fairmat@physik.hu-berlin.de](mailto:fairmat@physik.hu-berlin.de).
 
 ### Core Electrons
 
