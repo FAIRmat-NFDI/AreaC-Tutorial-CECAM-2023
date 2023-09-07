@@ -1,0 +1,54 @@
+site_name: Area C - Tutorial 10
+site_description: |
+  FAIRmat Area C tutorial 10.
+site_author: FAIRmat consortium
+nav:
+  - Introduction: index.md
+  - Part I - Exploring NOMAD: part1.md
+  - Part II - Making an upload: part2.md
+  - Part III - Numerical precision in NOMAD: part3.md
+  - Part IV - Workflows in NOMAD: part4.md
+  - Part V - Knowledge-based XC functionals exploration: part5.md
+theme:
+  name: material
+  palette:
+    primary: '#2A4CDF'
+    accent: '#008A67'
+  font:
+    text: 'Titillium Web'
+  logo: assets/nomad-logo.png
+  favicon: assets/favicon.png
+  features:
+    - navigation.instant
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - footnotes
+  - markdown.extensions.extra
+  - markdown.extensions.codehilite
+  - markdown.extensions.toc
+  - mdx_math
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: True
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+plugins:
+  - search
+  - bibtex:
+      bib_file: "docs/assets/refs.bib"
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
