@@ -1,48 +1,79 @@
 ## <center> **Tutorial 2: Molecular dynamics overview page and workflow visualizer** </center>
 
-TODO - start this section with finding a member of a dataset in NOMAD (we could even do this is part 1 and then come back to a saved tab)
+In this section, we will explore futher the features of the overview page. Let's first find some MD data to investigate. Go to `Explore > Entries` from the top-left menu on the main (beta) NOMAD page. Go to the `Molecular Dynamics` tab on the `Filters` bar (left-hand side) and select `Temperature` under Available Properties. Now, go to the `Author / Origin / Data` filter tab. Under `Dataset Name`, select `Atomistic Molecular Dynamics Simulations of Pure Liquid...`. Now under results, select any entry in this dataset by clicking the :fontawesome-solid-arrow-right: to the right of the entry.
 
+You are now on the Overview page of the selected entry, which is split into several "cards" with information about the simulation stored in this entry. At the top is the `Material` card, which contains a visualization of the simulation box along with some basic composition and cell (i.e., box) information. The visualizer also contains a "topology toggle bar". The MD parsers in NOMAD use the bond information from the force field to create a hierarchy of molecular and chemical-fragment organization for the system. In this way, we quickly understand the molecular composition and physical state of the system.
 
-In this tutorial, we will examine the GUI features for molecular dynamics simulations in NOMAD, using as an example a simulation workflow of setting up and equilibrating a binary liquid mixture. For convenience, the simulation data has been pre-parsed and is provided in the NOMAD *Metainfo* format.
-
-In the current directory (`Tutorial-2_MD_Overview_Page_and_Workflow_Visualizer/`), you will find the file `data/binary_mixture_pre-parsed.zip`. Upload the file to [NOMAD](https://nomad-lab.eu/), as demonstrated in Tutorial 1. In the upload page, you should see 6 identified main files: `workflow_archive.json`, &nbsp; `minimEQ1_archive.json`, &nbsp; `EQ1_archive.json`, &nbsp; `EQ2_archive.json`, &nbsp; `EQ3_archive.json`, and &nbsp; `PD1_archive.json`. &nbsp; `workflow_archive.json` corresponds to a workflow entry that describes how the other main files are related to each other. Click on the 3 dots to the right of this workflow entry. You should see a workflow graph:
+The `Original` tab of the topology bar displays information about the entire system. Now click on the `Group_MOL` tab. Notice some molecules have been made transparent in the visualizer. This group represents all molecules called `MOL` in the simulation box. Similarly, the `Group_MON` tab represents groups of molecules called `MON`. By toggling between these tabs, we can see that this simulation is a binary mixture that is well-mixed. Notice also that the `Composition` table below the visualizer updates when different topology bar tabs are selected. Underneath each of these molecular groups, you will find a tab with the respecitve name of each molecule. When you click these tabs, a single representative molecule will appear to show the molecular structure.
 
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_2/workflow_graph.png" alt="Uploads page" width="90%" title="Uploads page.">
+        <img src="../assets/md_tutorial_2/system_visualizer.png" alt="visualizer" width="70%" title="System Visualizer.">
     </label>
 </div>
 
-The inputs and outputs of the workflow are depicted with light blue circles. Clicking on the text label above these circles will take you to the *Metainfo* section within the **DATA** tab of the corresponding entry. The dark blue circles represent sub-workflows within this workflow. Here we have a linear workflow consisting of a geometry optimization (i.e., energy minimization), followed by 4 molecular dynamics simulations. Because only a single configuration was saved from the energy minimization (i.e., the final configuration), this configuration by default acts as the input for the entire workflow, and is also the input for the first molecular dynamics simulation.
+The next card for these simulations is the **Thermodynamic properties** section. Here we find plots of the time trajectories of various thermodynamic quantities: temperature, pressure, and potential energy in this case. Based on this information, what kind of simulation is contained within this entry (e.g., NVT, NPT, Simulated Annealing, etc.)?
 
-Scroll down to the bottom of the page, where you will see references to each entry within the workflow. Click on the 3 dots next to the &nbsp; `minimEQ1_archive.json` entry. This will take you to the **OVERVIEW** page of the energy minimization step of the workflow.
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_2/thermodynamics.png" alt="thermodynamics" width="70%" title="Thermodynamic Properties.">
+    </label>
+</div>
 
-At the top of this page is the **Material** section, which provides an overview of the system, including a visualizer (activated by clicking *YES* on the prompt, as in Tutorial 1). To the left of the visualizer, there is an *accordion menu* displaying the molecular topology. By default, the entire system is selected. By selecting one of the molecule groups (**GROUP_MOL** or **GROUP_MON** in this case), the visualizer will display only molecules of the selected type and make all other molecules transparent. Beneath each molecule group is a representative molecule tab, which will display a single molecule of that type in the visualizer when clicked.
+Now, scroll down to the **Structural properties** card. Once a molecular dynamics workflow is detected, the NOMAD software automatically tries to calculate radial distribution functions (rdfs) as a function of the molecular center of mass for each unique pair of molecule types. These rdfs are determined for various intervals of the trajectory, as a zeroth order measure of equilibration. Depending on the what type of simulation you have chosen, you may find that the rdfs are changing substantially during the simulation or are fully converged.
 
-Now scroll down to the **Geometry optimization** section. This energy minimization run is automatically labeled as a *geometry optimization* workflow, and the energy convergence plot is displayed in the overview page if the relevant data is available.
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_2/structural.png" alt="structural" width="70%" title="Structural Properties.">
+    </label>
+</div>
 
-Scroll down to the **Workflow Graph** section. Here an automatically generated workflow graph is displayed for this entry only. Notice the *Workflow parameters* input and the *Workflow results* output. Take a few minutes to examine these sections in the *Metainfo* by clicking their text labels.
+Scroll down to the **Dynamical properties** card. Similar to the rdfs, NOMAD also calculated the molecular mean squared displacements for each molecule type. (Note that this requires at least 50 time frames present in the trajectory). A simple linear fitting procedure over the entire resulting msd curve is performed to determine the diffusion constant (displayed in the legend along with the corresponding *Pearson correlation coefficient*).
 
-At the bottom of the page, there is an **Entry References** section, which links you to the overall workflow that we examined at the beginning of the tutorial. Click on the 3 dots next to this entry to return to the global workflow page for this upload.
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_2/dynamic.png" alt="dynamic" width="70%" title="Dynamic Properties.">
+    </label>
+</div>
 
-Let's now examine the first molecular dynamics run of this workflow. Click on the *Molecular Dynamics* text label above the first dark blue circle with this label. This will take you to the corresponding overview page. The **Material** section is identical to the energy minimization entry, since all entries in this upload correspond to simulations of the same system.
+NOTE: For processing efficiency, the calculation of rdfs and msds will be skipped for molecule groups containing more than 50k molecules.
+**TODO Change this to a proper note**
 
-Scroll down to the **Thermodynamic properties** section. Here we find plots of the time trajectories of various thermodynamic quantities: temperature, pressure, and potential energy in this case. At the bottom of the section some basic information about the molecular dynamics run are displayed: the timestep and the thermodynamic ensemble. We can see immediately that this *NVT* simulation was run at ~1000 K and at a very low pressure (gas phase, in line with what we observed in the visualizer).
+Scoll down to the **Workflow Graph** card. Here you find an interactive workflow graph that illustrates the workflow for this entry (i.e., a serial MD simulation). For workflows with many steps, only the first and last few tasks will be displayed. Tips: Clicking on the individual tasks will take you inside of that task to show the corresponding inputs and outputs. Use the back button to return to the entire workflow. Clicking on the text labels will take you to the location where this information is stored within the NOMAD archive (i.e., in the Data tab of this entry).
 
-Scroll down to the **Structural properties** section. Once a molecular dynamics workflow is detected, the NOMAD software automatically tries to calculate radial distribution functions (rdfs) as a function of the molecular center of mass for each unique pair of molecule types. These rdfs are determined for various intervals of the trajectory, as a zeroth order measure of equilibration. As expected for the gas phase, the rdfs converge quite quickly here.
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_2/workflow_graph.png" alt="workflow" width="70%" title="Workflow Graph.">
+    </label>
+</div>
 
-Scroll down to the **Dynamical properties** section. Similar to the rdfs, NOMAD also calculated the molecular mean squared displacements for each molecule type. (Note that this requires at least 50 time frames present in the trajectory). A simple linear fitting procedure over the entire resulting msd curve is performed to determine the diffusion constant (displayed in the legend along with the corresponding *Pearson correlation coefficient*).
+There are a number of known workflows, such as MD simulations, that are recognized by the NOMAD parsers, which then populate the workflow section of the NOMAD archive automatically. Users can also upload custom workflows, which can be used to connect various uploaded entries. You can examine in example of this by scrolling down to the `Entry References` card. Click on "Referenced by the following entries". You should see a single entry called "workflow_archive.yaml". Go to this entry by clicking the :fontawesome-solid-arrow-right: to the right.
 
-Again, subsequent sections display the workflow graph for this entry and the reference to the global workflow for this upload. Now go back to the global workflow overview page. Take some time to examine the overview pages for the remainder of the molecular dynamics runs within the overall workflow for this upload, and answer the corresponding questions below.
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_2/references.png" alt="references" width="70%" title="Entry References.">
+    </label>
+</div>
 
-### <u> **Exercises** </u>
+You are now on the Overview page for a custom workflow that contains the previous entry under investigation. By clicking the `Files` tab at the top of the page, and then navigating to `preview`, you can examine the `yaml` file that stores the workflow information. **TODO maybe just link to workflow tutorial here?**.
 
-Provide a description of the molecular dynamics run (for example, which ensemble? what temperature? is the system equilibrated? what phase is the system in?) for:
+On the Overview page, we see another workflow graph, which illustrates a linear workflow consisting of a Geometry Opimization (i.e., energy minimization), followed by a series of 4 MD simulations.
 
-1. the second molecular dynamics run within this workflow
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_2/global_workflow.png" alt="global_workflow" width="70%" title="Global Workflow.">
+    </label>
+</div>
 
-2. the third molecular dynamics run within this workflow
 
-3. the fourth molecular dynamics run within this workflow
+### <u> **Exercise** </u>
+
+Investigate each of the entries contained in this workflow and provide a description of the corresponding simulation/calculation (for example, which ensemble? what temperature? is the system equilibrated? what phase is the system in?). Note: you can navigate to the individual Overview pages by clicking the text label above each workflow task.
 

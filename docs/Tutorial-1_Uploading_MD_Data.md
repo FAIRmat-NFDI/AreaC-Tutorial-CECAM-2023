@@ -6,23 +6,15 @@ There are several ways to upload your data to NOMAD:
 - By using the shell command `curl` for sending files for upload.
 - By using the python `response` library to execute python-based [NOMAD API](../glossary/glossary.md/#api).
 
-For this tutorial, we will stick to the simple drag-and-drop method.
+For this tutorial, we will stick to the simple drag-and-drop method. However, some information about the python API for uploading is provided under the [Advanced](Advanced/Upload_API.md) tab.
 
-**TODO - link to some resources for API usage, or I could add some basics in some sort of ref page here for adv users.**
-
-In general, you can upload files one by one or upload entire file structures in `.zip` or `.tar.gz` formats.
-
-NOMAD currently supports 2 molecular dynamics codes: Gromacs and Lammps. Here, we will walk you through uploading data from a series of simulations run in Gromacs.
-
-**TODO - Maybe add a note here about custom H5MD format coming soon?**
-
-First, download the zip file with the simulation data:
+In general, you can upload files one by one or upload entire file structures in `.zip` or `.tar.gz` formats. First, download the zip file with the simulation data:
 
 <center>
 [Download Test Data](/assets/md_tutorial_1/water_workflow.zip){ .md-button }
 </center>
 
-Take a minute to examine the directory structure. If you are familiar with Gromacs you will immediately see the input/output from 3 simulations: an energy minimization (`Emin/`), an NPT equilibration (`Equil-NPT/`), and an NVT production run (`Prod-NVT/`). In the main directory, you will also see a .yaml file, which contains the NOMAD schema for connecting these 3 simulations into a workflow. We will cover these custom workflow schemas later in the tutorial. **TODO - link??**
+Take a minute to examine the directory structure. If you are familiar with Gromacs you will immediately see the input/output from 3 simulations: an energy minimization (`Emin/`), an NPT equilibration (`Equil-NPT/`), and an NVT production run (`Prod-NVT/`). In the main directory, you will also see a .yaml file, which contains the NOMAD schema for connecting these 3 simulations into a workflow. More information about these custom workflow schemas can be found under the [Advanced](Advanced/part4.md) tab.
 
 On the top-left menu, click on `PUBLISH > Uploads`.
 
@@ -46,9 +38,9 @@ Then click on `CREATE A NEW UPLOAD` and either drag-and-drop the `water_workflow
 
 After the files are uploaded, a **processing** is triggered. In brief, NOMAD interprets the files and divides them into two categories: **mainfiles** and **auxiliary files**. In the same upload, there might be multiple mainfiles and auxiliary files organized in a folder tree structure.
 
-The **mainfiles** are those files which are representative of a given computational calculation. The presence of a mainfile in the upload is required for NOMAD to recognize a calculation. NOMAD supports several computational codes for first principles calculations, molecular dynamics simulations, and lattice modeling, as well as workflow and database managers. For each code, NOMAD recognizes a single file as the mainfile. For example, the Gromacs mainfile is the native `.log` file created during the simulation. The remaining files that have not been identified as mainfiles are designated as **auxiliary files**.
+The **mainfiles** are those files which are representative of a given computational calculation. The presence of a mainfile in the upload is required for NOMAD to recognize a calculation. NOMAD supports several computational codes for first principles calculations, molecular dynamics simulations, and lattice modeling, as well as workflow and database managers. Currently, both the Gromacs and Lammps packages are supported. *We are also developing a custom schema based on the H5MD format, to allow users to upload simulation data run with any MD engine.* Here, we will walk you through uploading data from a series of simulations run in Gromacs.
 
-You can find further information about the various supported codes, mainfiles, and auxiliary files in the general NOMAD documentation under [Supported parsers](https://nomad-lab.eu/prod/v1/staging/docs/reference/parsers.html).
+For each supported code, NOMAD recognizes a single file as the mainfile. For example, the Gromacs mainfile is the native `.log` file created during the simulation. The remaining files that have not been identified as mainfiles are designated as **auxiliary files**. You can find further information about the various supported codes, mainfiles, and auxiliary files in the general NOMAD documentation under [Supported parsers](https://nomad-lab.eu/prod/v1/staging/docs/reference/parsers.html).
 
 We recommend to keep as many auxiliary files as possible together with the mainfile, but without exceeding the uploads limit---32GB file size limit per upload. (Note: this limit may be expanded in the future and exceptions can be received by contacting the NOMAD team. For large datasets, special processing procedures must be followed. **TODO -- revise this and add more about pruning trajectories and such**)
 
@@ -74,6 +66,18 @@ The name of the upload can be modify by clicking on the pen icon :fontawesome-so
 - :fontawesome-solid-rotate: _Reprocess_: triggers again the processing of the uploaded data.
 - :fontawesome-solid-angle-left::fontawesome-solid-angle-right: _API_: generates a JSON response to use by the [NOMAD API](../glossary/glossary.md/#api). See [Querying and performing Data Science](../querying_and_performing_Data_Science/intro.md) for more information.
 - :fontawesome-solid-trash: _Delete the upload_: deletes completely the upload.
+
+<!-- ## The NOMAD API
+Another important functionality in NOMAD is being able to perform queries and analyze the resulting downloaded data from it. Once you have decided searching for a set of materials with certain properties and derived from your prefered methodology, NOMAD gives you another tool to perform a query via Application Programming Interface (API) queries or calls. This can be found by clicking the symbol `<>` at the top of the filter menus.
+<!-- In [Part II](part2.md), you will learn how to use an API query to get GW data and work with it in a Jupyter Notebook for analysis and plotting of the DFT and GW band structure. -->
+
+<!-- <div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/api.png" alt="API query" width="90%" title="Generating an API query from filters.">
+    </label>
+</div> -->
+
 
 The remainder of the uploads page is divided in 4 sections. The first section, _(1) Prepare and upload your files_, shows the files and folder structure in the upload. You can add a `README.md` in the root directory and its content will be shown above this section..
 
@@ -101,7 +105,7 @@ The final section, _(4) Publish_, lets the user to publish the data with or with
     </label>
 </div>
 
-Now go back to second section, _(2) Process data_, which shows the processed data and the generated [entries](../glossary/glossary.md/#entries) in NOMAD:
+Now go back to the second section, _(2) Process data_, which shows the processed data and the generated [entries](../glossary/glossary.md/#entries) in NOMAD:
 
 <div class="click-zoom">
     <label>
@@ -117,6 +121,52 @@ Click on the **FILES** tab. Here you will find all the raw data that was uploade
 Now click on the **LOGS** tab. Here you will find some technical information about the data processing along with any warnings or errors that were raised by the NOMAD software.
 
 Finally, click on the **DATA** tab. Here you can navigate through the NOMAD *Metainfo* for this entry, i.e., the processed and normalized version of the simulation data and metadata.
+
+## The NOMAD Metainfo
+
+NOMAD stores all processed data in a well defined, structured, and machine readable format, known as the `archive`.
+The schema that defines the organization of (meta)data within the archive is known as the `MetaInfo`.
+More information can be found in the NOMAD docs: [An Introduction to Schemas and Structured Data in NOMAD](https://nomad-lab.eu/prod/v1/docs/schema/introduction.html).
+
+Duplicate your tab and go to `Analyze > The NOMAD Metainfo` in the top-left menu of NOMAD. Here you can navigate through or search the entire set of NOMAD Metainfo definitions.
+
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/nomadmetainfo.png" alt="The NOMAD metainfo" width="90%" title="The NOMAD metainfo.">
+    </label>
+</div>
+
+The NOMAD Metainfo covers a very wide range of materials data beyond computational data, including electronic lab notebooks and a variety of experimental techniques.
+The most important archive sections for computational data is illustrated in the following diagram:
+
+```
+archive
+├── run
+│    ├── method
+│    │      ├── atom_parameters
+│    │      ├── dft
+│    │      ├── forcefield
+│    │      └── ...
+│    ├── system
+│    │      ├── atoms
+│    │      │     ├── positions
+│    │      │     ├── lattice_vectors
+│    │      │     └── ...
+│    │      └── ...
+│    └── calculation
+│           ├── energy
+│           ├── forces
+│           └── ...
+└── workflow2
+     ├── method
+     ├── inputs
+     ├── tasks
+     ├── outputs
+     └── results
+```
+
+Search through the NOMAD Metainfo sections displayed above to get an idea of what kinds of quantities are stored in each section. In [Part II](part2.md), you will learn how to explore the actual populated quantities of the Metainfo for specific entries.
 
 Navigate to section **run** :fontawesome-solid-arrow-right: **program**, where we find some basic information about the simulation code (name and version):
 

@@ -1,29 +1,27 @@
 # Introduction
 
-This page contains the documents following the [FAIRmat tutorial 10](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home), presented on 14.06.2023 by Luca M. Ghiringhelli, Nathan Daelman, and José M. Pizarro. It is divided in five main parts:
+This tutorial provides an overview of using the NOMAD software, with a focus on support for classical molecular simulations.
+NOMAD is a free open-source data management platform for Materials Science which follows the F.A.I.R. (Findable, Accessible, Interoperable, and Reusable) principles [@Wilkinson2016;@goFairWeb], and is developed primarily by the [FAIRmat consortium](https://www.fairmat-nfdi.eu/fairmat).
 
-1. [Part I: How to explore the NOMAD Archive and Repository.](part1.md)
-2. [Part II: How to make an upload and query NOMAD.](part2.md)
-4. [Part III: Numerical precision in _ab initio_ calculations.](part3.md)
-5. [Part IV: Workflows and how to link DFT and beyond-DFT calculations.](part4.md)
-3. [Part V: Knowledge-based XC functional exploration.](part5.md)
+**TODO add some short description of the scope and other areas**
+## The AI Toolkit
 
+The [Artificial-Intelligence Toolkit](https://nomad-lab.eu/aitoolkit) is a collection of tools and tutorials for applying artificial-intelligence approaches (including machine-learning, compressed sensing, and data mining) to the materials data found on the NOMAD repository.
 
-New organization
+Currently, the AI-toolkit focuses on analysis of *Ab Initio* data. This focus will be broadened as a larger amount of MD data is added to NOMAD. In the mean time, the toolkit still provides a nice platform for learning about state-of-the-art data analysis techniques in the context of materials data.
 
-- I think I will ask them to get an account before the tutorial starts
+<!-- You can reach the toolkit by going to "Analyze > AI Toolkit" in the top-left menu on the NOMAD page  You can navigate to the AI toolkit. The specifics of the toolkit is beyond the scope of this tutorial. However, we encourage you to explore its features on your own.
 
-1. [Part I: How to explore the NOMAD Archive and Repository.](part1.md)
-    - this section is still probably relevant, but maybe present it as more of an overview of the features...should also mention the AI toolkit
-    - let's also add some specific things about MD - how to currently search for MD by code or by method.
-    - should also mention the big MD dataset
-2. [Part II: How to make an upload and query NOMAD.](part2.md)
-    - leave the upload part, I think remove the querying for now
-    - maybe combine some of the new general docs with my tutorial walk through for water
-4. [Part III: Numerical precision in _ab initio_ calculations.](part3.md)
-    - This section is probably not relevant, plan to remove
-5. [Part IV: Workflows and how to link DFT and beyond-DFT calculations.](part4.md)
-    - Take some aspects of this and combine it with my tutorial # 2
-3. [Part V: Knowledge-based XC functional exploration.](part5.md)
-    - remove
-6. Then here we need to add part 3 of the tutorial I think, but maybe this time we can actually
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/navigate_AI_toolkit.png" alt="Nav AI-TK" width="75%" title="Navigation to AI toolkit">
+    </label>
+</div> -->
+
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/AI_toolkit.png" alt="AI-TK" width="90%" title="AI toolkit">
+    </label>
+</div>

@@ -5,16 +5,17 @@ site_author: FAIRmat consortium
 nav:
   - Introduction: index.md
   - Part I - Exploring NOMAD: part1.md
-  - Part II - Uploading data to NOMAD: Tutorial-1_Uploading_MD_Data.md
+  - Part II - Overview page and workflows: Tutorial-2_Overview_Page_and_Worfklow_Visualizer.md
+  - Part III - Uploading data to NOMAD: Tutorial-1_Uploading_MD_Data.md
     # - upload doc - new how-to: upload.md
     # - Uploading data to NOMAD: Tutorial-1_Uploading_MD_Data.md
     # - oldpart2-TBR: part2.md
   # - Part III - Numerical precision in NOMAD: part3.md
-  - Part III - overview page and workflows:
-    - MD example: Tutorial-2_Overview_Page_and_Worfklow_Visualizer.md
-    - oldpart4-TBRorI: part4.md
   # - Part V - Knowledge-based XC functionals exploration: part5.md
-  - MD 3: Tutorial-3_Extracting_Data_and_Trajectory_Analysis.md
+  - Part IV - Working with the NOMAD archive: Tutorial-3_Extracting_Data_and_Trajectory_Analysis.md
+  - Advanced:
+    - Creating custom workflows: Advanced/part4.md
+    - Using python API for uploading: Advanced/Upload_API.md
 theme:
   name: material
   palette:
