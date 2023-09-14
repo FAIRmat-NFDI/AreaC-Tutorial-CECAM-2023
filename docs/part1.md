@@ -59,11 +59,12 @@ Apparently, the page we have in front of us is called _Entries_.
 
 Now, let's run through some _scenarios_ that you, as a researcher, might encounter.
 
-### Scenario 1
+### Scenario 1 - Example setup
 
-You want to learn how to set up a Molecular Dynamics simulation in _Gromacs_ and need an example.
-Your system of interest is _water_, which can be quite tricky to model.
-You want to compare results from several setups to find the one most suitable to you.
+!!! assignment
+    **You want to learn how to set up a Molecular Dynamics simulation in _Gromacs_ and need an example.
+    Your system of interest is _water_, which can be quite tricky to model.
+    You want to compare results from several setups to find the one most suitable to you.**
 
 In the _entries table_ NOMAD is already listing all database _entries_.
 The strategy is to **narrow or _filter_ this list down** to our needs.
@@ -75,40 +76,91 @@ Any filter group with an arrow (`>`) can be clicked open to reveal various filte
 To close the side pane and reveal the full table again, use the arrow back (`<-`) or simply click anywhere outside of it.
 
 Now, **scroll down to check out the full list**. What main groups are there?
-Remember we essentially want to learn more about Gromacs and its calculation setup.
+Remember, we essentially want to learn more about Gromacs and its calculation setup.
 **Under which filter groups do you think we could find them?**
 
-While it is somewhat hidden, you can find the _Program Name_ under _Method_.
+While it is somewhat hidden, you can find the "Program Name" under "Method".
 It comes with a text bar and a list of suggestions.
 You can try extending the list further and further, but Gromacs is not the most represented code in our database.
 Here, it is probably faster to just type out the name.
 **Start with g r**, and NOMAD will attempt to autocomplete.
 This is really handy when you are unsure of the spelling or capitalization.
 **Select the relevant suggestion.**
+Take a look back at the **side menu**, where you will find the **applied filter listed as _chips_**.
 
 Notice how the overview list changes with respect to your filter!
-Still, the list of remaining calculations is still quite lone (3.496 matches)... 
+Yet, the list of remaining calculations is still quite long (3.496 matches)... 
 Most likely, there will not be a single filter that solves our problem completely.
 That is alright, though, we can just **stack up several filters**.
 
+!!! tip
+    You can toggle the statistics scale via the dropdown menu right to the name.
+    Conversely, if the statistics are ever the browser down, deactivate them by deselecting "Filters" > "options menu" (`⋮`) > "Show advanced statistics".
+
 Which subsequent filter to search for first depends on your priorities: do you want to learn mostly about running Molecular Dynamics or how a forcefield for water should be tweaked?
+Let us go with former.
+Fortunately, there already is a **filter subgroup called "Molecular Dynamics", so click it open**.
+You are now presented with several settings.
+Judging from the statistics, we have the best chance with a setting that covers the widest range of calculations (28.000 entries).
+**Select "Temperature" under "Available Properties"**. <!-- @Joseph: do you want me to to add a "Molecular Dynamics" selection button?-->
 
-The exact order here does not matter (you can try this out for yourself).
+!!! tip
+    If you have trouble understanding any term, just hover over it with the mouse.
+    A summary text will appear.
+    For example, "Molecular Dynamics" > "Available Properties" clarifies that we are dealing observables documented along the trajectory.
 
-### Scenario 2
+System specifications are found under "Material".
+Since we know the composition of our system, **click on "Elements / Formula"** and **select the matching elements** in the periodic table.
+The number of database entries containing the other elements too is communicated via the color code.
+Those that are already **filtered out will be gray**, just as you saw when opening the side pane.
+This is the filter stacking mentioned before, showing that Gromacs users typically work on organic systems.
+You can see both chips on the left.
+Note how there is an "and" in between.
+While **filters** between side menu options stack, those **within a side pane each have their own logic**.
+We are looking for pure water, so O and H suffice. <!-- Shame how we don't have a subgroup search yet -->
+**Remove all data with additional elements** by selecting "only compositions that exclusively contain these atoms".
 
-You want to train a machine-learned model and need data.
-Specifically, you are interested in the HOMO-LUMO gap for molecules with XXXX.
+!!! success
+    You are left with 2 MD calculations in the entries overview.
+    Clicking on either, will fold out a quick summary.
+    **Clicking on the arrow** (`->`) will bring you to an _Overview page_.
+    More on that in [Part II](part2.md).
+    By **clicking through on "FILES"**, you will get an overview of the uploaded files.
+    These for sure contain output, but often also input.
+    Both could serve as great starting points for deploying your own calculations.
+
+Actually, the **exact historical order** in which we applied the filters **does not matter**.
+I.e. the same set of filters will yield the same search result.
+This insight comes with a small caveat: the statistics that we see as we are stacking up our filters will behave differently.
+These filters are like small questions or details that we use construct an overall query.
+If we take a **different route**, we will see **different intermediate results** and this could lead us to **change our final formulation**.
+
+To see this effect in action, rewind back to where we were choosing our priorities and let us go with the latter instead.
+Just **click the cross (`x`) at the top of the filter menu**, and **reapply the filters** for Gromacs and the composition.
+Just with these settings, the entries list is so short, that we could **check the specific calculations** even **by hand**!
+
+!!! success
+    Glossing over the remaining 6 results, you discover that Sebastian Baugmart has 2 other MD simulations which were not classified as such. <!-- @Joseph is this a bug? -->
+    We also find 2 more Geometry Optimizations of both systems.
+    While these do not exactly match our initial objective, they could still provide us with valuable insights.
+    They also inform us of the overarching workflow used by both authors, i.e. first relax the system, then run MD under various constraints. <!-- @Joseph: thermostats? -->
+
+### Scenario 2 - Data science
+
+!!! assignment
+    **You want to train a machine-learned model and need data.
+    Specifically, you are interested in predicting the HOMO-LUMO gap for molecules with XXXX.**
 
 - Search by property
 - Search by composition
 - Search by method / functional
 - Fine-tune search
 
-### Scenario 3
+### Scenario 3 - Finding context
 
-You are looking for a benchmark publication on XXXX.
-A colleague told you there is a good recent one by XXXX.
+!!! assignment
+    **You are looking for a benchmark publication on XXXX.
+    A colleague told you there is a good recent one by XXXX.**
 
 - Search by author's name
 - Scan by data set name
@@ -120,3 +172,5 @@ A colleague told you there is a good recent one by XXXX.
 
 You found a data set of interest on XXXX. but it does not contain the observables you want.
 -->
+
+## Glossary
