@@ -13,11 +13,6 @@ and activate it in your shell:
 Always ensure that the environment is active.
 Else run the command above again.
 
-Make sure you have the latest pip version:
-```
-pip install --upgrade pip
-```
-
 Install the right dependencies:
 ```
 pip install -r requirements.txt
