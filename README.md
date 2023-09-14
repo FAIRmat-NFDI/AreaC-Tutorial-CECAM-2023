@@ -10,18 +10,17 @@ and activate it in your shell:
 ```
 . .pyenvdoc/bin/activate
 ```
+Always ensure that the environment is active.
+Else run the command above again.
 
 Make sure you have the latest pip version:
 ```
 pip install --upgrade pip
 ```
 
-Pip-install the right dependencies:
+Install the right dependencies:
 ```
-pip install mkdocs
-pip install mkdocs-material
-pip install mkdocs-bibtex
-pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
+pip install -r requirements.txt
 ```
 
 Launch locally:
