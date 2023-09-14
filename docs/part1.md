@@ -52,10 +52,10 @@ Take a look at the layout.
 Some elements immediately stand out:
 
 - In the middle, there is a whole list with tabulated data.
-- Just above it is a search bar with the text _Type your query or keyword here_.
-- On the left-hand side is a **FILTERS** menu.
+- Just above it is a search bar with the text "Type your query or keyword here".
+- On the left-hand side is a _filters menu_.
 - At the very top is a header with several options (left-hand side), login and units (right-hand).
-Apparently, the page we have in front of us is called **Entries**.
+Apparently, the page we have in front of us is called _Entries_.
 
 Now, let's run through some _scenarios_ that you, as a researcher, might encounter.
 
@@ -65,9 +65,35 @@ You want to learn how to set up a Molecular Dynamics simulation in _Gromacs_ and
 Your system of interest is _water_, which can be quite tricky to model.
 You want to compare results from several setups to find the one most suitable to you.
 
-- Search by program
-- Search by workflow
-- Search by material
+In the _entries table_ NOMAD is already listing all database _entries_.
+The strategy is to **narrow or _filter_ this list down** to our needs.
+Our main tool here, will be the _search menu_ (left-hand side).
+Take stock of its structure.
+There is a list of _filter groups_ or themes.
+Subgroups are indented below their main group.
+Any filter group with an arrow (`>`) can be clicked open to reveal various filters and statistics.
+To close the side pane and reveal the full table again, use the arrow back (`<-`) or simply click anywhere outside of it.
+
+Now, **scroll down to check out the full list**. What main groups are there?
+Remember we essentially want to learn more about Gromacs and its calculation setup.
+**Under which filter groups do you think we could find them?**
+
+While it is somewhat hidden, you can find the _Program Name_ under _Method_.
+It comes with a text bar and a list of suggestions.
+You can try extending the list further and further, but Gromacs is not the most represented code in our database.
+Here, it is probably faster to just type out the name.
+**Start with g r**, and NOMAD will attempt to autocomplete.
+This is really handy when you are unsure of the spelling or capitalization.
+**Select the relevant suggestion.**
+
+Notice how the overview list changes with respect to your filter!
+Still, the list of remaining calculations is still quite lone (3.496 matches)... 
+Most likely, there will not be a single filter that solves our problem completely.
+That is alright, though, we can just **stack up several filters**.
+
+Which subsequent filter to search for first depends on your priorities: do you want to learn mostly about running Molecular Dynamics or how a forcefield for water should be tweaked?
+
+The exact order here does not matter (you can try this out for yourself).
 
 ### Scenario 2
 
