@@ -66,6 +66,12 @@ Now, let's run through some _scenarios_ that you, as a researcher, might encount
     Your system of interest is _water_, which can be quite tricky to model.
     You want to compare results from several setups to find the one most suitable to you.**
 
+    In this exercise, you will learn:
+
+    - How to toggle and combine filters.
+    - How to work with dynamic statistics.
+    - How to reset the search.
+
 In the _entries table_ NOMAD is already listing all database _entries_.
 The strategy is to **narrow or _filter_ this list down** to our needs.
 Our main tool here, will be the _search menu_ (left-hand side).
@@ -83,8 +89,8 @@ While it is somewhat hidden, you can find the "Program Name" under "Method".
 It comes with a text bar and a list of suggestions.
 You can try extending the list further and further, but Gromacs is not the most represented code in our database.
 Here, it is probably faster to just type out the name.
-**Start with g r**, and NOMAD will attempt to autocomplete.
-This is really handy when you are unsure of the spelling or capitalization.
+**Start with g r**, and NOMAD will attempt to autocomplete. <!-- Should this become a tip box? -->
+This comes in handy when you are unsure of the spelling or capitalization.
 **Select the relevant suggestion.**
 Take a look back at the **side menu**, where you will find the **applied filter listed as _chips_**.
 
