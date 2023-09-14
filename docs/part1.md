@@ -88,11 +88,13 @@ Remember, we essentially want to learn more about Gromacs and its calculation se
 While it is somewhat hidden, you can find the "Program Name" under "Method".
 It comes with a text bar and a list of suggestions.
 You can try extending the list further and further, but Gromacs is not the most represented code in our database.
-Here, it is probably faster to just type out the name.
-**Start with g r**, and NOMAD will attempt to autocomplete. <!-- Should this become a tip box? -->
-This comes in handy when you are unsure of the spelling or capitalization.
-**Select the relevant suggestion.**
+Here, it is probably faster to just type out its name.
 Take a look back at the **side menu**, where you will find the **applied filter listed as _chips_**.
+
+!!! tip
+    Almost all text bars in NOMAD support **autocomplete**.
+    This comes in handy when you are unsure of the spelling or capitalization.
+    Start with the first few letters and select your choice by clicking or hitting `<enter>`.
 
 Notice how the overview list changes with respect to your filter!
 Yet, the list of remaining calculations is still quite long (3.496 matches)... 
@@ -100,7 +102,7 @@ Most likely, there will not be a single filter that solves our problem completel
 That is alright, though, we can just **stack up several filters**.
 
 !!! tip
-    You can toggle the statistics scale via the dropdown menu right to the name.
+    You can toggle the **statistics** scale via the dropdown menu right to the name.
     Conversely, if the statistics are ever the browser down, deactivate them by deselecting "Filters" > "options menu" (`⋮`) > "Show advanced statistics".
 
 Which subsequent filter to search for first depends on your priorities: do you want to learn mostly about running Molecular Dynamics or how a forcefield for water should be tweaked?
@@ -111,7 +113,7 @@ Judging from the statistics, we have the best chance with a setting that covers 
 **Select "Temperature" under "Available Properties"**. <!-- @Joseph: do you want me to to add a "Molecular Dynamics" selection button?-->
 
 !!! tip
-    If you have trouble understanding any term, just hover over it with the mouse.
+    If you have trouble **understanding any term**, just hover over it with the mouse.
     A summary text will appear.
     For example, "Molecular Dynamics" > "Available Properties" clarifies that we are dealing observables documented along the trajectory.
 
