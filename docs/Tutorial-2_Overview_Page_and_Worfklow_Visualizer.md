@@ -1,4 +1,4 @@
-## <center> **Tutorial 2: Molecular dynamics overview page and workflow visualizer** </center>
+# The Molecular dynamics overview page and workflow visualizer
 
 In this section, we will explore futher the features of the overview page. Let's first find some MD data to investigate. Go to `Explore > Entries` from the top-left menu on the main (beta) NOMAD page. Go to the `Molecular Dynamics` tab on the `Filters` bar (left-hand side) and select `Temperature` under Available Properties. Now, go to the `Author / Origin / Data` filter tab. Under `Dataset Name`, select `Atomistic Molecular Dynamics Simulations of Pure Liquid...`. Now under results, select any entry in this dataset by clicking the :fontawesome-solid-arrow-right: to the right of the entry.
 
