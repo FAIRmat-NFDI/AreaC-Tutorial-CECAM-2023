@@ -157,7 +157,34 @@ Just with these settings, the entries list is so short, that we could **check th
 
 !!! assignment
     **You want to train a machine-learned model and need data.
-    Specifically, you are interested in predicting the HOMO-LUMO gap for molecules with XXXX.**
+    Specifically, you are interested in predicting the HOMO-LUMO energy gap for molecules with XXXX.**
+
+    _Note:_ this scenario assumes that you at least skimmed scenario 1.
+    If anything is unclear, please take a look there first.
+
+Similar to scenario 1, we can go about formulating this query in various ways.
+Since the observable of our model is the most specifically formulated, we start by filtering for all entries that have a **HOMO-LUMO gap**.
+You may have noticed the **filter group "Properties"** on your first scroll through the side menu.
+Under here you can find the results extracted from the entries.
+Typically, these will also be what a supervised machine-learned attempts to predict.
+**Go through the filter subgroups**, looking for our observable.
+
+!!! tip
+    **What are entries exactly?**
+    Entries are individually stored data packages, shown as a row in the overview table.
+    In our context, they most overlap with an _individual calculation_, be they single-point or with updates to the atomic coordinates.
+    When separate calculations are linked together into a _workflow_ (see [Part II](part2.md)), the overall link also receives its own dedicated entry.
+    Lastly, since NOMAD covers the whole of condensed matter, entries can also be _experimental samples_ or _batches_.
+
+!!! success
+    The HOMO and LUMO are the energy levels of very specific orbitals in the electronic structure of a molecule.
+    Hence, the **"Electronic" filter subgroup** best matches that theme.
+    The way this side pane is layed out, it first gives you an overview of what is out there and below hands you filters for narrowing the properties further down.
+    Finding the HOMO-LUMO gap is a bit tricky, since it is not named as such.
+    Given that NOMAD is materials-centric (while still allowing molecular systems), it deals in condensed matter nomenclature. <!-- @Joseph: I could change the terminology here to "Band gap / HOMO - LUMO". That would mke it more accessible to other communities as well. -->
+    In materials, the **"band gap"** would be the equivalent term.
+    It suffices to select just that filter.
+    There is no need to narrow it down, since the distinction "direct" vs "indirect" does not apply to molecules, and we are fine with the energy range as they come.
 
 - Search by property
 - Search by composition
