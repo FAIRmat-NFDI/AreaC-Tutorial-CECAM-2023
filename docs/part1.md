@@ -129,7 +129,7 @@ We are looking for pure water, so O and H suffice. <!-- Shame how we don't have 
 **Remove all data with additional elements** by selecting "only compositions that exclusively contain these atoms".
 
 !!! success
-    You are left with 2 MD calculations in the entries overview.
+    You are left with 2 MD calculations in the entries list.
     Clicking on either, will fold out a quick summary.
     **Clicking on the arrow** (`->`) will bring you to an _Overview page_.
     More on that in [Part II](part2.md).
@@ -156,7 +156,8 @@ Just with these settings, the entries list is so short, that we could **check th
 ### Scenario 2 - Data science
 
 !!! assignment
-    **You want to train a machine-learned model and need data.
+    **You want to evaluate the impact of metal intercalation on molecular crystals.
+    Maybe, if you find enough high-quality data, even train a machine-learned model.
     Specifically, you are interested in predicting the HOMO-LUMO energy gap for molecules with XXXX.**
 
     _Note:_ this scenario assumes that you at least skimmed scenario 1.
@@ -186,26 +187,152 @@ Typically, these will also be what a supervised machine-learned attempts to pred
     It suffices to select just that filter.
     There is no need to narrow it down, since the distinction "direct" vs "indirect" does not apply to molecules, and we are fine with the energy range as they come.
 
-- Search by property
-- Search by composition
-- Search by method / functional
-- Fine-tune search
 
-### Scenario 3 - Finding context
+
+- Search by composition
+- Search by property
+- Search by method / functional
+(- Fine-tune search)
+
+### Scenario 3 - Finding publications
 
 !!! assignment
-    **You are looking for a benchmark publication on XXXX.
-    A colleague told you there is a good recent one by XXXX.**
+    **You are talking to a colleague about your machine-learned model (from scenario 2).
+    They tell you there was a good recent publication of Rosen, but are forgetting the rest of the details at the moment.
+    They will get back to you, but you are eager to check it out right away.**
 
-- Search by author's name
-- Scan by data set name
-- Adjust time
-- Go to publication
+    In this exercise, you will learn how to:
 
-<!--
-### Scenario 4
+    - filter by publication metadata.
+    - set up a dashboard.
 
-You found a data set of interest on XXXX. but it does not contain the observables you want.
--->
+The obvious starting point would be use a search engine specialized in publications, such as [**Google Scholar**](https://scholar.google.com/).
+Just searching by the author's (last?) name, yields a suggestion for "Robert A. Rose", who seems to be working in biomedicine.
+Not quite what we were looking for...
+You can **try adding some more terms** describing the field, e.g. _ab initio_, DFT or MOFs.
+
+!!! success
+    This way it is possible to find the author's full name (**Andrew S. Rosen**) and also his publication history.
+    Here we have hit a dead-end in as far as Google Scholar can help.
+    Now it would be a matter of going over the publication list manually.
+
+Let us see how we can leverage NOMAD for this research case.
+At the bottom of the side menu there are several filter groups covering the **publication metadata under "Author / Origin / Dataset"**.
+The first filter in the side pane is a **search by "Author Name"**.
+**Type in "Rosen"**.
+We get 2 suggestions, but only one matches perfectly.
+**Select "Andrew Rosen".**
+Actually, if you performed the Google Scholar search _successfully_, you should have found the same author.
+
+Take stock of the **"Upload Create Time"** statistiscs right below "Author Name".
+It appears that Rosen has uploaded 3 times to NOMAD, each time in quite large batches ranging from to thousands to tens of thousands of entries.
+That is some very rich data.
+To better understand its make up, we have to compare several statistics at once.
+Jumping between side panes is a bit of a hassle, so instead we will speed up our analysis by setting up a _dashboard_.
+**Click on the plus button (`+`) at the utmost right from "Upload Create Time"** and **return to the entries list**.
+
+!!! success
+    You should now find the same statistic nestled between the search bar and the entries list.
+
+This is our nascent dashboard.
+It becomes most useful for fast comparison and selection, but first we have to build it out a bit.
+**Add to your dashboard** at least:
+
+- the periodic table ("Elements / Formula" > "Elements")
+- "Elements / Formula" > "Number of Elements"
+- "Author / Origin / Dataset" > "Dataset Name"
+- ~~"Electronic" > "Electronic Properties"~~ is not necessary, since there are only DOS
+
+Feel free to incorporate other filters as well.
+Just try to keep everything in a single view.
+Once you have to scroll to see the entire dashboard, it starts losing its speed advantage.
+Overall, a dashboard should just provide a quick summary, for more specific filters there are always the side menu and search bar.
+
+!!! tip
+    You have a lot of control over the layout of your dashboard.
+    You can shuffle around _widgets_ by **click & hold their name and then dragging them around**.
+    Expanding their size is done by dragging the bottom-right corner (`∟`).
+    Widgets start out at their minimal default.
+    For a great example of a rich dashboard, visit the [app under "Explore" > "Solar Cells"](https://nomad-lab.eu/prod/v1/staging/gui/search/solarcells).
+
+!!! success
+    Your dashboard should now look somewhat as in the reference figure.
+    Note that you might have play around with the layout to get a perfect match.
+    Check the tip box above for more details.
+
+<!-- Also personalize the entries list? -->
+
+Now we can get a quick understanding of what data was uploaded.
+We are going to re-apply some settings from scenario 2.
+**Restrain the "Number of Elements" to 5 and 6**, and **make sure the elements H, C, N, and O are included**.
+As "Upload Create Time" updates, only 2 upload times are present now.
+**Switch between selecting one of each upload times.**
+How does the constitution of the data set change?
+Pay close attention to all the widgets.
+
+!!! success
+    Overall, it seems that the **materials covered are quite similar** in both.
+    This is not just limited to the composition, but also the crystal makeup.
+    You can verify this yourself by checking the "Structure" side pane.
+    The uploads were instead to different datasets, which seem to differ in methodology: GGA vs hybrid and meta-GGA.
+
+We should have enough now to retrieve the paper.
+While it is nice to have data from a variety of methods, especially for comparison reasons, we are most interested in the HSE06.
+There seem to be 2 data sets under with that tag and we are not sure what the asterisk (`*`) means.
+**Select both HSE06 datasets** then.
+**Click on the top entry** in the list.
+It will fold out, revealing a summary.
+Find the "references" key.
+Right-button click the DOI hyperlink and **open the article in a new tab**.
+
+!!! success
+    You should now have [Machine learning the quantum-chemical properties of metal–organic frameworks for accelerated materials discovery](https://www.cell.com/matter/fulltext/S2590-2385(21)00070-9?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2590238521000709%3Fshowall%3Dtrue) in front of you.
+    Indeed, next time you bump into your colleague, they will be surprised to learn that you already found it.
+    Actually, any other dataset would have brought you to the same paper.
+    They are indeed part of the same publication.
+    You can verify this yourself.
+
+Reading the **paper and the NOMAD dataset side-by-side**, can help you get the full context much faster.
+For example, the abstract mentions that _14.000 experimental MOFs_ were covered.
+This is about the size of the PBE dataset (12.600) or both HSE06 sets combined (6.550 each).
+The discrepancy could be explained away as a rounding error in the text,  missing data, or maybe that not each MOF corresponds one-to-one to single calculation.
+The latter could be case for more complex, composed MOFs.
+If so, there should be mention of that in the paper.
+
+The dataset also show the _work process_ of the authors.
+They first used a very standard method to sample the materials space.
+However, GGA is prone to yield _overbinding_.
+Especially in organic systems, the default for a while now has been the more _expensive hybrids_, e.g. B3LYP, M066, etc.
+These are much more expensive in solid state, but still, they ran HSE06 over seemingly the entire set.
+They also experimented with _metaGGAs_ in about half the cases.
+The reason therefore can be found in the text.
+Apparently there is _cited work (no. 147)_ that shows the effectiveness of HLE17 for _large band gap prediction in complex materials_.
+
+!!! warning
+    **Ignoring hidden complexity**
+
+    While the naming of the datasets matches the density functional labels assigned by NOMAD, there could be other relevant information regarding the modelling.
+    A good practice would be check under ["Entry" > "DATA" > "run"](https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/data/run/0) to find data that has no associated filter, or
+    take a look at the raw input under ["Entry" > "FILES"](https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/files/_mainfile) in case the metadata was not extracted.
+
+    In this case, the [INCAR](https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/files/INCAR/preview) contains **Van der Waals terms** (D3 according to the text) as well.
+    This is perfectly normal practice when modeling hydrocarbon chains, but was **not picked up on by NOMAD**.
+    Support will be added in the future.
+
+    Meanwhile, the dataset name probably does not reflect these settings as D3(BJ) is used in all of them.
+    Remember, a **dataset name is only as accurate as the author wants** it to be.
+
+<!-- Then there is _the matter of HSE06 and HSE06*_. -->
+
+As a **last reflection**, note how many of the entries and statistics match our findings in scenario 2.
+Indeed, Andrew Rosen made a big contribution to our coverage of MOFs.
+Such contributions from the community are what make NOMAD great.
+One self-explanatory opportunity could be as part of a publication.
+Andrew first even published his data over [figshare](https://figshare.com/articles/dataset/QMOF_Database/13147324) and shortly after loaded it up (see [part III](part3.md)) to NOMAD.
+It is good that he did, since NOMAD yields much more information (the full calculation) and search functionality at the same height as data from wide variety of other sources.
+Meanwhile, over figshare, you have to download a zip folder, not knowing what to expect exactly.
+Andrew clearly put some effort in providing a structured overview, although it is heavily focused towards description of the MOF and little else.
+In other words, each platform allow for different accents and structures.
+**Combining both repositories** leads to the best coverage.
 
 ## Glossary
