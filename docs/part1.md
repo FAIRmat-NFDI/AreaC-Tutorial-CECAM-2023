@@ -160,7 +160,7 @@ Just with these settings, the entries list is so short, that we could **check th
     Maybe, if you find enough high-quality data, you can even train a machine-learned model.
     Specifically, you are interested in predicting the band gap [^1].**
 
-    [^1]: The band gap is the solid state counterpart of the HOMO-LUMO energy gap.
+    [^1]: The band gap is the solid state counterpart of the HOMO-LUMO energy gap. Given that NOMAD is materials-centric (while still allowing molecular systems), it deals in condensed matter nomenclature. <!-- @Joseph: I could change the terminology here to "Band gap / HOMO - LUMO". That would make it more accessible to other communities as well. -->
 
     In this exercise, you will learn how to:
 
@@ -195,6 +195,13 @@ The direction of this arrow decides the ordering: ascending / alphabetical (up) 
 The default ordering will be up.
 By clicking the same column header again, you can toggle it.
 
+!!! tip
+    **What are entries exactly?**
+    Entries are individually stored data packages, shown as a row in the overview table.
+    In our context, they most overlap with an _individual calculation_, be they single-point or with updates to the atomic coordinates.
+    When separate calculations are linked together into a _workflow_ (see [Part II](part2.md)), the overall link also receives its own dedicated entry.
+    Lastly, since NOMAD covers the whole of condensed matter, entries can also be _experimental samples_ or _batches_.
+
 !!! success
     You should now have a view in front of you similar to the reference figure.
     There is **little room for deviation**, since the **horizontal column order** is predetermined (matching the one in the selection box menu).
@@ -205,20 +212,18 @@ By clicking the same column header again, you can toggle it.
 To real use a **dataset** for machine-learning, it should be **homogeneous** across its entire setup, safe for the variables that we are interested in.
 Most of the data on NOMAD is _Density Functional Theory_ (DFT), with some GW and classical forcefields.
 GW would overall be better for high-quality band gaps, but DFT will end up being more useful due to its sheer number of entries.
-Just as with forcefields, DFT is mostly determined by the choice of density functional.
+Just as with forcefields, DFT is mostly determined by the choice of kernel, i.e. density functional.
 
 Hybrid functionals are the norm for organic systems and the most popular in solid state by far are HSE06 and HSE03.
-You probably have a good instinct of where to find them by now in the side menu (under "DFT").
+By now, you probably have a good instinct of where to find them in the side menu (under "DFT").
 But opening and closing the side panes while keeping an eye on the entries list is quite the hassle.
 As you get more familiarized with the range of filters, there is a faster alternative.
 **Click into the search bar** (above the entries list) to start typing.
-**Write "dft."** and you should see a list of suggestion come up.
-We are looking for the functional, so **select "results.simulation.method.dft.xc_functional_names"**.
-That would be the full filter name.
-To set the values, **start typing "=HSE"** and **select both "HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06"**, both very prominent hybrids in solid state.
-
-!!! tip
-    xc_functional
+You can start out by writing the filter name, but you can just as well skip to the value.
+This second option works great when a value fully determines the filter type.
+**Start typing "HSE"** and select (click + enter) both **"HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06"** (2x), both very prominent hybrids in solid state.
+What is the filter's full name?
+Also tack stock of how an _equality query_ is structured.
 
 Hold on.
 How can an entry contain 2 exchange-correlation functionals at once?
@@ -227,39 +232,77 @@ For your answer, take a look at the side menu.
 
 !!! success
     You will find the same chips as usual under "DFT".
-    Only now, "HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06" are separated by the connector "OR" rather than "AND".
+    Only now, "HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06" are separated by the **connector "OR"** rather than "AND".
     Just as the name suggests, the logic condition is different in this case.
-    Our "XC Functional Names" filter as not been narrowed down, but extend to search for both options.
+    Our "XC Functional Names" filter as not been narrowed down, but **extend to search for both** options.
 
-Similar to scenario 1, we can go about formulating this query in various ways. <!-- Since the observable of our model is the most specifically formulated, we start by filtering for all entries that have a **HOMO-LUMO gap**. -->
-You may have noticed the **filter group "Properties"** on your first scroll through the side menu.
-Under here you can find the results extracted from the entries.
-Typically, these will also be what a supervised machine-learned model attempts to predict.
-**Go through the filter subgroups**, looking for our observable.
+    Moreover, note how the **filter name** is contained in the **last term** of the autocompleted version ("results.method.simulation.dft.xc_functional_names").
+    The **equality query** is defined using a **single equals sign (`=`)**, not double (`==`) or triple (`===`) as in some programming language. 
 
 !!! tip
-    **What are entries exactly?**
-    Entries are individually stored data packages, shown as a row in the overview table.
-    In our context, they most overlap with an _individual calculation_, be they single-point or with updates to the atomic coordinates.
-    When separate calculations are linked together into a _workflow_ (see [Part II](part2.md)), the overall link also receives its own dedicated entry.
-    Lastly, since NOMAD covers the whole of condensed matter, entries can also be _experimental samples_ or _batches_.
+    The exchange functional naming in NOMAD follows the **convention established by [libxc](https://github.com/ElectronicStructureLibrary/libxc)**, a popular library for evaluating (semi)local functionals.
+    In practice, this goes as `<hybrid flag>_<Jacob's Ladder>_<exchange-correlation part>_<name identifier>`, where **`<name identifier>` is the main ID** and the other tags simply provide metadata.
+    `<hybrid flag>` is only present when the functional truly is a hybrid.
+    
+    Where sensible, the libxc **_exchange-correlation_ functionals (`XC`) are split up** into _exchange_ (`X`) and _correlation_ (`C`), providing the user with the option of mixing as they see fit.
+    So it definitely is possible for a **single entry** (and even calculation) to be assigned **multiple functional names**, just not `XC`!
+    For example, the most represented functional in NOMAD, `PBE`, is stored as `[GGA_X_PBE, GGA_C_PBE]`.
+    Note that selecting one of either or even both (due to the `OR` logic), does not guarantee a user will retrieve only PBE.
+
+With the main method specified, there are still a bunch of additional numerical settings that may affect the fidelity of the results, such as the _basis set_.
+These can all be found under the filter subgroup "Precision".
+It is tough to estimate these parameters' actual impact.
+Therefore, they are best left till the end of the full query.
+Then you can evaluate the cost-benefit of reducing the dataset you retrieve for homogeneity or precision.
+
+This feature is quite recent.
+For it to have any impact, the NOMAD database has to run over all of 13 million entries and reprocess them.
+In other words, new features will always lag behind in old data.
+Please bear this in mind.
+Since there are too few examples at the moment, we will skip this set of filters.
+If you are interested, though, feel free to check out the FAIRmat [Tutorial 10](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home) for a full rundown.
+
+Lastly, we only want data that contains the relevant observable, the band gap.
+The search bar currently does not support _presence queries_, so we fall back onto the side menu.
+Observables that come out of a calculation, workflow, etc. are called _"Properties"_.
+You may have noticed this filter group on your first scroll through.
+There are several categories of properties.
+Which do you think?
+Could the search bar be of use in finding the right category?
+
+!!! tip
+    Terms in the search bar never contain spaces (` `), but use underscores (`_`) instead .
 
 !!! success
-    The HOMO and LUMO are the energy levels of very specific orbitals in the electronic structure of a molecule.
+    The band gap describes the electronic structure around the Fermi energy.
     Hence, the **"Electronic" filter subgroup** best matches that theme.
-    The way this side pane is layed out, it first gives you an overview of what is out there and below hands you filters for narrowing the properties further down.
-    Finding the HOMO-LUMO gap is a bit tricky, since it is not named as such.
-    Given that NOMAD is materials-centric (while still allowing molecular systems), it deals in condensed matter nomenclature. <!-- @Joseph: I could change the terminology here to "Band gap / HOMO - LUMO". That would mke it more accessible to other communities as well. -->
-    In materials, the **"band gap"** would be the equivalent term.
-    It suffices to select just that filter.
-    There is no need to narrow it down, since the distinction "direct" vs "indirect" does not apply to molecules, and we are fine with the energy range as they come.
+    The search bar can even tell you the full classification, as it autocompletes "band_gap" to "results.properties.electronic.band_structure_electronic.band_gap.type/value".
+    Note the sequence "properties.electronic".
 
+The way this side pane is layed out, it first gives you an _overview_ of what is out there and below hands you _filters for narrowing_ the properties further down.
+When filtering by presence, the overview suffices.
+How would you finish the query?
 
+!!! success
+    The number of entries with an extracted band gap is too low (just 11 entries).
+    This is far too little for machine-learning, let alone any statistical analysis.
+    Instead, we can go with **"Density of states"** (DOS) [^2], matching 6.5200 entries.
+    There is no need to narrow it down, we accept both data from spin-polarized and spin-restricted calculations.
 
-- Search by composition
-- Search by property
-- Search by method / functional
-(- Fine-tune search)
+    You can download the DOS, but will still have to extract the band gap yourself.
+    This is mostly a scripting question, since almost all DOS will contain the necessary information.
+    NOMAD's past extraction of the band gap was quite limited.
+    This has been mended and is being applied over the whole database.
+
+With that we have our final query, for now.
+The best strategy would be to at this point download the data you need and start applying some statistical analysis first.
+You might come across some new ideas how to further hone your query and filter out all irrelevant noise.
+
+So, **click the checkbox next to the column headers** in the entries list to select all entries.
+The 3 vertical slots now change to a **download symbol**, given you the option between the original (raw) format or the **NOMAD format** (processed).
+To save your query for future use, **click on the _code symbol_** (`< >`) to the right of "FILTERS" in the **side menu**.
+The specifications are found in the **"Request" section**.
+You can **copy them** over to a local file using the _clipboard symbol_.
 
 ### Scenario 3 - Finding Publications
 
