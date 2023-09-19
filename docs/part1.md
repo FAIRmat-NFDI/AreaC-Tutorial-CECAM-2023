@@ -66,11 +66,11 @@ Now, let's run through some _scenarios_ that you, as a researcher, might encount
     Your system of interest is _water_, which can be quite tricky to model.
     You want to compare results from several setups to find the one most suitable to you.**
 
-    In this exercise, you will learn:
+    In this exercise, you will learn how to:
 
-    - How to toggle and combine filters.
-    - How to work with dynamic statistics.
-    - How to reset the search.
+    - toggle and combine filters.
+    - work with dynamic statistics.
+    - reset the search.
 
 In the _entries table_ NOMAD is already listing all database _entries_.
 The strategy is to **narrow or _filter_ this list down** to our needs.
@@ -156,18 +156,85 @@ Just with these settings, the entries list is so short, that we could **check th
 ### Scenario 2 - Data science
 
 !!! assignment
-    **You want to evaluate the impact of metal intercalation on molecular crystals.
-    Maybe, if you find enough high-quality data, even train a machine-learned model.
-    Specifically, you are interested in predicting the HOMO-LUMO energy gap for molecules with XXXX.**
+    **You want to evaluate the impact of the metal used in _Metal Organic Frameworks_ (MOFs).
+    Maybe, if you find enough high-quality data, you can even train a machine-learned model.
+    Specifically, you are interested in predicting the band gap [^1].**
 
-    _Note:_ this scenario assumes that you at least skimmed scenario 1.
-    If anything is unclear, please take a look there first.
+    [^1]: The band gap is the solid state counterpart of the HOMO-LUMO energy gap.
 
-Similar to scenario 1, we can go about formulating this query in various ways.
-Since the observable of our model is the most specifically formulated, we start by filtering for all entries that have a **HOMO-LUMO gap**.
+    In this exercise, you will learn how to:
+
+    - customize the entries table.
+    - use the search bar.
+    - the "OR" filter stacking.
+
+In this scenario our objective is more vaguely defined, so we will **start by exploring** the database before focusing in.
+A good overview is fundamental for spotting interesting data.
+As you will have noticed, our main tool here is the **entries list** (supplemented by the statistics).
+Unfortunately, the default columns (Entry "Name", the Hill "Formula", "Entry type", "Upload time", and "Authors") are not that helpful when exploring the _materials space_.
+To **choose new columns**, **click on the three vertical slots** on the upper-right corner, opposite to "search results".
+You will be presented by a selection box menu of various quantities.
+**Deselect**
+
+- "Name": it contains similar information as both "Formula" and "Entry Type",
+- "Upload time": we do not care for now about when the data was uploaded,
+- "Author": dito,
+
+and instead **select**
+
+- "Dimensionality": to distinguish whether we are dealing with bulk, surface, or molecules.
+- "Crystal system": the symmetry of the supercell.
+- "Space group symbol": the symmetry of the atomic coordinates inside the supercell.
+- "Comments": just to give us a bit more context, if needed.
+
+The 3 first selections can all be found under "Material" > "Structure".
+Let us furthermore **sort alphabetically by (Hill) "Formula"**.
+The column that is being used for sorting has an arrow next to its name.
+The direction of this arrow decides the ordering: ascending / alphabetical (up) or descending / reverse alphabetical (down).
+**Click on column header** to use it for sorting.
+The default ordering will be up.
+By clicking the same column header again, you can toggle it.
+
+!!! success
+    You should now have a view in front of you similar to the reference figure.
+    There is **little room for deviation**, since the **horizontal column order** is predetermined (matching the one in the selection box menu).
+    Similarly, there can only be **one column for sorting** at a time.
+
+...
+
+To real use a **dataset** for machine-learning, it should be **homogeneous** across its entire setup, safe for the variables that we are interested in.
+Most of the data on NOMAD is _Density Functional Theory_ (DFT), with some GW and classical forcefields.
+GW would overall be better for high-quality band gaps, but DFT will end up being more useful due to its sheer number of entries.
+Just as with forcefields, DFT is mostly determined by the choice of density functional.
+
+Hybrid functionals are the norm for organic systems and the most popular in solid state by far are HSE06 and HSE03.
+You probably have a good instinct of where to find them by now in the side menu (under "DFT").
+But opening and closing the side panes while keeping an eye on the entries list is quite the hassle.
+As you get more familiarized with the range of filters, there is a faster alternative.
+**Click into the search bar** (above the entries list) to start typing.
+**Write "dft."** and you should see a list of suggestion come up.
+We are looking for the functional, so **select "results.simulation.method.dft.xc_functional_names"**.
+That would be the full filter name.
+To set the values, **start typing "=HSE"** and **select both "HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06"**, both very prominent hybrids in solid state.
+
+!!! tip
+    xc_functional
+
+Hold on.
+How can an entry contain 2 exchange-correlation functionals at once?
+Are we maybe filtering for workflows that contain both?
+For your answer, take a look at the side menu.
+
+!!! success
+    You will find the same chips as usual under "DFT".
+    Only now, "HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06" are separated by the connector "OR" rather than "AND".
+    Just as the name suggests, the logic condition is different in this case.
+    Our "XC Functional Names" filter as not been narrowed down, but extend to search for both options.
+
+Similar to scenario 1, we can go about formulating this query in various ways. <!-- Since the observable of our model is the most specifically formulated, we start by filtering for all entries that have a **HOMO-LUMO gap**. -->
 You may have noticed the **filter group "Properties"** on your first scroll through the side menu.
 Under here you can find the results extracted from the entries.
-Typically, these will also be what a supervised machine-learned attempts to predict.
+Typically, these will also be what a supervised machine-learned model attempts to predict.
 **Go through the filter subgroups**, looking for our observable.
 
 !!! tip
@@ -194,7 +261,7 @@ Typically, these will also be what a supervised machine-learned attempts to pred
 - Search by method / functional
 (- Fine-tune search)
 
-### Scenario 3 - Finding publications
+### Scenario 3 - Finding Publications
 
 !!! assignment
     **You are talking to a colleague about your machine-learned model (from scenario 2).
@@ -205,6 +272,7 @@ Typically, these will also be what a supervised machine-learned attempts to pred
 
     - filter by publication metadata.
     - set up a dashboard.
+    - examine an entry summary.
 
 The obvious starting point would be use a search engine specialized in publications, such as [**Google Scholar**](https://scholar.google.com/).
 Just searching by the author's (last?) name, yields a suggestion for "Robert A. Rose", who seems to be working in biomedicine.
@@ -216,7 +284,7 @@ You can **try adding some more terms** describing the field, e.g. _ab initio_, D
     Here we have hit a dead-end in as far as Google Scholar can help.
     Now it would be a matter of going over the publication list manually.
 
-Let us see how we can leverage NOMAD for this research case.
+Let us see how to leverage NOMAD for this research case.
 At the bottom of the side menu there are several filter groups covering the **publication metadata under "Author / Origin / Dataset"**.
 The first filter in the side pane is a **search by "Author Name"**.
 **Type in "Rosen"**.
@@ -284,6 +352,20 @@ There seem to be 2 data sets under with that tag and we are not sure what the as
 It will fold out, revealing a summary.
 Find the "references" key.
 Right-button click the DOI hyperlink and **open the article in a new tab**.
+
+!!! warning
+    **Kinds of DOIs**
+
+    In the example above, we see NOMAD linking **external DOI**s for cross-platform browsing.
+    The same happens with datasets hosted over multiple databases: NOMAD will store the other **database's identifier under "external id"**.
+
+    Conversely, NOMAD is allowed to issue its own DOIs.
+    Each **published dataset **receives its **own DOI in NOMAD**, so it can be cited.
+    You can search for these under "Author / Origin / Dataset" > "Dataset DOI".
+    Other IDs can be found under "Visibility / IDs / Schema".
+
+    In summary, it is really important to understand whether a DOI (or other kind of ID) refers to internal or external sources.
+    When **in doubt, just hover** over the filter or quantity name.
 
 !!! success
     You should now have [Machine learning the quantum-chemical properties of metal–organic frameworks for accelerated materials discovery](https://www.cell.com/matter/fulltext/S2590-2385(21)00070-9?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2590238521000709%3Fshowall%3Dtrue) in front of you.
