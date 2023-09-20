@@ -35,29 +35,31 @@ The landing NOMAD Entries page is a very intuitive and easy-to-use Graphical Use
 
 ## <u> **Exercises** </u>
 
-Try filtering the entries according to the following instructions:
+To get you acquainted with the GUI search in NOMAD, we will be presenting you with a couple of _scenarios_, similar to how you might encounter them in your daily activities.
+Each scenario starts with an _assignment box_ explaining the objective and listing the main skills you will acquire.
+They then proceed with a step-by-step walkthrough, with the most essential steps highlighted in boldface.
+There are several checkpoints along the way to ensure you stay on track.
+These come in the shape of _success boxes_. <!-- which you have to click to unfold -->
+Additional useful information that might be straying too off-topic is listed in _tip boxes_.
+They are optional for completing your task, but might deliver useful extra insights.
+When this information contains strategies to steer you clear from mistakes, it will be labeled as _warning_.
+Each scenario assumes that you completed the previous ones, or that you are at least familiar with its objectives and terminology introduced.
 
-1. Find all entries related to water, via a search by chemical formula ("Material > Elements/Formula > Chemical Formula"). How many entries do you find?
-    a. Add a histogram of the `upload_create_time` using the widget buttons directly under the search bar. **TODO - this is not the best demonstration cause these were all added in the same time frame.**
+With the structure clear, let us jump into the [NOMAD page](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
+This link will take you to the staging version (latest release version), but only showing results up to September 14th, 2023.
+The constraint ensures that you see the same results as those of the tutorial.
 
-2. Use the search bar to filter by `program_name`. (The proper quantity is `results.method.simulation.program_name`, but this should be suggested to you as soon as you start to type `program` into the search bar).
-    a. How many entries from GROMACS and LAMMPS are there?
-    b. How many of these entries are related to a molecular dynamics workflow?
-
-3. (CHALLENGE) Find any datasets of molecular dynamics simulations.
-    a. **TODO - I wish we could make an interesting scatter plot here**
-
-Let's jump into the [NOMAD page](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
 Take a look at the layout.
 Some elements immediately stand out:
 
 - In the middle, there is a whole list with tabulated data.
 - Just above it is a search bar with the text "Type your query or keyword here".
-- On the left-hand side is a _filters menu_.
+- On the left-hand side is a "FILTERS" _side menu_.
 - At the very top is a header with several options (left-hand side), login and units (right-hand).
-Apparently, the page we have in front of us is called _Entries_.
 
-Now, let's run through some _scenarios_ that you, as a researcher, might encounter.
+Apparently, the page we have in front of us is called _Entries_.
+When loading the page, you should also see an orange box in the left-bottom corner, warning you that you are using an experimental product. You can get rid of it by clicking the check mark (`✓`).
+Now, let us move on to the actual scenarios.
 
 ### Scenario 1 - Example setup
 
@@ -518,5 +520,3 @@ Meanwhile, over figshare, you have to download a zip folder, not knowing what to
 Andrew clearly put some effort in providing a structured overview, although it is heavily focused towards description of the MOF and little else.
 In other words, each platform allow for different accents and structures.
 **Combining both repositories** leads to the best coverage.
-
-## Glossary
