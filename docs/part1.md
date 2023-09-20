@@ -40,10 +40,10 @@ Each scenario starts with an _assignment box_ explaining the objective and listi
 They then proceed with a step-by-step walkthrough, with the most essential steps highlighted in boldface.
 
 There are several checkpoints along the way to ensure you stay on track.
-These come in the shape of _success boxes_, which you have to click to unfold.
-Additional useful information that might be straying too off-topic is listed in _tip_ or _info_ boxes.
-They are optional for completing your task, but might deliver useful extra insights.
-You can collapse them after reading.
+These come in the shape of _tips_ and _success_ boxes, which you have to click to unfold.
+Additional useful information that might be straying too off-topic is listed in _info_ boxes.
+Reading them is optional for completing your task, but might deliver useful extra insights.
+You can collapse them afterwards.
 When the information contains strategies for steering clear from mistakes, it will be labeled as _warning_.
 Each scenario assumes that you completed the previous ones, or that you are at least familiar with its objectives and terminology introduced.
 
@@ -65,7 +65,7 @@ Now, let us move on to the actual scenarios.
 
 ### Scenario 1 - Example setup
 
-!!! assignment
+!!! abstract "Assignment"
     **You want to learn how to set up a Molecular Dynamics simulation in _Gromacs_ and need an example.
     Your system of interest is _water_, which can be quite tricky to model.
     You want to compare results from several setups to find the one most suitable to you.**
@@ -99,7 +99,7 @@ It comes with a text bar and a list of suggestions.
 You can try extending the list further by clicking "SHOW MORE", but Gromacs is not the most well-represented code in our database.
 Here, it is probably faster to just **type out the program name** and **hit enter**.
 
-???+ tip
+??? tip
     Almost all text bars in NOMAD support **autocomplete**.
     This comes in handy when you are unsure of the spelling or capitalization.
     Start with the first few letters and select your choice by clicking or hitting enter.
@@ -120,7 +120,7 @@ Yet, the list of remaining calculations is still quite long (3.496 matches)...
 Most likely, there will not be a single filter that solves our problem completely.
 That is alright, though, we can just **stack up several filters**.
 
-???+ tip
+??? tip
     If the filters are **not taking effect** right away, click the _redo button_ (`↺`) next to "FILTERS".
     It will manually trigger an update of the entries list and statistics.
 
@@ -137,7 +137,7 @@ You are now presented with several settings.
 Judging from the statistics, we have the best chance with a setting that covers the widest range of calculations (28.000 entries).
 **Select "Temperature" under "Available Properties"**. <!-- @Joseph: do you want me to to add a "Molecular Dynamics" selection button?-->
 
-???+ tip
+??? tip
     If you have trouble **understanding any term**, just **hover over** it with the mouse.
     A summary text will appear.
     For example, "Molecular Dynamics" > "Available Properties" clarifies that we are dealing with observables documented along the trajectory.
@@ -148,7 +148,7 @@ Notice how many of the elements on the periodic table are grayed out.
 This indicates that there are no entries containing these elements, given the filters that you have applied.
 Additionally, the **number of entries** containing each remaining element is displayed within the element's periodic table box, with a corresponding **blue color gradient**.
 
-???+ tip
+??? tip
     You can toggle the **statistics** scale via the dropdown menu to the right of the name.
     Conversely, if the statistics are ever slowing the browser down, deactivate them by deselecting "Filters" > "options menu" (`⋮`) > "Show advanced statistics".
 
@@ -215,7 +215,7 @@ Nonetheless, they still teach many useful techniques that are generally applicab
 
 ### Scenario 2 - Data science
 
-!!! assignment
+!!! abstract "Assignment"
     **You want to evaluate the impact of the metal used in _Metal Organic Frameworks_ (MOFs).
     Maybe, if you find enough high-quality data, you can even train a machine-learned model.
     Specifically, you are interested in predicting the band gap [^1].**
@@ -308,7 +308,7 @@ Then write a single (not double or triple) **equal sign (`=`)** and **fill in th
 Once you have it, press enter.
 Congratulations, you have applied your first _equality query_.
 
-???+ tip
+??? tip
     When searching for elements, do not fall for the mistake of writing out their name.
     NOMAD, and especially its search bar, aims for efficiency.
     So just stick to the **elemental symbol** from the periodic table.
@@ -450,7 +450,7 @@ It may help to realize that observables that come out of a calculation, workflow
 **Try out "propert"** in the search bar and **pick the category** that best fits band gap.
 Then fill in the value with **electronic.band_structure_electronic.band_gap**.
 
-???+ tip
+??? tip
     Terms in the search bar never contain spaces, but use underscores (`_`) instead .
 
 ??? success
@@ -496,9 +496,7 @@ How would you **finish the query**?
         </div>
     </div>  
 
-!!! warning
-    **When stacking order matters**
-
+!!! warning "When stacking order matters"
     Imagine having started filtering by property instead of composition and then method.
     You would have unwittingly excluded a vast dataset, potentially concluding that NOMAD does not host any suitable data.
     The **general strategy** to avoid working yourself in any of these dead ends is to start with **broad filters**, such as DOS instead of band gap.
@@ -518,7 +516,7 @@ To save your query for future use, simply **bookmark the url**.
 
 ### Scenario 3 - Finding Publications
 
-!!! assignment
+!!! abstract "Assignment"
     **You are talking to a colleague about your machine-learned model (from scenario 2).
     They tell you about a good recent research publication they saw by Rosen, but are forgetting the rest of the details at the moment.
     They will get back to you, but you are eager to check it out right away.**
@@ -587,7 +585,7 @@ Just try to keep everything in a single view.
 The more you have to scroll to access the entire dashboard, the more it loses its advantages.
 Overall, a **dashboard** should just provide a **quick summary**, for more specific filters there are always the side menu and search bar.
 
-???+ tip
+??? tip
     You have lots of control over the layout of your dashboard.
     You can shuffle around _widgets_ by **click & hold their name and then dragging them around**.
     Expanding their size is done by dragging the bottom-right corner (`∟`).
@@ -650,9 +648,7 @@ It will fold out, revealing a summary.
 Find the "references" key.
 Right-button click the **DOI hyperlink** and open the article in a new tab.
 
-!!! warning
-    **Kinds of DOIs**
-
+!!! warning "Kinds of DOIs"
     In the example above, we see NOMAD linking **external DOI**s for cross-platform browsing.
     The same happens with datasets hosted over multiple databases: NOMAD will store the other **database's identifier under an "external id"**.
 
@@ -687,9 +683,7 @@ They also experimented with _meta-GGAs_ in about half the cases.
 The reason therefore can be found in the text.
 Apparently there is _cited work (no. 147)_ that shows the effectiveness of HLE17 for _large band gap prediction in complex materials_.
 
-!!! warning
-    **Ignoring hidden complexity**
-
+!!! warning "Ignoring hidden complexity"
     While the naming of the datasets matches the density functional labels assigned by NOMAD, there could be other relevant information regarding the modelling.
     A good practice would be check under ["Entry" > "DATA" > "run"](https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/data/run/0) to find data that has no associated filter, or
     take a look at the raw input under ["Entry" > "FILES"](https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/files/_mainfile) in case the metadata was not extracted.
