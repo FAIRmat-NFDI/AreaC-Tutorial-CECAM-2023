@@ -553,7 +553,7 @@ Actually, if you performed the Google Scholar search _successfully_, you should 
 Take stock of the **"Upload Create Time"** statistics right below "Author Name".
 It appears that Rosen is a researcher who has uploaded 3 times to NOMAD, each time in quite large batches ranging from to thousands to tens of thousands of entries.
 That is some very rich data.
-To better understand its make up, we should be comparing **several statistics at once**.
+To better understand its makeup, we should be comparing **several statistics at once**.
 Jumping between side panes is a bit of a hassle, so instead we will speed up our analysis by setting up a _dashboard_.
 **Click on the plus button (`+`) at the utmost right from "Upload Create Time"** and **return to the entries list**.
 
@@ -615,7 +615,7 @@ Pay close attention to all the widgets.
 !!! success
     Overall, it seems that the **materials covered are quite similar** in both.
     This is not just limited to the composition, but also the crystal makeup.
-    You can verify this yourself by checking the "Structure" side pane.
+    You can verify this yourself by checking the "Structure" side pane over at the [final query url](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?n_elements[gte]=5&n_elements[lte]=6&name=Andrew%20Rosen&upload_create_time[gte]=1631565041061&upload_create_time[lte]=1636259701971&elements=H&elements=C&elements=N&elements=O).
     The uploads were instead to different datasets, which seem to differ in methodology: GGA vs hybrid and meta-GGA.
 
     <div class="image-container">
