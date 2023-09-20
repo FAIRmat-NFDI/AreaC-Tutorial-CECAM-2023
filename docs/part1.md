@@ -38,6 +38,7 @@ The landing NOMAD Entries page is a very intuitive and easy-to-use Graphical Use
 To get you acquainted with the GUI search in NOMAD, we will be presenting you with a couple of _scenarios_, similar to how you might encounter them in your daily activities.
 Each scenario starts with an _assignment box_ explaining the objective and listing the main skills you will acquire.
 They then proceed with a step-by-step walkthrough, with the most essential steps highlighted in boldface.
+
 There are several checkpoints along the way to ensure you stay on track.
 These come in the shape of _success boxes_. <!-- which you have to click to unfold -->
 Additional useful information that might be straying too off-topic is listed in _tip boxes_.
@@ -224,17 +225,17 @@ The fastest way here, is to retrieve **"Molecular Dynamics" > "Available Propert
 
     - customize the entries table.
     - use the search bar.
-    - the "OR" filter stacking.
+    - recognize "OR" filter stacking.
 
 In this scenario our objective is more vaguely defined, so we will **start by exploring** the database before focusing in.
 A good overview is fundamental for spotting interesting data.
 As you will have noticed, our main tool here is the **entries list** (supplemented by the statistics).
 Unfortunately, the default columns (Entry "Name", the Hill "Formula", "Entry type", "Upload time", and "Authors") are not that helpful when exploring the _materials space_.
-To **choose new columns**, **click on the three vertical slots** on the upper-right corner, opposite to "search results".
-You will be presented by a selection box menu of various quantities.
+To **choose new columns**, **click on the three vertical slots** (`|||`) in the upper-right corner, opposite to "search results".
+You will be presented with a checkbox menu of various quantities.
 **Deselect**
 
-- "Name": it contains similar information as both "Formula" and "Entry Type",
+- "Name": it contains similar information as "Formula" and "Entry Type" combined,
 - "Upload time": we do not care for now about when the data was uploaded,
 - "Author": dito,
 
@@ -243,39 +244,63 @@ and instead **select**
 - "Dimensionality": to distinguish whether we are dealing with bulk, surface, or molecules.
 - "Crystal system": the symmetry of the supercell.
 - "Space group symbol": the symmetry of the atomic coordinates inside the supercell.
-- "Comments": just to give us a bit more context, if needed.
+- "Comment": just to give us a bit more context, where possible.
 
 The 3 first selections can all be found under "Material" > "Structure".
 Let us furthermore **sort alphabetically by (Hill) "Formula"**.
-The column that is being used for sorting has an arrow next to its name.
-The direction of this arrow decides the ordering: ascending / alphabetical (up) or descending / reverse alphabetical (down).
+The column that is being used for sorting has an **arrow next to its name**.
+The **direction** of this arrow decides the **ordering**: ascending / alphabetical (up) or descending / reverse alphabetical (down).
 **Click on column header** to use it for sorting.
 The default ordering will be up.
-By clicking the same column header again, you can toggle it.
+You can toggle it, by clicking the same column header again.
 
 !!! tip
     **What are entries exactly?**
     Entries are individually stored data packages, shown as rows in the overview table.
-    In our context, they most overlap with an _individual calculation_, be they single-point or with updates to the atomic coordinates.
+    In our context, they mostly overlap with _individual calculations_, be they single-point or with updates to the atomic coordinates.
     When separate calculations are linked together into a _workflow_ (see [Part II](part2.md)), the overall link also receives its own dedicated entry.
-    Lastly, since NOMAD covers the whole of condensed matter, entries can also be _experimental samples_ or _batches_.
+    Lastly, since NOMAD covers the whole of Condensed Matter Physics and Chemistry, entries can also be _experimental samples_ or _batches_.
 
 !!! success
     You should now have a view in front of you similar to the reference figure.
     There is **little room for deviation**, since the **horizontal column order** is predetermined (matching the one in the selection box menu).
     Similarly, there can only be **one column for sorting** at a time.
 
-The "Material" filter group is among the best for exploration. <!-- elaborate -->
-We will start again with composition, focusing on the organic side, that is more or less static.
-Opening and closing the side panes while keeping an eye on the entries list is quite the hassle.
-As you get more familiarized with the range of filters, there is a faster alternative.
-**Click into the search bar** (above the entries list) to start typing.
+    <div class="image-container">
+        <div class="click-zoom">
+            <label>
+                <input type="checkbox">
+                <img src="../assets/part1_explore/sc2_column_selection.png" title="Checkbox menu for the columns after deselecting">
+            </label>
+        </div>
+        <div class="click-zoom">
+            <label>
+                <input type="checkbox">
+                <img src="../assets/part1_explore/sc2_column_layout.png" title="The new, ordered column layout">
+            </label>
+        </div>
+    </div>    
 
-This option really shines when you know the filter name you are looking for.
+The "Material" filter group is great for exploration, because the chemical space itself is infinitely vast and varied.
+We will start again with composition and focus on the organic side, that is more or less static.
+Opening and closing the side panes the whole time while also keeping an eye on the entries list is quite the hassle, though.
+As you get more familiarized with the range of filters, a faster alternative becomes accessible: the **search bar**.
+Its main purpose is to provide **advanced text-based queries**.
+You could compare this to web search engines, like Google, though here the formatting is far stricter.
+Locate the bar (above the entries list) and **click into it to start typing**.
+
+This search tool really shines when you know the filter name you are looking for.
 As you **type in "element"**, NOMAD will start to autocomplete.
 **Select "results.material.elements"** under "quantity name".
 Now we just need a value, so **type "=C"** and press enter.
 This is how you write and apply an _equality query_.
+
+!!! tip
+    **What are these autocompleted filter names?**
+
+    The full name is structured very much like a _filepath_, but with dots (`.`) instead of slashes (`\` on Unix, `//` on Windows).
+    This is in line with the format of many other _document databases_.
+    To explore this structure / _schema_, navigate to "ANALYZE" (header) > "The NOMAD Metainfo".
 
 !!! tip
     The **equality query** is defined using a **single equals sign (`=`)**, not double (`==`) or triple (`===`) as in some programming language.
@@ -283,6 +308,21 @@ This is how you write and apply an _equality query_.
 !!! success
     The same chip as usual is now to the side menu, under "Elements / Formula".
     Moreover, note how the **filter name** is contained in the **last term** of the autocompleted version.
+
+    <div class="image-container">
+        <div class="click-zoom">
+            <label>
+                <input type="checkbox">
+                <img src="../assets/part1_explore/sc2_searchbar_Cquery.png" title="Query for entries containing carbon, right before applying filter">
+            </label>
+        </div>
+        <div class="click-zoom">
+            <label>
+                <input type="checkbox">
+                <img src="../assets/part1_explore/sc2_chip_Cquery.png" title="Active filter for entries containing carbon">
+            </label>
+        </div>
+    </div>   
 
 As you saw, one can start out by writing the filter name, but you can just as well skip to the value.
 Just **type "H"** (lower case also works) and **apply "results.material.elements=H"**.
@@ -292,22 +332,22 @@ Using the search bar, further **stack oxygen and nitrogen filters**.
 Note how the entries list changes.
 
 While the formulae are approaching what we are looking for, we still do not have MOFs.
-We have enough elements for our skeleton, so let us just add a metal.
+We have enough elements for our skeleton / linkers, so let us just **add a metal**.
 Unfortunately, the NOMAD filters do not know this concept.
 Instead, we will keep the last element a bit more open and just specify the number of elements.
-"Number of" is often abbreviated as **"n_"** in NOMAD.
+**"Number of"** is often abbreviated as **"n_"** in NOMAD.
 Type it into the search bar and select the appropriate filter name.
-We want to constrain the formula, but let us keep room for a wild card, e.g. another metal or ligand.
-If it gives us trouble, we can just tighten the filter.
-So finish your _simple LTE / GTE query_ with "<=6".
+We want to constrain the formula, but let us keep room for a wild card, e.g. another metal or ligand constituent.
+If it trouble us down the road, we can just tighten the filter.
+So finish your _simple LTE / GTE query_ with **"<=6"**.
 
-This will leave room for systems without any metal atom, i.e. not MOFs.
-Recreate the previous query, but hold off on pressing the enter key.
-Rather, you should constrain it with a lower limit as well.
-You can add one by placing your cursor at the beginning and writing a similar comparison.
-Like this, you have constructed the most complex query, a _sandwiched LTE / GTE_.
+The current query will leave room for systems without any metal atom, i.e. not MOFs.
+**Recreate the previous query**, but hold off on pressing the enter key.
+Rather, you should constrain it with a **lower limit** as well.
+You can add one by placing your **cursor at the beginning** and writing a similar comparison.
+Like this, you have constructed the most complex query in NOMAD, a _sandwiched LTE / GTE_.
 
-Finally, we are interested in the material in **bulk form**, not any kind of interface.
+Finally, we are interested in the material in **bulk form** specifically, no interfaces of any kind.
 **Use the search bar** to add this restriction.
 
 !!! success
@@ -315,9 +355,17 @@ Finally, we are interested in the material in **bulk form**, not any kind of int
     Both yield the same results.
     Then you should also have added the equality query `results.material.structural_type=bulk`.
 
+    <div class="click-zoom" style="text-align: left;">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc2_composition_complete.png" title="All filters determining composition">
+        </label>
+    </div>
+
     Most columns seem much more uniform now.
     This was to be expected for "Dimensionality", since we explicitly enforced homogeneity, but "Entry type", "Crystal system" and "Space group symbol" are also affected.
     Even "Comment" seems to be following a repetitive format.
+
     Most importantly, the formulae only vary in metal contributions.
     These definitely look like MOFs.
     You can verify this by opening the _entry overview_ of a row.
@@ -330,7 +378,7 @@ GW would overall be better for high-quality band gaps, but DFT will end up being
 Just as with forcefields, DFT is mostly determined by the choice of kernel, i.e. density functional.
 
 Hybrid functionals are the norm for organic systems and the most popular in solid state by far are HSE06 and HSE03.
-By now, you probably have a good instinct of where to find them in the side menu (under "DFT").
+By now, you probably have a good instinct of where to find them in the side menu (under "DFT"), but let us stick with the search bar for practice.
 Perform an **equality query** for **"HSE03" and "HSE06"** each.
 Both are very prominent hybrids in solid state.
 
@@ -348,8 +396,20 @@ For your answer, **take a look at the side menu**.
     Both "HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06" chips are present, but separated by the **connector "OR"** rather than "AND".
     Just as the name suggests, the logic condition is different in this case.
     Our "XC Functional Names" filter as not been narrowed down, but **extend to search for both** options.
+
+    <div class="click-zoom" style="text-align: left;">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc2_method_complete.png" title="All filters determining composition and methodology">
+        </label>
+    </div>
+
+    In practice, when doing **machine learning**, you would only choose a **single functional** (HSE06 in this case).
+    The only exception would be _transfer learning_, but even then you are advised to split the functionals out over separate queries.
+    Here, we look for 2 functionals just for educational reasons.
     
-    Note that a **single entry** (and even calculation) may contain **multiple functional names**, just not `XC`!
+!!! tip
+    A **single entry** (and even calculation) may contain **multiple functional names**, just not `XC`!
     The libxc namely splits up _exchange-correlation_ functionals (`XC`) into _exchange_ (`X`) and _correlation_ (`C`), when appropriate.
     So for example, the most prominent functional in NOMAD, `PBE`, is stored as `[GGA_X_PBE, GGA_C_PBE]`.
     Note that selecting one of either or even both (due to the `OR` logic), does not guarantee a user will retrieve only PBE.
@@ -358,19 +418,19 @@ With the main method specified, there are still a bunch of additional numerical 
 These can all be found under the filter subgroup "Precision".
 It is tough to estimate these parameters' actual impact.
 Therefore, they are best left till the end of the full query.
-Then you can evaluate the cost-benefit of reducing the dataset you retrieve for homogeneity or precision.
+Then you can evaluate the cost-benefit of reducing the dataset size for higher homogeneity or precision.
 
 This feature is quite recent.
-For it to have any impact, the NOMAD database has to run over all of 13 million entries and reprocess them.
+For it to have a significant impact, the NOMAD database has to run over all of 13 million entries and reprocess them.
 In other words, new features will always lag behind in old data.
 Please bear this in mind.
 Since there are too few examples at the moment, we will skip this set of filters.
-If you are interested, though, feel free to check out the FAIRmat [Tutorial 10](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home) for a full rundown.
+If you are interested, though, feel free to check out FAIRmat [Tutorial 10](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home) for a full rundown.
 
 Lastly, we only want data that contains **the relevant observable**, the band gap.
 The search bar supports _presence queries_, but these are formatted as equality queries with special quantity names.
 Guessing that name becomes very hard, requiring intimate knowledge of the underlying data structure.
-Searching for the value is not always an option either here.
+Searching for the value is not always an option here either.
 It may help to realize that observables that come out of a calculation, workflow, etc. are called _"Properties"_.
 **Try out "propert"** in the search bar and **pick the category** that best fits band gap.
 Then fill in the value with **electronic.band_structure_electronic.band_gap**.
@@ -382,9 +442,16 @@ Then fill in the value with **electronic.band_structure_electronic.band_gap**.
     The band gap describes the electronic structure around the Fermi energy.
     Just as the chip displays, it is an "Electronic Property".
 
+    <div class="click-zoom" style="text-align: left;">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc2_bandgap_filter.png" title="The active band gap filter">
+        </label>
+    </div>
+
     This filter yields a blank / empty entries list.
     The value itself can shed more light here.
-    The "Band gap" is in reality only that of band structure calculations.
+    The "Band gap" is in reality only that of band structure calculations, meaning the former has to be present.
     This is due to a legacy implementation, but has been mended.
     After reprocessing, this update will be applied over the whole database.
 
@@ -395,9 +462,24 @@ When filtering by presence, the overview suffices.
 How would you **finish the query**?
 
 !!! success
-    As an alternative, we can go with the **"Density of states"** (DOS) [^2], matching 1.9800 entries.
-    The equivalent search bar query would be **"electronic_property=dos_electronic"**.
+    As an alternative, we can go with the **"Density of states"** (DOS) [^2], matching 2.833 entries.
+    The equivalent search bar query would be **"electronic_properties=dos_electronic"**.
     There is no need to narrow it down any further: we accept both data from spin-polarized and spin-restricted calculations.
+
+    <div class="image-container">
+        <div class="click-zoom">
+            <label>
+                <input type="checkbox">
+                <img src="../assets/part1_explore/sc2_fullquery.png" title="The results of the final query with DOS">
+            </label>
+        </div>
+        <div class="click-zoom">
+            <label>
+                <input type="checkbox">
+                <img src="../assets/part1_explore/sc2_fullquery_selection.png" title="Selection of the search results, ready for download">
+            </label>
+        </div>
+    </div>  
 
 !!! tip
     **When stacking order matters**
@@ -417,9 +499,7 @@ From hereon, the best strategy would be to download the data you need, extract t
 You might come across some new ideas on how to further hone your query and filter out more noise.
 **Click the checkbox next to the column headers** in the entries list to select all entries.
 The 3 vertical slots now change to a **download symbol**, given you the option between the original (raw) format or the **NOMAD format** (processed).
-To save your query for future use, **click on the _code symbol_** (`< >`) to the right of "FILTERS" in the **side menu**.
-The specifications are found in the **"Request" section**.
-You can **copy them** over to a local file using the _clipboard symbol_.
+To save your query for future use, simply **bookmark the url**.
 
 ### Scenario 3 - Finding Publications
 
