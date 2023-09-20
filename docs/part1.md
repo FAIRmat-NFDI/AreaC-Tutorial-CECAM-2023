@@ -41,7 +41,7 @@ They then proceed with a step-by-step walkthrough, with the most essential steps
 
 There are several checkpoints along the way to ensure you stay on track.
 These come in the shape of _success boxes_. <!-- which you have to click to unfold -->
-Additional useful information that might be straying too off-topic is listed in _tip boxes_.
+Additional useful information that might be straying too off-topic is listed in _tip_ or _info_ boxes.
 They are optional for completing your task, but might deliver useful extra insights.
 When this information contains strategies to steer you clear from mistakes, it will be labeled as _warning_.
 Each scenario assumes that you completed the previous ones, or that you are at least familiar with its objectives and terminology introduced.
@@ -90,7 +90,7 @@ What main groups are there?
 Remember, we essentially want to learn more about Gromacs and its calculation setup.
 **Under which filter groups do you think we could find them?**
 
-!!! success
+??? success
     While it is somewhat hidden, you can find the **"Program Name" under "Method"**.
 
 This widget has a double function: it is both a filter and a statistic.
@@ -103,7 +103,7 @@ Here, it is probably faster to just **type out the program name** and **hit ente
     This comes in handy when you are unsure of the spelling or capitalization.
     Start with the first few letters and select your choice by clicking or hitting enter.
 
-!!! success
+??? success
     You should be getting a result similar to the one in the reference picture.
     In the **side menu**, under "Method", you will find the **active filter "Program Name"** listed in grey, with its constraint / value **"GROMACS" denoted in a blue, oval _chip_**.
 
@@ -156,7 +156,7 @@ The corresponding chips will be added to the side menu, with an "and" in between
 While filters between groups _stack_ (i.e., **"and" logic** is applied), those within a side pane each have their own logic (more on that in scenario 2).
 Finally, remove all data with additional elements by selecting the **"only compositions that exclusively contain these atoms"** box. 
 
-!!! success
+??? success
     You are left with 2 MD calculations in the entries list.
     **Clicking on the arrow (`->`)** of whichever entry will bring you to its _overview page_.
     More on that in [Part II](part2.md).
@@ -194,7 +194,7 @@ To see this effect in action, rewind back to where we were choosing our prioriti
 The fastest way here, is to retrieve **"Molecular Dynamics" > "Available Properties"** and **click the highlighted checkbox** again to deselect it.
 
 
-!!! success
+??? success
     Glossing over the remaining 6 results, 3 by Andrew Rosen and 3 by Sebastian Baugmart, we retrieve **2 more MD simulations** and **2 more "Geometry Optimizations"**.
     Even though some entries do not have a clear specification, we can find their classification by visiting the entry's overview page. <!-- @Joseph is this a bug? -->
     While geometry optimization was not part of match our initial objective, these entries could still provide us with valuable **insights into the forcefield** setup.
@@ -252,15 +252,13 @@ The 3 first selections can all be found under "Material" > "Structure".
 Let us furthermore **sort alphabetically by (Hill) "Formula"** by clicking on the "Formula" heading.
 (Click multiple times to toggle between ascending / descending ordering).
 
-!!! tip
-    **What are entries exactly?**
-
+!!! info "What are entries exactly?"
     Entries are individually stored data packages, shown as rows in the overview table.
     In our context, they mostly overlap with an _individual calculation_, e.g., a single-point calculation or a single molecular dynamics run.
     When separate calculations are linked together into a _workflow_ (see [Part II](part2.md)), the overall link also receives its own dedicated entry.
     Lastly, since NOMAD covers the whole of Condensed Matter Physics and Chemistry, entries can also be _experimental samples_ or _batches_.
 
-!!! success
+??? success
     You should now have a view in front of you similar to the reference figure.
     There is **little room for deviation**, since the **horizontal column order** is predetermined (matching the one in the selection box menu).
     Similarly, there can only be **one column for sorting** at a time.
@@ -290,7 +288,7 @@ The search bar does not, however, support the free-style natural language querie
 The formatting here is far stricter.
 While you can switch back to the side menu at any time, we will , for educational purposes, rely on the search bar exclusively throughout this scenario.
 
-!!! tip
+!!! info "Optimade"
     NOMAD also supports the [Optimade](https://www.optimade.org/documentation) API, which has its own query conventions.
     While it is not covered in this tutorial, you can check out the relevant documentation via the link.
     To use the NOMAD-Optimade endpoint, scroll down to "Optimade" at the very bottom of the side menu.
@@ -315,14 +313,12 @@ Congratulations, you have applied your first _equality query_.
     So just stick to the **elemental symbol** from the periodic table.
     Lowercase also works.
 
-!!! tip
-    **What are these autocompleted filter names?**
-
+!!! info "What are these autocompleted filter names?"
     The full filter names that pop up in the suggestions are structured similarly to a _filepath_, but with dots (`.`) instead of slashes (`/` on Unix, `\\` on Windows).
     This is in line with the format of many other _document databases_.
     To explore this structure / _schema_, navigate to "ANALYZE" (in header) > "The NOMAD Metainfo".
 
-!!! success
+??? success
     You should have found the query **"results.material.elements=C"**.
     Upon pressing enter, the same chip as usual appears in side menu, confirming that the filter is active.
     Moreover, note how the **filter name** in the side menu is contained in the the autocompleted version.
@@ -368,7 +364,7 @@ Like this, you have constructed the most complex query in NOMAD, a _sandwiched L
 Finally, we are interested in the material in **bulk form** specifically, no interfaces of any kind.
 **Use the search bar** to add this restriction.
 
-!!! success
+??? success
     Your sandwiched LTE / GTE query should be either `4<results.material.n_elements<=6` or `5<=results.material.n_elements<=6`.
     Both yield the same results.
     Then you should also have added the equality query `results.material.structural_type=bulk`.
@@ -400,8 +396,8 @@ By now, you probably have a good instinct of where to find them in the side menu
 Perform an **equality query** for **"HSE03" and "HSE06"** each.
 Both are very prominent hybrids in solid state.
 
-!!! tip
-    The exchange functional naming in NOMAD follows the **convention established by [libxc](https://github.com/ElectronicStructureLibrary/libxc)**, a popular library for evaluating (semi)local functionals.
+!!! info "Density functional nomenclature"
+    The functional naming in NOMAD follows the **convention established by [libxc](https://github.com/ElectronicStructureLibrary/libxc)**, a popular library for evaluating (semi)local functionals.
     In practice, this goes as `<hybrid flag>_<Jacob's Ladder>_<exchange-correlation part>_<name identifier>`, where **`<name identifier>` is the main ID** and the other tags simply provide metadata.
     `<hybrid flag>` is only present when the functional truly is a hybrid.
 
@@ -410,7 +406,7 @@ How can an entry contain 2 exchange-correlation functionals at once?
 Are we maybe filtering for workflows that contain both?
 For your answer, **take a look at the side menu**.
 
-!!! success
+??? success
     Both "HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06" chips are present, but separated by the **connector "OR"** rather than "AND".
     Just as the name suggests, the logic condition is different in this case.
     Our "XC Functional Names" filter as not been narrowed down, but **extend to search for both** options.
@@ -426,8 +422,8 @@ For your answer, **take a look at the side menu**.
     The only exception would be _transfer learning_, but even then you are advised to split the functionals out over separate queries.
     Here, we look for 2 functionals just for educational reasons.
     
-!!! tip
-    A **single entry** (and even calculation) may contain **multiple functional names**, just not `XC`!
+!!! info "Multiple density functionals per entry"
+    A single entry (and even calculation) may contain multiple functional names, just not `XC`!
     The libxc namely splits up _exchange-correlation_ functionals (`XC`) into _exchange_ (`X`) and _correlation_ (`C`), when appropriate.
     So for example, the most prominent functional in NOMAD, `PBE`, is stored as `[GGA_X_PBE, GGA_C_PBE]`.
     Note that selecting one of either or even both (due to the `OR` logic), does not guarantee a user will retrieve only PBE.
@@ -456,7 +452,7 @@ Then fill in the value with **electronic.band_structure_electronic.band_gap**.
 !!! tip
     Terms in the search bar never contain spaces, but use underscores (`_`) instead .
 
-!!! success
+??? success
     The band gap describes the electronic structure around the Fermi energy.
     Just as the chip displays, it is an "Electronic Property".
 
@@ -479,7 +475,7 @@ The way this pane is layed out, it first gives you an _overview_ of what is out 
 When filtering by presence, the overview suffices.
 How would you **finish the query**?
 
-!!! success
+??? success
     As an alternative, we can go with the **"Density of states"** (DOS) [^2], matching 2.833 entries.
     The equivalent search bar query would be **"electronic_properties=dos_electronic"**.
     There is no need to narrow it down any further: we accept both data from spin-polarized and spin-restricted calculations.
@@ -537,7 +533,7 @@ Just searching by the author's (last?) name, yields a suggestion for "Robert A. 
 Not quite what we were looking for...
 You can **try adding some more terms** describing the field, e.g. _ab initio_, DFT or MOFs.
 
-!!! success
+??? success
     This way it is possible to find the author's full name (**Andrew S. Rosen**) and also his publication history.
     Here we have hit a dead-end in as far as Google Scholar can help.
     Now it would be a matter of going over the publication list manually.
@@ -566,7 +562,7 @@ Jumping between side panes is a bit of a hassle, so instead we will speed up our
     If you cannot see all 3 upload times, it is most likely due to the binning.
     With **zoom / autorange active**, adjust the **sliders on the x-axis** to better encompass the time frames of interest.
 
-!!! success
+??? success
     You should now find the same statistic nestled between the search bar and the entries list.
 
     <div class="click-zoom" style="text-align: left;>
@@ -597,7 +593,7 @@ Overall, a **dashboard** should just provide a **quick summary**, for more speci
     Widgets start out at their minimal default.
     For a great example of a rich dashboard, visit the [app under "Explore" > "Solar Cells"](https://nomad-lab.eu/prod/v1/staging/gui/search/solarcells).
 
-!!! success
+??? success
     Your dashboard should now look somewhat as in the reference figure.
     Note that you might have play around with the layout to get a perfect match.
     Check the tip box above for more details.
@@ -617,7 +613,7 @@ As "Upload Create Time" updates, only 2 upload times are present now.
 How does the constitution of the data set change?
 Pay close attention to all the widgets.
 
-!!! success
+??? success
     Overall, it seems that the **materials covered are quite similar** in both.
     This is not just limited to the composition, but also the crystal makeup.
     You can verify this yourself by checking the "Structure" side pane over at the [final query url](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?n_elements[gte]=5&n_elements[lte]=6&name=Andrew%20Rosen&upload_create_time[gte]=1631565041061&upload_create_time[lte]=1636259701971&elements=H&elements=C&elements=N&elements=O).
@@ -667,7 +663,7 @@ Right-button click the **DOI hyperlink** and open the article in a new tab.
     In summary, it is really important to understand whether a DOI (or any other kind of ID) refers to internal or external sources.
     When **in doubt, just hover** over the filter or quantity name.
 
-!!! success
+??? success
     You should now have [Machine learning the quantum-chemical properties of metal–organic frameworks for accelerated materials discovery](https://www.cell.com/matter/fulltext/S2590-2385(21)00070-9?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2590238521000709%3Fshowall%3Dtrue) in front of you.
     Indeed, next time you bump into your colleague, they will be surprised to learn that you already found it.
     Actually, any out of the 4 datasets would have brought you to the same paper as well.
