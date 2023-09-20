@@ -40,10 +40,11 @@ Each scenario starts with an _assignment box_ explaining the objective and listi
 They then proceed with a step-by-step walkthrough, with the most essential steps highlighted in boldface.
 
 There are several checkpoints along the way to ensure you stay on track.
-These come in the shape of _success boxes_. <!-- which you have to click to unfold -->
+These come in the shape of _success boxes_, which you have to click to unfold.
 Additional useful information that might be straying too off-topic is listed in _tip_ or _info_ boxes.
 They are optional for completing your task, but might deliver useful extra insights.
-When this information contains strategies to steer you clear from mistakes, it will be labeled as _warning_.
+You can collapse them after reading.
+When the information contains strategies for steering clear from mistakes, it will be labeled as _warning_.
 Each scenario assumes that you completed the previous ones, or that you are at least familiar with its objectives and terminology introduced.
 
 With the structure clear, let us jump into the [NOMAD page](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
@@ -98,7 +99,7 @@ It comes with a text bar and a list of suggestions.
 You can try extending the list further by clicking "SHOW MORE", but Gromacs is not the most well-represented code in our database.
 Here, it is probably faster to just **type out the program name** and **hit enter**.
 
-!!! tip
+???+ tip
     Almost all text bars in NOMAD support **autocomplete**.
     This comes in handy when you are unsure of the spelling or capitalization.
     Start with the first few letters and select your choice by clicking or hitting enter.
@@ -119,7 +120,7 @@ Yet, the list of remaining calculations is still quite long (3.496 matches)...
 Most likely, there will not be a single filter that solves our problem completely.
 That is alright, though, we can just **stack up several filters**.
 
-!!! tip
+???+ tip
     If the filters are **not taking effect** right away, click the _redo button_ (`↺`) next to "FILTERS".
     It will manually trigger an update of the entries list and statistics.
 
@@ -136,7 +137,7 @@ You are now presented with several settings.
 Judging from the statistics, we have the best chance with a setting that covers the widest range of calculations (28.000 entries).
 **Select "Temperature" under "Available Properties"**. <!-- @Joseph: do you want me to to add a "Molecular Dynamics" selection button?-->
 
-!!! tip
+???+ tip
     If you have trouble **understanding any term**, just **hover over** it with the mouse.
     A summary text will appear.
     For example, "Molecular Dynamics" > "Available Properties" clarifies that we are dealing with observables documented along the trajectory.
@@ -147,7 +148,7 @@ Notice how many of the elements on the periodic table are grayed out.
 This indicates that there are no entries containing these elements, given the filters that you have applied.
 Additionally, the **number of entries** containing each remaining element is displayed within the element's periodic table box, with a corresponding **blue color gradient**.
 
-!!! tip
+???+ tip
     You can toggle the **statistics** scale via the dropdown menu to the right of the name.
     Conversely, if the statistics are ever slowing the browser down, deactivate them by deselecting "Filters" > "options menu" (`⋮`) > "Show advanced statistics".
 
@@ -252,7 +253,7 @@ The 3 first selections can all be found under "Material" > "Structure".
 Let us furthermore **sort alphabetically by (Hill) "Formula"** by clicking on the "Formula" heading.
 (Click multiple times to toggle between ascending / descending ordering).
 
-!!! info "What are entries exactly?"
+???+ info "What are entries exactly?"
     Entries are individually stored data packages, shown as rows in the overview table.
     In our context, they mostly overlap with an _individual calculation_, e.g., a single-point calculation or a single molecular dynamics run.
     When separate calculations are linked together into a _workflow_ (see [Part II](part2.md)), the overall link also receives its own dedicated entry.
@@ -288,7 +289,7 @@ The search bar does not, however, support the free-style natural language querie
 The formatting here is far stricter.
 While you can switch back to the side menu at any time, we will , for educational purposes, rely on the search bar exclusively throughout this scenario.
 
-!!! info "Optimade"
+???+ info "Optimade"
     NOMAD also supports the [Optimade](https://www.optimade.org/documentation) API, which has its own query conventions.
     While it is not covered in this tutorial, you can check out the relevant documentation via the link.
     To use the NOMAD-Optimade endpoint, scroll down to "Optimade" at the very bottom of the side menu.
@@ -307,13 +308,13 @@ Then write a single (not double or triple) **equal sign (`=`)** and **fill in th
 Once you have it, press enter.
 Congratulations, you have applied your first _equality query_.
 
-!!! tip
+???+ tip
     When searching for elements, do not fall for the mistake of writing out their name.
     NOMAD, and especially its search bar, aims for efficiency.
     So just stick to the **elemental symbol** from the periodic table.
     Lowercase also works.
 
-!!! info "What are these autocompleted filter names?"
+???+ info "What are these autocompleted filter names?"
     The full filter names that pop up in the suggestions are structured similarly to a _filepath_, but with dots (`.`) instead of slashes (`/` on Unix, `\\` on Windows).
     This is in line with the format of many other _document databases_.
     To explore this structure / _schema_, navigate to "ANALYZE" (in header) > "The NOMAD Metainfo".
@@ -396,7 +397,7 @@ By now, you probably have a good instinct of where to find them in the side menu
 Perform an **equality query** for **"HSE03" and "HSE06"** each.
 Both are very prominent hybrids in solid state.
 
-!!! info "Density functional nomenclature"
+???+ info "Density functional nomenclature"
     The functional naming in NOMAD follows the **convention established by [libxc](https://github.com/ElectronicStructureLibrary/libxc)**, a popular library for evaluating (semi)local functionals.
     In practice, this goes as `<hybrid flag>_<Jacob's Ladder>_<exchange-correlation part>_<name identifier>`, where **`<name identifier>` is the main ID** and the other tags simply provide metadata.
     `<hybrid flag>` is only present when the functional truly is a hybrid.
@@ -422,7 +423,7 @@ For your answer, **take a look at the side menu**.
     The only exception would be _transfer learning_, but even then you are advised to split the functionals out over separate queries.
     Here, we look for 2 functionals just for educational reasons.
     
-!!! info "Multiple density functionals per entry"
+???+ info "Multiple density functionals per entry"
     A single entry (and even calculation) may contain multiple functional names, just not `XC`!
     The libxc namely splits up _exchange-correlation_ functionals (`XC`) into _exchange_ (`X`) and _correlation_ (`C`), when appropriate.
     So for example, the most prominent functional in NOMAD, `PBE`, is stored as `[GGA_X_PBE, GGA_C_PBE]`.
@@ -449,7 +450,7 @@ It may help to realize that observables that come out of a calculation, workflow
 **Try out "propert"** in the search bar and **pick the category** that best fits band gap.
 Then fill in the value with **electronic.band_structure_electronic.band_gap**.
 
-!!! tip
+???+ tip
     Terms in the search bar never contain spaces, but use underscores (`_`) instead .
 
 ??? success
@@ -586,7 +587,7 @@ Just try to keep everything in a single view.
 The more you have to scroll to access the entire dashboard, the more it loses its advantages.
 Overall, a **dashboard** should just provide a **quick summary**, for more specific filters there are always the side menu and search bar.
 
-!!! tip
+???+ tip
     You have lots of control over the layout of your dashboard.
     You can shuffle around _widgets_ by **click & hold their name and then dragging them around**.
     Expanding their size is done by dragging the bottom-right corner (`∟`).

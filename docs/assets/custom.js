@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.style.width = initialWidth;
         this.classList.remove('expanded');
       } else {
-        this.style.width = '100%';
+        this.style.width = '80%';
         this.classList.add('expanded');
       }
     });
