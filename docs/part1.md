@@ -70,44 +70,65 @@ Now, let us move on to the actual scenarios.
 
     In this exercise, you will learn how to:
 
+    - navigate the "FILTERS" side menu.
     - toggle and combine filters.
     - work with dynamic statistics.
-    - reset the search.
 
-In the _entries table_ NOMAD is already listing all database _entries_.
+In the _entries list_ NOMAD is already listing all database _entries_.
 The strategy is to **narrow or _filter_ this list down** to our needs.
-Our main tool here, will be the _search menu_ (left-hand side).
+Our main tool here, will be the _side menu_ (left-hand side).
 Take stock of its structure.
-There is a list of _filter groups_ or themes.
+There is a list of themes or _filter groups_.
 Subgroups are indented below their main group.
-Any filter group with an arrow (`>`) can be clicked open to reveal various filters and statistics.
-To close the side pane and reveal the full table again, use the arrow back (`<-`) or simply click anywhere outside of it.
+Any **filter group with an arrow** (`>`) can be **clicked open** to reveal various filters and statistics in a _side pane_.
+To **close the side pane** and reveal the full table again, use the **arrow back (`<-`)** in the top-left corner.
+You could alternatively also click anywhere outside of the pane, but careful not to select anything unwanted.
 
-Now, **scroll down to check out the full list**. What main groups are there?
+Now, **scroll down to check out the full list**.
+What main groups are there?
 Remember, we essentially want to learn more about Gromacs and its calculation setup.
 **Under which filter groups do you think we could find them?**
 
-While it is somewhat hidden, you can find the "Program Name" under "Method".
+!!! success
+    While it is somewhat hidden, you can find the **"Program Name" under "Method"**.
+
+This widget has a double function: it is both a filter and a statistic.
 It comes with a text bar and a list of suggestions.
-You can try extending the list further and further, but Gromacs is not the most represented code in our database.
-Here, it is probably faster to just type out its name.
-Take a look back at the **side menu**, where you will find the **applied filter listed as _chips_**.
+You can try extending the list further by clicking "SHOW MORE", but Gromacs is not the most well-represented code in our database.
+Here, it is probably faster to just **type out the program name** and **hit enter**.
 
 !!! tip
     Almost all text bars in NOMAD support **autocomplete**.
     This comes in handy when you are unsure of the spelling or capitalization.
-    Start with the first few letters and select your choice by clicking or hitting `<enter>`.
+    Start with the first few letters and select your choice by clicking or hitting enter.
 
-Notice how the overview list changes with respect to your filter!
+!!! success
+    You should be getting a result similar to the one in the reference picture.
+    In the **side menu**, under "Method", you will find the **active filter "Program Name"** listed in grey, with its constraint / value **"GROMACS" denoted in a blue _chip_**.
+
+    <div class="click-zoom" style="text-align: left;">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc1_gromacs_selected.png" title="Filtering by program name">
+        </label>
+    </div>
+
+Notice how the entries list changes with respect to your filter!
 Yet, the list of remaining calculations is still quite long (3.496 matches)... 
 Most likely, there will not be a single filter that solves our problem completely.
 That is alright, though, we can just **stack up several filters**.
 
 !!! tip
-    You can toggle the **statistics** scale via the dropdown menu right to the name.
-    Conversely, if the statistics are ever the browser down, deactivate them by deselecting "Filters" > "options menu" (`⋮`) > "Show advanced statistics".
+    If the filters are **not taking effect** right away, click the _redo button_ (`↺`) next to "FILTERS".
+    It will manually trigger an update of the entries list and statistics.
 
-Which subsequent filter to search for first depends on your priorities: do you want to learn mostly about running Molecular Dynamics or how a forcefield for water should be tweaked?
+    Likewise, to **reset all filters** and start with a clean slate, click on the _cancel button_ (`x`).
+    Note that in the case of this tutorial, this also means removing the time constraint.
+    Hence, if you decide to reset, the exact search results you see might start deviating from those in the tutorial.
+    It is highly **recommended to follow the guide**.
+    You can restore the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000) by reloading.
+
+Which filter we should search for next depends on your priorities: do you want to learn mostly about running Molecular Dynamics or how a forcefield for water should be tweaked?
 Let us go with former.
 Fortunately, there already is a **filter subgroup called "Molecular Dynamics", so click it open**.
 You are now presented with several settings.
@@ -115,45 +136,80 @@ Judging from the statistics, we have the best chance with a setting that covers 
 **Select "Temperature" under "Available Properties"**. <!-- @Joseph: do you want me to to add a "Molecular Dynamics" selection button?-->
 
 !!! tip
-    If you have trouble **understanding any term**, just hover over it with the mouse.
+    If you have trouble **understanding any term**, just **hover over** it with the mouse.
     A summary text will appear.
-    For example, "Molecular Dynamics" > "Available Properties" clarifies that we are dealing observables documented along the trajectory.
+    For example, "Molecular Dynamics" > "Available Properties" clarifies that we are dealing with observables documented along the trajectory.
 
 System specifications are found under "Material".
 Since we know the composition of our system, **click on "Elements / Formula"** and **select the matching elements** in the periodic table.
-The number of database entries containing the other elements too is communicated via the color code.
-Those that are already **filtered out will be gray**, just as you saw when opening the side pane.
-This is the filter stacking mentioned before, showing that Gromacs users typically work on organic systems.
-You can see both chips on the left.
-Note how there is an "and" in between.
-While **filters** between side menu options stack, those **within a side pane each have their own logic**.
-We are looking for pure water, so O and H suffice. <!-- Shame how we don't have a subgroup search yet -->
-**Remove all data with additional elements** by selecting "only compositions that exclusively contain these atoms".
+The **color code** of each element indicates the number of remaining entries containing these elements too.
+Those that are already filtered out will be **gray**, just as you saw when opening the side pane.
+It shows that Gromacs users typically work on organic systems.
+
+!!! tip
+    You can toggle the **statistics** scale via the dropdown menu right to the name.
+    Conversely, if the statistics are ever slowing the browser down, deactivate them by deselecting "Filters" > "options menu" (`⋮`) > "Show advanced statistics".
+
+This is the effect of _stacking filters_.
+You can see **both chips** on the left.
+Note how there is an **"and"** in between.
+While filters between side menu options stack, those within a side pane each have their own logic.
+
+Finishing up, we are looking for pure water, so the elements O and H in the composition suffice. <!-- Shame how we don't have a subgroup search yet -->
+Remove all data with additional elements by **selecting "only compositions that exclusively contain these atoms"**.
 
 !!! success
     You are left with 2 MD calculations in the entries list.
-    Clicking on either, will fold out a quick summary.
-    **Clicking on the arrow** (`->`) will bring you to an _Overview page_.
+    **Clicking on the arrow (`->`)** of whichever entry will bring you to its _overview page_.
     More on that in [Part II](part2.md).
     By **clicking through on "FILES"**, you will get an overview of the uploaded files.
-    These for sure contain output, but often also input.
+    These for sure contain **output**, but often also **input**.
     Both could serve as great starting points for deploying your own calculations.
+
+    <div class="image-container">
+        <div class="click-zoom">
+            <label>
+                <input type="checkbox">
+                <img src="../assets/part1_explore/sc1_fullquery_sidepane.png" title="The full query's periodic table">
+            </label>
+        </div>
+        <div class="click-zoom">
+            <label>
+                <input type="checkbox">
+                <img src="../assets/part1_explore/sc1_fullquery_entrieslist.png" title="The full query's entries list">
+            </label>
+        </div>
+        <div class="click-zoom">
+            <label>
+                <input type="checkbox">
+                <img src="../assets/part1_explore/sc1_fullquery_rawdata.png" title="The raw data overview for example input">
+            </label>
+        </div>
+    </div>
 
 Actually, the **exact historical order** in which we applied the filters **does not matter**.
 I.e. the same set of filters will yield the same search result.
-This insight comes with a small caveat: the statistics that we see as we are stacking up our filters will behave differently.
-These filters are like small questions or details that we use construct an overall query.
-If we take a **different route**, we will see **different intermediate results** and this could lead us to **change our final formulation**.
+In that sense, filters are like small questions or details that we use construct an overall query.
+This insight comes with a small caveat: the **statistics** that we see as we are stacking up our filters **are contingent on the history**.
+If we take a different route, we will see different intermediate results and this could lead us to change our final formulation.
 
 To see this effect in action, rewind back to where we were choosing our priorities and let us go with the latter instead.
-Just **click the cross (`x`) at the top of the filter menu**, and **reapply the filters** for Gromacs and the composition.
-Just with these settings, the entries list is so short, that we could **check the specific calculations** even **by hand**!
+The fastest way here, is to retrieve **"Molecular Dynamics" > "Available Properties"** and **click the highlighted checkbox** again to deselect it.
+
 
 !!! success
-    Glossing over the remaining 6 results, you discover that Sebastian Baugmart has 2 other MD simulations which were not classified as such. <!-- @Joseph is this a bug? -->
-    We also find 2 more Geometry Optimizations of both systems.
-    While these do not exactly match our initial objective, they could still provide us with valuable insights.
-    They also inform us of the overarching workflow used by both authors, i.e. first relax the system, then run MD under various constraints. <!-- @Joseph: thermostats? -->
+    Glossing over the remaining 6 results, you discover that another author (Sebastian Baugmart) has **2 more MD simulations** (based on their overview page), which were not classified as such. <!-- @Joseph is this a bug? -->
+    We also find **2 "Geometry Optimizations"** of both systems.
+    While these do not exactly match our initial objective, they could still provide us with valuable **insights into the forcefield** setup.
+    Since the entries list is so short, it could even be skimmed manually.
+    They also inform us of the **overarching workflow** used by both authors, i.e. first relax the system, then run MD under various constraints. <!-- @Joseph: could I use the term "thermostats" here? It also includes NVP -->
+
+    <div class="click-zoom" style="text-align: left;">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc1_alternate_stack.png" title="Removing the molecular dynamics filter">
+        </label>
+    </div>
 
 ### Scenario 2 - Data science
 
