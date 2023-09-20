@@ -207,37 +207,83 @@ By clicking the same column header again, you can toggle it.
     There is **little room for deviation**, since the **horizontal column order** is predetermined (matching the one in the selection box menu).
     Similarly, there can only be **one column for sorting** at a time.
 
-...
+The "Material" filter group is among the best for exploration. <!-- elaborate -->
+We will start again with composition, focusing on the organic side, that is more or less static.
+Opening and closing the side panes while keeping an eye on the entries list is quite the hassle.
+As you get more familiarized with the range of filters, there is a faster alternative.
+**Click into the search bar** (above the entries list) to start typing.
 
-To real use a **dataset** for machine-learning, it should be **homogeneous** across its entire setup, safe for the variables that we are interested in.
+This option really shines when you know the filter name you are looking for.
+As you **type in "element"**, NOMAD will start to autocomplete.
+**Select "results.material.elements"** under "quantity name".
+Now we just need a value, so **type "=C"** and press enter.
+This is how you write and apply an _equality query_.
+
+!!! tip
+    The **equality query** is defined using a **single equals sign (`=`)**, not double (`==`) or triple (`===`) as in some programming language.
+
+!!! success
+    The same chip as usual is now to the side menu, under "Elements / Formula".
+    Moreover, note how the **filter name** is contained in the **last term** of the autocompleted version.
+
+As you saw, one can start out by writing the filter name, but you can just as well skip to the value.
+Just **type "H"** (lower case also works) and **apply "results.material.elements=H"**.
+NOMAD apparently understands that you might have been talking about an element, at which point it is easy to guess the matching filter.
+As such, we have defined hydrocarbons, but MOFs also need ligands to bind the metal.
+Using the search bar, further **stack oxygen and nitrogen filters**.
+Note how the entries list changes.
+
+While the formulae are approaching what we are looking for, we still do not have MOFs.
+We have enough elements for our skeleton, so let us just add a metal.
+Unfortunately, the NOMAD filters do not know this concept.
+Instead, we will keep the last element a bit more open and just specify the number of elements.
+"Number of" is often abbreviated as **"n_"** in NOMAD.
+Type it into the search bar and select the appropriate filter name.
+We want to constrain the formula, but let us keep room for a wild card, e.g. another metal or ligand.
+If it gives us trouble, we can just tighten the filter.
+So finish your _simple LTE / GTE query_ with "<=6".
+
+This will leave room for systems without any metal atom, i.e. not MOFs.
+Recreate the previous query, but hold off on pressing the enter key.
+Rather, you should constrain it with a lower limit as well.
+You can add one by placing your cursor at the beginning and writing a similar comparison.
+Like this, you have constructed the most complex query, a _sandwiched LTE / GTE_.
+
+Finally, we are interested in the material in **bulk form**, not any kind of interface.
+**Use the search bar** to add this restriction.
+
+!!! success
+    Your sandwiched LTE / GTE query should be either `4<results.material.n_elements<=6` or `5<=results.material.n_elements<=6`.
+    Both yield the same results.
+    Then you should also have added the equality query `results.material.structural_type=bulk`.
+
+    Most columns seem much more uniform now.
+    This was to be expected for "Dimensionality", since we explicitly enforced homogeneity, but the effects also affect "Entry type", "Crystal system" and "Space group symbol".
+    Even "Comment" seems to be following a repetitive format.
+    Most importantly, the formulae only vary in metal contributions.
+    These definitely look like MOFs.
+    You can verify by opening the _entry overview_ of a row by clicking the arrow (`->`) right from all the metadata.
+    To return, just use your browser's "go back" function.
+
+For machine-learning, a **dataset** should be **homogeneous** across its entire setup, safe for the variables that we are interested in.
 Most of the data on NOMAD is _Density Functional Theory_ (DFT), with some GW and classical forcefields.
 GW would overall be better for high-quality band gaps, but DFT will end up being more useful due to its sheer number of entries.
 Just as with forcefields, DFT is mostly determined by the choice of kernel, i.e. density functional.
 
 Hybrid functionals are the norm for organic systems and the most popular in solid state by far are HSE06 and HSE03.
 By now, you probably have a good instinct of where to find them in the side menu (under "DFT").
-But opening and closing the side panes while keeping an eye on the entries list is quite the hassle.
-As you get more familiarized with the range of filters, there is a faster alternative.
-**Click into the search bar** (above the entries list) to start typing.
-You can start out by writing the filter name, but you can just as well skip to the value.
-This second option works great when a value fully determines the filter type.
-**Start typing "HSE"** and select (click + enter) both **"HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06"** (2x), both very prominent hybrids in solid state.
-What is the filter's full name?
-Also tack stock of how an _equality query_ is structured.
+Perform an **equality query** for **"HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06"** each.
+Both are very prominent hybrids in solid state.
 
 Hold on.
 How can an entry contain 2 exchange-correlation functionals at once?
 Are we maybe filtering for workflows that contain both?
-For your answer, take a look at the side menu.
+For your answer, **take a look at the side menu**.
 
 !!! success
-    You will find the same chips as usual under "DFT".
-    Only now, "HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06" are separated by the **connector "OR"** rather than "AND".
+    Both "HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06" chips are present, but separated by the **connector "OR"** rather than "AND".
     Just as the name suggests, the logic condition is different in this case.
     Our "XC Functional Names" filter as not been narrowed down, but **extend to search for both** options.
-
-    Moreover, note how the **filter name** is contained in the **last term** of the autocompleted version ("results.method.simulation.dft.xc_functional_names").
-    The **equality query** is defined using a **single equals sign (`=`)**, not double (`==`) or triple (`===`) as in some programming language. 
 
 !!! tip
     The exchange functional naming in NOMAD follows the **convention established by [libxc](https://github.com/ElectronicStructureLibrary/libxc)**, a popular library for evaluating (semi)local functionals.
@@ -262,42 +308,52 @@ Please bear this in mind.
 Since there are too few examples at the moment, we will skip this set of filters.
 If you are interested, though, feel free to check out the FAIRmat [Tutorial 10](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home) for a full rundown.
 
-Lastly, we only want data that contains the relevant observable, the band gap.
-The search bar currently does not support _presence queries_, so we fall back onto the side menu.
-Observables that come out of a calculation, workflow, etc. are called _"Properties"_.
-You may have noticed this filter group on your first scroll through.
-There are several categories of properties.
-Which do you think?
-Could the search bar be of use in finding the right category?
+Lastly, we only want data that contains **the relevant observable**, the band gap.
+The search bar supports _presence queries_, but these are formatted as equality queries with special quantity names.
+Guessing that name becomes very hard, requiring intimate knowledge of the underlying data structure.
+Searching for the value is not always an option either here.
+It may help to realize that observables that come out of a calculation, workflow, etc. are called _"Properties"_.
+**Try out "propert"** in the search bar and **pick the category** that best fits band gap.
+Then fill in the value with **electronic.band_structure_electronic.band_gap**.
 
 !!! tip
-    Terms in the search bar never contain spaces (` `), but use underscores (`_`) instead .
+    Terms in the search bar never contain spaces, but use underscores (`_`) instead .
 
 !!! success
     The band gap describes the electronic structure around the Fermi energy.
-    Hence, the **"Electronic" filter subgroup** best matches that theme.
-    The search bar can even tell you the full classification, as it autocompletes "band_gap" to "results.properties.electronic.band_structure_electronic.band_gap.type/value".
-    Note the sequence "properties.electronic".
+    Just as the chip displays, it is an "Electronic Property".
 
-The way this side pane is layed out, it first gives you an _overview_ of what is out there and below hands you _filters for narrowing_ the properties further down.
+    This filter yields a blank / empty entries list.
+    The value itself can shed more light here.
+    The "Band gap" is in reality only that of band structure calculations.
+    This is due to a legacy implementation, but has been mended.
+    After reprocessing, this update will be applied over the whole database.
+
+This filter stack is too restrictive.
+Remove the last filter and look for any alternatives under its side pane
+The way this pane is layed out, it first gives you an _overview_ of what is out there and below hands you _filters for narrowing_ the properties further down.
 When filtering by presence, the overview suffices.
-How would you finish the query?
+How would you **finish the query**?
 
 !!! success
-    The number of entries with an extracted band gap is too low (just 11 entries).
-    This is far too little for machine-learning, let alone any statistical analysis.
-    Instead, we can go with **"Density of states"** (DOS) [^2], matching 6.5200 entries.
-    There is no need to narrow it down, we accept both data from spin-polarized and spin-restricted calculations.
+    As an alternative, we can go with the **"Density of states"** (DOS) [^2], matching 1.9800 entries.
+    The equivalent search bar query would be **"electronic_property=dos_electronic"**.
+    There is no need to narrow it down any further: we accept both data from spin-polarized and spin-restricted calculations.
 
-    You can download the DOS, but will still have to extract the band gap yourself.
-    This is mostly a scripting question, since almost all DOS will contain the necessary information.
-    NOMAD's past extraction of the band gap was quite limited.
-    This has been mended and is being applied over the whole database.
+!!! tip
+    **When stacking order matters**
 
-With that we have our final query, for now.
-The best strategy would be to at this point download the data you need and start applying some statistical analysis first.
+    Imagine having started filtering by property instead of composition and then method.
+    You would have unwittingly excluded a vast dataset, potentially concluding that NOMAD does not host any suitable data.
+    The **general strategy** to avoid working yourself in any of these dead ends is to start with **broad filters**. <!-- Overall, the order "Material", "Workflow", "Method", "Property", which mimics the actual progress of the computational results -->
+    Even DOS is much broader then band gap.
+    Also make sure to keep **monitoring relevant indicators** as you stack up filters.
+    Even if you end up with unsatisfactory search results and start systematically removing filters, these indicators will be key in finding the best match.
+    In the next scenario we will cover an even more powerful technique to aid in monitoring, _dashboards_.
+    **Conclusion**, so-called _query engineering_ is not just limited to Large Language Models, but also includes _sophisticated databases_.
+
+From hereon, the best strategy would be to download the data you need, extract the DOS, and start applying some statistical analysis first.
 You might come across some new ideas how to further hone your query and filter out all irrelevant noise.
-
 So, **click the checkbox next to the column headers** in the entries list to select all entries.
 The 3 vertical slots now change to a **download symbol**, given you the option between the original (raw) format or the **NOMAD format** (processed).
 To save your query for future use, **click on the _code symbol_** (`< >`) to the right of "FILTERS" in the **side menu**.
