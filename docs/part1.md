@@ -58,7 +58,7 @@ Some elements immediately stand out:
 - On the left-hand side is a "FILTERS" _side menu_.
 - At the very top is a header with several options (left-hand side), login and units (right-hand).
 
-Apparently, the page we have in front of us is called _Entries_.
+As denoted at the top left, the page we have in front of us is called _Entries_.
 When loading the page, you should also see an orange box in the left-bottom corner, warning you that you are using an experimental product. You can get rid of it by clicking the check mark (`✓`).
 Now, let us move on to the actual scenarios.
 
@@ -105,7 +105,7 @@ Here, it is probably faster to just **type out the program name** and **hit ente
 
 !!! success
     You should be getting a result similar to the one in the reference picture.
-    In the **side menu**, under "Method", you will find the **active filter "Program Name"** listed in grey, with its constraint / value **"GROMACS" denoted in a blue _chip_**.
+    In the **side menu**, under "Method", you will find the **active filter "Program Name"** listed in grey, with its constraint / value **"GROMACS" denoted in a blue, oval _chip_**.
 
     <div class="click-zoom" style="text-align: left;">
         <label>
@@ -131,7 +131,7 @@ That is alright, though, we can just **stack up several filters**.
 
 Which filter we should search for next depends on your priorities: do you want to learn mostly about running Molecular Dynamics or how a forcefield for water should be tweaked?
 Let us go with former.
-Fortunately, there already is a **filter subgroup called "Molecular Dynamics", so click it open**.
+Fortunately, there is already a **filter subgroup called "Molecular Dynamics", so click it open**.
 You are now presented with several settings.
 Judging from the statistics, we have the best chance with a setting that covers the widest range of calculations (28.000 entries).
 **Select "Temperature" under "Available Properties"**. <!-- @Joseph: do you want me to to add a "Molecular Dynamics" selection button?-->
@@ -142,22 +142,19 @@ Judging from the statistics, we have the best chance with a setting that covers 
     For example, "Molecular Dynamics" > "Available Properties" clarifies that we are dealing with observables documented along the trajectory.
 
 System specifications are found under "Material".
-Since we know the composition of our system, **click on "Elements / Formula"** and **select the matching elements** in the periodic table.
-The **color code** of each element indicates the number of remaining entries containing these elements too.
-Those that are already filtered out will be **gray**, just as you saw when opening the side pane.
-It shows that Gromacs users typically work on organic systems.
+Since we know the composition of our system, **click on "Elements / Formula"**.
+Notice how many of the elements on the periodic table are grayed out.
+This indicates that there are no entries containing these elements, given the filters that you have applied.
+Additionally, the **number of entries** containing each remaining element is displayed within the element's periodic table box, with a corresponding **blue color gradient**.
 
 !!! tip
-    You can toggle the **statistics** scale via the dropdown menu right to the name.
+    You can toggle the **statistics** scale via the dropdown menu to the right of the name.
     Conversely, if the statistics are ever slowing the browser down, deactivate them by deselecting "Filters" > "options menu" (`⋮`) > "Show advanced statistics".
 
-This is the effect of _stacking filters_.
-You can see **both chips** on the left.
-Note how there is an **"and"** in between.
-While filters between side menu options stack, those within a side pane each have their own logic.
-
-Finishing up, we are looking for pure water, so the elements O and H in the composition suffice. <!-- Shame how we don't have a subgroup search yet -->
-Remove all data with additional elements by **selecting "only compositions that exclusively contain these atoms"**.
+Now, **select the elements** contained in our system (we are looking for pure water, so O and H suffice).
+The corresponding chips will be added to the side menu, with an "and" in between.
+While filters between groups _stack_ (i.e., **"and" logic** is applied), those within a side pane each have their own logic (more on that in scenario 2).
+Finally, remove all data with additional elements by selecting the **"only compositions that exclusively contain these atoms"** box. 
 
 !!! success
     You are left with 2 MD calculations in the entries list.
@@ -188,22 +185,21 @@ Remove all data with additional elements by **selecting "only compositions that 
         </div>
     </div>
 
-Actually, the **exact historical order** in which we applied the filters **does not matter**.
-I.e. the same set of filters will yield the same search result.
-In that sense, filters are like small questions or details that we use construct an overall query.
+Actually, the **order** in which we applied the filters **does not matter**.
+In that sense, filters are like small questions or details that we use to construct an overall query.
 This insight comes with a small caveat: the **statistics** that we see as we are stacking up our filters **are contingent on the history**.
-If we take a different route, we will see different intermediate results and this could lead us to change our final formulation.
+If we take a different route, we will see different intermediate results and this could lead us to decide on different filters.
 
 To see this effect in action, rewind back to where we were choosing our priorities and let us go with the latter instead.
 The fastest way here, is to retrieve **"Molecular Dynamics" > "Available Properties"** and **click the highlighted checkbox** again to deselect it.
 
 
 !!! success
-    Glossing over the remaining 6 results, you discover that another author (Sebastian Baugmart) has **2 more MD simulations** (based on their overview page), which were not classified as such. <!-- @Joseph is this a bug? -->
-    We also find **2 "Geometry Optimizations"** of both systems.
-    While these do not exactly match our initial objective, they could still provide us with valuable **insights into the forcefield** setup.
-    Since the entries list is so short, it could even be skimmed manually.
-    They also inform us of the **overarching workflow** used by both authors, i.e. first relax the system, then run MD under various constraints. <!-- @Joseph: could I use the term "thermostats" here? It also includes NVP -->
+    Glossing over the remaining 6 results, 3 by Andrew Rosen and 3 by Sebastian Baugmart, we retrieve **2 more MD simulations** and **2 more "Geometry Optimizations"**.
+    Even though some entries do not have a clear specification, we can find their classification by visiting the entry's overview page. <!-- @Joseph is this a bug? -->
+    While geometry optimization was not part of match our initial objective, these entries could still provide us with valuable **insights into the forcefield** setup.
+    They also inform us of the **overarching workflow** used by both authors, .e., relaxing the system before the production simulation.
+    Annotating such workflows is covered more extensively in [part II](part2.md).
 
     <div class="click-zoom" style="text-align: left;">
         <label>
@@ -211,6 +207,10 @@ The fastest way here, is to retrieve **"Molecular Dynamics" > "Available Propert
             <img src="../assets/part1_explore/sc1_alternate_stack.png" title="Removing the molecular dynamics filter">
         </label>
     </div>
+
+<!-- placeholder note for Joseph option A -->
+**Note:** the upcoming scenarios do not deal with molecular dynamics data directly due to lack of uploads.
+Nonetheless, they still teach many useful techniques that are generally applicable.
 
 ### Scenario 2 - Data science
 
@@ -226,6 +226,8 @@ The fastest way here, is to retrieve **"Molecular Dynamics" > "Available Propert
     - customize the entries table.
     - use the search bar.
     - recognize "OR" filter stacking.
+
+    <!-- placeholder note for Joseph option B -->
 
 In this scenario our objective is more vaguely defined, so we will **start by exploring** the database before focusing in.
 A good overview is fundamental for spotting interesting data.
@@ -247,17 +249,13 @@ and instead **select**
 - "Comment": just to give us a bit more context, where possible.
 
 The 3 first selections can all be found under "Material" > "Structure".
-Let us furthermore **sort alphabetically by (Hill) "Formula"**.
-The column that is being used for sorting has an **arrow next to its name**.
-The **direction** of this arrow decides the **ordering**: ascending / alphabetical (up) or descending / reverse alphabetical (down).
-**Click on column header** to use it for sorting.
-The default ordering will be up.
-You can toggle it, by clicking the same column header again.
+Let us furthermore **sort alphabetically by (Hill) "Formula"** by clicking on the "Formula" heading.
+(Click multiple times to toggle between ascending / descending ordering).
 
 !!! tip
     **What are entries exactly?**
     Entries are individually stored data packages, shown as rows in the overview table.
-    In our context, they mostly overlap with _individual calculations_, be they single-point or with updates to the atomic coordinates.
+    In our context, they mostly overlap with an _individual calculation_, e.g., a single-point calculation or a single molecular dynamics run.
     When separate calculations are linked together into a _workflow_ (see [Part II](part2.md)), the overall link also receives its own dedicated entry.
     Lastly, since NOMAD covers the whole of Condensed Matter Physics and Chemistry, entries can also be _experimental samples_ or _batches_.
 
@@ -281,33 +279,47 @@ You can toggle it, by clicking the same column header again.
         </div>
     </div>    
 
-The "Material" filter group is great for exploration, because the chemical space itself is infinitely vast and varied.
-We will start again with composition and focus on the organic side, that is more or less static.
-Opening and closing the side panes the whole time while also keeping an eye on the entries list is quite the hassle, though.
-As you get more familiarized with the range of filters, a faster alternative becomes accessible: the **search bar**.
-Its main purpose is to provide **advanced text-based queries**.
-You could compare this to web search engines, like Google, though here the formatting is far stricter.
-Locate the bar (above the entries list) and **click into it to start typing**.
+With our entries view all set up, we move on to the **exploration** part.
+More specifically, we will investigate the impact of several filters on our search.
+You can follow along with the suggestions here, but feel free to also try out on your own.
 
-This search tool really shines when you know the filter name you are looking for.
-As you **type in "element"**, NOMAD will start to autocomplete.
-**Select "results.material.elements"** under "quantity name".
-Now we just need a value, so **type "=C"** and press enter.
-This is how you write and apply an _equality query_.
+While in the previous scenario we relied exclusively on the side menu, now that you are more familiar with the filters and their names, we can extend our toolkit with a **faster** alternative: the **search bar**.
+Its main purpose is to aid you in composing **text-written filters** and avoid having to switch between side panes all the time.
+The search bar does not, however, support the free-style natural language queries as found in web search engines, like Google, or AI models, like ChatGPT.
+The formatting here is far stricter.
+While you can switch back to the side menu at any time, we will , for educational purposes, rely on the search bar exclusively throughout this scenario.
+
+We have a lot of leeway in which filters we tackle first.
+As usual, it is best to start with the attributes that are **most clearly defined by our objective**.
+In this case, it is that we are looking for **MOFs**.
+From there on we will follow **the sequence: material; method; property**, just as you would when generating your own data.
+
+Let us start again with the composition, or more specifically, by retrieving entries that contain carbon.
+Locate the search bar (above the entries list) and **click into it to start typing**.
+Try out a couple of keywords that come to your mind.
+As you are typing, **NOMAD will autocomplete your query** with several suggestions.
+Once you find a promising term, select it with the mouse or keyboard.
+Then write a single (not double or triple) **equal sign (`=`)** and **fill in the value** to filter for.
+Once you have it, press enter.
+Congratulations, you have applied your first _equality query_.
+
+!!! tip
+    When searching for elements, do not fall for the mistake of writing out their name.
+    NOMAD, and especially its search bar, aims for efficiency.
+    So just stick to the **elemental symbol** from the periodic table.
+    Lowercase also works.
 
 !!! tip
     **What are these autocompleted filter names?**
 
-    The full name is structured very much like a _filepath_, but with dots (`.`) instead of slashes (`\` on Unix, `//` on Windows).
+    The full filter names that pop up in the suggestions are structured similarly to a _filepath_, but with dots (`.`) instead of slashes (`/` on Unix, `\\` on Windows).
     This is in line with the format of many other _document databases_.
-    To explore this structure / _schema_, navigate to "ANALYZE" (header) > "The NOMAD Metainfo".
-
-!!! tip
-    The **equality query** is defined using a **single equals sign (`=`)**, not double (`==`) or triple (`===`) as in some programming language.
+    To explore this structure / _schema_, navigate to "ANALYZE" (in header) > "The NOMAD Metainfo".
 
 !!! success
-    The same chip as usual is now to the side menu, under "Elements / Formula".
-    Moreover, note how the **filter name** is contained in the **last term** of the autocompleted version.
+    You should have found the query **"results.material.elements=C"**.
+    Upon pressing enter, the same chip as usual appears in side menu, confirming that the filter is active.
+    Moreover, note how the **filter name** in the side menu is contained in the the autocompleted version.
 
     <div class="image-container">
         <div class="click-zoom">
@@ -324,15 +336,15 @@ This is how you write and apply an _equality query_.
         </div>
     </div>   
 
-As you saw, one can start out by writing the filter name, but you can just as well skip to the value.
-Just **type "H"** (lower case also works) and **apply "results.material.elements=H"**.
-NOMAD apparently understands that you might have been talking about an element, at which point it is easy to guess the matching filter.
-As such, we have defined hydrocarbons, but MOFs also need ligands to bind the metal.
+As you saw, one can start out by writing the filter name, but you can just as well skip ahead to the value.
+Just **type in  "H"** and **apply "results.material.elements=H"**.
+NOMAD automatically recognizes that you might mean an element, at which point it is easy to guess the matching filter.
+As such, we have refined our search to hydrocarbons, but MOFs also need ligands to bind the metal.
 Using the search bar, further **stack oxygen and nitrogen filters**.
 Note how the entries list changes.
 
-While the formulae are approaching what we are looking for, we still do not have MOFs.
-We have enough elements for our skeleton / linkers, so let us just **add a metal**.
+While the formulae are approaching what we are looking for, they do not look like MOFs quite yet.
+We already have enough elements for our skeleton / linkers, so let us just **add a metal** now.
 Unfortunately, the NOMAD filters do not know this concept.
 Instead, we will keep the last element a bit more open and just specify the number of elements.
 **"Number of"** is often abbreviated as **"n_"** in NOMAD.
@@ -505,7 +517,7 @@ To save your query for future use, simply **bookmark the url**.
 
 !!! assignment
     **You are talking to a colleague about your machine-learned model (from scenario 2).
-    They tell you there was a good recent publication of Rosen, but are forgetting the rest of the details at the moment.
+    They tell you there was a good recent research publication by Rosen, but are forgetting the rest of the details at the moment.
     They will get back to you, but you are eager to check it out right away.**
 
     In this exercise, you will learn how to:
@@ -533,7 +545,7 @@ We get 2 suggestions, but only one matches perfectly.
 Actually, if you performed the Google Scholar search _successfully_, you should have found the same author.
 
 Take stock of the **"Upload Create Time"** statistiscs right below "Author Name".
-It appears that Rosen has uploaded 3 times to NOMAD, each time in quite large batches ranging from to thousands to tens of thousands of entries.
+It appears that Rosen is a researcher who has uploaded 3 times to NOMAD, each time in quite large batches ranging from to thousands to tens of thousands of entries.
 That is some very rich data.
 To better understand its make up, we have to compare several statistics at once.
 Jumping between side panes is a bit of a hassle, so instead we will speed up our analysis by setting up a _dashboard_.
