@@ -197,7 +197,7 @@ By clicking the same column header again, you can toggle it.
 
 !!! tip
     **What are entries exactly?**
-    Entries are individually stored data packages, shown as a row in the overview table.
+    Entries are individually stored data packages, shown as rows in the overview table.
     In our context, they most overlap with an _individual calculation_, be they single-point or with updates to the atomic coordinates.
     When separate calculations are linked together into a _workflow_ (see [Part II](part2.md)), the overall link also receives its own dedicated entry.
     Lastly, since NOMAD covers the whole of condensed matter, entries can also be _experimental samples_ or _batches_.
@@ -258,12 +258,13 @@ Finally, we are interested in the material in **bulk form**, not any kind of int
     Then you should also have added the equality query `results.material.structural_type=bulk`.
 
     Most columns seem much more uniform now.
-    This was to be expected for "Dimensionality", since we explicitly enforced homogeneity, but the effects also affect "Entry type", "Crystal system" and "Space group symbol".
+    This was to be expected for "Dimensionality", since we explicitly enforced homogeneity, but "Entry type", "Crystal system" and "Space group symbol" are also affected.
     Even "Comment" seems to be following a repetitive format.
     Most importantly, the formulae only vary in metal contributions.
     These definitely look like MOFs.
-    You can verify by opening the _entry overview_ of a row by clicking the arrow (`->`) right from all the metadata.
-    To return, just use your browser's "go back" function.
+    You can verify this by opening the _entry overview_ of a row.
+    Just click the arrow (`->`) right in the entries list.
+    To return, use your browser's "go back" function.
 
 For machine-learning, a **dataset** should be **homogeneous** across its entire setup, safe for the variables that we are interested in.
 Most of the data on NOMAD is _Density Functional Theory_ (DFT), with some GW and classical forcefields.
@@ -272,8 +273,13 @@ Just as with forcefields, DFT is mostly determined by the choice of kernel, i.e.
 
 Hybrid functionals are the norm for organic systems and the most popular in solid state by far are HSE06 and HSE03.
 By now, you probably have a good instinct of where to find them in the side menu (under "DFT").
-Perform an **equality query** for **"HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06"** each.
+Perform an **equality query** for **"HSE03" and "HSE06"** each.
 Both are very prominent hybrids in solid state.
+
+!!! tip
+    The exchange functional naming in NOMAD follows the **convention established by [libxc](https://github.com/ElectronicStructureLibrary/libxc)**, a popular library for evaluating (semi)local functionals.
+    In practice, this goes as `<hybrid flag>_<Jacob's Ladder>_<exchange-correlation part>_<name identifier>`, where **`<name identifier>` is the main ID** and the other tags simply provide metadata.
+    `<hybrid flag>` is only present when the functional truly is a hybrid.
 
 Hold on.
 How can an entry contain 2 exchange-correlation functionals at once?
@@ -284,15 +290,10 @@ For your answer, **take a look at the side menu**.
     Both "HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06" chips are present, but separated by the **connector "OR"** rather than "AND".
     Just as the name suggests, the logic condition is different in this case.
     Our "XC Functional Names" filter as not been narrowed down, but **extend to search for both** options.
-
-!!! tip
-    The exchange functional naming in NOMAD follows the **convention established by [libxc](https://github.com/ElectronicStructureLibrary/libxc)**, a popular library for evaluating (semi)local functionals.
-    In practice, this goes as `<hybrid flag>_<Jacob's Ladder>_<exchange-correlation part>_<name identifier>`, where **`<name identifier>` is the main ID** and the other tags simply provide metadata.
-    `<hybrid flag>` is only present when the functional truly is a hybrid.
     
-    Where sensible, the libxc **_exchange-correlation_ functionals (`XC`) are split up** into _exchange_ (`X`) and _correlation_ (`C`), providing the user with the option of mixing as they see fit.
-    So it definitely is possible for a **single entry** (and even calculation) to be assigned **multiple functional names**, just not `XC`!
-    For example, the most represented functional in NOMAD, `PBE`, is stored as `[GGA_X_PBE, GGA_C_PBE]`.
+    Note that a **single entry** (and even calculation) may contain **multiple functional names**, just not `XC`!
+    The libxc namely splits up _exchange-correlation_ functionals (`XC`) into _exchange_ (`X`) and _correlation_ (`C`), when appropriate.
+    So for example, the most prominent functional in NOMAD, `PBE`, is stored as `[GGA_X_PBE, GGA_C_PBE]`.
     Note that selecting one of either or even both (due to the `OR` logic), does not guarantee a user will retrieve only PBE.
 
 With the main method specified, there are still a bunch of additional numerical settings that may affect the fidelity of the results, such as the _basis set_.
@@ -330,7 +331,7 @@ Then fill in the value with **electronic.band_structure_electronic.band_gap**.
     After reprocessing, this update will be applied over the whole database.
 
 This filter stack is too restrictive.
-Remove the last filter and look for any alternatives under its side pane
+Remove the last filter and look for any alternatives under its side pane.
 The way this pane is layed out, it first gives you an _overview_ of what is out there and below hands you _filters for narrowing_ the properties further down.
 When filtering by presence, the overview suffices.
 How would you **finish the query**?
@@ -345,16 +346,18 @@ How would you **finish the query**?
 
     Imagine having started filtering by property instead of composition and then method.
     You would have unwittingly excluded a vast dataset, potentially concluding that NOMAD does not host any suitable data.
-    The **general strategy** to avoid working yourself in any of these dead ends is to start with **broad filters**. <!-- Overall, the order "Material", "Workflow", "Method", "Property", which mimics the actual progress of the computational results -->
-    Even DOS is much broader then band gap.
+    The **general strategy** to avoid working yourself in any of these dead ends is to start with **broad filters**, such as DOS instead of band gap.
+    <!-- Overall, the order "Material", "Workflow", "Method", "Property", which mimics the actual progress of the computational results -->
+    
     Also make sure to keep **monitoring relevant indicators** as you stack up filters.
     Even if you end up with unsatisfactory search results and start systematically removing filters, these indicators will be key in finding the best match.
     In the next scenario we will cover an even more powerful technique to aid in monitoring, _dashboards_.
-    **Conclusion**, so-called _query engineering_ is not just limited to Large Language Models, but also includes _sophisticated databases_.
+    
+    **Conclusion:** so-called _query engineering_ is not just limited to Large Language Models, but also applies to _sophisticated databases_.
 
-From hereon, the best strategy would be to download the data you need, extract the DOS, and start applying some statistical analysis first.
-You might come across some new ideas how to further hone your query and filter out all irrelevant noise.
-So, **click the checkbox next to the column headers** in the entries list to select all entries.
+From hereon, the best strategy would be to download the data you need, extract the band gap, and perform some statistical analysis first.
+You might come across some new ideas on how to further hone your query and filter out more noise.
+**Click the checkbox next to the column headers** in the entries list to select all entries.
 The 3 vertical slots now change to a **download symbol**, given you the option between the original (raw) format or the **NOMAD format** (processed).
 To save your query for future use, **click on the _code symbol_** (`< >`) to the right of "FILTERS" in the **side menu**.
 The specifications are found in the **"Request" section**.
