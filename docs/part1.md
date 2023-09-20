@@ -290,6 +290,11 @@ The search bar does not, however, support the free-style natural language querie
 The formatting here is far stricter.
 While you can switch back to the side menu at any time, we will , for educational purposes, rely on the search bar exclusively throughout this scenario.
 
+!!! tip
+    NOMAD also supports the [Optimade](https://www.optimade.org/documentation) API, which has its own query conventions.
+    While it is not covered in this tutorial, you can check out the relevant documentation via the link.
+    To use the NOMAD-Optimade endpoint, scroll down to "Optimade" at the very bottom of the side menu.
+
 We have a lot of leeway in which filters we tackle first.
 As usual, it is best to start with the attributes that are **most clearly defined by our objective**.
 In this case, it is that we are looking for **MOFs**.
