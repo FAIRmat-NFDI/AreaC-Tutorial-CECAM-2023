@@ -15,13 +15,11 @@ conda install "ipywidgets <8" -c conda-forge
 ```
 
 !!! note "NOTE"
-
-        You may have to restart vscode or other editor after updating `ipywidgets`.
+    You may have to restart your IDE after updating `ipywidgets`.
 
 
 !!! note "NOTE"
-
-        We stress that none of these packages are **required** to work with the NOMAD archive data. As you will see below, the archive data will be retrieved in a dictionary format, which you are free to work with in a *plain* python environment.
+    We stress that none of these packages are **required** to work with the NOMAD archive data. As you will see below, the archive data will be retrieved in a dictionary format, which you are free to work with in a *plain* python environment.
 
 Now, start a Jupyter notebook to carry out the remainder of this part of the tutorial.
 
