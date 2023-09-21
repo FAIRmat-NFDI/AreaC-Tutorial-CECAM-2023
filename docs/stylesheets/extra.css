@@ -88,3 +88,15 @@
     z-index: 0;
     cursor: zoom-out
 }
+
+.image-container img {
+    float: left;
+    margin-right: 10px;
+  }
+  
+  .image-container::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
