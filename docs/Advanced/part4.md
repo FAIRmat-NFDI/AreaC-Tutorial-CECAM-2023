@@ -1,6 +1,6 @@
 # Workflows and how to link DFT and beyond-DFT calculations
 
-This part contains the basic knowledge on understanding and learning to use NOMAD workflows, and its relation with DFT and beyond-DFT (GW, BSE, DMFT, etc.) methodologies. You will use a ficticious example of a simulation workflow, where the [files and folder structure](https://www.fairmat-nfdi.eu/uploads/Area%20C/example_files.zip) is:
+This part contains the basic knowledge on understanding and learning to use NOMAD workflows, and its relation with DFT and beyond-DFT (GW, BSE, DMFT, etc.) methodologies. You will use a ficticious example of a simulation workflow with the following files and folder structure:
 ```
 .
 ├── pressure1
@@ -24,6 +24,12 @@ This part contains the basic knowledge on understanding and learning to use NOMA
     ├── tb_p2.wout
     └── ...extra auxiliary files
 ```
+
+which can be downloaded here:
+<center>
+[Download example_files.zip](../assets/part4_workflows/example_files.zip){ .md-button }
+</center>
+
 Each of the _mainfiles_ represent an electronic-structure calculation (either [DFT](https://en.wikipedia.org/wiki/Density_functional_theory), [TB](https://en.wikipedia.org/wiki/Tight_binding), or [DMFT](https://en.wikipedia.org/wiki/Dynamical_mean-field_theory)) which in turn is then parsed into a singular _entry_ in NOMAD. When dragged into the [NOMAD Upload page](https://nomad-lab.eu/prod/v1/staging/gui/user/uploads), these files should generate 8 entries in total. This folder structure presents a typical workflow calculation which can be represented as a provenance graph:
 ```mermaid
 graph LR;
@@ -52,12 +58,17 @@ The goal of this part is to set up the following workflows:
 2. An overarching workflow entry for each pressure P<sub>i=1,2</sub>, grouping all `SinglePoint` "DFT", "TB", "DMFT at T<sub>1</sub>", and "DMFT at T<sub>2</sub>" tasks.
 3. A top level workflow entry, grouping together all pressure calculations.
 
-The files for all these cases can be found in [Workflow YAML files](https://www.fairmat-nfdi.eu/uploads/Area%20C/workflowyaml_files.zip). You can try writing these files yourself first, and then compare them with the tested files.
+The files for all these cases can be downloaded here:
+<center>
+[Download worfklowyaml_files.zip](../assets/part4_workflows/workflowyaml_files.zip){ .md-button }
+</center>
+
+ You can try writing these files yourself first, and then compare them with the tested files.
 
 
 ## Starting example: SinglePoint workflow
 
-NOMAD is able to [recognize certain workflows in an automatic way](#automatic-workflows), such as the `SinglePoint` case mentioned above. However, to showcase how to the use workflows in NOMAD, you will learn how to "manually" construct the SinglePoint workflow, represented by the following provenance graph:
+NOMAD is able to recognize certain workflows in an automatic way, such as the `SinglePoint` case mentioned above. However, to showcase how to the use workflows in NOMAD, you will learn how to "manually" construct the SinglePoint workflow, represented by the following provenance graph:
 ```mermaid
 graph LR;
     A((Inputs)) --> B[DFT];
@@ -323,4 +334,5 @@ Here are some general guidelines for preparing your upload folder in order to ma
 - Avoid having to go up and down between folders if some properties are derived between these files. These situations are very complicated to predict for the current NOMAD infrastructure.
 - Avoid duplication of files in subfolders. If initially you do a calculation A from which a later calculation B is derived and you want to store B in a subfolder, there is no need to copy the A files inside the subfolder B.
 
-The folder structure used throughout this part is a good example of a clean upload which is friendly and easy to work with when defining NOMAD workflows. Another example can be found in [Part II](../part2.md), when you learned how to upload a DFT + GW calculation for bulk Si<sub>2</sub>. In this case, an automatic GW workflow entry was generated.
+The folder structure used throughout this part is a good example of a clean upload which is friendly and easy to work with when defining NOMAD workflows.
+<!-- Another example can be found in [Part II](../part2.md), when you learned how to upload a DFT + GW calculation for bulk Si<sub>2</sub>. In this case, an automatic GW workflow entry was generated. -->

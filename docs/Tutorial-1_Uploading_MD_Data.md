@@ -1,4 +1,4 @@
-# Uploading molecular dynamics data to NOMAD
+# Uploading molecular dynamics data to NOMAD (~40 min)
 
 There are several ways to upload your data to NOMAD:
 
@@ -48,7 +48,7 @@ After the files are uploaded, a **processing** is triggered. In brief, NOMAD int
 ??? tip
     We recommend to keep as many auxiliary files as possible together with the mainfile, but without exceeding the uploads limit&mdash;32GB file size limit per upload. For the routine upload of simulations that exceed this limit, we suggest that you prune the trajectory file in advance, to store only a subset of the data on the NOMAD repository. In this case, the parsers should still correctly store the configurations as well as additional metadata dealing with the input parameters to the simulation.
 
-    For special cases of larger simulations or datasets that must be stored in full, special processing procedures are required. In this case, you should contact the NOMAD team for assistance: 'mailto:mail@example.com'.
+    For special cases of larger simulations or datasets that must be stored in full, special processing procedures are required. In this case, you should contact the [NOMAD/FAIRmat team]() for assistance. Alternatively, you can post questions or requests on the [NOMAD MATSCI Community Discourse Forum](https://matsci.org/c/nomad/32).
 
 During the processing, NOMAD will store the simulation data and *metadata* within the NOMAD *Metainfo* schema. In this case, the parsing should take ~ 30 seconds. You should now see the successfully processed data overview:
 
@@ -236,11 +236,18 @@ Now go back and navigate to section **run** :fontawesome-solid-arrow-right: **ca
 
 The **calculation** section contains any saved thermodynamic quantities that are a function of a single configuration, e.g., energy, pressure, temperature, etc., as well as any saved force information for the atoms within each configuration.
 
-### <u> **Exercises** </u>
+!!! abstract "Assignment"
 
-1. What are the oxygen and hydrogen atom types used in the force field for this simulation?
+    1. What are the oxygen and hydrogen atom types used in the force field for this simulation?
 
-2. What is the step number of the last saved configuration of this simulation? What is the corresponding time for this configuration?
+    2. What is the step number of the last saved configuration of this simulation? What is the corresponding time for this configuration?
 
-3. (CHALLENGE) Which thermostat is used for temperature coupling in this simulation? What is the frequency of temperature coupling?
+    3. (CHALLENGE) Which thermostat is used for temperature coupling in this simulation? What is the frequency of temperature coupling?
 
+??? success
+
+    1. OW, HW1, and HW2 (see **run** &rarr; **method** &rarr; **atom_parameters** &rarr; *atom_index* &rarr; **label**)
+
+    2. step = 5000, time = 5 ps (see **system** &rarr; **10** &rarr; **step** and **system** &rarr; **10** &rarr; **time**, respectively)
+
+    3. thermostat = "langevin_goga", frequency of coupling = 500 fs (see **workflow** &rarr; **molecular_dynamics** &rarr; **integration_parameters** &rarr; **thermostat_parameters** &rarr; **thermostat_type** and **workflow** &rarr; **molecular_dynamics** &rarr; **integration_parameters** &rarr; **thermostat_parameters** &rarr; **coupling_constant**, respectively).

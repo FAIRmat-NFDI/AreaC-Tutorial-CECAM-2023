@@ -1,29 +1,52 @@
-# Working with the NOMAD archive
+# Working with the NOMAD archive (~40 min)
 
 In this part of the tutorial we will demonstrate how to query data from the NOMAD repository and work with it within a python environment.
 
 For this demonstration, we will utilize some tools from the nomad-lab software, as well as some third-party software (e.g., MDAnalysis, nglview).
 
-We suggest creating a virtual environment for this purpose. For example, using `conda`, you can set up an environment with the following commands:
+We suggest creating a virtual environment for this purpose. For example, using `conda`, you can set up the appropriate environment by first downloading the environment.yml file:
 
-**TODO add requirements.txt file for download**
+<center>
+[Download environment.yml](assets/md_tutorial_3/environment.yml){ .md-button }
+</center>
+
+Then create a new conda environment with the following command:
 
 ```python
-conda create -n "CECAM_tutorial" python==3.9
-conda activate CECAM_tutorial
-pip install nomad-lab
-conda install nglview
-conda install "ipywidgets <8" -c conda-forge
+conda env create -f environment.yml
 ```
 
-!!! note "NOTE"
+??? tip
+    In case you have problems, here are the original commands used to set up the environment:
 
-        You may have to restart vscode or other editor after updating `ipywidgets`.
+    ```python
+    conda create -n "CECAM_tutorial" python==3.9
+    conda activate CECAM_tutorial
+    pip install nomad-lab
+    conda install nglview
+    conda install "ipywidgets <8" -c conda-forge
+    ```
 
+Or if you are using `virtualenv`:
 
-!!! note "NOTE"
+**TODO @ndaelman-hu Can you check this? I usually use conda**
 
-        We stress that none of these packages are **required** to work with the NOMAD archive data. As you will see below, the archive data will be retrieved in a dictionary format, which you are free to work with in a *plain* python environment.
+<center>
+[Download requirements.txt](assets/md_tutorial_3/requirements.txt){ .md-button }
+</center>
+
+```python
+python3 -m venv .pyenv
+source .pyenv/bin/activate
+pip install -r requirements.txt
+```
+
+!!! warning "warning"
+
+    You may have to restart your code editor (IDE) to get the in-notebook visualizations to work.
+
+???+ info "info"
+    We stress that none of these packages are **required** to work with the NOMAD archive data. As you will see below, the archive data will be retrieved in a dictionary format, which you are free to work with in a *plain* python environment.
 
 Now, start a Jupyter notebook to carry out the remainder of this part of the tutorial.
 
@@ -79,7 +102,7 @@ response = requests.get(nomad_url + 'entries/' + entry_id + '/archive/download')
 data = response.json()
 ```
 
-!!! note "NOTE"
+!!! warning "warning"
 
         This should take about 7 minutes, depending on the internet.
 
@@ -91,9 +114,14 @@ print(data.keys())
 
     dict_keys(['processing_logs', 'run', 'workflow2', 'metadata', 'results', 'm_ref_archives'])
 
-### <u> **Exercise** </u>
+!!! abstract "Assignment"
 
-Get the atom positions for the first frame of the trajectory from this dictionary.
+    Get the atom positions for the first frame of the trajectory from this dictionary.
+
+??? success
+    ```python
+    data['run'][0]['system'][0]['atoms']['positions']
+    ```
 
 **TODO - If possible, add API for grabbing particular quantity from the archive**
 
@@ -148,31 +176,32 @@ for frame_ind, frame in enumerate(section_system):
                 sec_atoms_fr.lattice_vectors.magnitude[2][2] * length_conversion,
                 90, 90, 90]  # nb -- for cubic box!
 ```
-### <u> **Exercises** </u>
 
-1. Fill in the missing variables assignments in the following code to make the temperature trajectory plot for this calculation. Compare your result to the plot from the Overview page in the NOMAD GUI.
+!!! abstract "Assignment"
 
-```python
-fig = plt.figure(figsize=(10,4))
-section_calculation =  ## FIND THE SECTION CALCULATION IN THE ARCHIVE ##
-temperature = []
-time = []
-temperature_unit =  ## FIND THE UNIT OF TEMPERATURE USED IN THE ARCHIVE ##
-time_unit =  ## FIND THE UNIT OF TIME USED IN THE ARCHIVE ##
-for calc in section_calculation:
-    temperature.append()  ## FIND THE TEMPERATURE FOR THIS CALC ##
-    time.append()  ## FIND THE TIME FOR THIS CALC ##
+    Fill in the missing variables assignments in the following code to make the temperature trajectory plot for this calculation. Compare your result to the plot from the Overview page in the NOMAD GUI.
+
+    ```python
+    fig = plt.figure(figsize=(10,4))
+    section_calculation =  ## FIND THE SECTION CALCULATION IN THE ARCHIVE ##
+    temperature = []
+    time = []
+    temperature_unit =  ## FIND THE UNIT OF TEMPERATURE USED IN THE ARCHIVE ##
+    time_unit =  ## FIND THE UNIT OF TIME USED IN THE ARCHIVE ##
+    for calc in section_calculation:
+        temperature.append()  ## FIND THE TEMPERATURE FOR THIS CALC ##
+        time.append()  ## FIND THE TIME FOR THIS CALC ##
 
 
-plt.plot(time, temperature)
-plt.ylabel(temperature_unit, fontsize=12)
-plt.xlabel(time_unit, fontsize=12)
-plt.show()
-```
+    plt.plot(time, temperature)
+    plt.ylabel(temperature_unit, fontsize=12)
+    plt.xlabel(time_unit, fontsize=12)
+    plt.show()
+    ```
 
-???- note "Solution"
+??? success
 
-        ```python
+    ```python
         fig = plt.figure(figsize=(10,4))
         section_calculation = archive.run[-1].calculation  ## FIND THE SECTION CALCULATION IN THE ARCHIVE ##
         temperature = []
@@ -188,7 +217,7 @@ plt.show()
         plt.ylabel(temperature_unit, fontsize=12)
         plt.xlabel(time_unit, fontsize=12)
         plt.show()
-        ```
+    ```
 
 <div class="click-zoom">
     <label>
@@ -198,43 +227,44 @@ plt.show()
 </div>
 
 
-2. Take some time to search through the calculation section to see what other quantities are stored there for this simulation.
+Now, take some time to search through the calculation section to see what other quantities are stored there for this simulation.
 
-3. Now let's plot the center of mass molecular radial distribution function, averaged over the last 80% of the trajectory, as seeen in the Structural Properties card of the Overview page (red curve in plot). Fill in the missing variables assignments in the following code:
+!!! abstract "Assignment"
+    Now let's plot the center of mass molecular radial distribution function, averaged over the last 80% of the trajectory, as seeen in the Structural Properties card of the Overview page (red curve in plot). Fill in the missing variables assignments in the following code:
 
-```python
-fig = plt.figure(figsize=(8,4))
-section_MD =  ## FIND THE MOLECULAR DYNAMICS WORKFLOW SECTION IN THE ARCHIVE ##
-rdf_HEX_HEX =  ## FIND THE LAST HEX-HEX RDF STORED IN THE ARCHIVE ##
-rdf_start =  ## FIND THE STARTING FRAME FOR AVERAGING FOR THIS RDF ##
-rdf_end =  ## FIND THE ENDING FRAME FOR AVERAGING FOR THIS RDF ##
+    ```python
+    fig = plt.figure(figsize=(8,4))
+    section_MD =  ## FIND THE MOLECULAR DYNAMICS WORKFLOW SECTION IN THE ARCHIVE ##
+    rdf_HEX_HEX =  ## FIND THE LAST HEX-HEX RDF STORED IN THE ARCHIVE ##
+    rdf_start =  ## FIND THE STARTING FRAME FOR AVERAGING FOR THIS RDF ##
+    rdf_end =  ## FIND THE ENDING FRAME FOR AVERAGING FOR THIS RDF ##
 
-bins = ureg.convert(rdf_HEX_HEX.bins.magnitude, rdf_HEX_HEX.bins.units, ureg.angstrom)
+    bins = ureg.convert(rdf_HEX_HEX.bins.magnitude, rdf_HEX_HEX.bins.units, ureg.angstrom)
 
-plt.plot(bins, rdf_HEX_HEX.value)
-plt.xlabel(ureg.angstrom, fontsize=12)
-plt.ylabel('HEX-HEX rdf', fontsize=12)
-plt.xlim(0.1,15.0)
-plt.show()
-```
+    plt.plot(bins, rdf_HEX_HEX.value)
+    plt.xlabel(ureg.angstrom, fontsize=12)
+    plt.ylabel('HEX-HEX rdf', fontsize=12)
+    plt.xlim(0.1,15.0)
+    plt.show()
+    ```
 
-???- note "Solution"
+??? success
 
-        ```python
-        fig = plt.figure(figsize=(8,4))
-        section_MD = archive.workflow2  ## FIND THE MOLECULAR DYNAMICS WORKFLOW SECTION IN THE ARCHIVE ##
-        rdf_HEX_HEX = section_MD.results.radial_distribution_functions[0].radial_distribution_function_values[-1]  ## FIND THE LAST HEX-HEX RDF STORED IN THE ARCHIVE ##
-        rdf_start = rdf_HEX_HEX.frame_start  ## FIND THE STARTING FRAME FOR AVERAGING FOR THIS RDF ##
-        rdf_end = rdf_HEX_HEX.frame_end  ## FIND THE ENDING FRAME FOR AVERAGING FOR THIS RDF ##
+    ```python
+    fig = plt.figure(figsize=(8,4))
+    section_MD = archive.workflow2  ## FIND THE MOLECULAR DYNAMICS WORKFLOW SECTION IN THE ARCHIVE ##
+    rdf_HEX_HEX = section_MD.results.radial_distribution_functions[0].radial_distribution_function_values[-1]  ## FIND THE LAST HEX-HEX RDF STORED IN THE ARCHIVE ##
+    rdf_start = rdf_HEX_HEX.frame_start  ## FIND THE STARTING FRAME FOR AVERAGING FOR THIS RDF ##
+    rdf_end = rdf_HEX_HEX.frame_end  ## FIND THE ENDING FRAME FOR AVERAGING FOR THIS RDF ##
 
-        bins = ureg.convert(rdf_HEX_HEX.bins.magnitude, rdf_HEX_HEX.bins.units, ureg.angstrom)
+    bins = ureg.convert(rdf_HEX_HEX.bins.magnitude, rdf_HEX_HEX.bins.units, ureg.angstrom)
 
-        plt.plot(bins, rdf_HEX_HEX.value)
-        plt.xlabel(ureg.angstrom, fontsize=12)
-        plt.ylabel('HEX-HEX rdf', fontsize=12)
-        plt.xlim(0.1,15.0)
-        plt.show()
-        ```
+    plt.plot(bins, rdf_HEX_HEX.value)
+    plt.xlabel(ureg.angstrom, fontsize=12)
+    plt.ylabel('HEX-HEX rdf', fontsize=12)
+    plt.xlim(0.1,15.0)
+    plt.show()
+    ```
 
 <div class="click-zoom">
     <label>
@@ -243,7 +273,7 @@ plt.show()
     </label>
 </div>
 
-4. Take some time to search through the workflow2 section to see what other quantities are stored there for this simulation.
+Take some time to search through the workflow2 section to see what other quantities are stored there for this simulation.
 
 ### The archive_to_universe function
 
@@ -287,11 +317,11 @@ n_smooth = 2
 n_prune = 1
 ```
 
-!!! note "NOTE"
+??? tip
 
-        In MDAnalysis, it is not trivial to calculate center of mass rdfs.
-        The concept of bead groups comes from a known work-around.
-        This class is imported from the NOMAD software.
+    In MDAnalysis, it is not trivial to calculate center of mass rdfs.
+    The concept of bead groups comes from a known work-around.
+    This class is imported from the NOMAD software.
 
 
 Now run the rdf calculation using the MDAnalysis function `InterRDF`:

@@ -1,4 +1,4 @@
-# The Molecular dynamics overview page and workflow visualizer
+# The Molecular dynamics overview page and workflow visualizer (~40 min)
 
 In this section, we will explore futher the features of the overview page. Let's first find some MD data to investigate. Go to `Explore > Entries` from the top-left menu on the main (beta) NOMAD page. Go to the `Molecular Dynamics` tab on the `Filters` menu (left-hand side) and select `Temperature` under Available Properties. Now, go to the `Author / Origin / Data` filter tab. Under `Dataset Name`, select `Atomistic Molecular Dynamics Simulations of Pure Liquid...`. Now under results, select any entry in this dataset by clicking the :fontawesome-solid-arrow-right: to the right of the entry.
 
@@ -93,4 +93,13 @@ Investigate each of the entries contained in this workflow and provide a descrip
 
 ??? success
 
-    **TODO Add a description of each simulation here!!!**
+    1. GeometryOptimization - An energy minimization of nearly 8k steps. The system is in the gas phase (see visualization). Only the end configuration is stored.
+
+    2. MolecularDynamics #1 - A high temperature NVT simulation of the mixture in the gas phase (see also rdfs now) at 1000k.
+
+    3. MolecularDynamics #2 - An NVT annealing simulation to cool the system from ~1000 k to ~300 k. As the temperature cools, the molecules aggregate, as indicated by the growing peaks in the rdfs. However, the pressure remains low due to the (fixed) large box size.
+
+    4. MolecularDynamics #3 - An NPT simulation, performed at ~300 k. Midway through the simulation there is a clear transition in the potential energy and an increase in the pressure, indicating that the box is contracting and the system is entering the liquid phase. This is validated through the rdfs, which become properly normalized to 1 at large distances later in the trajectory.
+
+    5. MolecularDynamics #4 - A fully equilibrated NPT simulation.
+
