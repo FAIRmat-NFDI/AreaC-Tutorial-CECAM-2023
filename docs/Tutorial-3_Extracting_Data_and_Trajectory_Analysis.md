@@ -6,6 +6,8 @@ For this demonstration, we will utilize some tools from the nomad-lab software, 
 
 We suggest creating a virtual environment for this purpose. For example, using `conda`, you can set up an environment with the following commands:
 
+**TODO add requirements.txt file for download**
+
 ```python
 conda create -n "CECAM_tutorial" python==3.9
 conda activate CECAM_tutorial
