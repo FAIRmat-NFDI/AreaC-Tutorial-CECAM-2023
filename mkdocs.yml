@@ -16,6 +16,7 @@ nav:
   - Advanced:
     - Creating custom workflows: Advanced/part4.md
     - Using python API for uploading: Advanced/Upload_API.md
+    - The AI toolkit: Advanced/AI_toolkit.md
 theme:
   name: material
   palette:
