@@ -174,9 +174,9 @@ After some time you will get:
 
     'Process process_upload completed successfully'
 
-!!! tip "Tip"
+??? tip
 
-        If your upload contains a reasonably sized system or trajectory, you may have to wait some time before the processing finishing. You can call this function intermittantly, e.g., in a while loop with a sleep call in between, waiting for `last_status_message` to be "Process process_upload completed successfully"
+    If your upload contains a reasonably sized system or trajectory, you may have to wait some time before the processing finishing. You can call this function intermittantly, e.g., in a while loop with a sleep call in between, waiting for `last_status_message` to be "Process process_upload completed successfully"
 
 
 Now that the upload processing is complete, we can add coauthors, references, and other comments, as well as link to a dataset and provide a proper name for the upload:

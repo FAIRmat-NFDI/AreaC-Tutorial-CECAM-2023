@@ -7,7 +7,7 @@ For this demonstration, we will utilize some tools from the nomad-lab software, 
 We suggest creating a virtual environment for this purpose. For example, using `conda`, you can set up the appropriate environment by first downloading the environment.yml file:
 
 <center>
-[Download environment.yml](assets/md_tutorial_3/environment.yml){ .md-button }
+[Download environment.yml](../assets/md_tutorial_3/environment.yml){ .md-button }
 </center>
 
 Then create a new conda environment with the following command:
@@ -30,7 +30,7 @@ conda env create -f environment.yml
 Or if you are using `virtualenv`:
 
 <center>
-[Download requirements.txt](assets/md_tutorial_3/requirements.txt){ .md-button }
+[Download requirements.txt](../assets/md_tutorial_3/requirements.txt){ .md-button }
 </center>
 
 ```python
@@ -349,7 +349,7 @@ for frame_ind, frame in enumerate(section_system):
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_3/Protein-Water_Structure_15_0.png" alt="temperature_trajectory" width="90%" title="Temperature Trajectory.">
+        <img src="../assets/md_tutorial_3/Protein-Water_Structure_15_0.png" alt="temperature_trajectory" width="90%" title="Temperature Trajectory.">
     </label>
 </div>
 
@@ -438,7 +438,7 @@ Now, take some time to search through the calculation section to see what other 
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_3/Protein-Water_Structure_19_0.png" alt="temperature_trajectory" width="90%" title="Temperature Trajectory.">
+        <img src="../assets/md_tutorial_3/Protein-Water_Structure_19_0.png" alt="temperature_trajectory" width="90%" title="Temperature Trajectory.">
     </label>
 </div>
 
@@ -530,7 +530,7 @@ plt.show()
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_3/Protein-Water_Structure_28_0.png" alt="hexane_rdf" width="90%" title="Hexane RDF.">
+        <img src="../assets/md_tutorial_3/Protein-Water_Structure_28_0.png" alt="hexane_rdf" width="90%" title="Hexane RDF.">
     </label>
 </div>
 
@@ -579,7 +579,7 @@ view
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_3/Vis_0.png" alt="hexane_rdf" width="70%" title="Hexane RDF.">
+        <img src="../assets/md_tutorial_3/Vis_0.png" alt="hexane_rdf" width="70%" title="Hexane RDF.">
     </label>
 </div>
 
@@ -597,7 +597,7 @@ view.add_spacefill(selection)
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_3/Vis_1.png" alt="hexane_rdf" width="70%" title="Hexane RDF.">
+        <img src="../assets/md_tutorial_3/Vis_1.png" alt="hexane_rdf" width="70%" title="Hexane RDF.">
     </label>
 </div>
 

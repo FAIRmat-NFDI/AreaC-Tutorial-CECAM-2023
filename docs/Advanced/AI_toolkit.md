@@ -16,6 +16,6 @@ Currently, the AI-toolkit focuses on analysis of *Ab Initio* data. This focus wi
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="../assets/part1_explore/AI_toolkit.png" alt="AI-TK" width="90%" title="AI toolkit">
+        <img src="../../assets/part1_explore/AI_toolkit.png" alt="AI-TK" width="90%" title="AI toolkit">
     </label>
 </div>
