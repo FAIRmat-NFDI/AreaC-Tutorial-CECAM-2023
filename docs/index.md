@@ -4,24 +4,18 @@ This tutorial provides an overview of using the NOMAD software, with a focus on 
 NOMAD is a free open-source data management platform for Materials Science which follows the F.A.I.R. (Findable, Accessible, Interoperable, and Reusable) principles [@Wilkinson2016;@goFairWeb], and is developed primarily by the [FAIRmat consortium](https://www.fairmat-nfdi.eu/fairmat).
 
 **TODO add some short description of the scope and other areas**
-## The AI Toolkit
 
-The [Artificial-Intelligence Toolkit](https://nomad-lab.eu/aitoolkit) is a collection of tools and tutorials for applying artificial-intelligence approaches (including machine-learning, compressed sensing, and data mining) to the materials data found on the NOMAD repository.
+**@ndaelman-hu I am actually not sure if I want to add much else here. I don't think we really want to complicate the message with a bunch of information about FAIRmat organization and such. We could mention that NOMAD has not only computational data, but I think this is something that you mention along the way in the tutorial anyway. Given the limited amount of time, I am thinking we leave this VERY short introduction and just get them going on exploring NOMAD. What do you think?**
 
-Currently, the AI-toolkit focuses on analysis of *Ab Initio* data. This focus will be broadened as a larger amount of MD data is added to NOMAD. In the mean time, the toolkit still provides a nice platform for learning about state-of-the-art data analysis techniques in the context of materials data.
+!!! info "This tutorial was created by the FAIRmat Area C (computation) team:"
 
-<!-- You can reach the toolkit by going to "Analyze > AI Toolkit" in the top-left menu on the NOMAD page  You can navigate to the AI toolkit. The specifics of the toolkit is beyond the scope of this tutorial. However, we encourage you to explore its features on your own.
+    Dr. Nathan Daelman, [nathan.daelman@physik.hu-berlin.de](mailto:nathan.daelman@physik.hu-berlin.de)
+        - contact for electronic structure calculations
 
-<div class="click-zoom">
-    <label>
-        <input type="checkbox">
-        <img src="../assets/part1_explore/navigate_AI_toolkit.png" alt="Nav AI-TK" width="75%" title="Navigation to AI toolkit">
-    </label>
-</div> -->
+    Dr. José M. Pizarro, [jose.pizarro@physik.hu-berlin](mailto:jose.pizarro@physik.hu-berlin)
+        - contact for excited state calculations
 
-<div class="click-zoom">
-    <label>
-        <input type="checkbox">
-        <img src="../assets/part1_explore/AI_toolkit.png" alt="AI-TK" width="90%" title="AI toolkit">
-    </label>
-</div>
+    Dr. Joseph F. Rudzinski, [joseph.rudzinski@physik.hu-berlin.de](mailto:joseph.rudzinski@physik.hu-berlin.de)
+        - general contact, contact for molecular simulations
+
+** @ndaelman-hu should we add Luca here? It's a bit of an awkward transition time at the moment, also please refine the contact for...above, I just put a placeholder for now **

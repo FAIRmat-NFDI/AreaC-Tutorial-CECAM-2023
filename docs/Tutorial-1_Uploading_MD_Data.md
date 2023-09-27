@@ -1,4 +1,4 @@
-# Uploading molecular dynamics data to NOMAD
+# Uploading molecular dynamics data to NOMAD (~40 min)
 
 There are several ways to upload your data to NOMAD:
 
@@ -6,15 +6,15 @@ There are several ways to upload your data to NOMAD:
 - By using the shell command `curl` for sending files for upload.
 - By using the python `response` library to execute python-based [NOMAD API](../glossary/glossary.md/#api).
 
-For this tutorial, we will stick to the simple drag-and-drop method. However, some information about the python API for uploading is provided under the [Advanced](Advanced/Upload_API.md) tab.
+For this tutorial, we will stick to the simple drag-and-drop method. However, some information about the python API for uploading is provided under the [`Advanced > Using python API for uploading`](Advanced/Upload_API.md).
 
-In general, you can upload files one by one or upload entire file structures in `.zip` or `.tar.gz` formats. First, download the zip file with the simulation data:
+In general, you can upload files one by one or upload entire file structures in `.zip` or `.tar.gz` formats. First, download the zip file with the example simulation data for this part of the tutorial:
 
 <center>
-[Download Test Data](/assets/md_tutorial_1/water_workflow.zip){ .md-button }
+[Download Test Data](assets/md_tutorial_1/water_workflow.zip){ .md-button }
 </center>
 
-Take a minute to examine the directory structure. If you are familiar with Gromacs you will immediately see the input/output from 3 simulations: an energy minimization (`Emin/`), an NPT equilibration (`Equil-NPT/`), and an NVT production run (`Prod-NVT/`). In the main directory, you will also see a .yaml file, which contains the NOMAD schema for connecting these 3 simulations into a workflow. More information about these custom workflow schemas can be found under the [Advanced](Advanced/part4.md) tab.
+Take a minute to examine the directory structure. If you are familiar with Gromacs you will immediately see the input/output from 3 simulations: an energy minimization (`Emin/`), an NPT equilibration (`Equil-NPT/`), and an NVT production run (`Prod-NVT/`). In the main directory, you will also see a .yaml file, which contains the NOMAD schema for connecting these 3 simulations into a workflow. More information about these custom workflow schemas can be found under [`Advanced > Creating custom workflows`](Advanced/part4.md)..
 
 On the top-left menu, click on `PUBLISH > Uploads`.
 
@@ -38,11 +38,17 @@ Then click on `CREATE A NEW UPLOAD` and either drag-and-drop the `water_workflow
 
 After the files are uploaded, a **processing** is triggered. In brief, NOMAD interprets the files and divides them into two categories: **mainfiles** and **auxiliary files**. In the same upload, there might be multiple mainfiles and auxiliary files organized in a folder tree structure.
 
-The **mainfiles** are those files which are representative of a given computational calculation. The presence of a mainfile in the upload is required for NOMAD to recognize a calculation. NOMAD supports several computational codes for first principles calculations, molecular dynamics simulations, and lattice modeling, as well as workflow and database managers. Currently, both the Gromacs and Lammps packages are supported. *We are also developing a custom schema based on the H5MD format, to allow users to upload simulation data run with any MD engine.* Here, we will walk you through uploading data from a series of simulations run in Gromacs.
+???+ info
 
-For each supported code, NOMAD recognizes a single file as the mainfile. For example, the Gromacs mainfile is the native `.log` file created during the simulation. The remaining files that have not been identified as mainfiles are designated as **auxiliary files**. You can find further information about the various supported codes, mainfiles, and auxiliary files in the general NOMAD documentation under [Supported parsers](https://nomad-lab.eu/prod/v1/staging/docs/reference/parsers.html).
+    The **mainfiles** are those files which are representative of a given computational calculation. The presence of a mainfile in the upload is required for NOMAD to recognize a calculation. NOMAD supports several computational codes for first principles calculations, molecular dynamics simulations, and lattice modeling, as well as workflow and database managers. Currently, both the Gromacs and Lammps packages are supported. We are also developing a *custom schema based on the H5MD format*, to allow users to upload simulation data run with any MD engine.
 
-We recommend to keep as many auxiliary files as possible together with the mainfile, but without exceeding the uploads limit---32GB file size limit per upload. (Note: this limit may be expanded in the future and exceptions can be received by contacting the NOMAD team. For large datasets, special processing procedures must be followed. **TODO -- revise this and add more about pruning trajectories and such**)
+    For each supported code, NOMAD recognizes a single file as the mainfile. For example, the Gromacs mainfile is the native `.log` file created during the simulation. The remaining files that have not been identified as mainfiles are designated as **auxiliary files**. You can find further information about the various supported codes, mainfiles, and auxiliary files in the general NOMAD documentation under [Supported parsers](https://nomad-lab.eu/prod/v1/staging/docs/reference/parsers.html).
+
+
+??? tip
+    We recommend to keep as many auxiliary files as possible together with the mainfile, but without exceeding the uploads limit&mdash;32GB file size limit per upload. For the routine upload of simulations that exceed this limit, we suggest that you prune the trajectory file in advance, to store only a subset of the data on the NOMAD repository. In this case, the parsers should still correctly store the configurations as well as additional metadata dealing with the input parameters to the simulation.
+
+    For special cases of larger simulations or datasets that must be stored in full, special processing procedures are required. In this case, you should contact the [NOMAD/FAIRmat team]() for assistance. Alternatively, you can post questions or requests on the [NOMAD MATSCI Community Discourse Forum](https://matsci.org/c/nomad/32).
 
 During the processing, NOMAD will store the simulation data and *metadata* within the NOMAD *Metainfo* schema. In this case, the parsing should take ~ 30 seconds. You should now see the successfully processed data overview:
 
@@ -64,7 +70,7 @@ The name of the upload can be modify by clicking on the pen icon :fontawesome-so
 - :fontawesome-solid-cloud-arrow-down: _Download files_: downloads all files present in the upload.
 - :fontawesome-solid-rotate-left: _Reload_: reloads the uploads page.
 - :fontawesome-solid-rotate: _Reprocess_: triggers again the processing of the uploaded data.
-- :fontawesome-solid-angle-left::fontawesome-solid-angle-right: _API_: generates a JSON response to use by the [NOMAD API](../glossary/glossary.md/#api). See [Querying and performing Data Science](../querying_and_performing_Data_Science/intro.md) for more information.
+- :fontawesome-solid-angle-left::fontawesome-solid-angle-right: _API_: generates a JSON response to use by the [NOMAD API](../glossary/glossary.md/#api).
 - :fontawesome-solid-trash: _Delete the upload_: deletes completely the upload.
 
 <!-- ## The NOMAD API
@@ -90,7 +96,7 @@ The remainder of the uploads page is divided in 4 sections. The first section, _
 
 We will skip section 2 for now and come back to it in a second.
 
-The third section, _(3) Edit author metadata_, allows users to edit certain metadata fields from all entries recognized in the upload. This includes _comments_, where you can add as much extra information as you want, _references_, where you can add a URL to your upload (e.g., an article DOI), and _datasets_, where you can create or add the uploaded data into a more general dataset (see [How-to publish data > Organizing data in datasets](howto_publish_data.md/#organize-data-in-datasets)).
+The third section, _(3) Edit author metadata_, allows users to edit certain metadata fields from all entries recognized in the upload. This includes _comments_, where you can add as much extra information as you want, _references_, where you can add a URL to your upload (e.g., an article DOI), and _datasets_, where you can create or add the uploaded data into a more general dataset.
 
 <p align="center">
     <img src="/assets/uploading_and_publishing/edit_author_metadata.png" alt="Edit author metadata." width="50%" title="Edit author metadata.">
@@ -230,11 +236,18 @@ Now go back and navigate to section **run** :fontawesome-solid-arrow-right: **ca
 
 The **calculation** section contains any saved thermodynamic quantities that are a function of a single configuration, e.g., energy, pressure, temperature, etc., as well as any saved force information for the atoms within each configuration.
 
-### <u> **Exercises** </u>
+!!! abstract "Assignment"
 
-1. What are the oxygen and hydrogen atom types used in the force field for this simulation?
+    1. What are the oxygen and hydrogen atom types used in the force field for this simulation?
 
-2. What is the step number of the last saved configuration of this simulation? What is the corresponding time for this configuration?
+    2. What is the step number of the last saved configuration of this simulation? What is the corresponding time for this configuration?
 
-3. (CHALLENGE) Which thermostat is used for temperature coupling in this simulation? What is the frequency of temperature coupling?
+    3. (CHALLENGE) Which thermostat is used for temperature coupling in this simulation? What is the frequency of temperature coupling?
 
+??? success
+
+    1. OW, HW1, and HW2 (see **run** &rarr; **method** &rarr; **atom_parameters** &rarr; *atom_index* &rarr; **label**)
+
+    2. step = 5000, time = 5 ps (see **system** &rarr; **10** &rarr; **step** and **system** &rarr; **10** &rarr; **time**, respectively)
+
+    3. thermostat = "langevin_goga", frequency of coupling = 500 fs (see **workflow** &rarr; **molecular_dynamics** &rarr; **integration_parameters** &rarr; **thermostat_parameters** &rarr; **thermostat_type** and **workflow** &rarr; **molecular_dynamics** &rarr; **integration_parameters** &rarr; **thermostat_parameters** &rarr; **coupling_constant**, respectively).
