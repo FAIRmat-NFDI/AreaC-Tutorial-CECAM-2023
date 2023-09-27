@@ -56,6 +56,9 @@ Import all the necessary modules:
 # Python
 import numpy as np
 
+# timing
+import time as t
+
 # I/O
 import json
 
@@ -77,9 +80,33 @@ import MDAnalysis.analysis.rdf as MDA_RDF
 from MDAnalysis.analysis.distances import self_distance_array, distance_array
 ```
 
+If you would like, you can use the following function to keep track of the timing of the operations below:
+
+```python
+def measure_method(method, *args, **kwargs):
+    """
+    Measure the execution time of a given method with arguments.
+
+    Args:
+        method: The method/function to be measured.
+        *args: Positional arguments to be passed to the method.
+        **kwargs: Keyword arguments to be passed to the method.
+    """
+    start_time = time.time()
+    result = method(*args, **kwargs)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+
+    elapsed_minutes = int(elapsed_time // 60)
+    elapsed_seconds = int(elapsed_time % 60)
+
+    print(f"Method took {elapsed_minutes} minutes and {elapsed_seconds} seconds to execute.")
+    return result
+```
+
 ## Downloading entire entry archives
 
-In general, you can use the [NOMAD API](https://nomad-lab.eu/prod/rae/docs/api.html) to grab particular archive entries from the repository or to search the repository for entries with certain attributes. This can be achieved in python using the `requests` module.
+In general, you can use the [NOMAD API](https://nomad-lab.eu/prod/rae/docs/api.html) to grab particular archive entries from the repository or to search the repository for entries with certain attributes. This can be achieved in python using the [`requests`](https://docs.python-requests.org/en/latest/index.html) module.
 
 Let's imagine that we searched the NOMAD repository using the filter bar of the GUI, as demonstrated in [Part I](part1.md) of the tutorial, and found a [short simulation of an atomistic box of hexane molecules](https://nomad-lab.eu/prod/v1/gui/search/entries/entry/id/hxaepf6x12Xt2IX2jCt4DyfLG0P4) that we might want to reuse. Open the link for this entry for reference as we analyze the queried data.
 
