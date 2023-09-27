@@ -13,9 +13,15 @@ and activate it in your shell:
 Always ensure that the environment is active.
 Else run the command above again.
 
-Install the right dependencies:
+Regarding the dependencies, there are 2 specification packages.
+To run the `mkdocs` server locally, `requirements.txt` suffices.
+If you also want to deploy the notebooks enclosed in `jupyter lab` from your local environment, use `requirements.full.txt`.
+In case of doubt, you can start with the leaner `requirements.txt`.
+This leaves open the option to extend to the more comprehensive `requirements.full.txt` later on. 
+
+Once you have decided your dependencies, installing them is as easy as:
 ```
-pip install -r requirements.txt
+pip install -r <requirements>
 ```
 
 Launch locally:

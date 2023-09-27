@@ -248,7 +248,7 @@ and instead **select**
 - "Space group symbol": the symmetry of the atomic coordinates inside the supercell.
 - "Comment": just to give us a bit more context, where possible.
 
-The 3 first selections can all be found under "Material" > "Structure".
+The 3 first selections are quantities who's filters can all be found under "Material" > "Structure".
 Let us furthermore **sort alphabetically by (Hill) "Formula"** by clicking on the "Formula" heading.
 (Click multiple times to toggle between ascending / descending ordering).
 
