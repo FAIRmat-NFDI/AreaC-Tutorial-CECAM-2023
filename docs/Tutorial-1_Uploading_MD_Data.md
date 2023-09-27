@@ -111,6 +111,10 @@ The final section, _(4) Publish_, lets the user to publish the data with or with
     </label>
 </div>
 
+???+ warning
+
+    Please do not publish this test data! There is a [test deployment of NOMAD](https://nomad-lab.eu/prod/v1/test) where you can safely perform test publishing, as the data is periodically deleted.
+
 Now go back to the second section, _(2) Process data_, which shows the processed data and the generated [entries](../glossary/glossary.md/#entries) in NOMAD:
 
 <div class="click-zoom">

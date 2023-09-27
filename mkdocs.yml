@@ -13,7 +13,6 @@ nav:
   # - Part III - Numerical precision in NOMAD: part3.md
   # - Part V - Knowledge-based XC functionals exploration: part5.md
   - Part IV - Working with the NOMAD archive: Tutorial-3_Extracting_Data_and_Trajectory_Analysis.md
-  - Part V - Working with the NOMAD archive: Hexane-archive-draft.md
   - Advanced:
     - Creating custom workflows: Advanced/part4.md
     - Using python API for uploading: Advanced/Upload_API.md
