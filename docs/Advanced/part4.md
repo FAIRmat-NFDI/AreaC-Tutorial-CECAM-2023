@@ -27,7 +27,7 @@ This part contains the basic knowledge on understanding and learning to use NOMA
 
 which can be downloaded here:
 <center>
-[Download example_files.zip](../assets/part4_workflows/example_files.zip){ .md-button }
+[Download example_files.zip](../../assets/part4_workflows/example_files.zip){ .md-button }
 </center>
 
 Each of the _mainfiles_ represent an electronic-structure calculation (either [DFT](https://en.wikipedia.org/wiki/Density_functional_theory), [TB](https://en.wikipedia.org/wiki/Tight_binding), or [DMFT](https://en.wikipedia.org/wiki/Dynamical_mean-field_theory)) which in turn is then parsed into a singular _entry_ in NOMAD. When dragged into the [NOMAD Upload page](https://nomad-lab.eu/prod/v1/staging/gui/user/uploads), these files should generate 8 entries in total. This folder structure presents a typical workflow calculation which can be represented as a provenance graph:
@@ -60,7 +60,7 @@ The goal of this part is to set up the following workflows:
 
 The files for all these cases can be downloaded here:
 <center>
-[Download worfklowyaml_files.zip](../assets/part4_workflows/workflowyaml_files.zip){ .md-button }
+[Download worfklowyaml_files.zip](../../assets/part4_workflows/workflowyaml_files.zip){ .md-button }
 </center>
 
  You can try writing these files yourself first, and then compare them with the tested files.
@@ -111,7 +111,7 @@ This will produce an extra entry with the following Overview content:
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="../assets/part4_workflows/singlepoint.png" alt="NOMAD workflow schema" width="90%" title="NOMAD workflow schema">
+        <img src="../../assets/part4_workflows/singlepoint.png" alt="NOMAD workflow schema" width="90%" title="NOMAD workflow schema">
     </label>
 </div>
 
@@ -152,7 +152,7 @@ which in turn produces a similar workflow than before, but with an extra input n
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="../assets/part4_workflows/singlepoint_methodadded.png" alt="SinglePoint workflow visualizer with Method added" width="90%" title="SinglePoint workflow visualizer with Method added">
+        <img src="../../assets/part4_workflows/singlepoint_methodadded.png" alt="SinglePoint workflow visualizer with Method added" width="90%" title="SinglePoint workflow visualizer with Method added">
     </label>
 </div>
 
@@ -228,7 +228,7 @@ This workflow (`pressure1.archive.yaml`) file will then produce an entry with th
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="../assets/part4_workflows/pressure1.png" alt="Pressure P1 workflow visualizer" width="90%" title="Pressure P1 workflow visualizer">
+        <img src="../../assets/part4_workflows/pressure1.png" alt="Pressure P1 workflow visualizer" width="90%" title="Pressure P1 workflow visualizer">
     </label>
 </div>
 
@@ -319,7 +319,7 @@ This will produce the following entry and its Overview page:
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="../assets/part4_workflows/fullworkflow.png" alt="Full workflow visualizer" width="90%" title="Full workflow visualizer">
+        <img src="../../assets/part4_workflows/fullworkflow.png" alt="Full workflow visualizer" width="90%" title="Full workflow visualizer">
     </label>
 </div>
 

@@ -11,7 +11,7 @@ For this tutorial, we will stick to the simple drag-and-drop method. However, so
 In general, you can upload files one by one or upload entire file structures in `.zip` or `.tar.gz` formats. First, download the zip file with the example simulation data for this part of the tutorial:
 
 <center>
-[Download Test Data](assets/md_tutorial_1/water_workflow.zip){ .md-button }
+[Download Test Data](../assets/md_tutorial_1/water_workflow.zip){ .md-button }
 </center>
 
 Take a minute to examine the directory structure. If you are familiar with Gromacs you will immediately see the input/output from 3 simulations: an energy minimization (`Emin/`), an NPT equilibration (`Equil-NPT/`), and an NVT production run (`Prod-NVT/`). In the main directory, you will also see a .yaml file, which contains the NOMAD schema for connecting these 3 simulations into a workflow. More information about these custom workflow schemas can be found under [`Advanced > Creating custom workflows`](Advanced/part4.md)..
@@ -21,7 +21,7 @@ On the top-left menu, click on `PUBLISH > Uploads`.
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_1/navigate_uploads.png" alt="Uploads page" width="90%" title="Uploads page.">
+        <img src="../assets/md_tutorial_1/navigate_uploads.png" alt="Uploads page" width="90%" title="Uploads page.">
     </label>
 </div>
 
@@ -31,7 +31,7 @@ Then click on `CREATE A NEW UPLOAD` and either drag-and-drop the `water_workflow
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/gwupload.gif" alt="GW upload gif" width="90%" title="Creating a new upload with DFT+GW data.">
+        <img src="../assets/uploading_and_publishing/gwupload.gif" alt="GW upload gif" width="90%" title="Creating a new upload with DFT+GW data.">
     </label>
 </div>
 
@@ -59,7 +59,7 @@ At the top of the uploads page, you can modify certain general metadata fields.
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_1/water_workflow_header.png" alt="Top fields in uploads page." width="90%" title="Top fields in uploads page.">
+        <img src="../assets/md_tutorial_1/water_workflow_header.png" alt="Top fields in uploads page." width="90%" title="Top fields in uploads page.">
     </label>
 </div>
 
@@ -90,7 +90,7 @@ The remainder of the uploads page is divided in 4 sections. The first section, _
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_1/water_workflow_files.png" alt="Uploaded files." width="90%" title="Uploaded files.">
+        <img src="../assets/md_tutorial_1/water_workflow_files.png" alt="Uploaded files." width="90%" title="Uploaded files.">
     </label>
 </div>
 
@@ -99,7 +99,7 @@ We will skip section 2 for now and come back to it in a second.
 The third section, _(3) Edit author metadata_, allows users to edit certain metadata fields from all entries recognized in the upload. This includes _comments_, where you can add as much extra information as you want, _references_, where you can add a URL to your upload (e.g., an article DOI), and _datasets_, where you can create or add the uploaded data into a more general dataset.
 
 <p align="center">
-    <img src="/assets/uploading_and_publishing/edit_author_metadata.png" alt="Edit author metadata." width="50%" title="Edit author metadata.">
+    <img src="../assets/uploading_and_publishing/edit_author_metadata.png" alt="Edit author metadata." width="50%" title="Edit author metadata.">
 </p>
 
 The final section, _(4) Publish_, lets the user to publish the data with or without an embargo. This will be explained more in detail in [How-to publish data](howto_publish_data.md).
@@ -107,7 +107,7 @@ The final section, _(4) Publish_, lets the user to publish the data with or with
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/publish.png" alt="Publish button." width="90%" title="Publish button.">
+        <img src="../assets/uploading_and_publishing/publish.png" alt="Publish button." width="90%" title="Publish button.">
     </label>
 </div>
 
@@ -120,7 +120,7 @@ Now go back to the second section, _(2) Process data_, which shows the processed
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_1/Processed_data_edited.png" alt="Uploads page" width="90%" title="Uploads page.">
+        <img src="../assets/md_tutorial_1/Processed_data_edited.png" alt="Uploads page" width="90%" title="Uploads page.">
     </label>
 </div>
 
@@ -183,7 +183,7 @@ Navigate to section **run** :fontawesome-solid-arrow-right: **program**, where w
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_1/Run_Program.png" alt="Uploads page" width="90%" title="Uploads page.">
+        <img src="../assets/md_tutorial_1/Run_Program.png" alt="Uploads page" width="90%" title="Uploads page.">
     </label>
 </div>
 
@@ -192,7 +192,7 @@ Now navigate to section **run** :fontawesome-solid-arrow-right: **method**:
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_1/Run_Method.png" alt="Uploads page" width="90%" title="Uploads page.">
+        <img src="../assets/md_tutorial_1/Run_Method.png" alt="Uploads page" width="90%" title="Uploads page.">
     </label>
 </div>
 
@@ -203,7 +203,7 @@ Navigate to section **run** :fontawesome-solid-arrow-right: **system** :fontawes
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_1/Run_System_0.png" alt="Uploads page" width="90%" title="Uploads page.">
+        <img src="../assets/md_tutorial_1/Run_System_0.png" alt="Uploads page" width="90%" title="Uploads page.">
     </label>
 </div>
 
@@ -212,7 +212,7 @@ The **system** section holds the configurational information from this entry. Th
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_1/Run_System_0_Atoms.png" alt="Uploads page" width="90%" title="Uploads page.">
+        <img src="../assets/md_tutorial_1/Run_System_0_Atoms.png" alt="Uploads page" width="90%" title="Uploads page.">
     </label>
 </div>
 
@@ -223,7 +223,7 @@ Now click on the **atoms_group** section:
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_1/Run_System_0_AtomsGroup.png" alt="Uploads page" width="90%" title="Uploads page.">
+        <img src="../assets/md_tutorial_1/Run_System_0_AtomsGroup.png" alt="Uploads page" width="90%" title="Uploads page.">
     </label>
 </div>
 
@@ -234,7 +234,7 @@ Now go back and navigate to section **run** :fontawesome-solid-arrow-right: **ca
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_1/Run_Calculation_0.png" alt="Uploads page" width="90%" title="Uploads page.">
+        <img src="../assets/md_tutorial_1/Run_Calculation_0.png" alt="Uploads page" width="90%" title="Uploads page.">
     </label>
 </div>
 
