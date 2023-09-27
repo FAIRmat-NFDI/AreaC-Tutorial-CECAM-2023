@@ -1,24 +1,49 @@
-# Working with the NOMAD archive
+# Working with the NOMAD archive (~40 min)
 
 In this part of the tutorial we will demonstrate how to query data from the NOMAD repository and work with it within a python environment.
 
 For this demonstration, we will utilize some tools from the nomad-lab software, as well as some third-party software (e.g., MDAnalysis, nglview).
 
-We suggest creating a virtual environment for this purpose. For example, using `conda`, you can set up an environment with the following commands:
+We suggest creating a virtual environment for this purpose. For example, using `conda`, you can set up the appropriate environment by first downloading the environment.yml file:
+
+<center>
+[Download environment.yml](../assets/md_tutorial_3/environment.yml){ .md-button }
+</center>
+
+Then create a new conda environment with the following command:
 
 ```python
-conda create -n "CECAM_tutorial" python==3.9
-conda activate CECAM_tutorial
-pip install nomad-lab
-conda install nglview
-conda install "ipywidgets <8" -c conda-forge
+conda env create -f environment.yml
 ```
 
-!!! note "NOTE"
-    You may have to restart your IDE after updating `ipywidgets`.
+??? tip
+    In case you have problems, here are the original commands used to set up the environment:
 
+    ```python
+    conda create -n "CECAM_tutorial" python==3.9
+    conda activate CECAM_tutorial
+    pip install nomad-lab
+    conda install nglview
+    conda install "ipywidgets <8" -c conda-forge
+    ```
 
-!!! note "NOTE"
+Or if you are using `virtualenv`:
+
+<center>
+[Download requirements.txt](../assets/md_tutorial_3/requirements.txt){ .md-button }
+</center>
+
+```python
+python3 -m venv .pyenv
+source .pyenv/bin/activate
+pip install -r requirements.txt
+```
+
+!!! warning "warning"
+
+    You may have to restart your code editor (IDE) to get the in-notebook visualizations to work.
+
+???+ info "info"
     We stress that none of these packages are **required** to work with the NOMAD archive data. As you will see below, the archive data will be retrieved in a dictionary format, which you are free to work with in a *plain* python environment.
 
 Now, start a Jupyter notebook to carry out the remainder of this part of the tutorial.
@@ -28,6 +53,9 @@ Import all the necessary modules:
 ```python
 # Python
 import numpy as np
+
+# timing
+import time as t
 
 # I/O
 import json
@@ -52,7 +80,16 @@ from MDAnalysis.analysis.distances import self_distance_array, distance_array
 
 ## Downloading entire entry archives
 
-In general, you can use the [NOMAD API](https://nomad-lab.eu/prod/rae/docs/api.html) to grab particular archive entries from the repository or to search the repository for entries with certain attributes. This can be achieved in python using the `requests` module.
+In general, you can use the [NOMAD Application Programming Interface (API)](https://nomad-lab.eu/prod/rae/docs/api.html) to
+
+- upload data (especially useful when you are producing data via a workflow)
+- delete data
+- query all kinds of (meta)data: processed (from the archive), raw (from the repository), large bundles, individual entries, etc
+
+Each functionality has its own url, i.e. _endpoints_. There are over 60 different endpoints, each specialized in their own little subtask. You can find the full overview over at the [API dashboard](https://nomad-lab.eu/prod/v1/staging/api/v1/extensions/docs#/). It is highly recommended to have this page open when writing queries. Lastly, you can also use the dashboard to try out queries on the fly.
+
+In this first exercise, we will download the **processed molecular dynamics trajectory** of an **individual entry** to perform our own visualization and analysis.
+For this, we will be using the `/entries/{entry_id}`/archive. The `{entry_id}` here is variable, which you can get from the NOMAD website (or other API queries). Note that there are 3 versions of this endpoint: one that only gives you the metadata, one that returns the entire archive (`/download`), and a last wildcard that we will get into later (`/query`). These latter 2 options will be demonstrated below.
 
 Let's imagine that we searched the NOMAD repository using the filter bar of the GUI, as demonstrated in [Part I](part1.md) of the tutorial, and found a [short simulation of an atomistic box of hexane molecules](https://nomad-lab.eu/prod/v1/gui/search/entries/entry/id/hxaepf6x12Xt2IX2jCt4DyfLG0P4) that we might want to reuse. Open the link for this entry for reference as we analyze the queried data.
 
@@ -64,22 +101,92 @@ entry_id = ## PLACE ENTRY_ID HERE
 We also need to define the API endpoint:
 
 ```python
-nomad_url = 'https://nomad-lab.eu/prod/v1/api/v1/'
+nomad_api_prefix = 'https://nomad-lab.eu/prod/v1/api/v1/'
 ```
 
 To download the entire archive for the entry of interest, we only have to execute a single command, and then we set the response to the variable `data`:
 
 ```python
-response = requests.get(nomad_url + 'entries/' + entry_id + '/archive/download')
+response = requests.get(nomad_api_prefix + 'entries/' + entry_id + '/archive/download')
 
 data = response.json()
 ```
 
-!!! note "NOTE"
+!!! warning "warning"
 
-        This should take about 7 minutes, depending on the internet.
+        The download may take 5 minutes or more, depending on your Internet's bandwidth.
 
-The resulting variable `data` is a dictionary. The keys of this dictionary directly correspond to the sections that we examined in the **DATA** tab on the entry page of NOMAD in [Part III](Tutorial-1_Uploading_MD_Data.md):
+???+ info
+
+    Python provides a module for packaging and sending requests, aptly named `requests`. It comes with the methods `put`, `delete`, `get`, and `post`. Notice how the API dashboard lists each supported function next to its endpoint. The first 3 exactly serve the functionalities that we listed abovee (upload, delete, download). The last one, `post`, we will get into later.
+
+    The formatted URL itself actually suffices to start the download. It just needs an interface. If you click on it (don't, it's just a hypothetical), your OS should open a browser to start the download. From the command line, you can use `curl`. The `requests` module is simply our Python interface. As with any https protocol, you will receive a [status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status). Additional information is transmitted in a JSON format (another web standard), which we deserialize to a dictionary here. When everything is successful, this contains the data we were looking for. In case of an error, the NOMAD API uses it to better articulate the reason under the keyword `detail`. For the full format we again refer the reader to the API dashboard.
+
+??? tip
+
+    Here is a more thorough set of functions for executing the download, while timing the download, and printing out some response info:
+
+    ```python
+    nomad_api_prefix = 'https://nomad-lab.eu/prod/v1/api/v1/'
+
+    def nomad_individual_archive_url(entry_id: str, endpoint_type: str=''):
+        '''Produces the endpoint URL for downloading a NOMAD individual archive.
+        `entry_id` specifies the entry ID of the particular archive you want to download.
+        Use `endpoint_type` to further specify the particular subtype (`download` or `query`).'''
+
+        endpoint_specifications = ('download', 'query')
+        endpoint = f'{nomad_api_prefix}/entries/{entry_id}/archive'
+
+        if endpoint_type :
+            if endpoint_type in endpoint_specifications:
+                endpoint += f'/{endpoint_type}'
+            else:
+                raise ValueError(f'endpoint_type must be one of {endpoint_specifications}')
+        return endpoint
+    ```
+
+
+    ```python
+    def measure_method(method, *args, **kwargs):
+        """
+        Measure the execution time of a given method with arguments.
+
+        Args:
+            method: The method/function to be measured.
+            *args: Positional arguments to be passed to the method.
+            **kwargs: Keyword arguments to be passed to the method.
+        """
+        start_time = t.time()
+        result = method(*args, **kwargs)
+        end_time = t.time()
+        elapsed_time = end_time - start_time
+
+        elapsed_minutes = int(elapsed_time // 60)
+        elapsed_seconds = int(elapsed_time % 60)
+
+        print(f"Method took {elapsed_minutes} minutes and {elapsed_seconds} seconds to execute.")
+        return result
+    ```
+
+    ```python
+    # execute the download
+    nomad_url = nomad_individual_archive_url('hxaepf6x12Xt2IX2jCt4DyfLG0P4', endpoint_type='download')
+    response = measure_method(requests.get, nomad_url)
+    data = response.json()
+
+    # print some of the responses
+    print(f'This is the endpoint URL: {nomad_url}. Click on it start downloading the archive via your browser.')
+    print(f"This is the {response} message. In case of an error, check `response['detail']` to get the additional information.")
+    print(f"This is the top-level data structure of the deserialized message: {data.keys()}")
+    ```
+
+        Method took 8 minutes and 47 seconds to execute.
+        This is the endpoint URL: https://nomad-lab.eu/prod/v1/api/v1//entries/hxaepf6x12Xt2IX2jCt4DyfLG0P4/archive/download. Click on it start downloading the archive via your browser.
+        This is the <Response [200]> message. In case of an error, check `response['detail']` to get the additional information.
+        This is the top-level data structure of the deserialized message: dict_keys(['processing_logs', 'run', 'workflow2', 'metadata', 'results', 'm_ref_archives'])
+
+
+The keys of this dictionary corresponds one-to-one with the [**DATA** tab of this entry's page](https://nomad-lab.eu/prod/v1/gui/search/entries/entry/id/hxaepf6x12Xt2IX2jCt4DyfLG0P4/data):
 
 ```python
 print(data.keys())
@@ -87,25 +194,77 @@ print(data.keys())
 
     dict_keys(['processing_logs', 'run', 'workflow2', 'metadata', 'results', 'm_ref_archives'])
 
-### <u> **Exercise** </u>
 
-Get the atom positions for the first frame of the trajectory from this dictionary.
+ If you are interested in exploring the full schema with all its possible sections / quantities, check out the [Metainfo Browser](https://nomad-lab.eu/prod/v1/gui/analyze/metainfo/nomad.datamodel.datamodel.EntryArchive). You can use these representations of NOMAD's Metainfo schema to navigate the upcoming sections.
 
-**TODO - If possible, add API for grabbing particular quantity from the archive**
+??? tip
+
+    Here is an alternative way for viewing the data within your local python environment (although we recommend the DATA tab or Metainfo Browser):
+
+    ```python
+    def print_dict_as_tree(d, prefix="", is_last=True):
+        """Function for printing a dictionary as a tree."""
+        keys = list(d.keys())
+        for i, key in enumerate(keys):
+            if i == len(keys) - 1:
+                new_prefix = prefix + "└─ "
+            else:
+                new_prefix = prefix + "├─ "
+
+            value = d[key]
+            type_str = f" ({type(value).__name__})"
+            length_str = ""
+
+            if isinstance(value, dict):
+                print(new_prefix + str(key) + type_str)
+                is_last_child = i == len(keys) - 1
+                print_dict_as_tree(value, prefix + ("    " if is_last_child else "│   "), is_last_child)
+            elif isinstance(value, list):
+                has_dict = any(isinstance(item, dict) for item in value)
+                if has_dict:
+                    print(new_prefix + str(key) + type_str)
+                    for item in value:
+                        if isinstance(item, dict):
+                            is_last_child = i == len(keys) - 1
+                            print(prefix + ("    " if is_last_child else "│   ") + "├─ [")
+                            print_dict_as_tree(item, prefix + ("    " if is_last_child else "│   ") + "│   ", True)
+                            print(prefix + ("    " if is_last_child else "│   ") + "│   ]")
+                        else:
+                            is_last_child = i == len(keys) - 1
+                            length_str = f" (Length: {len(value)})"
+                else:
+                    is_last_child = i == len(keys) - 1
+                    length_str = f" (Length: {len(value)})"
+                    print(new_prefix + str(key) + type_str + length_str)
+            else:
+                print(new_prefix + str(key) + type_str)
+
+            if length_str:
+                is_last_child = i == len(keys) - 1
+                print(prefix + ("    " if is_last_child else "│   ") + "├─" + length_str)
+    ```
+
+!!! abstract "Assignment"
+
+    Get the atom positions for the first frame of the trajectory from this dictionary.
+
+??? success
+    ```python
+    data['run'][0]['system'][0]['atoms']['positions']
+    ```
 
 ## Using tools from nomad-lab
 
 ### The NOMAD archive entry format
 
-While it is perfectly acceptable to work directly with the archive dictionary, we can also convert this dictionary into the internal NOMAD archive entry format, which is slightly more convenient to work with:
+While it is perfectly acceptable to work directly with the archive dictionary, we can also convert this dictionary into a more sophisticated **NOMAD archive object.** This object supports **unit conversion** and a variety of ways for **traversing the data tree**.
 
 ```python
 archive = EntryArchive.m_from_dict(data)
 ```
 
-You can now access subsections with a simple `.` instead of `['']`.
+We then define some **easy access points** for later use. You can see how the Python object style of navigating is exploited (i.e., using `.` instead of `['']`). Also pay close attention to when indices are used. They appear whenever a section is flagged as `repeats` in the Metainfo Browser.
 
-Using this syntax, define some sections that will be used in the following cells:
 
 ```python
 section_run = archive.run[-1]
@@ -144,31 +303,32 @@ for frame_ind, frame in enumerate(section_system):
                 sec_atoms_fr.lattice_vectors.magnitude[2][2] * length_conversion,
                 90, 90, 90]  # nb -- for cubic box!
 ```
-### <u> **Exercises** </u>
 
-1. Fill in the missing variables assignments in the following code to make the temperature trajectory plot for this calculation. Compare your result to the plot from the Overview page in the NOMAD GUI.
+!!! abstract "Assignment"
 
-```python
-fig = plt.figure(figsize=(10,4))
-section_calculation =  ## FIND THE SECTION CALCULATION IN THE ARCHIVE ##
-temperature = []
-time = []
-temperature_unit =  ## FIND THE UNIT OF TEMPERATURE USED IN THE ARCHIVE ##
-time_unit =  ## FIND THE UNIT OF TIME USED IN THE ARCHIVE ##
-for calc in section_calculation:
-    temperature.append()  ## FIND THE TEMPERATURE FOR THIS CALC ##
-    time.append()  ## FIND THE TIME FOR THIS CALC ##
+    Fill in the missing variables assignments in the following code to make the temperature trajectory plot for this calculation. Compare your result to the plot from the Overview page in the NOMAD GUI.
+
+    ```python
+    fig = plt.figure(figsize=(10,4))
+    section_calculation =  ## FIND THE SECTION CALCULATION IN THE ARCHIVE ##
+    temperature = []
+    time = []
+    temperature_unit =  ## FIND THE UNIT OF TEMPERATURE USED IN THE ARCHIVE ##
+    time_unit =  ## FIND THE UNIT OF TIME USED IN THE ARCHIVE ##
+    for calc in section_calculation:
+        temperature.append()  ## FIND THE TEMPERATURE FOR THIS CALC ##
+        time.append()  ## FIND THE TIME FOR THIS CALC ##
 
 
-plt.plot(time, temperature)
-plt.ylabel(temperature_unit, fontsize=12)
-plt.xlabel(time_unit, fontsize=12)
-plt.show()
-```
+    plt.plot(time, temperature)
+    plt.ylabel(temperature_unit, fontsize=12)
+    plt.xlabel(time_unit, fontsize=12)
+    plt.show()
+    ```
 
-???- note "Solution"
+??? success
 
-        ```python
+    ```python
         fig = plt.figure(figsize=(10,4))
         section_calculation = archive.run[-1].calculation  ## FIND THE SECTION CALCULATION IN THE ARCHIVE ##
         temperature = []
@@ -184,62 +344,105 @@ plt.show()
         plt.ylabel(temperature_unit, fontsize=12)
         plt.xlabel(time_unit, fontsize=12)
         plt.show()
-        ```
+    ```
 
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_3/Protein-Water_Structure_15_0.png" alt="temperature_trajectory" width="90%" title="Temperature Trajectory.">
+        <img src="../assets/md_tutorial_3/Protein-Water_Structure_15_0.png" alt="temperature_trajectory" width="90%" title="Temperature Trajectory.">
     </label>
 </div>
 
+As you may have noticed, one of our bottlenecks in visualizing the trajectory is downloading the data. This is due to the archive's size (35.8 MB, not too uncommon with MD entries). It may be the case that before committing to downloading the entire archive for further analysis we want to examine a particular quantity, e.g., the temperature trajectory. This is a job for the `/query` endpoint. Go back to the [API dashboard](https://nomad-lab.eu/prod/v1/staging/api/v1/extensions/docs#/entries%2Farchive/post_entry_archive_query_entries__entry_id__archive_query_post) and check out its schema.
 
-2. Take some time to search through the calculation section to see what other quantities are stored there for this simulation.
-
-3. Now let's plot the center of mass molecular radial distribution function, averaged over the last 80% of the trajectory, as seeen in the Structural Properties card of the Overview page (red curve in plot). Fill in the missing variables assignments in the following code:
+This endpoint uses `post`, which is either used to add data (such as under `uploads`) or more complex queries and additional parameters, i.e. a more customizable `get` statement. This is in line with the standard semantics in HTTPS messages. In the case of our `/query` endpoint, the parameter we are looking for is `required` -the sections / quantities to be downloaded. Their specification follows the archive's tree structure as a nested dictionary. `requests` can append this information to the HTTPS body using the `json` argument. Below you will find the query specification. Pay attention to the optional use of indexes.
 
 ```python
-fig = plt.figure(figsize=(8,4))
-section_MD =  ## FIND THE MOLECULAR DYNAMICS WORKFLOW SECTION IN THE ARCHIVE ##
-rdf_HEX_HEX =  ## FIND THE LAST HEX-HEX RDF STORED IN THE ARCHIVE ##
-rdf_start =  ## FIND THE STARTING FRAME FOR AVERAGING FOR THIS RDF ##
-rdf_end =  ## FIND THE ENDING FRAME FOR AVERAGING FOR THIS RDF ##
-
-bins = ureg.convert(rdf_HEX_HEX.bins.magnitude, rdf_HEX_HEX.bins.units, ureg.angstrom)
-
-plt.plot(bins, rdf_HEX_HEX.value)
-plt.xlabel(ureg.angstrom, fontsize=12)
-plt.ylabel('HEX-HEX rdf', fontsize=12)
-plt.xlim(0.1,15.0)
-plt.show()
+query_specification = {
+    "required": {
+        "run[0]": {
+            "calculation": {
+                "temperature": "*",
+                "time": "*"
+            }
+        }
+    }
+}
 ```
 
-???- note "Solution"
+```python
+response = requests.get(nomad_api_prefix + 'entries/' + entry_id + '/archive/query', json=query_specification)
 
-        ```python
-        fig = plt.figure(figsize=(8,4))
-        section_MD = archive.workflow2  ## FIND THE MOLECULAR DYNAMICS WORKFLOW SECTION IN THE ARCHIVE ##
-        rdf_HEX_HEX = section_MD.results.radial_distribution_functions[0].radial_distribution_function_values[-1]  ## FIND THE LAST HEX-HEX RDF STORED IN THE ARCHIVE ##
-        rdf_start = rdf_HEX_HEX.frame_start  ## FIND THE STARTING FRAME FOR AVERAGING FOR THIS RDF ##
-        rdf_end = rdf_HEX_HEX.frame_end  ## FIND THE ENDING FRAME FOR AVERAGING FOR THIS RDF ##
+data = response.json()
+```
 
-        bins = ureg.convert(rdf_HEX_HEX.bins.magnitude, rdf_HEX_HEX.bins.units, ureg.angstrom)
+??? tip
 
-        plt.plot(bins, rdf_HEX_HEX.value)
-        plt.xlabel(ureg.angstrom, fontsize=12)
-        plt.ylabel('HEX-HEX rdf', fontsize=12)
-        plt.xlim(0.1,15.0)
-        plt.show()
-        ```
+    Or using the functions provided in the previous tips:
+    ```python
+    nomad_url_filtered = nomad_individual_archive_url('hxaepf6x12Xt2IX2jCt4DyfLG0P4', endpoint_type='query')
+    response_filtered = measure_method(requests.post, nomad_url_filtered, json=query_specification)
+    data_filtered = response_filtered.json()
+    ```
+
+        Method took 0 minutes and 2 seconds to execute.
+
+
+Note the difference in time! There is a noticeable speedup.
+
+The only disadvantage is that `EntryArchive` will fail with a partial archive. We can use still use the data as we would any dictionary to reproduce the same plot above. Just be careful to take care of unit conversions! To reintroduce units, multiply the quantity with its corresponding `ureg` unit, e.g. `ureg.second`. The quantities, as downloaded, are SI by default.
+
+??? tip
+
+    You can convert between units easily with the ureg module. For example, if a quantity `quantity_with_units` has units of seconds, you can convert to picoseconds with: `quantity_with_units = ureg.convert(quantity_with_units, quantity_with_units.units(), ureg.picoseconds)`.
+
+Now, take some time to search through the calculation section to see what other quantities are stored for this simulation.
+
+!!! abstract "Assignment"
+    Now let's plot the center of mass molecular radial distribution function, averaged over the last 80% of the trajectory, as seeen in the Structural Properties card of the Overview page (red curve in plot). Fill in the missing variables assignments in the following code:
+
+    ```python
+    fig = plt.figure(figsize=(8,4))
+    section_MD =  ## FIND THE MOLECULAR DYNAMICS WORKFLOW SECTION IN THE ARCHIVE ##
+    rdf_HEX_HEX =  ## FIND THE LAST HEX-HEX RDF STORED IN THE ARCHIVE ##
+    rdf_start =  ## FIND THE STARTING FRAME FOR AVERAGING FOR THIS RDF ##
+    rdf_end =  ## FIND THE ENDING FRAME FOR AVERAGING FOR THIS RDF ##
+
+    bins = ureg.convert(rdf_HEX_HEX.bins.magnitude, rdf_HEX_HEX.bins.units, ureg.angstrom)
+
+    plt.plot(bins, rdf_HEX_HEX.value)
+    plt.xlabel(ureg.angstrom, fontsize=12)
+    plt.ylabel('HEX-HEX rdf', fontsize=12)
+    plt.xlim(0.1,15.0)
+    plt.show()
+    ```
+
+??? success
+
+    ```python
+    fig = plt.figure(figsize=(8,4))
+    section_MD = archive.workflow2  ## FIND THE MOLECULAR DYNAMICS WORKFLOW SECTION IN THE ARCHIVE ##
+    rdf_HEX_HEX = section_MD.results.radial_distribution_functions[0].radial_distribution_function_values[-1]  ## FIND THE LAST HEX-HEX RDF STORED IN THE ARCHIVE ##
+    rdf_start = rdf_HEX_HEX.frame_start  ## FIND THE STARTING FRAME FOR AVERAGING FOR THIS RDF ##
+    rdf_end = rdf_HEX_HEX.frame_end  ## FIND THE ENDING FRAME FOR AVERAGING FOR THIS RDF ##
+
+    bins = ureg.convert(rdf_HEX_HEX.bins.magnitude, rdf_HEX_HEX.bins.units, ureg.angstrom)
+
+    plt.plot(bins, rdf_HEX_HEX.value)
+    plt.xlabel(ureg.angstrom, fontsize=12)
+    plt.ylabel('HEX-HEX rdf', fontsize=12)
+    plt.xlim(0.1,15.0)
+    plt.show()
+    ```
 
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_3/Protein-Water_Structure_19_0.png" alt="temperature_trajectory" width="90%" title="Temperature Trajectory.">
+        <img src="../assets/md_tutorial_3/Protein-Water_Structure_19_0.png" alt="temperature_trajectory" width="90%" title="Temperature Trajectory.">
     </label>
 </div>
 
-4. Take some time to search through the workflow2 section to see what other quantities are stored there for this simulation.
+Take some time to search through the workflow2 section to see what other quantities are stored there for this simulation.
 
 ### The archive_to_universe function
 
@@ -283,11 +486,11 @@ n_smooth = 2
 n_prune = 1
 ```
 
-!!! note "NOTE"
+??? tip
 
-        In MDAnalysis, it is not trivial to calculate center of mass rdfs.
-        The concept of bead groups comes from a known work-around.
-        This class is imported from the NOMAD software.
+    In MDAnalysis, it is not trivial to calculate center of mass rdfs.
+    The concept of bead groups comes from a known work-around.
+    This class is imported from the NOMAD software.
 
 
 Now run the rdf calculation using the MDAnalysis function `InterRDF`:
@@ -327,7 +530,7 @@ plt.show()
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_3/Protein-Water_Structure_28_0.png" alt="hexane_rdf" width="90%" title="Hexane RDF.">
+        <img src="../assets/md_tutorial_3/Protein-Water_Structure_28_0.png" alt="hexane_rdf" width="90%" title="Hexane RDF.">
     </label>
 </div>
 
@@ -376,7 +579,7 @@ view
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_3/Vis_0.png" alt="hexane_rdf" width="70%" title="Hexane RDF.">
+        <img src="../assets/md_tutorial_3/Vis_0.png" alt="hexane_rdf" width="70%" title="Hexane RDF.">
     </label>
 </div>
 
@@ -394,7 +597,7 @@ view.add_spacefill(selection)
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/md_tutorial_3/Vis_1.png" alt="hexane_rdf" width="70%" title="Hexane RDF.">
+        <img src="../assets/md_tutorial_3/Vis_1.png" alt="hexane_rdf" width="70%" title="Hexane RDF.">
     </label>
 </div>
 

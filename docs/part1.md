@@ -1,4 +1,4 @@
-# Part I: Overview of the NOMAD Archive and Repository.
+# Part I: Overview of the NOMAD Archive and Repository (~40 min)
 
 We start the tutorial with a brief overview of the NOMAD Archive and Repository (in short, NOMAD-lab) A more general tutorial can be found in the [FAIRmat tutorial 1](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-1/tutorial-1-home).
 
@@ -33,7 +33,6 @@ The landing NOMAD Entries page is a very intuitive and easy-to-use Graphical Use
 
 <!-- There is a large variety of options to filter data in NOMAD. In this tutorial, you will learn about data for electronic-structure calculations, i.e., data obtained when solving Density Functional Theory (`DFT`), `GW` approximation, Bethe-Salpeter equation (`BSE`), projected tight-binding models (`Projection`), and Dynamical Mean-Field Theory (`DMFT`), as well as in the Properties menu called "Electronic". All of these menus contain (meta)information important for these calculations. If you feel some important quantity is missing, or maybe you want to extend to other electronic-structure techniques, please contact us! -->
 
-## <u> **Exercises** </u>
 
 To get you acquainted with the GUI search in NOMAD, we will be presenting you with a couple of _scenarios_, similar to how you might encounter them in your daily activities.
 Each scenario starts with an _assignment box_ explaining the objective and listing the main skills you will acquire.
@@ -116,7 +115,7 @@ Here, it is probably faster to just **type out the program name** and **hit ente
     </div>
 
 Notice how the entries list changes with respect to your filter!
-Yet, the list of remaining calculations is still quite long (3.496 matches)... 
+Yet, the list of remaining calculations is still quite long (3.496 matches)...
 Most likely, there will not be a single filter that solves our problem completely.
 That is alright, though, we can just **stack up several filters**.
 
@@ -155,7 +154,7 @@ Additionally, the **number of entries** containing each remaining element is dis
 Now, **select the elements** contained in our system (we are looking for pure water, so O and H suffice).
 The corresponding chips will be added to the side menu, with an "and" in between.
 While filters between groups _stack_ (i.e., **"and" logic** is applied), those within a side pane each have their own logic (more on that in scenario 2).
-Finally, remove all data with additional elements by selecting the **"only compositions that exclusively contain these atoms"** box. 
+Finally, remove all data with additional elements by selecting the **"only compositions that exclusively contain these atoms"** box.
 
 ??? success
     You are left with 2 MD calculations in the entries list.
@@ -277,7 +276,7 @@ Let us furthermore **sort alphabetically by (Hill) "Formula"** by clicking on th
                 <img src="../assets/part1_explore/sc2_column_layout.png" title="The new, ordered column layout">
             </label>
         </div>
-    </div>    
+    </div>
 
 With our entries view all set up, we move on to the **exploration** part.
 More specifically, we will investigate the impact of several filters on our search.
@@ -337,7 +336,7 @@ Congratulations, you have applied your first _equality query_.
                 <img src="../assets/part1_explore/sc2_chip_Cquery.png" title="Active filter for entries containing carbon">
             </label>
         </div>
-    </div>   
+    </div>
 
 As you saw, one can start out by writing the filter name, but you can just as well skip ahead to the value.
 Just **type in  "H"** and **apply "results.material.elements=H"**.
@@ -422,7 +421,7 @@ For your answer, **take a look at the side menu**.
     In practice, when doing **machine learning**, you would only choose a **single functional** (HSE06 in this case).
     The only exception would be _transfer learning_, but even then you are advised to split the functionals out over separate queries.
     Here, we look for 2 functionals just for educational reasons.
-    
+
 ???+ info "Multiple density functionals per entry"
     A single entry (and even calculation) may contain multiple functional names, just not `XC`!
     The libxc namely splits up _exchange-correlation_ functionals (`XC`) into _exchange_ (`X`) and _correlation_ (`C`), when appropriate.
@@ -494,18 +493,18 @@ How would you **finish the query**?
                 <img src="../assets/part1_explore/sc2_fullquery_selection.png" title="Selection of the search results, ready for download">
             </label>
         </div>
-    </div>  
+    </div>
 
 !!! warning "When stacking order matters"
     Imagine having started filtering by property instead of composition and then method.
     You would have unwittingly excluded a vast dataset, potentially concluding that NOMAD does not host any suitable data.
     The **general strategy** to avoid working yourself in any of these dead ends is to start with **broad filters**, such as DOS instead of band gap.
     <!-- Overall, the order "Material", "Workflow", "Method", "Property", which mimics the actual progress of the computational results -->
-    
+
     Also make sure to keep **monitoring relevant indicators** as you stack up filters.
     Even if you end up with unsatisfactory search results and start systematically removing filters, these indicators will be key in finding the best match.
     In the next scenario we will cover an even more powerful technique to aid in monitoring, _dashboards_.
-    
+
     **Conclusion:** so-called _query engineering_ is not just limited to Large Language Models, but also applies to _sophisticated databases_.
 
 From hereon, the best strategy would be to download the data you need, extract the band gap, and perform some statistical analysis first.
