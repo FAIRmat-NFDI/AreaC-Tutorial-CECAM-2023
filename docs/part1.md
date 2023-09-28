@@ -190,9 +190,12 @@ If we take a different route, we will see different intermediate results and thi
 Let's go back to when we were selecting the relevant option under the Molecular Dynamics filter (click the `x` next to the `temperature chip` or go to **"Molecular Dynamics" > "Available Properties"** and **click the highlighted checkbox** again to deselect it).
 
 ??? success
-    Glossing over the remaining 6 results, 3 by Andrew Rosen and 3 by Sebastian Baugmart, we retrieve **2 more MD simulations** and **2 more "Geometry Optimizations"**.
-    You may notice that some entries do not have a clear specification. These entries likely need to be reprocessed to classify them correctly, since the molecular dynamics support has been developed more recently. However, you can find their classification by visiting the entry's overview page. <!-- @Joseph is this a bug? -->
-    While geometry optimization was not part of match our initial objective, these entries may inform us about the **overarching workflow** used by both authors, .e., relaxing the system before the production simulation.
+    Glossing over the remaining 6 results, 3 by Jannik Mehlis and 3 by Sebastian Baugmart, we retrieve **2 more MD simulations** and **2 more "Geometry Optimizations"**.
+    You may notice that some entries do not have a clear specification. <!-- @Joseph is this a bug? -->
+    These entries likely need to be reprocessed to classify them correctly, since the molecular dynamics support has been developed more recently.
+    However, you can still find out their classification by visiting the entry's overview page.
+
+    While geometry optimization was not part of match our initial objective, these entries may inform us about the **overarching workflow** used by both authors, i.e., relaxing the system before the production simulation.
     Annotating such workflows is covered under [`Advanced > Creating custom workflows`](Advanced/part4.md).
 
     <div class="click-zoom" style="text-align: left;">
@@ -703,7 +706,7 @@ Indeed, Andrew Rosen made a big contribution to our coverage of MOFs.
 Such **contributions from the community** are what drive NOMAD.
 You may consider contributing your data already during the research/analysis process, right before submitting a publication, or even later on (especially for data that you have from older publications!).
 
-Andrew first even published his data over [figshare](https://figshare.com/articles/dataset/QMOF_Database/13147324) and shortly after uploaded it to NOMAD.
+Andrew first even published his data over at [figshare](https://figshare.com/articles/dataset/QMOF_Database/13147324) and shortly after uploaded it to NOMAD.
 It is good that he did, since NOMAD provides much more information (the full calculation) and covers a wide search range.
 Meanwhile, over at _figshare_, you have to download a zip folder, not knowing what to exactly expect.
 Andrew clearly put some effort in providing a structured overview, focusing heavily on the MOF description and little else.
