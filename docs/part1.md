@@ -441,43 +441,36 @@ Please bear this in mind.
 Since there are too few examples at the moment, we will skip this set of filters. -->
 
 Lastly, we only want data that contains **the relevant observable**, the band gap.
-The search bar supports _presence queries_, but these are formatted as equality queries with special quantity names.
-Guessing that name becomes very hard, requiring intimate knowledge of the underlying data structure.
-Searching for the value is not always an option here either.
-It may help to realize that observables that come out of a calculation, workflow, etc. are called _"Properties"_.
-**Try out "propert"** in the search bar and **pick the category** that best fits band gap.
-Then fill in the value with **electronic.band_structure_electronic.band_gap**.
+Start by typing out **"band_gap"**.
+Note how terms in the search bar never contain spaces, but **use underscores** (`_`) instead.
+Click on the relevant suggestion.
+If it does not fully match what you are looking for, feel free to shorten until it does.
+To finish the _presence queries_, **add "=*"** and press enter.
 
 ??? tip
-    Terms in the search bar never contain spaces, but use underscores (`_`) instead .
+    To write an equality query for "*", use the escape character "\", i.e. "=\*".
+    The escape character is not necessary for values containing, i.e. the radical "CH3*".
+    Overall, there are very few instances of values "*" in NOMAD.
 
 ??? success
-    The band gap describes the electronic structure around the Fermi energy.
-    Just as the chip displays, it is an "Electronic Property".
+    The suggestions will present you with `results.properties.electronic.band_structure_electronic.band_gap.type` and `results.properties.electronic.band_structure_electronic.band_gap.value`.
+    Both are a bit too deep down the search tree, since we are looking for `results.properties.electronic.band_structure_electronic.band_gap=*`.
 
-    <div class="click-zoom" style="text-align: left;">
-        <label>
-            <input type="checkbox">
-            <img src="../assets/part1_explore/sc2_bandgap_filter.png" title="The active band gap filter">
-        </label>
-    </div>
-
-    This filter yields a blank / empty entries list.
-    The value itself can shed more light here.
-    The "Band gap" is in reality only that of band structure calculations, meaning the former has to be present.
+    This filter yields a blank entries list.
+    To understand why, examine the filter name: it targets only band gaps of band structure calculations.
     This is due to a legacy implementation, but has been mended.
-    After reprocessing, this update will be applied over the whole database.
+    In the near future, this search will have many more hits.
 
 This filter stack is too restrictive.
-Remove the last filter and look for any alternatives under its side pane (**"Properties" > "Electronic Properties"**).
-The way this pane is layed out, it first gives you an _overview_ of what is out there and below hands you _filters for narrowing_ the properties further down.
-When filtering by presence, the overview suffices.
-How would you **finish the query**?
+To work around this, remove the last filter and let us go with an alternative.
+Formulate a presence query for the density of states, commonly abbreviated as DOS [^2].
 
 ??? success
-    As an alternative, we can go with the **"Density of states"** (DOS) [^2], matching 2.833 entries.
-    The equivalent search bar query would be **"electronic_properties=dos_electronic"**.
-    There is no need to narrow it down any further: we accept both data from spin-polarized and spin-restricted calculations.
+    Your query should be `results.properties.electronic.dos_electronic=*` and return 2.833 entries.
+    There is no need to narrow it down to spin-polarized calculations.
+    We also accept spin-restricted data.
+
+    [solutiuon link](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?structural_type=bulk&n_elements[gte]=5&n_elements[lte]=6&xc_functional_names=HYB_GGA_XC_HSE03&xc_functional_names=HYB_GGA_XC_HSE06&upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000&quantities=results.properties.electronic.dos_electronic&elements=C&elements=H&elements=O&elements=N)
 
     <div class="image-container">
         <div class="click-zoom">
