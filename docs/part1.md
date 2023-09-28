@@ -16,7 +16,7 @@ Each scenario assumes that you completed the previous ones, or that you are at l
 
 We start the tutorial with a brief overview of the NOMAD Archive and Repository (in short, NOMAD-lab) A more general tutorial can be found in the [FAIRmat tutorial 1](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-1/tutorial-1-home).
 
-## Navigating to NOMAD {#entries_section}
+## Navigating to the NOMAD {#entries_section}
 
 With the structure clear, let us jump into the NOMAD website.
 Only... there are several access points.
@@ -25,8 +25,9 @@ Furthermore, it provides several links to documentation, tutorials, and the hist
 
 When accessing the data, however, we want to locate the _Archive and Repository_ itself.
 There are 2 public versions available:
+
 1. [stable](https://nomad-lab.eu/prod/v1/gui/search/entries), as the default, under "Open NOMAD" (highlighted orange).
-2. the [beta /staging](https://nomad-lab.eu/prod/v1/staging/gui/search/entries), which has the latest release and updates much more frequently. As such, it could also harbor unstable or untested features.
+2. [beta /staging](https://nomad-lab.eu/prod/v1/staging/gui/search/entries), which has the latest release and updates much more frequently. As such, it could also harbor unstable or untested features.
 
 Unless anything breaks, we recommend using the beta version.
 It has links at the bottom-right corner of the landing page, as well as under "SOLUTIONS" > "NOMAD" > "Try and Test" (highlighted red).
@@ -46,7 +47,7 @@ It has links at the bottom-right corner of the landing page, as well as under "S
     </div>
 </div>
 
-To ensure the long-term reproducibility of this tutorial, we provide you with a link to the beta / staging version, but capped at September 14th, 2023.
+To ensure the long-term reproducibility of this tutorial, we provide you with a link to the beta version, but capped at September 14th, 2023.
 Please visit this [NOMAD page](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000) and take a look at its layout.
 
 As denoted at the top left, the page we have in front of us is called _Entries_.
@@ -65,7 +66,7 @@ You can then select a variety of quantities that characterize the material or sy
 
 Now, let us move on to the actual scenarios.
 
-### Scenario 1 - Example setup
+## Scenario 1 - Example setup
 
 !!! abstract "Assignment"
     **Imagine that you want to set up a Molecular Dynamics simulation of _water_ in _Gromacs_, and would like some examples to help you get started.
@@ -225,7 +226,7 @@ Are there any other filters that you would like to try out, or do you prefer che
     The upcoming scenarios **do not** deal with molecular dynamics data directly, due to lack of uploads.
     Nonetheless, they demonstrate useful features of the NOMAD repository, and *hopefully* motivate the increased use of NOMAD for molecular dynamics simulations.
 
-### Scenario 2 - Data science
+## Scenario 2 - Data science
 
 !!! abstract "Assignment"
     **You want to evaluate the impact of the metal used in _Metal Organic Frameworks_ (MOFs).
@@ -532,7 +533,7 @@ Formulate a **presence query** for the _density of states_, commonly abbreviated
 
     **Conclusion:** so-called _query engineering_ is not just limited to Large Language Models, but also applies to _sophisticated databases_.
 
-### Scenario 3 - Finding Publications
+## Scenario 3 - Finding Publications
 
 !!! abstract "Assignment"
     **You are talking to a colleague about your machine-learned model (from scenario 2).
