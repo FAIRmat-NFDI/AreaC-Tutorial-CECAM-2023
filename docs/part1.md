@@ -65,9 +65,8 @@ Now, let us move on to the actual scenarios.
 ### Scenario 1 - Example setup
 
 !!! abstract "Assignment"
-    **You want to learn how to set up a Molecular Dynamics simulation in _Gromacs_ and need an example.
-    Your system of interest is _water_, which can be quite tricky to model.
-    You want to compare results from several setups to find the one most suitable to you.**
+    **Imagine that you want to set up a Molecular Dynamics simulation of _water_ in _Gromacs_, and would like some examples to help you get started.
+    For example, you may want to compare results from several setups to find the one most suitable to you.**
 
     In this exercise, you will learn how to:
 
@@ -129,9 +128,8 @@ That is alright, though, we can just **stack up several filters**.
     It is highly **recommended to follow the guide**.
     You can restore the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000) by reloading.
 
-Which filter we should search for next depends on your priorities: do you want to learn mostly about running Molecular Dynamics or how a forcefield for water should be tweaked?
-Let us go with former.
-Fortunately, there is already a **filter subgroup called "Molecular Dynamics", so click it open**.
+The appropriate filter depends on your goals and priorities. Since we are interested in running a molecular dynamics simulation,
+**go to the filter subgroup called "Molecular Dynamics", and click it open**.
 You are now presented with several settings.
 Judging from the statistics, we have the best chance with a setting that covers the widest range of calculations (28.000 entries).
 **Select "Temperature" under "Available Properties"**. <!-- @Joseph: do you want me to to add a "Molecular Dynamics" selection button?-->
@@ -159,7 +157,7 @@ Finally, remove all data with additional elements by selecting the **"only compo
 ??? success
     You are left with 2 MD calculations in the entries list.
     **Clicking on the arrow (`->`)** of whichever entry will bring you to its _overview page_.
-    More on that in [Part II](part2.md).
+    More on that in [Part II - Overview page and workflows:](Tutorial-2_Overview_Page_and_Worfklow_Visualizer.md).
     By **clicking through on "FILES"**, you will get an overview of the uploaded files.
     These for sure contain **output**, but often also **input**.
     Both could serve as great starting points for deploying your own calculations.
@@ -187,19 +185,15 @@ Finally, remove all data with additional elements by selecting the **"only compo
 
 Actually, the **order** in which we applied the filters **does not matter**.
 In that sense, filters are like small questions or details that we use to construct an overall query.
-This insight comes with a small caveat: the **statistics** that we see as we are stacking up our filters **are contingent on the history**.
-If we take a different route, we will see different intermediate results and this could lead us to decide on different filters.
-
-To see this effect in action, rewind back to where we were choosing our priorities and let us go with the latter instead.
-The fastest way here, is to retrieve **"Molecular Dynamics" > "Available Properties"** and **click the highlighted checkbox** again to deselect it.
-
+<!-- This insight comes with a small caveat: the **statistics** that we see as we are stacking up our filters **are contingent on the history**.
+If we take a different route, we will see different intermediate results and this could lead us to decide on different filters. -->
+Let's go back to when we were selecting the relevant option under the Molecular Dynamics filter (click the `x` next to the `temperature chip` or go to **"Molecular Dynamics" > "Available Properties"** and **click the highlighted checkbox** again to deselect it).
 
 ??? success
     Glossing over the remaining 6 results, 3 by Andrew Rosen and 3 by Sebastian Baugmart, we retrieve **2 more MD simulations** and **2 more "Geometry Optimizations"**.
-    Even though some entries do not have a clear specification, we can find their classification by visiting the entry's overview page. <!-- @Joseph is this a bug? -->
-    While geometry optimization was not part of match our initial objective, these entries could still provide us with valuable **insights into the forcefield** setup.
-    They also inform us of the **overarching workflow** used by both authors, .e., relaxing the system before the production simulation.
-    Annotating such workflows is covered more extensively in [part II](part2.md).
+    You may notice that some entries do not have a clear specification. These entries likely need to be reprocessed to classify them correctly, since the molecular dynamics support has been developed more recently. However, you can find their classification by visiting the entry's overview page. <!-- @Joseph is this a bug? -->
+    While geometry optimization was not part of match our initial objective, these entries may inform us about the **overarching workflow** used by both authors, .e., relaxing the system before the production simulation.
+    Annotating such workflows is covered under [`Advanced > Creating custom workflows`](Advanced/part4.md).
 
     <div class="click-zoom" style="text-align: left;">
         <label>
@@ -209,10 +203,14 @@ The fastest way here, is to retrieve **"Molecular Dynamics" > "Available Propert
     </div>
 
 <!-- placeholder note for Joseph option A -->
-**Note:** the upcoming scenarios do not deal with molecular dynamics data directly due to lack of uploads.
-Nonetheless, they still teach many useful techniques that are generally applicable.
+???+ info
+
+    The upcoming scenarios **do not** deal with molecular dynamics data directly, due to lack of uploads.
+    Nonetheless, they demonstrate useful features of the NOMAD repository, and *hopefully* motivate the increased use of NOMAD for molecular dynamics simulations.
 
 ### Scenario 2 - Data science
+
+Start a fresh session by clearing the molecular dynamics related filters, or by restoring the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
 
 !!! abstract "Assignment"
     **You want to evaluate the impact of the metal used in _Metal Organic Frameworks_ (MOFs).
@@ -255,7 +253,7 @@ Let us furthermore **sort alphabetically by (Hill) "Formula"** by clicking on th
 ???+ info "What are entries exactly?"
     Entries are individually stored data packages, shown as rows in the overview table.
     In our context, they mostly overlap with an _individual calculation_, e.g., a single-point calculation or a single molecular dynamics run.
-    When separate calculations are linked together into a _workflow_ (see [Part II](part2.md)), the overall link also receives its own dedicated entry.
+    When separate calculations are linked together into a _workflow_ (see [`Advanced > Creating custom workflows`](Advanced/part4.md)), the overall link also receives its own dedicated entry.
     Lastly, since NOMAD covers the whole of Condensed Matter Physics and Chemistry, entries can also be _experimental samples_ or _batches_.
 
 ??? success
@@ -289,8 +287,7 @@ The formatting here is far stricter.
 While you can switch back to the side menu at any time, we will , for educational purposes, rely on the search bar exclusively throughout this scenario.
 
 ???+ info "Optimade"
-    NOMAD also supports the [Optimade](https://www.optimade.org/documentation) API, which has its own query conventions.
-    While it is not covered in this tutorial, you can check out the relevant documentation via the link.
+    NOMAD also supports the [Optimade](https://www.optimade.org/documentation) API, which has its own query conventions (not covered in this tutorial).
     To use the NOMAD-Optimade endpoint, scroll down to "Optimade" at the very bottom of the side menu.
 
 We have a lot of leeway in which filters we tackle first.
@@ -353,13 +350,13 @@ Instead, we will keep the last element a bit more open and just specify the numb
 Type it into the search bar and select the appropriate filter name.
 We want to constrain the formula, but let us keep room for a wild card, e.g. another metal or ligand constituent.
 If it trouble us down the road, we can just tighten the filter.
-So finish your _simple LTE / GTE query_ with **"<=6"**.
+So finish the query with **"<=6"**.
 
 The current query will leave room for systems without any metal atom, i.e. not MOFs.
 **Recreate the previous query**, but hold off on pressing the enter key.
-Rather, you should constrain it with a **lower limit** as well.
-You can add one by placing your **cursor at the beginning** and writing a similar comparison.
-Like this, you have constructed the most complex query in NOMAD, a _sandwiched LTE / GTE_.
+Rather, you should constrain it with a **lower limit** as well. In particular, let's require at least 5 different elements.
+You can add a lower limit by placing your **cursor at the beginning** and writing a similar comparison.
+<!-- Like this, you have constructed the most complex query in NOMAD, a _sandwiched LTE / GTE_. -->
 
 Finally, we are interested in the material in **bulk form** specifically, no interfaces of any kind.
 **Use the search bar** to add this restriction.
@@ -393,8 +390,7 @@ Just as with forcefields, DFT is mostly determined by the choice of kernel, i.e.
 
 Hybrid functionals are the norm for organic systems and the most popular in solid state by far are HSE06 and HSE03.
 By now, you probably have a good instinct of where to find them in the side menu (under "DFT"), but let us stick with the search bar for practice.
-Perform an **equality query** for **"HSE03" and "HSE06"** each.
-Both are very prominent hybrids in solid state.
+Perform an **equality query** for both **"HSE03" and "HSE06"** (prominent hybrids in solid state).
 
 ???+ info "Density functional nomenclature"
     The functional naming in NOMAD follows the **convention established by [libxc](https://github.com/ElectronicStructureLibrary/libxc)**, a popular library for evaluating (semi)local functionals.
@@ -418,12 +414,12 @@ For your answer, **take a look at the side menu**.
         </label>
     </div>
 
-    In practice, when doing **machine learning**, you would only choose a **single functional** (HSE06 in this case).
-    The only exception would be _transfer learning_, but even then you are advised to split the functionals out over separate queries.
-    Here, we look for 2 functionals just for educational reasons.
+    <!-- In practice, when doing **machine learning**, you would only choose a **single functional** (HSE06 in this case).
+    The only exception would be _transfer learning_, but even then you are advised to split the functionals out over separate queries. -->
+    Note: In practice you would only choose a **single functional** when doing **machine learning**. Here, we look for 2 functionals just for educational reasons.
 
 ???+ info "Multiple density functionals per entry"
-    A single entry (and even calculation) may contain multiple functional names, just not `XC`!
+    A single entry (and even calculation) may contain multiple functional names, not just `XC`!
     The libxc namely splits up _exchange-correlation_ functionals (`XC`) into _exchange_ (`X`) and _correlation_ (`C`), when appropriate.
     So for example, the most prominent functional in NOMAD, `PBE`, is stored as `[GGA_X_PBE, GGA_C_PBE]`.
     Note that selecting one of either or even both (due to the `OR` logic), does not guarantee a user will retrieve only PBE.
@@ -433,13 +429,12 @@ These can all be found under the filter subgroup "Precision".
 It is tough to estimate these parameters' actual impact.
 Therefore, they are best left till the end of the full query.
 Then you can evaluate the cost-benefit of reducing the dataset size for higher homogeneity or precision.
-
-This feature is quite recent.
+For a full rundown on these newer features, feel free to check out FAIRmat [Tutorial 10](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home).
+<!-- This feature is quite recent.
 For it to have a significant impact, the NOMAD database has to run over all of 13 million entries and reprocess them.
 In other words, new features will always lag behind in old data.
 Please bear this in mind.
-Since there are too few examples at the moment, we will skip this set of filters.
-If you are interested, though, feel free to check out FAIRmat [Tutorial 10](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home) for a full rundown.
+Since there are too few examples at the moment, we will skip this set of filters. -->
 
 Lastly, we only want data that contains **the relevant observable**, the band gap.
 The search bar supports _presence queries_, but these are formatted as equality queries with special quantity names.
@@ -470,7 +465,7 @@ Then fill in the value with **electronic.band_structure_electronic.band_gap**.
     After reprocessing, this update will be applied over the whole database.
 
 This filter stack is too restrictive.
-Remove the last filter and look for any alternatives under its side pane.
+Remove the last filter and look for any alternatives under its side pane (**"Properties" > "Electronic Properties"**).
 The way this pane is layed out, it first gives you an _overview_ of what is out there and below hands you _filters for narrowing_ the properties further down.
 When filtering by presence, the overview suffices.
 How would you **finish the query**?
@@ -515,9 +510,11 @@ To save your query for future use, simply **bookmark the url**.
 
 ### Scenario 3 - Finding Publications
 
+Go back again to the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
+
 !!! abstract "Assignment"
     **You are talking to a colleague about your machine-learned model (from scenario 2).
-    They tell you about a good recent research publication they saw by Rosen, but are forgetting the rest of the details at the moment.
+    They tell you about a good recent research publication they saw by the author Rosen, but are forgetting the rest of the details at the moment.
     They will get back to you, but you are eager to check it out right away.**
 
     In this exercise, you will learn how to:
@@ -556,7 +553,7 @@ To better understand its makeup, we should be comparing **several statistics at 
 Jumping between side panes is a bit of a hassle, so instead we will speed up our analysis by setting up a _dashboard_.
 **Click on the plus button (`+`) at the utmost right from "Upload Create Time"** and **return to the entries list**.
 
-!! tip
+!!! tip
     If you cannot see all 3 upload times, it is most likely due to the binning.
     With **zoom / autorange active**, adjust the **sliders on the x-axis** to better encompass the time frames of interest.
 
@@ -572,12 +569,16 @@ Jumping between side panes is a bit of a hassle, so instead we will speed up our
 
 This is our nascent dashboard.
 It will speed up our data exploration tremendously, but first we have to build it out a bit.
-**Add to your dashboard** at least:
+**Add to your dashboard**:
 
 - the periodic table ("Elements / Formula" > "Elements")
 - "Elements / Formula" > "Number of Elements"
 - "Author / Origin / Dataset" > "Dataset Name"
-- ~~"Electronic" > "Electronic Properties"~~ is not necessary, since there are only DOS
+
+<!-- And **remove from the dashboard**:
+
+- "Electronic" > "Electronic Properties" - not necessary, since there are only DOS
+@ndaelman-hu I didn't understand this, you had it striked out so I thought you wanted to remove it, but I guess you were just saying it was not necessary to add?? -->
 
 Feel free to incorporate other filters as well.
 Just try to keep everything in a single view.
@@ -699,9 +700,9 @@ Apparently there is _cited work (no. 147)_ that shows the effectiveness of HLE17
 As a **last reflection**, note how many of the entries and statistics match our findings in scenario 2.
 Indeed, Andrew Rosen made a big contribution to our coverage of MOFs.
 Such **contributions from the community** are what drive NOMAD.
-One moment to consider contributing yourself could be right before submitting a publication, or maybe even earlier on, when analyzing your data.
+You may consider contributing your data already during the research/analysis process, right before submitting a publication, or even later on (especially for data that you have from older publications!).
 
-Andrew first even published his data over [figshare](https://figshare.com/articles/dataset/QMOF_Database/13147324) and shortly after loaded it up (see [part III](part3.md)) to NOMAD.
+Andrew first even published his data over [figshare](https://figshare.com/articles/dataset/QMOF_Database/13147324) and shortly after uploaded it to NOMAD.
 It is good that he did, since NOMAD provides much more information (the full calculation) and covers a wide search range.
 Meanwhile, over at _figshare_, you have to download a zip folder, not knowing what to exactly expect.
 Andrew clearly put some effort in providing a structured overview, focusing heavily on the MOF description and little else.
