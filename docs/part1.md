@@ -350,13 +350,14 @@ Instead, we will keep the last element a bit more open and just specify the numb
 Type it into the search bar and select the appropriate filter name.
 We want to constrain the formula, but let us keep room for a wild card, e.g. another metal or ligand constituent.
 If it trouble us down the road, we can just tighten the filter.
-So finish the query with **"<=6"**.
+So finish the _single inequality query_ with **"<=6"**.
 
 The current query will leave room for systems without any metal atom, i.e. not MOFs.
 **Recreate the previous query**, but hold off on pressing the enter key.
-Rather, you should constrain it with a **lower limit** as well. In particular, let's require at least 5 different elements.
+Rather, you should constrain it with a **lower limit** as well.
+In particular, let's require at least 5 different elements.
 You can add a lower limit by placing your **cursor at the beginning** and writing a similar comparison.
-<!-- Like this, you have constructed the most complex query in NOMAD, a _sandwiched LTE / GTE_. -->
+Like this, you have constructed the most complex search bar query, a _double inequality query_.
 
 Finally, we are interested in the material in **bulk form** specifically, no interfaces of any kind.
 **Use the search bar** to add this restriction.
@@ -419,7 +420,7 @@ For your answer, **take a look at the side menu**.
     Note: In practice you would only choose a **single functional** when doing **machine learning**. Here, we look for 2 functionals just for educational reasons.
 
 ???+ info "Multiple density functionals per entry"
-    A single entry (and even calculation) may contain multiple functional names, not just `XC`!
+    A single entry (and even calculation) may contain multiple functional names, just not `XC`!
     The libxc namely splits up _exchange-correlation_ functionals (`XC`) into _exchange_ (`X`) and _correlation_ (`C`), when appropriate.
     So for example, the most prominent functional in NOMAD, `PBE`, is stored as `[GGA_X_PBE, GGA_C_PBE]`.
     Note that selecting one of either or even both (due to the `OR` logic), does not guarantee a user will retrieve only PBE.
