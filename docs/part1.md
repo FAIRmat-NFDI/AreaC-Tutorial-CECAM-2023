@@ -205,6 +205,13 @@ Let's go back to when we were selecting the relevant option under the Molecular 
         </label>
     </div>
 
+    **To save** your active filters and settings for later use, you can simply **bookmark the URL**.
+    We will also provide a _solution button_ at the end of each exercise.
+
+    <center>
+    [Final solution](){ .md-button }
+    </center>
+
 <!-- placeholder note for Joseph option A -->
 ???+ info
 
@@ -465,27 +472,38 @@ This filter stack is too restrictive.
 To work around this, remove the last filter and let us go with an alternative.
 Formulate a presence query for the density of states, commonly abbreviated as DOS [^2].
 
+[^2]: The DOS are the solid-state counterpart of the molecular orbital energies. If its sampling extends beyond the HOMO -in solid state, the highest filled energy level is called the Fermi level- it can be used to compute the band gap. This is the case in most simulations.
+
 ??? success
     Your query should be `results.properties.electronic.dos_electronic=*` and return 2.833 entries.
     There is no need to narrow it down to spin-polarized calculations.
     We also accept spin-restricted data.
 
-    [solutiuon link](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?structural_type=bulk&n_elements[gte]=5&n_elements[lte]=6&xc_functional_names=HYB_GGA_XC_HSE03&xc_functional_names=HYB_GGA_XC_HSE06&upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000&quantities=results.properties.electronic.dos_electronic&elements=C&elements=H&elements=O&elements=N)
-
-    <div class="image-container">
-        <div class="click-zoom">
-            <label>
-                <input type="checkbox">
-                <img src="../assets/part1_explore/sc2_fullquery.png" title="The results of the final query with DOS">
-            </label>
-        </div>
-        <div class="click-zoom">
-            <label>
-                <input type="checkbox">
-                <img src="../assets/part1_explore/sc2_fullquery_selection.png" title="Selection of the search results, ready for download">
-            </label>
-        </div>
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc2_fullquery.png" title="The results of the final query with DOS">
+        </label>
     </div>
+
+    From hereon, the best strategy would be to download the data you need, extract the band gap, and perform some statistical analysis first.
+    You might come across some new ideas on how to further hone your query and filter out more noise!
+    **Click the checkbox next to the column headers** in the entries list to select all entries.
+    The 3 vertical slots now change to a **download symbol**, giving you the option between the original (raw) format or the **NOMAD format** (processed).
+
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc2_fullquery_selection.png" title="Selection of the search results, ready for download">
+        </label>
+    </div>
+
+    Note that the specific **analysis is not part of this tutorial**.
+    Other examples of analyzing NOMAD processed data are shown in [part IV](Tutorial-3_Extracting_Data_and_Trajectory_Analysis.md).
+
+    <center>
+    [Final solution](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?structural_type=bulk&n_elements[gte]=5&n_elements[lte]=6&xc_functional_names=HYB_GGA_XC_HSE03&xc_functional_names=HYB_GGA_XC_HSE06&upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000&quantities=results.properties.electronic.dos_electronic&elements=C&elements=H&elements=O&elements=N){ .md-button }
+    </center>
 
 !!! warning "When stacking order matters"
     Imagine having started filtering by property instead of composition and then method.
@@ -498,12 +516,6 @@ Formulate a presence query for the density of states, commonly abbreviated as DO
     In the next scenario we will cover an even more powerful technique to aid in monitoring, _dashboards_.
 
     **Conclusion:** so-called _query engineering_ is not just limited to Large Language Models, but also applies to _sophisticated databases_.
-
-From hereon, the best strategy would be to download the data you need, extract the band gap, and perform some statistical analysis first.
-You might come across some new ideas on how to further hone your query and filter out more noise.
-**Click the checkbox next to the column headers** in the entries list to select all entries.
-The 3 vertical slots now change to a **download symbol**, given you the option between the original (raw) format or the **NOMAD format** (processed).
-To save your query for future use, simply **bookmark the url**.
 
 ### Scenario 3 - Finding Publications
 
