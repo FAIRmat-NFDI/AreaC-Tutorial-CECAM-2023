@@ -4,7 +4,7 @@
 
 In this tutorial, we will get you acquainted with the _Graphical User Interface_ (GUI) in NOMAD, working our way through a couple of _scenarios_, similar to how you might encounter them in your daily activities.
 Each scenario starts with an _assignment box_ explaining the objective and listing the main skills you will acquire.
-They then proceed with a step-by-step walkthrough, with the most essential steps highlighted in boldface.
+They then proceed with a step-by-step walkthrough, with the most essential steps highlighted in **boldface**.
 
 There are several checkpoints along the way to ensure you stay on track.
 These come in the shape of _tips_ and _success_ boxes, which you have to click to unfold.
@@ -26,11 +26,11 @@ Furthermore, it provides several links to documentation, tutorials, and the hist
 When accessing the data, however, we want to locate the _Archive and Repository_ itself.
 There are 2 public versions available:
 
-1. [stable](https://nomad-lab.eu/prod/v1/gui/search/entries), as the default, under "Open NOMAD" (highlighted orange).
+1. [stable](https://nomad-lab.eu/prod/v1/gui/search/entries), as the default, under "Open NOMAD" (highlighted <span style="color:orange">orange</span>).
 2. [beta /staging](https://nomad-lab.eu/prod/v1/staging/gui/search/entries), which has the latest release and updates much more frequently. As such, it could also harbor unstable or untested features.
 
 Unless anything breaks, we recommend using the beta version.
-It has links at the bottom-right corner of the landing page, as well as under "SOLUTIONS" > "NOMAD" > "Try and Test" (highlighted red).
+It has links at the bottom-right corner of the landing page, as well as under "SOLUTIONS" > "NOMAD" > "Try and Test" (highlighted <span style="color:red">red</span>).
 
 <div class="image-container">
     <div class="click-zoom">
