@@ -14,16 +14,17 @@ You can collapse them afterwards.
 When the information contains strategies for steering clear from mistakes, it will be labeled as _warning_.
 Each scenario assumes that you completed the previous ones, or that you are at least familiar with its objectives and terminology introduced.
 
-We start the tutorial with a brief overview of the NOMAD Archive and Repository (in short, NOMAD-lab) A more general tutorial can be found in the [FAIRmat tutorial 1](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-1/tutorial-1-home).
+We start the tutorial with a brief overview of the _NOMAD Archive and Repository_ (in short, _NOMAD-lab_).
+ A more general tutorial can be found in the [FAIRmat tutorial 1](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-1/tutorial-1-home).
 
 ## Navigating to the NOMAD {#entries_section}
 
 With the structure clear, let us jump into the NOMAD website.
 Only... there are several access points.
-The general [_landing page_](https://nomad-lab.eu/nomad-lab/) will give you and quick rundown of the _NOMAD Archive and Repository_, as wells as it features.
+The general [_landing page_](https://nomad-lab.eu/nomad-lab/) will give you a quick rundown of the NOMAD-lab, as wells as it features.
 Furthermore, it provides several links to documentation, tutorials, and the history behind the project.
 
-When accessing the data, however, we want to locate the _Archive and Repository_ itself.
+When accessing the data, however, we want to locate the NOMAD-lab itself.
 There are 2 public versions available:
 
 1. [stable](https://nomad-lab.eu/prod/v1/gui/search/entries), as the default, under "Open NOMAD" (highlighted <span style="color:orange">orange</span>).
@@ -53,16 +54,16 @@ Please visit this [NOMAD page](https://nomad-lab.eu/prod/v1/staging/gui/search/e
 As denoted at the top left, the page we have in front of us is called _Entries_.
 When loading the page, you should also see an orange box in the left-bottom corner, warning you that you are using an experimental product. You can get rid of it by clicking the check mark (`✓`).
 
-Some other layout elements worth mentioning:
+Some other layout elements worth mentioning are:
 
-- In the middle, there is a whole list with _tabulated data_.
-- Just above it is a _search bar_ with the text "Type your query or keyword here".
-- On the left-hand side is a "FILTERS" _side menu_.
-- At the very top is a _header_ with several options (left-hand side), _login_ and _units_ (right-hand).
+- in the middle, there is a whole list with _tabulated data_.
+- just above it is a _search bar_ with the text "Type your query or keyword here".
+- on the left-hand side is a "FILTERS" _side menu_.
+- at the very top is a _header_ with several options (left-hand side), _login_ and _units_ (right-hand).
 
-The NOMAD Entries page is an intuitive, easy-to-use GUI.
-Here you can explore data according to your preferences by clicking on the filter menus on the left.
-You can then select a variety of quantities that characterize the material or system under study, the methodology parameters followed in the calculation or experiment, and the output properties.
+Overall, the NOMAD Entries page is an intuitive, easy-to-use GUI.
+Here you can explore data according to your preferences by clicking on or typing out filters.
+As such, you can select from a variety of quantities that characterize the material or system under study, the methodology parameters followed in the calculation or experiment, and the output properties.
 
 Now, let us move on to the actual scenarios.
 
