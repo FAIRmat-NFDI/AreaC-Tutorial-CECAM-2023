@@ -76,13 +76,13 @@ Now, let us move on to the actual scenarios.
 
 In the _entries list_ NOMAD is already listing all database _entries_.
 The strategy is to **narrow or _filter_ this list down** to our needs.
-Our main tool here, will be the _side menu_ (left-hand side).
+Our main tool will be the _side menu_ (left-hand side).
 Take stock of its structure.
 There is a list of themes or _filter groups_.
 Subgroups are indented below their main group.
 Any **filter group with an arrow** (`>`) can be **clicked open** to reveal various filters and statistics in a _side pane_.
 To **close the side pane** and reveal the full table again, use the **arrow back (`<-`)** in the top-left corner.
-You could alternatively also click anywhere outside of the pane, but careful not to select anything unwanted.
+Alternatively, you could also click anywhere outside of the pane, but be careful not to select anything unwanted.
 
 Now, **scroll down to check out the full list**.
 What main groups are there?
@@ -92,7 +92,7 @@ Remember, we essentially want to learn more about Gromacs and its calculation se
 ??? success
     While it is somewhat hidden, you can find the **"Program Name" under "Method"**.
 
-This widget has a double function: it is both a filter and a statistic.
+The widget you see under this side pane has a double function: it acts both as a filter and a statistics overview.
 It comes with a text bar and a list of suggestions.
 You can try extending the list further by clicking "SHOW MORE", but Gromacs is not the most well-represented code in our database.
 Here, it is probably faster to just **type out the program name** and **hit enter**.
@@ -114,7 +114,7 @@ Here, it is probably faster to just **type out the program name** and **hit ente
     </div>
 
 Notice how the entries list changes with respect to your filter!
-Yet, the list of remaining calculations is still quite long (3.496 matches)...
+Yet, the list of remaining calculations is still quite long (3.494 matches)...
 Most likely, there will not be a single filter that solves our problem completely.
 That is alright, though, we can just **stack up several filters**.
 
@@ -126,9 +126,8 @@ That is alright, though, we can just **stack up several filters**.
     Note that in the case of this tutorial, this also means removing the time constraint.
     Hence, if you decide to reset, the exact search results you see might start deviating from those in the tutorial.
     It is highly **recommended to follow the guide**.
-    You can restore the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000) by reloading.
 
-The appropriate filter depends on your goals and priorities. Since we are interested in running a molecular dynamics simulation,
+The appropriate filters depend on your goals and priorities. Since we are interested in running a molecular dynamics simulation,
 **go to the filter subgroup called "Molecular Dynamics", and click it open**.
 You are now presented with several settings.
 Judging from the statistics, we have the best chance with a setting that covers the widest range of calculations (28.000 entries).
@@ -141,7 +140,7 @@ Judging from the statistics, we have the best chance with a setting that covers 
 
 System specifications are found under "Material".
 Since we know the composition of our system, **click on "Elements / Formula"**.
-Notice how many of the elements on the periodic table are grayed out.
+Notice how many of the elements in the periodic table are grayed out.
 This indicates that there are no entries containing these elements, given the filters that you have applied.
 Additionally, the **number of entries** containing each remaining element is displayed within the element's periodic table box, with a corresponding **blue color gradient**.
 
@@ -183,19 +182,27 @@ Finally, remove all data with additional elements by selecting the **"only compo
         </div>
     </div>
 
-Actually, the **order** in which we applied the filters **does not matter**.
-In that sense, filters are like small questions or details that we use to construct an overall query.
-<!-- This insight comes with a small caveat: the **statistics** that we see as we are stacking up our filters **are contingent on the history**.
-If we take a different route, we will see different intermediate results and this could lead us to decide on different filters. -->
-Let's go back to when we were selecting the relevant option under the Molecular Dynamics filter (click the `x` next to the `temperature chip` or go to **"Molecular Dynamics" > "Available Properties"** and **click the highlighted checkbox** again to deselect it).
+    To **save or share** your active filters, you can simply **bookmark the URL**.
+    We will also provide a _solution button_ at the end of each exercise.
+
+    <center>
+    [Imtermittent solution](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?program_name=GROMACS&upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000&trajectory[available_properties]=temperature&exclusive=true&elements=H&elements=O){:target="_blank" .md-button }
+    </center>
+
+The filters that we have chosen are just small questions or details that we use to construct an overall query.
+They can be added and removed, as we see fit.
+So, let us relax our conditions a bit and, leaving out the requirement for a temperature trajectory.
+Click the `x` next to the `temperature chip` or go to **"Molecular Dynamics" > "Available Properties"** and **click the highlighted checkbox** again to deselect it.
+Now look at which entries are added.
+Are there any other filters that you would like to try out, or do you prefer checking them out by hand?
 
 ??? success
     Glossing over the remaining 6 results, 3 by Jannik Mehlis and 3 by Sebastian Baugmart, we retrieve **2 more MD simulations** and **2 more "Geometry Optimizations"**.
-    You may notice that some entries do not have a clear specification. <!-- @Joseph is this a bug? -->
+    You may notice that some entries do not have a clear specification (under the "Entry type" column in the entries list). <!-- @Joseph is this a bug? -->
     These entries likely need to be reprocessed to classify them correctly, since the molecular dynamics support has been developed more recently.
     However, you can still find out their classification by visiting the entry's overview page.
 
-    While geometry optimization was not part of match our initial objective, these entries may inform us about the **overarching workflow** used by both authors, i.e., relaxing the system before the production simulation.
+    While geometry optimization was not part of our initial objective, these entries may inform us about the **overarching workflow** used by both authors, i.e., relaxing the system before the production simulation.
     Annotating such workflows is covered under [`Advanced > Creating custom workflows`](Advanced/part4.md).
 
     <div class="click-zoom" style="text-align: left;">
@@ -205,11 +212,8 @@ Let's go back to when we were selecting the relevant option under the Molecular 
         </label>
     </div>
 
-    **To save** your active filters and settings for later use, you can simply **bookmark the URL**.
-    We will also provide a _solution button_ at the end of each exercise.
-
     <center>
-    [Final solution](){:target="_blank" .md-button }
+    [Final solution](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?program_name=GROMACS&upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000&exclusive=true&elements=H&elements=O){:target="_blank" .md-button }
     </center>
 
 <!-- placeholder note for Joseph option A -->
@@ -510,6 +514,9 @@ Formulate a **presence query** for the _density of states_, commonly abbreviated
     [Final solution](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?structural_type=bulk&n_elements[gte]=5&n_elements[lte]=6&xc_functional_names=HYB_GGA_XC_HSE03&xc_functional_names=HYB_GGA_XC_HSE06&upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000&quantities=results.properties.electronic.dos_electronic&elements=C&elements=H&elements=O&elements=N){:target="_blank" .md-button }
     </center>
 
+!!! warning "What is in a URL?"
+    Column customization can at the moment not be saved between sessions.
+
 !!! warning "When stacking order matters"
     Imagine having started filtering by property instead of composition and then method.
     You would have unwittingly excluded a vast dataset, potentially concluding that NOMAD does not host any suitable data.
@@ -657,6 +664,9 @@ Pay close attention to all the widgets.
     <center>
     [Final solution](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?n_elements[gte]=5&n_elements[lte]=6&name=Andrew%20Rosen&upload_create_time[gte]=1630563537155&upload_create_time[lte]=1676360939200&elements=H&elements=C&elements=N&elements=O){:target="_blank" .md-button }
     </center>
+
+!!! warning "What is in a URL?"
+    Dashboards can at the moment not be saved between sessions.
 
 We should have enough information now to retrieve the paper.
 While it is nice to have data from a variety of methods, especially for comparison reasons, we are most interested in the HSE06.
