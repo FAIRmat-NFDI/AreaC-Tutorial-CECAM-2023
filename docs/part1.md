@@ -213,7 +213,7 @@ Let's go back to when we were selecting the relevant option under the Molecular 
     </center>
 
 <!-- placeholder note for Joseph option A -->
-???+ info
+???+ info "Content in scenarios 2 and 3"
 
     The upcoming scenarios **do not** deal with molecular dynamics data directly, due to lack of uploads.
     Nonetheless, they demonstrate useful features of the NOMAD repository, and *hopefully* motivate the increased use of NOMAD for molecular dynamics simulations.
@@ -227,15 +227,13 @@ Start a fresh session by clearing the molecular dynamics related filters, or by 
     Maybe, if you find enough high-quality data, you can even train a machine-learned model.
     Specifically, you are interested in predicting the band gap [^1].**
 
-    [^1]: The band gap is the solid state counterpart of the HOMO-LUMO energy gap. Given that NOMAD is materials-centric (while still allowing molecular systems), it deals in condensed matter nomenclature. <!-- @Joseph: I could change the terminology here to "Band gap / HOMO - LUMO". That would make it more accessible to other communities as well. -->
+    [^1]: The band gap is the solid state counterpart of the HOMO-LUMO energy gap. Given that NOMAD is materials-centric (while still allowing for molecular systems), it deals in condensed matter nomenclature. <!-- @Joseph: I could change the terminology here to "Band gap / HOMO - LUMO". That would make it more accessible to other communities as well. -->
 
     In this exercise, you will learn how to:
 
     - customize the entries table.
-    - use the search bar.
+    - use all 4 types of search bar queries.
     - recognize "OR" filter stacking.
-
-    <!-- placeholder note for Joseph option B -->
 
 In this scenario our objective is more vaguely defined, so we will **start by exploring** the database before focusing in.
 A good overview is fundamental for spotting interesting data.
@@ -294,7 +292,7 @@ While in the previous scenario we relied exclusively on the side menu, now that 
 Its main purpose is to aid you in composing **text-written filters** and avoid having to switch between side panes all the time.
 The search bar does not, however, support the free-style natural language queries as found in web search engines, like Google, or AI models, like ChatGPT.
 The formatting here is far stricter.
-While you can switch back to the side menu at any time, we will , for educational purposes, rely on the search bar exclusively throughout this scenario.
+While you can switch back to the side menu at any time, we will , for educational purposes, rely solely on the search bar throughout this scenario.
 
 ???+ info "Optimade"
     NOMAD also supports the [Optimade](https://www.optimade.org/documentation) API, which has its own query conventions (not covered in this tutorial).
@@ -359,7 +357,7 @@ Instead, we will keep the last element a bit more open and just specify the numb
 **"Number of"** is often abbreviated as **"n_"** in NOMAD.
 Type it into the search bar and select the appropriate filter name.
 We want to constrain the formula, but let us keep room for a wild card, e.g. another metal or ligand constituent.
-If it trouble us down the road, we can just tighten the filter.
+If it troubles us down the road, we can just tighten the filter.
 So finish the _single inequality query_ with **"<=6"**.
 
 The current query will leave room for systems without any metal atom, i.e. not MOFs.
@@ -440,7 +438,7 @@ These can all be found under the filter subgroup "Precision".
 It is tough to estimate these parameters' actual impact.
 Therefore, they are best left till the end of the full query.
 Then you can evaluate the cost-benefit of reducing the dataset size for higher homogeneity or precision.
-For a full rundown on these newer features, feel free to check out FAIRmat [Tutorial 10](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home).
+For a full rundown on these newer features, feel free to check out [FAIRmat Tutorial 10](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home).
 <!-- This feature is quite recent.
 For it to have a significant impact, the NOMAD database has to run over all of 13 million entries and reprocess them.
 In other words, new features will always lag behind in old data.
@@ -451,35 +449,42 @@ Lastly, we only want data that contains **the relevant observable**, the band ga
 Start by typing out **"band_gap"**.
 Note how terms in the search bar never contain spaces, but **use underscores** (`_`) instead.
 Click on the relevant suggestion.
-If it does not fully match what you are looking for, feel free to shorten until it does.
+If it does not fully match what you are looking for, feel free to shorten it until it does.
 To finish the _presence queries_, **add "=*"** and press enter.
 
 ??? tip
-    To write an equality query for "*", use the escape character "\", i.e. "=\*".
-    The escape character is not necessary for values containing, i.e. the radical "CH3*".
-    Overall, there are very few instances of values "*" in NOMAD.
+    To write an equality query for "\*", use the **escape character** "\\", i.e. "=\\\*".
+    The escape character is not necessary for values containing "\*", i.e. the radical "CH3\*".
+    Overall, there are very few instances of values containing "\*" in NOMAD.
 
 ??? success
     The suggestions will present you with `results.properties.electronic.band_structure_electronic.band_gap.type` and `results.properties.electronic.band_structure_electronic.band_gap.value`.
     Both are a bit too deep down the search tree, since we are looking for `results.properties.electronic.band_structure_electronic.band_gap=*`.
 
-    This filter yields a blank entries list.
-    To understand why, examine the filter name: it targets only band gaps of band structure calculations.
+    This filter yields a **blank entries list**.
+    To understand why, examine the filter name: it targets **only band gaps of band structure** calculations.
     This is due to a legacy implementation, but has been mended.
-    In the near future, this search will have many more hits.
+    In the near future, you will be able to search for all reported band gaps.
 
 This filter stack is too restrictive.
-To work around this, remove the last filter and let us go with an alternative.
-Formulate a presence query for the density of states, commonly abbreviated as DOS [^2].
+As a workaround, remove the last filter and let us go with an alternative.
+Formulate a **presence query** for the _density of states_, commonly abbreviated as **DOS** [^2].
 
-[^2]: The DOS are the solid-state counterpart of the molecular orbital energies. If its sampling extends beyond the HOMO -in solid state, the highest filled energy level is called the Fermi level- it can be used to compute the band gap. This is the case in most simulations.
+??? tip
+    The search bar uses **lowercase** for all **quantities / filter names**.
+    Uppercase becomes relevant for values.
+
+    Still, the search bar will include lower case suggestions of your spelling, where appropriate.
+    To test this out, see what you get when typing "DOS".
+
+[^2]: The DOS is the solid-state counterpart of the molecular orbital energies. If its sampling extends beyond the HOMO -in solid state, the highest filled energy level is called the Fermi level- it can be used to compute the band gap. This is the case in most simulations.
 
 ??? success
     Your query should be `results.properties.electronic.dos_electronic=*` and return 2.833 entries.
     There is no need to narrow it down to spin-polarized calculations.
     We also accept spin-restricted data.
 
-    <div class="click-zoom">
+    <div class="click-zoom" style="text-align: left;">
         <label>
             <input type="checkbox">
             <img src="../assets/part1_explore/sc2_fullquery.png" title="The results of the final query with DOS">
@@ -491,7 +496,7 @@ Formulate a presence query for the density of states, commonly abbreviated as DO
     **Click the checkbox next to the column headers** in the entries list to select all entries.
     The 3 vertical slots now change to a **download symbol**, giving you the option between the original (raw) format or the **NOMAD format** (processed).
 
-    <div class="click-zoom">
+    <div class="click-zoom" style="text-align: left;">
         <label>
             <input type="checkbox">
             <img src="../assets/part1_explore/sc2_fullquery_selection.png" title="Selection of the search results, ready for download">
@@ -499,7 +504,7 @@ Formulate a presence query for the density of states, commonly abbreviated as DO
     </div>
 
     Note that the specific **analysis is not part of this tutorial**.
-    Other examples of analyzing NOMAD processed data are shown in [part IV](Tutorial-3_Extracting_Data_and_Trajectory_Analysis.md).
+    Other examples of analyzing NOMAD processed data are shown in [part IV](Tutorial-3_Extracting_Data_and_Trajectory_Analysis.md), however.
 
     <center>
     [Final solution](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?structural_type=bulk&n_elements[gte]=5&n_elements[lte]=6&xc_functional_names=HYB_GGA_XC_HSE03&xc_functional_names=HYB_GGA_XC_HSE06&upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000&quantities=results.properties.electronic.dos_electronic&elements=C&elements=H&elements=O&elements=N){ .md-button }
