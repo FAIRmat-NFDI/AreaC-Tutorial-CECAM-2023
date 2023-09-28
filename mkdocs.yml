@@ -24,14 +24,14 @@ theme:
       # primary: '#2A4CDF'
       # accent: '#008A67'
       scheme: default
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to dark mode
+      # toggle:
+        # icon: material/weather-sunny
+        # name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      toggle:
-        icon: material/weather-night
-        name: Switch to light mode
+      scheme: default
+      # toggle:
+        # icon: material/weather-night
+        # name: Switch to light mode
   font:
     text: 'Titillium Web'
   logo: assets/nomad-logo.png
