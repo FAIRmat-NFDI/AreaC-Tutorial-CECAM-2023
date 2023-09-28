@@ -1,40 +1,8 @@
-# Part I: Overview of the NOMAD Archive and Repository (~40 min)
+# Part I: Overview of the NOMAD Archive and Repository (~60 min)
 
-We start the tutorial with a brief overview of the NOMAD Archive and Repository (in short, NOMAD-lab) A more general tutorial can be found in the [FAIRmat tutorial 1](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-1/tutorial-1-home).
+## Introduction
 
-
-## Exploring NOMAD {#entries_section}
-
-Go to the [NOMAD-lab website](https://nomad-lab.eu/nomad-lab/).
-
-There are 2 main versions when exploring NOMAD-lab: 1. the [stable version](https://nomad-lab.eu/prod/v1/gui/search/entries) ("Open NOMAD" button at the top-right corner of the page), and 2. the [Beta version](https://nomad-lab.eu/prod/v1/staging/gui/search/entries) (`Beta/staging` link at the bottom-right of the page, or via `Solutions > NOMAD` in the top menu and then scrolling down).
-
-<p align="center">
-    <img src="../assets/part1_explore/beta1.png" alt="Finding the Beta in the website, option 1" width="45%" title="NOMAD Beta at the bottom of the website.">
-    <img src="../assets/part1_explore/beta2.png" alt="Finding the Beta in the website, option 2" width="41.5%" title="NOMAD Beta inside Solutions > NOMAD.">
-</p>
-
-We recommend using the Beta version, since the NOMAD infrastructure is constantly being updated.
-
-The landing NOMAD Entries page is a very intuitive and easy-to-use Graphical User Interface (GUI). Here you can explore data according to your preferences by clicking on the filter menus on the left. You can then select a variety of quantities that characterize the Material or system under study, the methodology parameters followed in the calculation or experiment, and the output properties.
-
-<div class="click-zoom">
-    <label>
-        <input type="checkbox">
-        <img src="../assets/part1_explore/explore.png" alt="Explore GUI page" width="90%" title="Exploring entries GUI page.">
-    </label>
-</div>
-<div class="click-zoom">
-    <label>
-        <input type="checkbox">
-        <img src="../assets/part1_explore/materials.png" alt="Materials menu" width="90%" title="Materials filter menu.">
-    </label>
-</div>
-
-<!-- There is a large variety of options to filter data in NOMAD. In this tutorial, you will learn about data for electronic-structure calculations, i.e., data obtained when solving Density Functional Theory (`DFT`), `GW` approximation, Bethe-Salpeter equation (`BSE`), projected tight-binding models (`Projection`), and Dynamical Mean-Field Theory (`DMFT`), as well as in the Properties menu called "Electronic". All of these menus contain (meta)information important for these calculations. If you feel some important quantity is missing, or maybe you want to extend to other electronic-structure techniques, please contact us! -->
-
-
-To get you acquainted with the GUI search in NOMAD, we will be presenting you with a couple of _scenarios_, similar to how you might encounter them in your daily activities.
+In this tutorial, we will get you acquainted with the _Graphical User Interface_ (GUI) in NOMAD, working our way through a couple of _scenarios_, similar to how you might encounter them in your daily activities.
 Each scenario starts with an _assignment box_ explaining the objective and listing the main skills you will acquire.
 They then proceed with a step-by-step walkthrough, with the most essential steps highlighted in boldface.
 
@@ -46,20 +14,55 @@ You can collapse them afterwards.
 When the information contains strategies for steering clear from mistakes, it will be labeled as _warning_.
 Each scenario assumes that you completed the previous ones, or that you are at least familiar with its objectives and terminology introduced.
 
-With the structure clear, let us jump into the [NOMAD page](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
-This link will take you to the staging version (latest release version), but only showing results up to September 14th, 2023.
-The constraint ensures that you see the same results as those of the tutorial.
+We start the tutorial with a brief overview of the NOMAD Archive and Repository (in short, NOMAD-lab) A more general tutorial can be found in the [FAIRmat tutorial 1](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-1/tutorial-1-home).
 
-Take a look at the layout.
-Some elements immediately stand out:
+## Navigating to NOMAD {#entries_section}
 
-- In the middle, there is a whole list with tabulated data.
-- Just above it is a search bar with the text "Type your query or keyword here".
-- On the left-hand side is a "FILTERS" _side menu_.
-- At the very top is a header with several options (left-hand side), login and units (right-hand).
+With the structure clear, let us jump into the NOMAD website.
+Only... there are several access points.
+The general [_landing page_](https://nomad-lab.eu/nomad-lab/) will give you and quick rundown of the _NOMAD Archive and Repository_, as wells as it features.
+Furthermore, it provides several links to documentation, tutorials, and the history behind the project.
+
+When accessing the data, however, we want to locate the _Archive and Repository_ itself.
+There are 2 public versions available:
+1. [stable](https://nomad-lab.eu/prod/v1/gui/search/entries), as the default, under "Open NOMAD" (highlighted orange).
+2. the [beta /staging](https://nomad-lab.eu/prod/v1/staging/gui/search/entries), which has the latest release and updates much more frequently. As such, it could also harbor unstable or untested features.
+
+Unless anything breaks, we recommend using the beta version.
+It has links at the bottom-right corner of the landing page, as well as under "SOLUTIONS" > "NOMAD" > "Try and Test" (highlighted red).
+
+<div class="image-container">
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/beta1.png" width="45%" title="NOMAD Beta at the bottom of the website.">
+        </label>
+    </div>
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/beta2.png" width="45%" title="NOMAD Beta inside Solutions > NOMAD.">
+        </label>
+    </div>
+</div>
+
+To ensure the long-term reproducibility of this tutorial, we provide you with a link to the beta / staging version, but capped at September 14th, 2023.
+Please visit this [NOMAD page](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000) and take a look at its layout.
 
 As denoted at the top left, the page we have in front of us is called _Entries_.
 When loading the page, you should also see an orange box in the left-bottom corner, warning you that you are using an experimental product. You can get rid of it by clicking the check mark (`✓`).
+
+Some other layout elements worth mentioning:
+
+- In the middle, there is a whole list with _tabulated data_.
+- Just above it is a _search bar_ with the text "Type your query or keyword here".
+- On the left-hand side is a "FILTERS" _side menu_.
+- At the very top is a _header_ with several options (left-hand side), _login_ and _units_ (right-hand).
+
+The NOMAD Entries page is an intuitive, easy-to-use GUI.
+Here you can explore data according to your preferences by clicking on the filter menus on the left.
+You can then select a variety of quantities that characterize the material or system under study, the methodology parameters followed in the calculation or experiment, and the output properties.
+
 Now, let us move on to the actual scenarios.
 
 ### Scenario 1 - Example setup
