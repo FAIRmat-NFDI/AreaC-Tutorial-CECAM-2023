@@ -36,13 +36,13 @@ It has links at the bottom-right corner of the landing page, as well as under "S
     <div class="click-zoom">
         <label>
             <input type="checkbox">
-            <img src="../assets/part1_explore/beta1.png" width="45%" title="NOMAD Beta at the bottom of the website.">
+            <img src="../assets/part1_explore/beta1.png" width="45%" data-expand="60%" title="NOMAD Beta at the bottom of the website.">
         </label>
     </div>
     <div class="click-zoom">
         <label>
             <input type="checkbox">
-            <img src="../assets/part1_explore/beta2.png" width="45%" title="NOMAD Beta inside Solutions > NOMAD.">
+            <img src="../assets/part1_explore/beta2.png" width="45%" data-expand="60%" title="NOMAD Beta inside Solutions > NOMAD.">
         </label>
     </div>
 </div>
