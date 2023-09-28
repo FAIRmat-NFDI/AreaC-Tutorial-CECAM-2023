@@ -209,7 +209,7 @@ Let's go back to when we were selecting the relevant option under the Molecular 
     We will also provide a _solution button_ at the end of each exercise.
 
     <center>
-    [Final solution](){ .md-button }
+    [Final solution](){:target="_blank" .md-button }
     </center>
 
 <!-- placeholder note for Joseph option A -->
@@ -219,8 +219,6 @@ Let's go back to when we were selecting the relevant option under the Molecular 
     Nonetheless, they demonstrate useful features of the NOMAD repository, and *hopefully* motivate the increased use of NOMAD for molecular dynamics simulations.
 
 ### Scenario 2 - Data science
-
-Start a fresh session by clearing the molecular dynamics related filters, or by restoring the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
 
 !!! abstract "Assignment"
     **You want to evaluate the impact of the metal used in _Metal Organic Frameworks_ (MOFs).
@@ -234,6 +232,8 @@ Start a fresh session by clearing the molecular dynamics related filters, or by 
     - customize the entries table.
     - use all 4 types of search bar queries.
     - recognize "OR" filter stacking.
+
+Start a fresh session by clearing the molecular dynamics related filters, or by restoring the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
 
 In this scenario our objective is more vaguely defined, so we will **start by exploring** the database before focusing in.
 A good overview is fundamental for spotting interesting data.
@@ -507,7 +507,7 @@ Formulate a **presence query** for the _density of states_, commonly abbreviated
     Other examples of analyzing NOMAD processed data are shown in [part IV](Tutorial-3_Extracting_Data_and_Trajectory_Analysis.md), however.
 
     <center>
-    [Final solution](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?structural_type=bulk&n_elements[gte]=5&n_elements[lte]=6&xc_functional_names=HYB_GGA_XC_HSE03&xc_functional_names=HYB_GGA_XC_HSE06&upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000&quantities=results.properties.electronic.dos_electronic&elements=C&elements=H&elements=O&elements=N){ .md-button }
+    [Final solution](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?structural_type=bulk&n_elements[gte]=5&n_elements[lte]=6&xc_functional_names=HYB_GGA_XC_HSE03&xc_functional_names=HYB_GGA_XC_HSE06&upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000&quantities=results.properties.electronic.dos_electronic&elements=C&elements=H&elements=O&elements=N){:target="_blank" .md-button }
     </center>
 
 !!! warning "When stacking order matters"
@@ -524,8 +524,6 @@ Formulate a **presence query** for the _density of states_, commonly abbreviated
 
 ### Scenario 3 - Finding Publications
 
-Go back again to the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
-
 !!! abstract "Assignment"
     **You are talking to a colleague about your machine-learned model (from scenario 2).
     They tell you about a good recent research publication they saw by the author Rosen, but are forgetting the rest of the details at the moment.
@@ -536,6 +534,8 @@ Go back again to the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/
     - filter by publication metadata.
     - set up a dashboard.
     - examine an entry summary.
+
+Go back again to the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
 
 The obvious starting point would be use a search engine specialized in publications, such as [**Google Scholar**](https://scholar.google.com/).
 Just searching by the author's (last?) name, yields a suggestion for "Robert A. Rose", who seems to be working in biomedicine.
@@ -585,9 +585,9 @@ This is our nascent dashboard.
 It will speed up our data exploration tremendously, but first we have to build it out a bit.
 **Add to your dashboard**:
 
+- "Author / Origin / Dataset" > "Dataset Name"
 - the periodic table ("Elements / Formula" > "Elements")
 - "Elements / Formula" > "Number of Elements"
-- "Author / Origin / Dataset" > "Dataset Name"
 
 <!-- And **remove from the dashboard**:
 
@@ -596,7 +596,7 @@ It will speed up our data exploration tremendously, but first we have to build i
 
 Feel free to incorporate other filters as well.
 Just try to keep everything in a single view.
-The more you have to scroll to access the entire dashboard, the more it loses its advantages.
+The more you have to scroll to access the entire dashboard, the more it starts losing its edge.
 Overall, a **dashboard** should just provide a **quick summary**, for more specific filters there are always the side menu and search bar.
 
 ??? tip
@@ -604,11 +604,12 @@ Overall, a **dashboard** should just provide a **quick summary**, for more speci
     You can shuffle around _widgets_ by **click & hold their name and then dragging them around**.
     Expanding their size is done by dragging the bottom-right corner (`∟`).
     Widgets start out at their minimal default.
+
     For a great example of a rich dashboard, visit the [app under "Explore" > "Solar Cells"](https://nomad-lab.eu/prod/v1/staging/gui/search/solarcells).
 
 ??? success
     Your dashboard should now look somewhat as in the reference figure.
-    Note that you might have play around with the layout to get a perfect match.
+    Note that you might have to play around with the layout to get a perfect match.
     Check the tip box above for more details.
 
     <div class="click-zoom" style="text-align: left;>
@@ -619,8 +620,8 @@ Overall, a **dashboard** should just provide a **quick summary**, for more speci
     </div>
 
 Now we can get a quick understanding of what data was uploaded.
-We are going to **re-apply some settings from scenario 2**.
-Restrain the **"Number of Elements"** to 5 and 6, and make sure the **elements H, C, N, and O** are included.
+We are going to **re-apply some settings from scenario 2** directly via the dashboard widgets.
+Restrain the **"Number of Elements"** to 5 and 6 using the slider buttons on the x-axis, and make sure the **elements H, C, N, and O** are included.
 As "Upload Create Time" updates, only 2 upload times are present now.
 **Switch between selecting one of each upload times.**
 How does the constitution of the data set change?
@@ -629,8 +630,8 @@ Pay close attention to all the widgets.
 ??? success
     Overall, it seems that the **materials covered are quite similar** in both.
     This is not just limited to the composition, but also the crystal makeup.
-    You can verify this yourself by checking the "Structure" side pane over at the [final query url](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?n_elements[gte]=5&n_elements[lte]=6&name=Andrew%20Rosen&upload_create_time[gte]=1631565041061&upload_create_time[lte]=1636259701971&elements=H&elements=C&elements=N&elements=O).
-    The uploads were instead to different datasets, which seem to differ in methodology: GGA vs hybrid and meta-GGA.
+    You can verify this yourself by checking the "Structure" side pane.
+    The uploads were instead to different datasets, which seem to differ in methodology: GGA vs meta-GGA and hybrid.
 
     <div class="image-container">
         <div class="click-zoom">
@@ -652,6 +653,10 @@ Pay close attention to all the widgets.
             </label>
         </div>
     </div>
+
+    <center>
+    [Final solution](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?n_elements[gte]=5&n_elements[lte]=6&name=Andrew%20Rosen&upload_create_time[gte]=1630563537155&upload_create_time[lte]=1676360939200&elements=H&elements=C&elements=N&elements=O){:target="_blank" .md-button }
+    </center>
 
 We should have enough information now to retrieve the paper.
 While it is nice to have data from a variety of methods, especially for comparison reasons, we are most interested in the HSE06.
