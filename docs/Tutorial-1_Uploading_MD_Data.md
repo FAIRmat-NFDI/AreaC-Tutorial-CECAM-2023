@@ -14,7 +14,7 @@ In general, you can upload files one by one or upload entire file structures in 
 [Download Test Data](../assets/md_tutorial_1/water_workflow.zip){ .md-button }
 </center>
 
-Take a minute to examine the directory structure. If you are familiar with Gromacs you will immediately see the input/output from 3 simulations: an energy minimization (`Emin/`), an NPT equilibration (`Equil-NPT/`), and an NVT production run (`Prod-NVT/`). In the main directory, you will also see a .yaml file, which contains the NOMAD schema for connecting these 3 simulations into a workflow. More information about these custom workflow schemas can be found under [`Advanced > Creating custom workflows`](Advanced/part4.md)..
+Take a minute to examine the directory structure. If you are familiar with Gromacs you will immediately see the input/output from 3 simulations: an energy minimization (`Emin/`), an NPT equilibration (`Equil-NPT/`), and an NVT production run (`Prod-NVT/`). In the main directory, you will also see a .yaml file, which contains the NOMAD schema for connecting these 3 simulations into a workflow. More information about these custom workflow schemas can be found under [`Advanced > Creating custom workflows`](Advanced/part4.md).
 
 On the top-left menu, click on `PUBLISH > Uploads`.
 
