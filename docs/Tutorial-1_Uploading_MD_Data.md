@@ -102,7 +102,7 @@ The third section, _(3) Edit author metadata_, allows users to edit certain meta
     <img src="../assets/uploading_and_publishing/edit_author_metadata.png" alt="Edit author metadata." width="50%" title="Edit author metadata.">
 </p>
 
-The final section, (4) Publish_, lets the user to publish the data with or without an embargo. This will be explained more in detail in [How-to publish data](howto_publish_data.md).
+The final section, (4) Publish_, lets the user to publish the data with or without an embargo. This will be explained more in detail in [How-to publish data](https://nomad-lab.eu/prod/v1/docs/data/upload.html){:target="_blank"}.
 
 <div class="click-zoom">
     <label>
@@ -136,7 +136,7 @@ Finally, click on the **DATA** tab. Here you can navigate through the NOMAD *Met
 
 NOMAD stores all processed data in a well defined, structured, and machine readable format, known as the `archive`.
 The schema that defines the organization of (meta)data within the archive is known as the `MetaInfo`.
-More information can be found in the NOMAD docs: [An Introduction to Schemas and Structured Data in NOMAD](https://nomad-lab.eu/prod/v1/docs/schema/introduction.html){:target="_blank"}.
+More information can be found in the NOMAD docs: [An Introduction to Schemas and Structured Data in NOMAD](https://nomad-lab.eu/prod/v1/docs/schemas/basics.html){:target="_blank"}.
 
 Duplicate your tab and go to `Analyze > The NOMAD Metainfo` in the top-left menu of NOMAD. Here you can navigate through or search the entire set of NOMAD Metainfo definitions.
 
@@ -227,7 +227,7 @@ Now click on the **atoms_group** section:
     </label>
 </div>
 
-This section holds a hierarchical organization of the system (denoted in the following as the *topology*), based on the *bonds* defined in the force field used for this simulation. By default, the first level of this hierarchy contains *molecule groups*, which group together all molecules of the same type. Now, by clicking the **atoms_group** subsection of this group, you reach the next level down, which contains each molecule within the current molecule group. Similarly to these molecule groups and molecule levels, monomer groups and monomer levels will be defined for polymer systems. The individual atoms within each molecule are not explicitly stored within this hierarchy, but are simply referenced via their indices within the **atoms** section. Take a few minutes to examime this hierarchy and the stored quantities in more detail. Note that at the moment the hierarchy is only stored in the first entry of **system**.
+This section holds a hierarchical organization of the system (denoted in the following as the *topology*), based on the *bonds* defined in the force field used for this simulation. By default, the first level of this hierarchy contains *molecule groups*, which group together all molecules of the same type. Now, by clicking the **atoms_group** subsection of this group, you reach the next level down, which contains each molecule within the current molecule group. Similarly to these molecule groups and molecule levels, monomer groups and monomer levels will be defined for polymer systems. The individual atoms within each molecule are not explicitly stored within this hierarchy, but are simply referenced via their indices within the **atoms** section. Take a few minutes to examine this hierarchy and the stored quantities in more detail. Note that at the moment the hierarchy is only stored in the first entry of **system**.
 
 Now go back and navigate to section **run** :fontawesome-solid-arrow-right: **calculation** :fontawesome-solid-arrow-right: **0**:
 
