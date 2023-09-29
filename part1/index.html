@@ -1,0 +1,1371 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FAIRmat Area C tutorial 10.
+">
+      
+      
+        <meta name="author" content="FAIRmat consortium">
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../Tutorial-2_Overview_Page_and_Worfklow_Visualizer/">
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
+    
+    
+      
+        <title>Part I - Exploring NOMAD - NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d451bc0e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a5377069.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Titillium Web";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#part-i-overview-of-the-nomad-archive-and-repository-60-min" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" class="md-header__button md-logo" aria-label="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" data-md-component="logo">
+      
+  <img src="../assets/nomad-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Part I - Exploring NOMAD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_2">
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" class="md-nav__button md-logo" aria-label="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" data-md-component="logo">
+      
+  <img src="../assets/nomad-logo.png" alt="logo">
+
+    </a>
+    NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Part I - Exploring NOMAD
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Part I - Exploring NOMAD
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entries_section" class="md-nav__link">
+    Navigating to the NOMAD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario-1-example-setup" class="md-nav__link">
+    Scenario 1 - Example setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario-2-data-science" class="md-nav__link">
+    Scenario 2 - Data science
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario-3-finding-publications" class="md-nav__link">
+    Scenario 3 - Finding Publications
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorial-2_Overview_Page_and_Worfklow_Visualizer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part II - Overview page and workflows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorial-1_Uploading_MD_Data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part III - Uploading data to NOMAD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorial-3_Extracting_Data_and_Trajectory_Analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part IV - Working with the NOMAD archive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/part4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating custom workflows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/Upload_API/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using python API for uploading
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/AI_toolkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The AI toolkit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entries_section" class="md-nav__link">
+    Navigating to the NOMAD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario-1-example-setup" class="md-nav__link">
+    Scenario 1 - Example setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario-2-data-science" class="md-nav__link">
+    Scenario 2 - Data science
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario-3-finding-publications" class="md-nav__link">
+    Scenario 3 - Finding Publications
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="part-i-overview-of-the-nomad-archive-and-repository-60-min">Part I: Overview of the NOMAD Archive and Repository (~60 min)<a class="headerlink" href="#part-i-overview-of-the-nomad-archive-and-repository-60-min" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In this tutorial, we will get you acquainted with the <em>Graphical User Interface</em> (GUI) in NOMAD, working our way through a couple of <em>scenarios</em>, similar to how you might encounter them in your daily activities.
+Each scenario starts with an <em>assignment box</em> explaining the objective and listing the main skills you will acquire.
+They then proceed with a step-by-step walkthrough, with the most essential steps highlighted in <strong>boldface</strong>.</p>
+<p>There are several checkpoints along the way to ensure you stay on track.
+These come in the shape of <em>tips</em> and <em>success</em> boxes, which you have to click to unfold.
+Additional useful information that might be straying too off-topic is listed in <em>info</em> boxes.
+Reading them is optional for completing your task, but might deliver useful extra insights.
+You can collapse them afterwards.
+When the information contains strategies for steering clear from mistakes, it will be labeled as <em>warning</em>.
+Each scenario assumes that you completed the previous ones, or that you are at least familiar with its objectives and terminology introduced.</p>
+<p>We start the tutorial with a brief overview of the <em>NOMAD Archive and Repository</em> (in short, <em>NOMAD-lab</em>).
+ A more general tutorial can be found in the <a href="https://www.fairmat-nfdi.eu/events/fairmat-tutorial-1/tutorial-1-home" target="_blank">FAIRmat tutorial 1</a>.</p>
+<h2 id="entries_section">Navigating to the NOMAD<a class="headerlink" href="#entries_section" title="Permanent link">&para;</a></h2>
+<p>With the structure clear, let us jump into the NOMAD website.
+Only... there are several access points.
+The general <a href="https://nomad-lab.eu/nomad-lab/" target="_blank"><em>landing page</em></a> will give you a quick rundown of the NOMAD-lab, as wells as it features.
+Furthermore, it provides several links to documentation, tutorials, and the history behind the project.</p>
+<p>When accessing the data, however, we want to locate the NOMAD-lab itself.
+There are 2 public versions available:</p>
+<ol>
+<li><a href="https://nomad-lab.eu/prod/v1/gui/search/entries" target="_blank">stable</a>, as the default, under "Open NOMAD" (highlighted <span style="color:orange">orange</span>).</li>
+<li><a href="https://nomad-lab.eu/prod/v1/staging/gui/search/entries" target="_blank">beta /staging</a>, which has the latest release and updates much more frequently. As such, it could also harbor unstable or untested features.</li>
+</ol>
+<p>Unless anything breaks, we recommend using the beta version.
+It has links at the bottom-right corner of the landing page, as well as under "SOLUTIONS" &gt; "NOMAD" &gt; "Try and Test" (highlighted <span style="color:red">red</span>).</p>
+<div class="image-container">
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/beta1.png" width="45%" data-expand="60%" title="NOMAD Beta at the bottom of the website.">
+        </label>
+    </div>
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/beta2.png" width="45%" data-expand="60%" title="NOMAD Beta inside Solutions > NOMAD.">
+        </label>
+    </div>
+</div>
+
+<p>To ensure the long-term reproducibility of this tutorial, we provide you with a link to the beta version, but capped at September 14th, 2023.
+Please visit this <a href="https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&amp;upload_create_time[lte]=1694679900000" target="_blank">NOMAD page</a> and take a look at its layout.</p>
+<p>As denoted at the top left, the page we have in front of us is called <em>Entries</em>.
+When loading the page, you should also see an orange box in the left-bottom corner, warning you that you are using an experimental product. You can get rid of it by clicking the check mark (<code>✓</code>).</p>
+<p>Some other layout elements worth mentioning are:</p>
+<ul>
+<li>in the middle, there is a whole list with <em>tabulated data</em>.</li>
+<li>just above it is a <em>search bar</em> with the text "Type your query or keyword here".</li>
+<li>on the left-hand side is a "FILTERS" <em>side menu</em>.</li>
+<li>at the very top is a <em>header</em> with several options (left-hand side), <em>login</em> and <em>units</em> (right-hand).</li>
+</ul>
+<p>Overall, the NOMAD Entries page is an intuitive, easy-to-use GUI.
+Here you can explore data according to your preferences by clicking on or typing out filters.
+As such, you can select from a variety of quantities that characterize the material or system under study, the methodology parameters followed in the calculation or experiment, and the output properties.</p>
+<p>Now, let us move on to the actual scenarios.</p>
+<h2 id="scenario-1-example-setup">Scenario 1 - Example setup<a class="headerlink" href="#scenario-1-example-setup" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">Assignment</p>
+<p><strong>Imagine that you want to set up a Molecular Dynamics simulation of <em>water</em> in <em>Gromacs</em>, and would like some examples to help you get started.
+For example, you may want to compare results from several setups to find the one most suitable to you.</strong></p>
+<p>In this exercise, you will learn how to:</p>
+<ul>
+<li>navigate the "FILTERS" side menu.</li>
+<li>toggle and combine filters.</li>
+<li>work with dynamic statistics.</li>
+</ul>
+</div>
+<p>In the <em>entries list</em> NOMAD is already listing all database <em>entries</em>.
+The strategy is to <strong>narrow or <em>filter</em> this list down</strong> to our needs.
+Our main tool will be the <em>side menu</em> (left-hand side).
+Take stock of its structure.
+There is a list of themes or <em>filter groups</em>.
+Subgroups are indented below their main group.
+Any <strong>filter group with an arrow</strong> (<code>&gt;</code>) can be <strong>clicked open</strong> to reveal various filters and statistics in a <em>side pane</em>.
+To <strong>close the side pane</strong> and reveal the full table again, use the <strong>arrow back (<code>&lt;-</code>)</strong> in the top-left corner.
+Alternatively, you could also click anywhere outside of the pane, but be careful not to select anything unwanted.</p>
+<p>Now, <strong>scroll down to check out the full list</strong>.
+What main groups are there?
+Remember, we essentially want to learn more about Gromacs and its calculation setup.
+<strong>Under which filter groups do you think we could find them?</strong></p>
+<details class="success">
+<summary>Success</summary>
+<p>While it is somewhat hidden, you can find the <strong>"Program Name" under "Method"</strong>.</p>
+</details>
+<p>The widget you see under this side pane has a double function: it acts both as a filter and a statistics overview.
+It comes with a text bar and a list of suggestions.
+You can try extending the list further by clicking "SHOW MORE", but Gromacs is not the most well-represented code in our database.
+Here, it is probably faster to just <strong>type out the program name</strong> and <strong>hit enter</strong>.</p>
+<details class="tip">
+<summary>Tip</summary>
+<p>Almost all text bars in NOMAD support <strong>autocomplete</strong>.
+This comes in handy when you are unsure of the spelling or capitalization.
+Start with the first few letters and select your choice by clicking or hitting enter.</p>
+</details>
+<details class="success">
+<summary>Success</summary>
+<p>You should be getting a result similar to the one in the reference picture.
+In the <strong>side menu</strong>, under "Method", you will find the <strong>active filter "Program Name"</strong> listed in grey, with its constraint / value <strong>"GROMACS" denoted in a blue, oval <em>chip</em></strong>.</p>
+<p><div class="click-zoom" style="text-align: left;">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/sc1_gromacs_selected.png" title="Filtering by program name">
+    </label>
+</div></p>
+</details>
+<p>Notice how the entries list changes with respect to your filter!
+Yet, the list of remaining calculations is still quite long (3.494 matches)...
+Most likely, there will not be a single filter that solves our problem completely.
+That is alright, though, we can just <strong>stack up several filters</strong>.</p>
+<details class="tip">
+<summary>Tip</summary>
+<p>If the filters are <strong>not taking effect</strong> right away, click the <em>redo button</em> (<code>↺</code>) next to "FILTERS".
+It will manually trigger an update of the entries list and statistics.</p>
+<p>Likewise, to <strong>reset all filters</strong> and start with a clean slate, click on the <em>cancel button</em> (<code>x</code>).
+Note that in the case of this tutorial, this also means removing the time constraint.
+Hence, if you decide to reset, the exact search results you see might start deviating from those in the tutorial.
+It is highly <strong>recommended to follow the guide</strong>.</p>
+</details>
+<p>The appropriate filters depend on your goals and priorities. Since we are interested in running a molecular dynamics simulation,
+<strong>go to the filter subgroup called "Molecular Dynamics", and click it open</strong>.
+You are now presented with several settings.
+Judging from the statistics, we have the best chance with a setting that covers the widest range of calculations (28.000 entries).
+<strong>Select "Temperature" under "Available Properties"</strong>. <!-- @Joseph: do you want me to to add a "Molecular Dynamics" selection button?--></p>
+<details class="tip">
+<summary>Tip</summary>
+<p>If you have trouble <strong>understanding any term</strong>, just <strong>hover over</strong> it with the mouse.
+A summary text will appear.
+For example, "Molecular Dynamics" &gt; "Available Properties" clarifies that we are dealing with observables documented along the trajectory.</p>
+</details>
+<p>System specifications are found under "Material".
+Since we know the composition of our system, <strong>click on "Elements / Formula"</strong>.
+Notice how many of the elements in the periodic table are grayed out.
+This indicates that there are no entries containing these elements, given the filters that you have applied.
+Additionally, the <strong>number of entries</strong> containing each remaining element is displayed within the element's periodic table box, with a corresponding <strong>blue color gradient</strong>.</p>
+<details class="tip">
+<summary>Tip</summary>
+<p>You can toggle the <strong>statistics</strong> scale via the dropdown menu to the right of the name.
+Conversely, if the statistics are ever slowing the browser down, deactivate them by deselecting "Filters" &gt; "options menu" (<code>⋮</code>) &gt; "Show advanced statistics".</p>
+</details>
+<p>Now, <strong>select the elements</strong> contained in our system (we are looking for pure water, so O and H suffice).
+The corresponding chips will be added to the side menu, with an "and" in between.
+While filters between groups <em>stack</em> (i.e., <strong>"and" logic</strong> is applied), those within a side pane each have their own logic (more on that in scenario 2).
+Finally, remove all data with additional elements by selecting the <strong>"only compositions that exclusively contain these atoms"</strong> box.</p>
+<details class="success">
+<summary>Success</summary>
+<p>You are left with 2 MD calculations in the entries list.
+<strong>Clicking on the arrow (<code>-&gt;</code>)</strong> of whichever entry will bring you to its <em>overview page</em>.
+More on that in <a href="../Tutorial-2_Overview_Page_and_Worfklow_Visualizer/">Part II - Overview page and workflows:</a>.
+By <strong>clicking through on "FILES"</strong>, you will get an overview of the uploaded files.
+These for sure contain <strong>output</strong>, but often also <strong>input</strong>.
+Both could serve as great starting points for deploying your own calculations.</p>
+<p><div class="image-container">
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc1_fullquery_sidepane.png" title="The full query's periodic table">
+        </label>
+    </div>
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc1_fullquery_entrieslist.png" title="The full query's entries list">
+        </label>
+    </div>
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc1_fullquery_rawdata.png" title="The raw data overview for example input">
+        </label>
+    </div>
+</div></p>
+<p>To <strong>save or share</strong> your active filters, you can simply <strong>bookmark the URL</strong>.
+We will also provide a <em>solution button</em> at the end of each exercise.</p>
+<p><center>
+<a class="md-button" href="https://nomad-lab.eu/prod/v1/staging/gui/search/entries?program_name=GROMACS&amp;upload_create_time[gte]=1419895487748&amp;upload_create_time[lte]=1694679900000&amp;trajectory[available_properties]=temperature&amp;exclusive=true&amp;elements=H&amp;elements=O" target="_blank">Imtermittent solution</a>
+</center></p>
+</details>
+<p>The filters that we have chosen are just small questions or details that we use to construct an overall query.
+They can be added and removed, as we see fit.
+So, let us relax our conditions a bit and, leaving out the requirement for a temperature trajectory.
+Click the <code>x</code> next to the <code>temperature chip</code> or go to <strong>"Molecular Dynamics" &gt; "Available Properties"</strong> and <strong>click the highlighted checkbox</strong> again to deselect it.
+Now look at which entries are added.
+Are there any other filters that you would like to try out, or do you prefer checking them out by hand?</p>
+<details class="success">
+<summary>Success</summary>
+<p>Glossing over the remaining 6 results, 3 by Jannik Mehlis and 3 by Sebastian Baugmart, we retrieve <strong>2 more MD simulations</strong> and <strong>2 more "Geometry Optimizations"</strong>.
+You may notice that some entries do not have a clear specification (under the "Entry type" column in the entries list). <!-- @Joseph is this a bug? -->
+These entries likely need to be reprocessed to classify them correctly, since the molecular dynamics support has been developed more recently.
+However, you can still find out their classification by visiting the entry's overview page.</p>
+<p>While geometry optimization was not part of our initial objective, these entries may inform us about the <strong>overarching workflow</strong> used by both authors, i.e., relaxing the system before the production simulation.
+Annotating such workflows is covered under <a href="../Advanced/part4/"><code>Advanced &gt; Creating custom workflows</code></a>.</p>
+<p><div class="click-zoom" style="text-align: left;">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/sc1_alternate_stack.png" title="Removing the molecular dynamics filter">
+    </label>
+</div></p>
+<p><center>
+<a class="md-button" href="https://nomad-lab.eu/prod/v1/staging/gui/search/entries?program_name=GROMACS&amp;upload_create_time[gte]=1419895487748&amp;upload_create_time[lte]=1694679900000&amp;exclusive=true&amp;elements=H&amp;elements=O" target="_blank">Final solution</a>
+</center></p>
+</details>
+<!-- placeholder note for Joseph option A -->
+<details class="info" open="open">
+<summary>Content in scenarios 2 and 3</summary>
+<p>The upcoming scenarios <strong>do not</strong> deal with molecular dynamics data directly, due to lack of uploads.
+Nonetheless, they demonstrate useful features of the NOMAD repository, and <em>hopefully</em> motivate the increased use of NOMAD for molecular dynamics simulations.</p>
+</details>
+<h2 id="scenario-2-data-science">Scenario 2 - Data science<a class="headerlink" href="#scenario-2-data-science" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">Assignment</p>
+<p><strong>You want to evaluate the impact of the metal used in <em>Metal Organic Frameworks</em> (MOFs).
+Maybe, if you find enough high-quality data, you can even train a machine-learned model.
+Specifically, you are interested in predicting the band gap <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</strong></p>
+<p>In this exercise, you will learn how to:</p>
+<ul>
+<li>customize the entries table.</li>
+<li>use all 4 types of search bar queries.</li>
+<li>recognize "OR" filter stacking.</li>
+</ul>
+</div>
+<p>Start a fresh session by clearing the molecular dynamics related filters, or by restoring the <a href="https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&amp;upload_create_time[lte]=1694679900000" target="_blank">initial session</a>.</p>
+<p>In this scenario our objective is more vaguely defined, so we will <strong>start by exploring</strong> the database before focusing in.
+A good overview is fundamental for spotting interesting data.
+As you will have noticed, our main tool here is the <strong>entries list</strong> (supplemented by the statistics).
+Unfortunately, the default columns (Entry "Name", the Hill "Formula", "Entry type", "Upload time", and "Authors") are not that helpful when exploring the <em>materials space</em>.
+To <strong>choose new columns</strong>, <strong>click on the three vertical slots</strong> (<code>|||</code>) in the upper-right corner, opposite to "search results".
+You will be presented with a checkbox menu of various quantities.
+<strong>Deselect</strong></p>
+<ul>
+<li>"Name": it contains similar information as "Formula" and "Entry Type" combined,</li>
+<li>"Upload time": we do not care for now about when the data was uploaded,</li>
+<li>"Author": dito,</li>
+</ul>
+<p>and instead <strong>select</strong></p>
+<ul>
+<li>"Dimensionality": to distinguish whether we are dealing with bulk, surface, or molecules.</li>
+<li>"Crystal system": the symmetry of the supercell.</li>
+<li>"Space group symbol": the symmetry of the atomic coordinates inside the supercell.</li>
+<li>"Comment": just to give us a bit more context, where possible.</li>
+</ul>
+<p>The 3 first selections are quantities who's filters can all be found under "Material" &gt; "Structure".
+Let us furthermore <strong>sort alphabetically by (Hill) "Formula"</strong> by clicking on the "Formula" heading.
+(Click multiple times to toggle between ascending / descending ordering).</p>
+<details class="info" open="open">
+<summary>What are entries exactly?</summary>
+<p>Entries are individually stored data packages, shown as rows in the overview table.
+In our context, they mostly overlap with an <em>individual calculation</em>, e.g., a single-point calculation or a single molecular dynamics run.
+When separate calculations are linked together into a <em>workflow</em> (see <a href="../Advanced/part4/"><code>Advanced &gt; Creating custom workflows</code></a>), the overall link also receives its own dedicated entry.
+Lastly, since NOMAD covers the whole of Condensed Matter Physics and Chemistry, entries can also be <em>experimental samples</em> or <em>batches</em>.</p>
+</details>
+<details class="success">
+<summary>Success</summary>
+<p>You should now have a view in front of you similar to the reference figure.
+There is <strong>little room for deviation</strong>, since the <strong>horizontal column order</strong> is predetermined (matching the one in the selection box menu).
+Similarly, there can only be <strong>one column for sorting</strong> at a time.</p>
+<p><div class="image-container">
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc2_column_selection.png" title="Checkbox menu for the columns after deselecting">
+        </label>
+    </div>
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc2_column_layout.png" title="The new, ordered column layout">
+        </label>
+    </div>
+</div></p>
+</details>
+<p>With our entries view all set up, we move on to the <strong>exploration</strong> part.
+More specifically, we will investigate the impact of several filters on our search.
+You can follow along with the suggestions here, but feel free to also try out on your own.</p>
+<p>While in the previous scenario we relied exclusively on the side menu, now that you are more familiar with the filters and their names, we can extend our toolkit with a <strong>faster</strong> alternative: the <strong>search bar</strong>.
+Its main purpose is to aid you in composing <strong>text-written filters</strong> and avoid having to switch between side panes all the time.
+The search bar does not, however, support the free-style natural language queries as found in web search engines, like Google, or AI models, like ChatGPT.
+The formatting here is far stricter.
+While you can switch back to the side menu at any time, we will , for educational purposes, rely solely on the search bar throughout this scenario.</p>
+<details class="info" open="open">
+<summary>Optimade</summary>
+<p>NOMAD also supports the <a href="https://www.optimade.org/documentation" target="_blank">Optimade</a> API, which has its own query conventions (not covered in this tutorial).
+To use the NOMAD-Optimade endpoint, scroll down to "Optimade" at the very bottom of the side menu.</p>
+</details>
+<p>We have a lot of leeway in which filters we tackle first.
+As usual, it is best to start with the attributes that are <strong>most clearly defined by our objective</strong>.
+In this case, it is that we are looking for <strong>MOFs</strong>.
+From there on we will follow <strong>the sequence: material; method; property</strong>, just as you would when generating your own data.</p>
+<p>Let us start again with the composition, or more specifically, by retrieving entries that contain carbon.
+Locate the search bar (above the entries list) and <strong>click into it to start typing</strong>.
+Try out a couple of keywords that come to your mind.
+As you are typing, <strong>NOMAD will autocomplete your query</strong> with several suggestions.
+Once you find a promising term, select it with the mouse or keyboard.
+Then write a single (not double or triple) <strong>equal sign (<code>=</code>)</strong> and <strong>fill in the value</strong> to filter for.
+Once you have it, press enter.
+Congratulations, you have applied your first <em>equality query</em>.</p>
+<details class="tip">
+<summary>Tip</summary>
+<p>When searching for elements, do not fall for the mistake of writing out their name.
+NOMAD, and especially its search bar, aims for efficiency.
+So just stick to the <strong>elemental symbol</strong> from the periodic table.
+Lowercase also works.</p>
+</details>
+<details class="info" open="open">
+<summary>What are these autocompleted filter names?</summary>
+<p>The full filter names that pop up in the suggestions are structured similarly to a <em>filepath</em>, but with dots (<code>.</code>) instead of slashes (<code>/</code> on Unix, <code>\\</code> on Windows).
+This is in line with the format of many other <em>document databases</em>.
+To explore this structure / <em>schema</em>, navigate to "ANALYZE" (in header) &gt; "The NOMAD Metainfo".</p>
+</details>
+<details class="success">
+<summary>Success</summary>
+<p>You should have found the query <strong>"results.material.elements=C"</strong>.
+Upon pressing enter, the same chip as usual appears in side menu, confirming that the filter is active.
+Moreover, note how the <strong>filter name</strong> in the side menu is contained in the the autocompleted version.</p>
+<p><div class="image-container">
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc2_searchbar_Cquery.png" title="Query for entries containing carbon, right before applying filter">
+        </label>
+    </div>
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc2_chip_Cquery.png" title="Active filter for entries containing carbon">
+        </label>
+    </div>
+</div></p>
+</details>
+<p>As you saw, one can start out by writing the filter name, but you can just as well skip ahead to the value.
+Just <strong>type in  "H"</strong> and <strong>apply "results.material.elements=H"</strong>.
+NOMAD automatically recognizes that you might mean an element, at which point it is easy to guess the matching filter.
+As such, we have refined our search to hydrocarbons, but MOFs also need ligands to bind the metal.
+Using the search bar, further <strong>stack oxygen and nitrogen filters</strong>.
+Note how the entries list changes.</p>
+<p>While the formulae are approaching what we are looking for, they do not look like MOFs quite yet.
+We already have enough elements for our skeleton / linkers, so let us just <strong>add a metal</strong> now.
+Unfortunately, the NOMAD filters do not know this concept.
+Instead, we will keep the last element a bit more open and just specify the number of elements.
+<strong>"Number of"</strong> is often abbreviated as <strong>"n_"</strong> in NOMAD.
+Type it into the search bar and select the appropriate filter name.
+We want to constrain the formula, but let us keep room for a wild card, e.g. another metal or ligand constituent.
+If it troubles us down the road, we can just tighten the filter.
+So finish the <em>single inequality query</em> with <strong>"&lt;=6"</strong>.</p>
+<p>The current query will leave room for systems without any metal atom, i.e. not MOFs.
+<strong>Recreate the previous query</strong>, but hold off on pressing the enter key.
+Rather, you should constrain it with a <strong>lower limit</strong> as well.
+In particular, let's require at least 5 different elements.
+You can add a lower limit by placing your <strong>cursor at the beginning</strong> and writing a similar comparison.
+Like this, you have constructed the most complex search bar query, a <em>double inequality query</em>.</p>
+<p>Finally, we are interested in the material in <strong>bulk form</strong> specifically, no interfaces of any kind.
+<strong>Use the search bar</strong> to add this restriction.</p>
+<details class="success">
+<summary>Success</summary>
+<p>Your sandwiched LTE / GTE query should be either <code>4&lt;results.material.n_elements&lt;=6</code> or <code>5&lt;=results.material.n_elements&lt;=6</code>.
+Both yield the same results.
+Then you should also have added the equality query <code>results.material.structural_type=bulk</code>.</p>
+<p><div class="click-zoom" style="text-align: left;">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/sc2_composition_complete.png" title="All filters determining composition">
+    </label>
+</div></p>
+<p>Most columns seem much more uniform now.
+This was to be expected for "Dimensionality", since we explicitly enforced homogeneity, but "Entry type", "Crystal system" and "Space group symbol" are also affected.
+Even "Comment" seems to be following a repetitive format.</p>
+<p>Most importantly, the formulae only vary in metal contributions.
+These definitely look like MOFs.
+You can verify this by opening the <em>entry overview</em> of a row.
+Just click the arrow (<code>-&gt;</code>) right in the entries list.
+To return, use your browser's "go back" function.</p>
+</details>
+<p>For machine-learning, a <strong>dataset</strong> should be <strong>homogeneous</strong> across its entire setup, safe for the variables that we are interested in.
+Most of the data on NOMAD is <em>Density Functional Theory</em> (DFT), with some GW and classical forcefields.
+GW would overall be better for high-quality band gaps, but DFT will end up being more useful due to its sheer number of entries.
+Just as with forcefields, DFT is mostly determined by the choice of kernel, i.e. density functional.</p>
+<p>Hybrid functionals are the norm for organic systems and the most popular in solid state by far are HSE06 and HSE03.
+By now, you probably have a good instinct of where to find them in the side menu (under "DFT"), but let us stick with the search bar for practice.
+Perform an <strong>equality query</strong> for both <strong>"HSE03" and "HSE06"</strong> (prominent hybrids in solid state).</p>
+<details class="info" open="open">
+<summary>Density functional nomenclature</summary>
+<p>The functional naming in NOMAD follows the <strong>convention established by <a href="https://github.com/ElectronicStructureLibrary/libxc" target="_blank">libxc</a></strong>, a popular library for evaluating (semi)local functionals.
+In practice, this goes as <code>&lt;hybrid flag&gt;_&lt;Jacob's Ladder&gt;_&lt;exchange-correlation part&gt;_&lt;name identifier&gt;</code>, where <strong><code>&lt;name identifier&gt;</code> is the main ID</strong> and the other tags simply provide metadata.
+<code>&lt;hybrid flag&gt;</code> is only present when the functional truly is a hybrid.</p>
+</details>
+<p>Hold on.
+How can an entry contain 2 exchange-correlation functionals at once?
+Are we maybe filtering for workflows that contain both?
+For your answer, <strong>take a look at the side menu</strong>.</p>
+<details class="success">
+<summary>Success</summary>
+<p>Both "HYB_GGA_XC_HSE03" and "HYB_GGA_XC_HSE06" chips are present, but separated by the <strong>connector "OR"</strong> rather than "AND".
+Just as the name suggests, the logic condition is different in this case.
+Our "XC Functional Names" filter as not been narrowed down, but <strong>extend to search for both</strong> options.</p>
+<p><div class="click-zoom" style="text-align: left;">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/sc2_method_complete.png" title="All filters determining composition and methodology">
+    </label>
+</div></p>
+<p><!-- In practice, when doing **machine learning**, you would only choose a **single functional** (HSE06 in this case).
+The only exception would be _transfer learning_, but even then you are advised to split the functionals out over separate queries. -->
+Note: In practice you would only choose a <strong>single functional</strong> when doing <strong>machine learning</strong>. Here, we look for 2 functionals just for educational reasons.</p>
+</details>
+<details class="info" open="open">
+<summary>Multiple density functionals per entry</summary>
+<p>A single entry (and even calculation) may contain multiple functional names, just not <code>XC</code>!
+The libxc namely splits up <em>exchange-correlation</em> functionals (<code>XC</code>) into <em>exchange</em> (<code>X</code>) and <em>correlation</em> (<code>C</code>), when appropriate.
+So for example, the most prominent functional in NOMAD, <code>PBE</code>, is stored as <code>[GGA_X_PBE, GGA_C_PBE]</code>.
+Note that selecting one of either or even both (due to the <code>OR</code> logic), does not guarantee a user will retrieve only PBE.</p>
+</details>
+<p>With the main method specified, there are still a bunch of additional numerical settings that may affect the fidelity of the results, such as the <em>basis set</em>.
+These can all be found under the filter subgroup "Precision".
+It is tough to estimate these parameters' actual impact.
+Therefore, they are best left till the end of the full query.
+Then you can evaluate the cost-benefit of reducing the dataset size for higher homogeneity or precision.
+For a full rundown on these newer features, feel free to check out <a href="https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home" target="_blank">FAIRmat Tutorial 10</a>.</p>
+<!-- This feature is quite recent.
+For it to have a significant impact, the NOMAD database has to run over all of 13 million entries and reprocess them.
+In other words, new features will always lag behind in old data.
+Please bear this in mind.
+Since there are too few examples at the moment, we will skip this set of filters. -->
+
+<p>Lastly, we only want data that contains <strong>the relevant observable</strong>, the band gap.
+Start by typing out <strong>"band_gap"</strong>.
+Note how terms in the search bar never contain spaces, but <strong>use underscores</strong> (<code>_</code>) instead.
+Click on the relevant suggestion.
+If it does not fully match what you are looking for, feel free to shorten it until it does.
+To finish the <em>presence queries</em>, <strong>add "=*"</strong> and press enter.</p>
+<details class="tip">
+<summary>Tip</summary>
+<p>To write an equality query for "*", use the <strong>escape character</strong> "\", i.e. "=\*".
+The escape character is not necessary for values containing "*", i.e. the radical "CH3*".
+Overall, there are very few instances of values containing "*" in NOMAD.</p>
+</details>
+<details class="success">
+<summary>Success</summary>
+<p>The suggestions will present you with <code>results.properties.electronic.band_structure_electronic.band_gap.type</code> and <code>results.properties.electronic.band_structure_electronic.band_gap.value</code>.
+Both are a bit too deep down the search tree, since we are looking for <code>results.properties.electronic.band_structure_electronic.band_gap=*</code>.</p>
+<p>This filter yields a <strong>blank entries list</strong>.
+To understand why, examine the filter name: it targets <strong>only band gaps of band structure</strong> calculations.
+This is due to a legacy implementation, but has been mended.
+In the near future, you will be able to search for all reported band gaps.</p>
+</details>
+<p>This filter stack is too restrictive.
+As a workaround, remove the last filter and let us go with an alternative.
+Formulate a <strong>presence query</strong> for the <em>density of states</em>, commonly abbreviated as <strong>DOS</strong> <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
+<details class="tip">
+<summary>Tip</summary>
+<p>The search bar uses <strong>lowercase</strong> for all <strong>quantities / filter names</strong>.
+Uppercase becomes relevant for values.</p>
+<p>Still, the search bar will include lower case suggestions of your spelling, where appropriate.
+To test this out, see what you get when typing "DOS".</p>
+</details>
+<details class="success">
+<summary>Success</summary>
+<p>Your query should be <code>results.properties.electronic.dos_electronic=*</code> and return 2.833 entries.
+There is no need to narrow it down to spin-polarized calculations.
+We also accept spin-restricted data.</p>
+<p><div class="click-zoom" style="text-align: left;">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/sc2_fullquery.png" title="The results of the final query with DOS">
+    </label>
+</div></p>
+<p>From hereon, the best strategy would be to download the data you need, extract the band gap, and perform some statistical analysis first.
+You might come across some new ideas on how to further hone your query and filter out more noise!
+<strong>Click the checkbox next to the column headers</strong> in the entries list to select all entries.
+The 3 vertical slots now change to a <strong>download symbol</strong>, giving you the option between the original (raw) format or the <strong>NOMAD format</strong> (processed).</p>
+<p><div class="click-zoom" style="text-align: left;">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/sc2_fullquery_selection.png" title="Selection of the search results, ready for download">
+    </label>
+</div></p>
+<p>Note that the specific <strong>analysis is not part of this tutorial</strong>.
+Other examples of analyzing NOMAD processed data are shown in <a href="../Tutorial-3_Extracting_Data_and_Trajectory_Analysis/">part IV</a>, however.</p>
+<p><center>
+<a class="md-button" href="https://nomad-lab.eu/prod/v1/staging/gui/search/entries?structural_type=bulk&amp;n_elements[gte]=5&amp;n_elements[lte]=6&amp;xc_functional_names=HYB_GGA_XC_HSE03&amp;xc_functional_names=HYB_GGA_XC_HSE06&amp;upload_create_time[gte]=1419895487748&amp;upload_create_time[lte]=1694679900000&amp;quantities=results.properties.electronic.dos_electronic&amp;elements=C&amp;elements=H&amp;elements=O&amp;elements=N" target="_blank">Final solution</a>
+</center></p>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">What is in a URL?</p>
+<p>Column customization can at the moment not be saved between sessions.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">When stacking order matters</p>
+<p>Imagine having started filtering by property instead of composition and then method.
+You would have unwittingly excluded a vast dataset, potentially concluding that NOMAD does not host any suitable data.
+The <strong>general strategy</strong> to avoid working yourself in any of these dead ends is to start with <strong>broad filters</strong>, such as DOS instead of band gap.
+<!-- Overall, the order "Material", "Workflow", "Method", "Property", which mimics the actual progress of the computational results --></p>
+<p>Also make sure to keep <strong>monitoring relevant indicators</strong> as you stack up filters.
+Even if you end up with unsatisfactory search results and start systematically removing filters, these indicators will be key in finding the best match.
+In the next scenario we will cover an even more powerful technique to aid in monitoring, <em>dashboards</em>.</p>
+<p><strong>Conclusion:</strong> so-called <em>query engineering</em> is not just limited to Large Language Models, but also applies to <em>sophisticated databases</em>.</p>
+</div>
+<h2 id="scenario-3-finding-publications">Scenario 3 - Finding Publications<a class="headerlink" href="#scenario-3-finding-publications" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">Assignment</p>
+<p><strong>You are talking to a colleague about your machine-learned model (from scenario 2).
+They tell you about a good recent research publication they saw by the author Rosen, but are forgetting the rest of the details at the moment.
+They will get back to you, but you are eager to check it out right away.</strong></p>
+<p>In this exercise, you will learn how to:</p>
+<ul>
+<li>filter by publication metadata.</li>
+<li>set up a dashboard.</li>
+<li>examine an entry summary.</li>
+</ul>
+</div>
+<p>Go back again to the <a href="https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&amp;upload_create_time[lte]=1694679900000" target="_blank">initial session</a>.</p>
+<p>The obvious starting point would be use a search engine specialized in publications, such as <a href="https://scholar.google.com/"><strong>Google Scholar</strong></a>{:target="<em>blank"}.
+Just searching by the author's (last?) name, yields a suggestion for "Robert A. Rose", who seems to be working in biomedicine.
+Not quite what we were looking for...
+You can <strong>try adding some more terms</strong> describing the field, e.g. _ab initio</em>, DFT or MOFs.</p>
+<details class="success">
+<summary>Success</summary>
+<p>This way it is possible to find the author's full name (<strong>Andrew S. Rosen</strong>) and also his publication history.
+Here we have hit a dead-end in as far as Google Scholar can help.
+Now it would be a matter of going over the publication list manually.</p>
+</details>
+<p>Let us see how to leverage NOMAD for this research case.
+<strong>Note:</strong> in this scenario, we will walk you through using the side menu again.
+Of course, the filtering steps can also be executed via the search bar.
+Since we mention the filter names, it should not be hard for you to find their full names with autocomplete.
+Yet, the steps for setting up a dashboard do require opening up side panes.</p>
+<p>So, navigate to filter group <strong>"Author / Origin / Dataset"</strong>, which covers publication metadata, near the bottom of the side menu.
+The first filter in the side pane is <strong>"Author Name"</strong>.
+<strong>Type in "Rosen"</strong>.
+We get 2 suggestions, but only one matches perfectly.
+<strong>Select "Andrew Rosen".</strong>
+Actually, if you performed the Google Scholar search <em>successfully</em>, you should have found the same author.</p>
+<p>Take stock of the <strong>"Upload Create Time"</strong> statistics right below "Author Name".
+It appears that Rosen is a researcher who has uploaded 3 times to NOMAD, each time in quite large batches ranging from to thousands to tens of thousands of entries.
+That is some very rich data.
+To better understand its makeup, we should be comparing <strong>several statistics at once</strong>.
+Jumping between side panes is a bit of a hassle, so instead we will speed up our analysis by setting up a <em>dashboard</em>.
+<strong>Click on the plus button (<code>+</code>) at the utmost right from "Upload Create Time"</strong> and <strong>return to the entries list</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you cannot see all 3 upload times, it is most likely due to the binning.
+With <strong>zoom / autorange active</strong>, adjust the <strong>sliders on the x-axis</strong> to better encompass the time frames of interest.</p>
+</div>
+<details class="success">
+<summary>Success</summary>
+<p>You should now find the same statistic nestled between the search bar and the entries list.</p>
+<p><div class="click-zoom" style="text-align: left;>
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/sc3_uploadtime_widget.png" title="Our one-widget dashboard">
+    </label>
+</div></p>
+</details>
+<p>This is our nascent dashboard.
+It will speed up our data exploration tremendously, but first we have to build it out a bit.
+<strong>Add to your dashboard</strong>:</p>
+<ul>
+<li>"Author / Origin / Dataset" &gt; "Dataset Name"</li>
+<li>the periodic table ("Elements / Formula" &gt; "Elements")</li>
+<li>"Elements / Formula" &gt; "Number of Elements"</li>
+</ul>
+<!-- And **remove from the dashboard**:
+
+- "Electronic" > "Electronic Properties" - not necessary, since there are only DOS
+@ndaelman-hu I didn't understand this, you had it striked out so I thought you wanted to remove it, but I guess you were just saying it was not necessary to add?? -->
+
+<p>Feel free to incorporate other filters as well.
+Just try to keep everything in a single view.
+The more you have to scroll to access the entire dashboard, the more it starts losing its edge.
+Overall, a <strong>dashboard</strong> should just provide a <strong>quick summary</strong>, for more specific filters there are always the side menu and search bar.</p>
+<details class="tip">
+<summary>Tip</summary>
+<p>You have lots of control over the layout of your dashboard.
+You can shuffle around <em>widgets</em> by <strong>click &amp; hold their name and then dragging them around</strong>.
+Expanding their size is done by dragging the bottom-right corner (<code>∟</code>).
+Widgets start out at their minimal default.</p>
+<p>For a great example of a rich dashboard, visit the <a href="https://nomad-lab.eu/prod/v1/staging/gui/search/solarcells" target="_blank">app under "Explore" &gt; "Solar Cells"</a>.</p>
+</details>
+<details class="success">
+<summary>Success</summary>
+<p>Your dashboard should now look somewhat as in the reference figure.
+Note that you might have to play around with the layout to get a perfect match.
+Check the tip box above for more details.</p>
+<p><div class="click-zoom" style="text-align: left;>
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/sc3_dashboard.png" title="Our suggested dashboard setup">
+    </label>
+</div></p>
+</details>
+<p>Now we can get a quick understanding of what data was uploaded.
+We are going to <strong>re-apply some settings from scenario 2</strong> directly via the dashboard widgets.
+Restrain the <strong>"Number of Elements"</strong> to 5 and 6 using the slider buttons on the x-axis, and make sure the <strong>elements H, C, N, and O</strong> are included.
+As "Upload Create Time" updates, only 2 upload times are present now.
+<strong>Switch between selecting one of each upload times.</strong>
+How does the constitution of the data set change?
+Pay close attention to all the widgets.</p>
+<details class="success">
+<summary>Success</summary>
+<p>Overall, it seems that the <strong>materials covered are quite similar</strong> in both.
+This is not just limited to the composition, but also the crystal makeup.
+You can verify this yourself by checking the "Structure" side pane.
+The uploads were instead to different datasets, which seem to differ in methodology: GGA vs meta-GGA and hybrid.</p>
+<p><div class="image-container">
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc3_dashboard_2uploadtimes.png" title="The dashboard under the composition constraints">
+        </label>
+    </div>
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc3_dashboard_uploadtime1.png" title="The datasets for the first upload time">
+        </label>
+    </div>
+    <div class="click-zoom">
+        <label>
+            <input type="checkbox">
+            <img src="../assets/part1_explore/sc3_dashboard_uploadtime2.png" title="The datasets for the second upload time">
+        </label>
+    </div>
+</div></p>
+<p><center>
+<a class="md-button" href="https://nomad-lab.eu/prod/v1/staging/gui/search/entries?n_elements[gte]=5&amp;n_elements[lte]=6&amp;name=Andrew%20Rosen&amp;upload_create_time[gte]=1630563537155&amp;upload_create_time[lte]=1676360939200&amp;elements=H&amp;elements=C&amp;elements=N&amp;elements=O" target="_blank">Final solution</a>
+</center></p>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">What is in a URL?</p>
+<p>Dashboards can at the moment not be saved between sessions.</p>
+</div>
+<p>We should have enough information now to retrieve the paper.
+While it is nice to have data from a variety of methods, especially for comparison reasons, we are most interested in the HSE06.
+There seem to be 2 data sets with that tag and we are not sure what the asterisk (<code>*</code>) means.
+<strong>Select both HSE06 datasets</strong> then.
+<strong>Click on the top entry</strong> in the list.
+It will fold out, revealing a summary.
+Find the "references" key.
+Right-button click the <strong>DOI hyperlink</strong> and open the article in a new tab.</p>
+<div class="admonition warning">
+<p class="admonition-title">Kinds of DOIs</p>
+<p>In the example above, we see NOMAD linking <strong>external DOI</strong>s for cross-platform browsing.
+The same happens with datasets hosted over multiple databases: NOMAD will store the other <strong>database's identifier under an "external id"</strong>.</p>
+<p>Conversely, NOMAD is allowed to issue its own DOIs.
+Each <strong>published dataset</strong> receives its <strong>own DOI in NOMAD</strong>, so it can be cited.
+You can search for these under "Author / Origin / Dataset" &gt; "Dataset DOI".
+Other IDs can be found under "Visibility / IDs / Schema".</p>
+<p>In summary, it is really important to understand whether a DOI (or any other kind of ID) refers to internal or external sources.
+When <strong>in doubt, just hover</strong> over the filter or quantity name.</p>
+</div>
+<details class="success">
+<summary>Success</summary>
+<p>You should now have <a href="https://www.cell.com/matter/fulltext/S2590-2385(21)00070-9?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2590238521000709%3Fshowall%3Dtrue" target="_blank">Machine learning the quantum-chemical properties of metal–organic frameworks for accelerated materials discovery</a> in front of you.
+Indeed, next time you bump into your colleague, they will be surprised to learn that you already found it.
+Actually, any out of the 4 datasets would have brought you to the same paper as well.
+They are indeed part of the same publication.
+You can verify this yourself.</p>
+</details>
+<p>Reading the <strong>paper and the NOMAD dataset side-by-side</strong>, can help you get the full context much faster.
+For example, the abstract mentions that <em>14.000 experimental MOFs</em> were covered.
+This is about the size of the PBE dataset (12.600) or both HSE06 sets combined (6.550 each).
+The discrepancy could be explained away as a rounding error in the text, missing data, or maybe that not each MOF corresponds one-to-one to single calculation.
+The latter could be case for more complex, composed MOFs.
+If so, there should be mention of that in the paper.</p>
+<p>The datasets also show the <em>work process</em> of the authors.
+They first used a very standard method to sample the materials space.
+However, GGA is prone to <em>overbinding</em>.
+Especially in organic systems, the default for a while now has been <em>hybrids</em>, e.g. B3LYP, M066, etc.
+These are much more expensive in solid state, but still, they ran HSE06 (also a hybrid) over seemingly the entire set.
+They also experimented with <em>meta-GGAs</em> in about half the cases.
+The reason therefore can be found in the text.
+Apparently there is <em>cited work (no. 147)</em> that shows the effectiveness of HLE17 for <em>large band gap prediction in complex materials</em>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ignoring hidden complexity</p>
+<p>While the naming of the datasets matches the density functional labels assigned by NOMAD, there could be other relevant information regarding the modelling.
+A good practice would be check under <a href="https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/data/run/0" target="_blank">"Entry" &gt; "DATA" &gt; "run"</a> to find data that has no associated filter, or
+take a look at the raw input under <a href="https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/files/_mainfile" target="_blank">"Entry" &gt; "FILES"</a> in case the metadata was not extracted.</p>
+<p>In this case, the <a href="https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/files/INCAR/preview" target="_blank">INCAR</a> contains <strong>Van der Waals terms</strong> (D3 according to the text) as well.
+This is perfectly normal practice when modeling hydrocarbon chains, but was <strong>not picked up on by NOMAD</strong>.
+Support will be added in the future.</p>
+<p>Meanwhile, the dataset name probably does not reflect these settings, as D3(BJ) is used in all of them.
+Remember, a <strong>dataset name is only as accurate as the author wants</strong> it to be.</p>
+</div>
+<!-- Then there is _the matter of HSE06 and HSE06*_. -->
+
+<p>As a <strong>last reflection</strong>, note how many of the entries and statistics match our findings in scenario 2.
+Indeed, Andrew Rosen made a big contribution to our coverage of MOFs.
+Such <strong>contributions from the community</strong> are what drive NOMAD.
+You may consider contributing your data already during the research/analysis process, right before submitting a publication, or even later on (especially for data that you have from older publications!).</p>
+<p>Andrew first even published his data over at <a href="https://figshare.com/articles/dataset/QMOF_Database/13147324">figshare</a>{:target="<em>blank"} and shortly after uploaded it to NOMAD.
+It is good that he did, since NOMAD provides much more information (the full calculation) and covers a wide search range.
+Meanwhile, over at _figshare</em>, you have to download a zip folder, not knowing what to exactly expect.
+Andrew clearly put some effort in providing a structured overview, focusing heavily on the MOF description and little else.
+For the end-user <strong>having data available over multiple repositories thus works synergistically</strong>, as each platform allows for a different emphasis.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>The band gap is the solid state counterpart of the HOMO-LUMO energy gap. Given that NOMAD is materials-centric (while still allowing for molecular systems), it deals in condensed matter nomenclature. <!-- @Joseph: I could change the terminology here to "Band gap / HOMO - LUMO". That would make it more accessible to other communities as well. -->&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>The DOS is the solid-state counterpart of the molecular orbital energies. If its sampling extends beyond the HOMO -in solid state, the highest filled energy level is called the Fermi level- it can be used to compute the band gap. This is the case in most simulations.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Tutorial-2_Overview_Page_and_Worfklow_Visualizer/" class="md-footer__link md-footer__link--next" aria-label="Next: Part II - Overview page and workflows">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Part II - Overview page and workflows
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.footer"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": 0.1}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+      
+        <script src="https://unpkg.com/cytoscape@3.19.1/dist/cytoscape.min.js"></script>
+      
+        <script src="../assets/custom.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

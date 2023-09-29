@@ -1,0 +1,1184 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FAIRmat Area C tutorial 10.
+">
+      
+      
+        <meta name="author" content="FAIRmat consortium">
+      
+      
+      
+        <link rel="prev" href="../Tutorial-1_Uploading_MD_Data/">
+      
+      
+        <link rel="next" href="../Advanced/part4/">
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
+    
+    
+      
+        <title>Part IV - Working with the NOMAD archive - NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d451bc0e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a5377069.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Titillium Web";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#working-with-the-nomad-archive-40-min" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" class="md-header__button md-logo" aria-label="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" data-md-component="logo">
+      
+  <img src="../assets/nomad-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Part IV - Working with the NOMAD archive
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_2">
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" class="md-nav__button md-logo" aria-label="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" data-md-component="logo">
+      
+  <img src="../assets/nomad-logo.png" alt="logo">
+
+    </a>
+    NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part I - Exploring NOMAD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorial-2_Overview_Page_and_Worfklow_Visualizer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part II - Overview page and workflows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorial-1_Uploading_MD_Data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part III - Uploading data to NOMAD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Part IV - Working with the NOMAD archive
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Part IV - Working with the NOMAD archive
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-entire-entry-archives" class="md-nav__link">
+    Downloading entire entry archives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-tools-from-nomad-lab" class="md-nav__link">
+    Using tools from nomad-lab
+  </a>
+  
+    <nav class="md-nav" aria-label="Using tools from nomad-lab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-nomad-archive-entry-format" class="md-nav__link">
+    The NOMAD archive entry format
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-archive_to_universe-function" class="md-nav__link">
+    The archive_to_universe function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-analysis-with-mdanalysis" class="md-nav__link">
+    Simple analysis with MDAnalysis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualization-using-nglviewer" class="md-nav__link">
+    Visualization using NGLViewer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/part4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating custom workflows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/Upload_API/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using python API for uploading
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/AI_toolkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The AI toolkit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-entire-entry-archives" class="md-nav__link">
+    Downloading entire entry archives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-tools-from-nomad-lab" class="md-nav__link">
+    Using tools from nomad-lab
+  </a>
+  
+    <nav class="md-nav" aria-label="Using tools from nomad-lab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-nomad-archive-entry-format" class="md-nav__link">
+    The NOMAD archive entry format
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-archive_to_universe-function" class="md-nav__link">
+    The archive_to_universe function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-analysis-with-mdanalysis" class="md-nav__link">
+    Simple analysis with MDAnalysis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualization-using-nglviewer" class="md-nav__link">
+    Visualization using NGLViewer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="working-with-the-nomad-archive-40-min">Working with the NOMAD archive (~40 min)<a class="headerlink" href="#working-with-the-nomad-archive-40-min" title="Permanent link">&para;</a></h1>
+<p>In this part of the tutorial we will demonstrate how to query data from the NOMAD repository and work with it within a python environment.</p>
+<p>For this demonstration, we will utilize some tools from the nomad-lab software, as well as some third-party software (e.g., MDAnalysis, nglview).</p>
+<p>We suggest creating a virtual environment for this purpose. For example, using <code>conda</code>, you can set up the appropriate environment by first downloading the environment.yml file:</p>
+<p><center>
+<a class="md-button" href="../assets/md_tutorial_3/environment.yml">Download environment.yml</a>
+</center></p>
+<p>Then create a new conda environment with the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span>
+</code></pre></div>
+<details class="tip">
+<summary>Tip</summary>
+<p>In case you have problems, here are the original commands used to set up the environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;CECAM_tutorial&quot;</span> <span class="n">python</span><span class="o">==</span><span class="mf">3.9</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">conda</span> <span class="n">activate</span> <span class="n">CECAM_tutorial</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">pip</span> <span class="n">install</span> <span class="n">nomad</span><span class="o">-</span><span class="n">lab</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">conda</span> <span class="n">install</span> <span class="n">nglview</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">conda</span> <span class="n">install</span> <span class="s2">&quot;ipywidgets &lt;8&quot;</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+</code></pre></div>
+</details>
+<p>Or if you are using <code>virtualenv</code>:</p>
+<p><center>
+<a class="md-button" href="../assets/md_tutorial_3/requirements.txt">Download requirements.txt</a>
+</center></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">.</span><span class="n">pyenv</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">source</span> <span class="o">.</span><span class="n">pyenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">warning</p>
+<p>You may have to restart your code editor (IDE) to get the in-notebook visualizations to work.</p>
+</div>
+<details class="info" open="open">
+<summary>info</summary>
+<p>We stress that none of these packages are <strong>required</strong> to work with the NOMAD archive data. As you will see below, the archive data will be retrieved in a dictionary format, which you are free to work with in a <em>plain</em> python environment.</p>
+</details>
+<p>Now, start a Jupyter notebook to carry out the remainder of this part of the tutorial.</p>
+<p>Import all the necessary modules:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Python</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># timing</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="kn">import</span> <span class="nn">time</span> <span class="k">as</span> <span class="nn">t</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># I/O</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="kn">import</span> <span class="nn">json</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># NOMAD API</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="kn">import</span> <span class="nn">requests</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1"># NOMAD tools</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="kn">from</span> <span class="nn">nomad.atomutils</span> <span class="kn">import</span> <span class="n">archive_to_universe</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="kn">from</span> <span class="nn">nomad.atomutils</span> <span class="kn">import</span> <span class="n">BeadGroup</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="kn">from</span> <span class="nn">nomad.datamodel</span> <span class="kn">import</span> <span class="n">EntryArchive</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="kn">from</span> <span class="nn">nomad.units</span> <span class="kn">import</span> <span class="n">ureg</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="c1"># Visualization</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="c1"># MDAnalysis</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="kn">import</span> <span class="nn">MDAnalysis.analysis.rdf</span> <span class="k">as</span> <span class="nn">MDA_RDF</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="kn">from</span> <span class="nn">MDAnalysis.analysis.distances</span> <span class="kn">import</span> <span class="n">self_distance_array</span><span class="p">,</span> <span class="n">distance_array</span>
+</code></pre></div>
+<h2 id="downloading-entire-entry-archives">Downloading entire entry archives<a class="headerlink" href="#downloading-entire-entry-archives" title="Permanent link">&para;</a></h2>
+<p>In general, you can use the <a href="https://nomad-lab.eu/prod/rae/docs/api.html">NOMAD Application Programming Interface (API)</a> to</p>
+<ul>
+<li>upload data (especially useful when you are producing data via a workflow)</li>
+<li>delete data</li>
+<li>query all kinds of (meta)data: processed (from the archive), raw (from the repository), large bundles, individual entries, etc</li>
+</ul>
+<p>Each functionality has its own url, i.e. <em>endpoints</em>. There are over 60 different endpoints, each specialized in their own little subtask. You can find the full overview over at the <a href="https://nomad-lab.eu/prod/v1/staging/api/v1/extensions/docs#/" target="_blank">API dashboard</a>. It is highly recommended to have this page open when writing queries. Lastly, you can also use the dashboard to try out queries on the fly.</p>
+<p>In this first exercise, we will download the <strong>processed molecular dynamics trajectory</strong> of an <strong>individual entry</strong> to perform our own visualization and analysis.
+For this, we will be using the <code>/entries/{entry_id}</code>/archive. The <code>{entry_id}</code> here is variable, which you can get from the NOMAD website (or other API queries). Note that there are 3 versions of this endpoint: one that only gives you the metadata, one that returns the entire archive (<code>/download</code>), and a last wildcard that we will get into later (<code>/query</code>). These latter 2 options will be demonstrated below.</p>
+<p>Let's imagine that we searched the NOMAD repository using the filter bar of the GUI, as demonstrated in <a href="../part1/">Part I</a> of the tutorial, and found a <a href="https://nomad-lab.eu/prod/v1/gui/search/entries/entry/id/hxaepf6x12Xt2IX2jCt4DyfLG0P4">short simulation of an atomistic box of hexane molecules</a> that we might want to reuse. Open the link for this entry for reference as we analyze the queried data.</p>
+<p>From the Overview page of the entry, copy the <code>entry_id</code> from the left-hand side where the entry metadata is displayed. Define a variable with this information:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">entry_id</span> <span class="o">=</span> <span class="c1">## PLACE ENTRY_ID HERE</span>
+</code></pre></div>
+We also need to define the API endpoint:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">nomad_api_prefix</span> <span class="o">=</span> <span class="s1">&#39;https://nomad-lab.eu/prod/v1/api/v1/&#39;</span>
+</code></pre></div>
+<p>To download the entire archive for the entry of interest, we only have to execute a single command, and then we set the response to the variable <code>data</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nomad_api_prefix</span> <span class="o">+</span> <span class="s1">&#39;entries/&#39;</span> <span class="o">+</span> <span class="n">entry_id</span> <span class="o">+</span> <span class="s1">&#39;/archive/download&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">warning<p>The download may take 5 minutes or more, depending on your Internet's bandwidth.</p>
+</p>
+</div>
+<details class="info" open="open">
+<summary>Info</summary>
+<p>Python provides a module for packaging and sending requests, aptly named <code>requests</code>. It comes with the methods <code>put</code>, <code>delete</code>, <code>get</code>, and <code>post</code>. Notice how the API dashboard lists each supported function next to its endpoint. The first 3 exactly serve the functionalities that we listed abovee (upload, delete, download). The last one, <code>post</code>, we will get into later.</p>
+<p>The formatted URL itself actually suffices to start the download. It just needs an interface. If you click on it (don't, it's just a hypothetical), your OS should open a browser to start the download. From the command line, you can use <code>curl</code>. The <code>requests</code> module is simply our Python interface. As with any https protocol, you will receive a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">status code</a>. Additional information is transmitted in a JSON format (another web standard), which we deserialize to a dictionary here. When everything is successful, this contains the data we were looking for. In case of an error, the NOMAD API uses it to better articulate the reason under the keyword <code>detail</code>. For the full format we again refer the reader to the API dashboard.</p>
+</details>
+<details class="tip">
+<summary>Tip</summary>
+<p>Here is a more thorough set of functions for executing the download, while timing the download, and printing out some response info:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">nomad_api_prefix</span> <span class="o">=</span> <span class="s1">&#39;https://nomad-lab.eu/prod/v1/api/v1/&#39;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">def</span> <span class="nf">nomad_individual_archive_url</span><span class="p">(</span><span class="n">entry_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">endpoint_type</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;Produces the endpoint URL for downloading a NOMAD individual archive.</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="sd">    `entry_id` specifies the entry ID of the particular archive you want to download.</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="sd">    Use `endpoint_type` to further specify the particular subtype (`download` or `query`).&#39;&#39;&#39;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="n">endpoint_specifications</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;download&#39;</span><span class="p">,</span> <span class="s1">&#39;query&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">nomad_api_prefix</span><span class="si">}</span><span class="s1">/entries/</span><span class="si">{</span><span class="n">entry_id</span><span class="si">}</span><span class="s1">/archive&#39;</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="k">if</span> <span class="n">endpoint_type</span> <span class="p">:</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>        <span class="k">if</span> <span class="n">endpoint_type</span> <span class="ow">in</span> <span class="n">endpoint_specifications</span><span class="p">:</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>            <span class="n">endpoint</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;/</span><span class="si">{</span><span class="n">endpoint_type</span><span class="si">}</span><span class="s1">&#39;</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;endpoint_type must be one of </span><span class="si">{</span><span class="n">endpoint_specifications</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    <span class="k">return</span> <span class="n">endpoint</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span> <span class="nf">measure_method</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="sd">    Measure the execution time of a given method with arguments.</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="sd">    Args:</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="sd">        method: The method/function to be measured.</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="sd">        *args: Positional arguments to be passed to the method.</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="sd">        **kwargs: Keyword arguments to be passed to the method.</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="n">start_time</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="n">end_time</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="n">elapsed_minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">elapsed_time</span> <span class="o">//</span> <span class="mi">60</span><span class="p">)</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>    <span class="n">elapsed_seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">elapsed_time</span> <span class="o">%</span> <span class="mi">60</span><span class="p">)</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Method took </span><span class="si">{</span><span class="n">elapsed_minutes</span><span class="si">}</span><span class="s2"> minutes and </span><span class="si">{</span><span class="n">elapsed_seconds</span><span class="si">}</span><span class="s2"> seconds to execute.&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># execute the download</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">nomad_url</span> <span class="o">=</span> <span class="n">nomad_individual_archive_url</span><span class="p">(</span><span class="s1">&#39;hxaepf6x12Xt2IX2jCt4DyfLG0P4&#39;</span><span class="p">,</span> <span class="n">endpoint_type</span><span class="o">=</span><span class="s1">&#39;download&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">response</span> <span class="o">=</span> <span class="n">measure_method</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="n">nomad_url</span><span class="p">)</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># print some of the responses</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;This is the endpoint URL: </span><span class="si">{</span><span class="n">nomad_url</span><span class="si">}</span><span class="s1">. Click on it start downloading the archive via your browser.&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This is the </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2"> message. In case of an error, check `response[&#39;detail&#39;]` to get the additional information.&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This is the top-level data structure of the deserialized message: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Method took 8 minutes and 47 seconds to execute.
+This is the endpoint URL: https://nomad-lab.eu/prod/v1/api/v1//entries/hxaepf6x12Xt2IX2jCt4DyfLG0P4/archive/download. Click on it start downloading the archive via your browser.
+This is the &lt;Response [200]&gt; message. In case of an error, check `response[&#39;detail&#39;]` to get the additional information.
+This is the top-level data structure of the deserialized message: dict_keys([&#39;processing_logs&#39;, &#39;run&#39;, &#39;workflow2&#39;, &#39;metadata&#39;, &#39;results&#39;, &#39;m_ref_archives&#39;])
+</code></pre></div>
+</details>
+<p>The keys of this dictionary corresponds one-to-one with the <a href="https://nomad-lab.eu/prod/v1/gui/search/entries/entry/id/hxaepf6x12Xt2IX2jCt4DyfLG0P4/data"><strong>DATA</strong> tab of this entry's page</a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>dict_keys([&#39;processing_logs&#39;, &#39;run&#39;, &#39;workflow2&#39;, &#39;metadata&#39;, &#39;results&#39;, &#39;m_ref_archives&#39;])
+</code></pre></div>
+<p>If you are interested in exploring the full schema with all its possible sections / quantities, check out the <a href="https://nomad-lab.eu/prod/v1/gui/analyze/metainfo/nomad.datamodel.datamodel.EntryArchive">Metainfo Browser</a>. You can use these representations of NOMAD's Metainfo schema to navigate the upcoming sections.</p>
+<details class="tip">
+<summary>Tip</summary>
+<p>Here is an alternative way for viewing the data within your local python environment (although we recommend the DATA tab or Metainfo Browser):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">def</span> <span class="nf">print_dict_as_tree</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">is_last</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Function for printing a dictionary as a tree.&quot;&quot;&quot;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>            <span class="n">new_prefix</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;└─ &quot;</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>            <span class="n">new_prefix</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;├─ &quot;</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        <span class="n">value</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        <span class="n">type_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot; (</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">)&quot;</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>        <span class="n">length_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">new_prefix</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">+</span> <span class="n">type_str</span><span class="p">)</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>            <span class="n">is_last_child</span> <span class="o">=</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>            <span class="n">print_dict_as_tree</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;    &quot;</span> <span class="k">if</span> <span class="n">is_last_child</span> <span class="k">else</span> <span class="s2">&quot;│   &quot;</span><span class="p">),</span> <span class="n">is_last_child</span><span class="p">)</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>            <span class="n">has_dict</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">value</span><span class="p">)</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>            <span class="k">if</span> <span class="n">has_dict</span><span class="p">:</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>                <span class="nb">print</span><span class="p">(</span><span class="n">new_prefix</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">+</span> <span class="n">type_str</span><span class="p">)</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>                        <span class="n">is_last_child</span> <span class="o">=</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>                        <span class="nb">print</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;    &quot;</span> <span class="k">if</span> <span class="n">is_last_child</span> <span class="k">else</span> <span class="s2">&quot;│   &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;├─ [&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>                        <span class="n">print_dict_as_tree</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;    &quot;</span> <span class="k">if</span> <span class="n">is_last_child</span> <span class="k">else</span> <span class="s2">&quot;│   &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;│   &quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>                        <span class="nb">print</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;    &quot;</span> <span class="k">if</span> <span class="n">is_last_child</span> <span class="k">else</span> <span class="s2">&quot;│   &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;│   ]&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>                    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>                        <span class="n">is_last_child</span> <span class="o">=</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>                        <span class="n">length_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot; (Length: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a>                <span class="n">is_last_child</span> <span class="o">=</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a>                <span class="n">length_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot; (Length: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+<a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a>                <span class="nb">print</span><span class="p">(</span><span class="n">new_prefix</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">+</span> <span class="n">type_str</span> <span class="o">+</span> <span class="n">length_str</span><span class="p">)</span>
+<a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">new_prefix</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">+</span> <span class="n">type_str</span><span class="p">)</span>
+<a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a>
+<a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a>        <span class="k">if</span> <span class="n">length_str</span><span class="p">:</span>
+<a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a>            <span class="n">is_last_child</span> <span class="o">=</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;    &quot;</span> <span class="k">if</span> <span class="n">is_last_child</span> <span class="k">else</span> <span class="s2">&quot;│   &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;├─&quot;</span> <span class="o">+</span> <span class="n">length_str</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<div class="admonition abstract">
+<p class="admonition-title">Assignment</p>
+<p>Get the atom positions for the first frame of the trajectory from this dictionary.</p>
+</div>
+<details class="success">
+<summary>Success</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">data</span><span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;system&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;atoms&#39;</span><span class="p">][</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span>
+</code></pre></div>
+</details>
+<h2 id="using-tools-from-nomad-lab">Using tools from nomad-lab<a class="headerlink" href="#using-tools-from-nomad-lab" title="Permanent link">&para;</a></h2>
+<h3 id="the-nomad-archive-entry-format">The NOMAD archive entry format<a class="headerlink" href="#the-nomad-archive-entry-format" title="Permanent link">&para;</a></h3>
+<p>While it is perfectly acceptable to work directly with the archive dictionary, we can also convert this dictionary into a more sophisticated <strong>NOMAD archive object.</strong> This object supports <strong>unit conversion</strong> and a variety of ways for <strong>traversing the data tree</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">archive</span> <span class="o">=</span> <span class="n">EntryArchive</span><span class="o">.</span><span class="n">m_from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div>
+<p>We then define some <strong>easy access points</strong> for later use. You can see how the Python object style of navigating is exploited (i.e., using <code>.</code> instead of <code>['']</code>). Also pay close attention to when indices are used. They appear whenever a section is flagged as <code>repeats</code> in the Metainfo Browser.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">section_run</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">run</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">section_system</span> <span class="o">=</span> <span class="n">section_run</span><span class="o">.</span><span class="n">system</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">section_system_topology</span> <span class="o">=</span> <span class="n">section_run</span><span class="o">.</span><span class="n">system</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">atoms_group</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">section_atoms</span> <span class="o">=</span> <span class="n">section_system</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">atoms</span>
+</code></pre></div>
+<p>Recall that the section <strong>run</strong> &rarr; <strong>system</strong>  is a list containing configurational information from each frame in the trajectory. Let's extract some information about the system, including positions, velocities, and box vectors:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># get the number of atoms and frames, along with the atom names.</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">n_atoms</span> <span class="o">=</span> <span class="n">section_atoms</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_atoms&#39;</span><span class="p">)</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">n_frames</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">section_system</span><span class="p">)</span> <span class="k">if</span> <span class="n">section_system</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">atom_names</span> <span class="o">=</span> <span class="n">section_atoms</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;labels&#39;</span><span class="p">)</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="c1"># get the atom positions, velocites, and box dimensions</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_frames</span><span class="p">,</span> <span class="n">n_atoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="n">velocities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_frames</span><span class="p">,</span> <span class="n">n_atoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="n">dimensions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_frames</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="k">for</span> <span class="n">frame_ind</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">section_system</span><span class="p">):</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="n">sec_atoms_fr</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;atoms&#39;</span><span class="p">)</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="k">if</span> <span class="n">sec_atoms_fr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>        <span class="n">positions_frame</span> <span class="o">=</span> <span class="n">sec_atoms_fr</span><span class="o">.</span><span class="n">positions</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>        <span class="n">positions</span><span class="p">[</span><span class="n">frame_ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">ureg</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">positions_frame</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">positions_frame</span><span class="o">.</span><span class="n">units</span><span class="p">,</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>                                            <span class="n">ureg</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span> <span class="k">if</span> <span class="n">positions_frame</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>        <span class="n">velocities_frame</span> <span class="o">=</span> <span class="n">sec_atoms_fr</span><span class="o">.</span><span class="n">velocities</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>        <span class="n">velocities</span><span class="p">[</span><span class="n">frame_ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">ureg</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">velocities_frame</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">velocities_frame</span><span class="o">.</span><span class="n">units</span><span class="p">,</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>                                                <span class="n">ureg</span><span class="o">.</span><span class="n">angstrom</span> <span class="o">/</span> <span class="n">ureg</span><span class="o">.</span><span class="n">picosecond</span><span class="p">)</span> <span class="k">if</span> <span class="n">velocities_frame</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>        <span class="n">latt_vec_tmp</span> <span class="o">=</span> <span class="n">sec_atoms_fr</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lattice_vectors&#39;</span><span class="p">)</span>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>        <span class="k">if</span> <span class="n">latt_vec_tmp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>            <span class="n">length_conversion</span> <span class="o">=</span> <span class="n">ureg</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sec_atoms_fr</span><span class="o">.</span><span class="n">lattice_vectors</span><span class="o">.</span><span class="n">units</span><span class="p">,</span> <span class="n">ureg</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>            <span class="n">dimensions</span><span class="p">[</span><span class="n">frame_ind</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>                <span class="n">sec_atoms_fr</span><span class="o">.</span><span class="n">lattice_vectors</span><span class="o">.</span><span class="n">magnitude</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">length_conversion</span><span class="p">,</span>
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>                <span class="n">sec_atoms_fr</span><span class="o">.</span><span class="n">lattice_vectors</span><span class="o">.</span><span class="n">magnitude</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">length_conversion</span><span class="p">,</span>
+<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>                <span class="n">sec_atoms_fr</span><span class="o">.</span><span class="n">lattice_vectors</span><span class="o">.</span><span class="n">magnitude</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">length_conversion</span><span class="p">,</span>
+<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>                <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>  <span class="c1"># nb -- for cubic box!</span>
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Assignment</p>
+<p>Fill in the missing variables assignments in the following code to make the temperature trajectory plot for this calculation. Compare your result to the plot from the Overview page in the NOMAD GUI.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">section_calculation</span> <span class="o">=</span>  <span class="c1">## FIND THE SECTION CALCULATION IN THE ARCHIVE ##</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">temperature</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">time</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">temperature_unit</span> <span class="o">=</span>  <span class="c1">## FIND THE UNIT OF TEMPERATURE USED IN THE ARCHIVE ##</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="n">time_unit</span> <span class="o">=</span>  <span class="c1">## FIND THE UNIT OF TIME USED IN THE ARCHIVE ##</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="k">for</span> <span class="n">calc</span> <span class="ow">in</span> <span class="n">section_calculation</span><span class="p">:</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    <span class="n">temperature</span><span class="o">.</span><span class="n">append</span><span class="p">()</span>  <span class="c1">## FIND THE TEMPERATURE FOR THIS CALC ##</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>    <span class="n">time</span><span class="o">.</span><span class="n">append</span><span class="p">()</span>  <span class="c1">## FIND THE TIME FOR THIS CALC ##</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">temperature_unit</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">time_unit</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<details class="success">
+<summary>Success</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="n">section_calculation</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">run</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">calculation</span>  <span class="c1">## FIND THE SECTION CALCULATION IN THE ARCHIVE ##</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="n">temperature</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="n">time</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="n">temperature_unit</span> <span class="o">=</span> <span class="n">section_calculation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">temperature</span><span class="o">.</span><span class="n">units</span>  <span class="c1">## FIND THE UNIT OF TEMPERATURE USED IN THE ARCHIVE ##</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="n">time_unit</span> <span class="o">=</span> <span class="n">section_calculation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">units</span>  <span class="c1">## FIND THE UNIT OF TIME USED IN THE ARCHIVE ##</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>    <span class="k">for</span> <span class="n">calc</span> <span class="ow">in</span> <span class="n">section_calculation</span><span class="p">:</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>        <span class="n">temperature</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calc</span><span class="o">.</span><span class="n">temperature</span><span class="o">.</span><span class="n">magnitude</span><span class="p">)</span>  <span class="c1">## FIND THE TEMPERATURE FOR THIS CALC ##</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>        <span class="n">time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calc</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">magnitude</span><span class="p">)</span>  <span class="c1">## FIND THE TIME FOR THIS CALC ##</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">temperature_unit</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">time_unit</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</details>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_3/Protein-Water_Structure_15_0.png" alt="temperature_trajectory" width="90%" title="Temperature Trajectory.">
+    </label>
+</div>
+
+<p>As you may have noticed, one of our bottlenecks in visualizing the trajectory is downloading the data. This is due to the archive's size (35.8 MB, not too uncommon with MD entries). It may be the case that before committing to downloading the entire archive for further analysis we want to examine a particular quantity, e.g., the temperature trajectory. This is a job for the <code>/query</code> endpoint. Go back to the <a href="https://nomad-lab.eu/prod/v1/staging/api/v1/extensions/docs#/entries%2Farchive/post_entry_archive_query_entries__entry_id__archive_query_post" target="_blank">API dashboard</a> and check out its schema.</p>
+<p>This endpoint uses <code>post</code>, which is either used to add data (such as under <code>uploads</code>) or more complex queries and additional parameters, i.e. a more customizable <code>get</code> statement. This is in line with the standard semantics in HTTPS messages. In the case of our <code>/query</code> endpoint, the parameter we are looking for is <code>required</code> -the sections / quantities to be downloaded. Their specification follows the archive's tree structure as a nested dictionary. <code>requests</code> can append this information to the HTTPS body using the <code>json</code> argument. Below you will find the query specification. Pay attention to the optional use of indexes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">query_specification</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>        <span class="s2">&quot;run[0]&quot;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>            <span class="s2">&quot;calculation&quot;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>                <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>                <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>            <span class="p">}</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>        <span class="p">}</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>    <span class="p">}</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nomad_api_prefix</span> <span class="o">+</span> <span class="s1">&#39;entries/&#39;</span> <span class="o">+</span> <span class="n">entry_id</span> <span class="o">+</span> <span class="s1">&#39;/archive/query&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">query_specification</span><span class="p">)</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div>
+<details class="tip">
+<summary>Tip</summary>
+<p>Or using the functions provided in the previous tips:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">nomad_url_filtered</span> <span class="o">=</span> <span class="n">nomad_individual_archive_url</span><span class="p">(</span><span class="s1">&#39;hxaepf6x12Xt2IX2jCt4DyfLG0P4&#39;</span><span class="p">,</span> <span class="n">endpoint_type</span><span class="o">=</span><span class="s1">&#39;query&#39;</span><span class="p">)</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">response_filtered</span> <span class="o">=</span> <span class="n">measure_method</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="n">nomad_url_filtered</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">query_specification</span><span class="p">)</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">data_filtered</span> <span class="o">=</span> <span class="n">response_filtered</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>Method took 0 minutes and 2 seconds to execute.
+</code></pre></div>
+</details>
+<p>Note the difference in time! There is a noticeable speedup.</p>
+<p>The only disadvantage is that <code>EntryArchive</code> will fail with a partial archive. We can use still use the data as we would any dictionary to reproduce the same plot above. Just be careful to take care of unit conversions! To reintroduce units, multiply the quantity with its corresponding <code>ureg</code> unit, e.g. <code>ureg.second</code>. The quantities, as downloaded, are SI by default.</p>
+<details class="tip">
+<summary>Tip</summary>
+<p>You can convert between units easily with the ureg module. For example, if a quantity <code>quantity_with_units</code> has units of seconds, you can convert to picoseconds with: <code>quantity_with_units = ureg.convert(quantity_with_units, quantity_with_units.units(), ureg.picoseconds)</code>.</p>
+</details>
+<p>Now, take some time to search through the calculation section to see what other quantities are stored for this simulation.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Assignment</p>
+<p>Now let's plot the center of mass molecular radial distribution function, averaged over the last 80% of the trajectory, as seeen in the Structural Properties card of the Overview page (red curve in plot). Fill in the missing variables assignments in the following code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">section_MD</span> <span class="o">=</span>  <span class="c1">## FIND THE MOLECULAR DYNAMICS WORKFLOW SECTION IN THE ARCHIVE ##</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="n">rdf_HEX_HEX</span> <span class="o">=</span>  <span class="c1">## FIND THE LAST HEX-HEX RDF STORED IN THE ARCHIVE ##</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="n">rdf_start</span> <span class="o">=</span>  <span class="c1">## FIND THE STARTING FRAME FOR AVERAGING FOR THIS RDF ##</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="n">rdf_end</span> <span class="o">=</span>  <span class="c1">## FIND THE ENDING FRAME FOR AVERAGING FOR THIS RDF ##</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="n">bins</span> <span class="o">=</span> <span class="n">ureg</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">rdf_HEX_HEX</span><span class="o">.</span><span class="n">bins</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">rdf_HEX_HEX</span><span class="o">.</span><span class="n">bins</span><span class="o">.</span><span class="n">units</span><span class="p">,</span> <span class="n">ureg</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">rdf_HEX_HEX</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">ureg</span><span class="o">.</span><span class="n">angstrom</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;HEX-HEX rdf&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">15.0</span><span class="p">)</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<details class="success">
+<summary>Success</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">section_MD</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">workflow2</span>  <span class="c1">## FIND THE MOLECULAR DYNAMICS WORKFLOW SECTION IN THE ARCHIVE ##</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="n">rdf_HEX_HEX</span> <span class="o">=</span> <span class="n">section_MD</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">radial_distribution_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">radial_distribution_function_values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1">## FIND THE LAST HEX-HEX RDF STORED IN THE ARCHIVE ##</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="n">rdf_start</span> <span class="o">=</span> <span class="n">rdf_HEX_HEX</span><span class="o">.</span><span class="n">frame_start</span>  <span class="c1">## FIND THE STARTING FRAME FOR AVERAGING FOR THIS RDF ##</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="n">rdf_end</span> <span class="o">=</span> <span class="n">rdf_HEX_HEX</span><span class="o">.</span><span class="n">frame_end</span>  <span class="c1">## FIND THE ENDING FRAME FOR AVERAGING FOR THIS RDF ##</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="n">bins</span> <span class="o">=</span> <span class="n">ureg</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">rdf_HEX_HEX</span><span class="o">.</span><span class="n">bins</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">rdf_HEX_HEX</span><span class="o">.</span><span class="n">bins</span><span class="o">.</span><span class="n">units</span><span class="p">,</span> <span class="n">ureg</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">rdf_HEX_HEX</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">ureg</span><span class="o">.</span><span class="n">angstrom</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;HEX-HEX rdf&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">15.0</span><span class="p">)</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</details>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_3/Protein-Water_Structure_19_0.png" alt="temperature_trajectory" width="90%" title="Temperature Trajectory.">
+    </label>
+</div>
+
+<p>Take some time to search through the workflow2 section to see what other quantities are stored there for this simulation.</p>
+<h3 id="the-archive_to_universe-function">The archive_to_universe function<a class="headerlink" href="#the-archive_to_universe-function" title="Permanent link">&para;</a></h3>
+<p>We have seen above how to access quantities stored within a NOMAD archive entry using either the dictionary or NOMAD archive entry representation. This approach is sufficient for extracting singular quantities from the archive for further analysis.</p>
+<p>However, it would also be useful to have converters to store the archive for an MD simulation in a format more convenient to perform analysis. In particular, one may want to utilize existing analysis software to perform standard calculations. We have already implemented a converter to the <em>MDAnalysis</em> format. Run the following command to convert the archive into an MDAnalysis <code>universe</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">universe</span> <span class="o">=</span> <span class="n">archive_to_universe</span><span class="p">(</span><span class="n">archive</span><span class="p">)</span>
+</code></pre></div>
+<p>Check which molecule types are present in the simulation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Molecule Types&#39;</span><span class="p">)</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------&#39;</span><span class="p">)</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="k">for</span> <span class="n">moltype</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">universe</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">moltypes</span><span class="p">):</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">moltype</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Molecule Types
+--------------
+HEX
+</code></pre></div>
+<h3 id="simple-analysis-with-mdanalysis">Simple analysis with MDAnalysis<a class="headerlink" href="#simple-analysis-with-mdanalysis" title="Permanent link">&para;</a></h3>
+<p>Let's calculate the center of mass rdf and compare with the plot stored in the archive. First define the appriate molecular groups:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Get an atom group for the Hexane molecules</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="n">AG_HEX</span> <span class="o">=</span> <span class="n">universe</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s1">&#39;moltype HEX&#39;</span><span class="p">)</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># Create a &quot;bead group&quot; for the HEXANE molecules</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="n">BG_HEX</span> <span class="o">=</span> <span class="n">BeadGroup</span><span class="p">(</span><span class="n">AG_HEX</span><span class="p">,</span> <span class="n">compound</span><span class="o">=</span><span class="s2">&quot;fragments&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="c1"># Define parameters for the rdf calculation</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="n">min_box_dimension</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">universe</span><span class="o">.</span><span class="n">trajectory</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="n">max_rdf_dist</span> <span class="o">=</span> <span class="n">min_box_dimension</span> <span class="o">/</span> <span class="mi">2</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="n">n_bins</span> <span class="o">=</span> <span class="mi">200</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="n">n_smooth</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="n">n_prune</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+<details class="tip">
+<summary>Tip</summary>
+<p>In MDAnalysis, it is not trivial to calculate center of mass rdfs.
+The concept of bead groups comes from a known work-around.
+This class is imported from the NOMAD software.</p>
+</details>
+<p>Now run the rdf calculation using the MDAnalysis function <code>InterRDF</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># should take ~2 min</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">exclusion_block</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># for removing self-distance</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="n">rdf</span> <span class="o">=</span> <span class="n">MDA_RDF</span><span class="o">.</span><span class="n">InterRDF</span><span class="p">(</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>    <span class="n">BG_HEX</span><span class="p">,</span> <span class="n">BG_HEX</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_rdf_dist</span><span class="p">),</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="n">exclusion_block</span><span class="o">=</span><span class="n">exclusion_block</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>    <span class="n">rdf_start</span><span class="p">,</span> <span class="n">rdf_end</span><span class="p">,</span> <span class="n">n_prune</span><span class="p">)</span>
+</code></pre></div>
+<p>Smooth the rdf:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">rdf</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">bins</span> <span class="o">=</span> <span class="n">rdf</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">bins</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n_smooth</span> <span class="o">/</span> <span class="mi">2</span><span class="p">):</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">n_smooth</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)]</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">rdf</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">rdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>    <span class="n">rdf</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">rdf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_smooth</span><span class="p">,))</span> <span class="o">/</span> <span class="n">n_smooth</span><span class="p">,</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)[</span><span class="nb">int</span><span class="p">(</span><span class="n">n_smooth</span> <span class="o">/</span> <span class="mi">2</span><span class="p">):</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">n_smooth</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)]</span>
+</code></pre></div>
+<p>Plot the rdf:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">rdf_HEX_HEX</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NOMAD archive&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rdf</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">bins</span><span class="p">,</span> <span class="n">rdf</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">rdf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;MDAnalysis&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">ureg</span><span class="o">.</span><span class="n">angstrom</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;SOL-SOL rdf&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">10.</span><span class="p">)</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_3/Protein-Water_Structure_28_0.png" alt="hexane_rdf" width="90%" title="Hexane RDF.">
+    </label>
+</div>
+
+<p>Using MDAnalysis, we can also easily featurize the configurations for data-driven analysis. For example, calculate the pairwise distance matrix for carbons throughout the trajectory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">carbon_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind</span> <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="nb">type</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">universe</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">types</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)]</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">selection</span> <span class="o">=</span> <span class="s1">&#39;index &#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">carbon_indices</span><span class="p">])</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="n">carbons_group</span> <span class="o">=</span> <span class="n">universe</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">selection</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="k">for</span> <span class="n">i_fr</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">universe</span><span class="o">.</span><span class="n">trajectory</span><span class="p">):</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    <span class="k">if</span> <span class="n">i_fr</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>        <span class="n">distances</span> <span class="o">=</span> <span class="n">self_distance_array</span><span class="p">(</span><span class="n">carbons_group</span><span class="o">.</span><span class="n">positions</span><span class="p">,</span> <span class="n">box</span><span class="o">=</span><span class="n">frame</span><span class="o">.</span><span class="n">_unitcell</span><span class="p">)</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>        <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">distances</span><span class="p">,</span> <span class="n">self_distance_array</span><span class="p">(</span><span class="n">carbons_group</span><span class="o">.</span><span class="n">positions</span><span class="p">,</span> <span class="n">box</span><span class="o">=</span><span class="n">frame</span><span class="o">.</span><span class="n">_unitcell</span><span class="p">)))</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">distances</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>(11, 1282401)
+</code></pre></div>
+<h3 id="visualization-using-nglviewer">Visualization using NGLViewer<a class="headerlink" href="#visualization-using-nglviewer" title="Permanent link">&para;</a></h3>
+<p>We can use the MDAnalysis representation along the the module <code>nglview</code> to visualize the trajectory within our notebook. First, unwrap the coordinates to make the molecules whole for visualization:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">AG_all</span> <span class="o">=</span> <span class="n">universe</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">for</span> <span class="n">ts</span> <span class="ow">in</span> <span class="n">universe</span><span class="o">.</span><span class="n">trajectory</span><span class="p">:</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>    <span class="n">AG_all</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">compound</span><span class="o">=</span><span class="s1">&#39;fragments&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Now, set up the viewer with a minimal representation:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">view</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">show_mdanalysis</span><span class="p">(</span><span class="n">AG_all</span><span class="p">)</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="n">view</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="n">view</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>  <span class="c1"># clear the initial representation automatically set up by nglview</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="n">view</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>  <span class="c1"># employ lightest rep</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="c1"># adjust the widget size</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="n">view</span><span class="o">.</span><span class="n">_set_size</span><span class="p">(</span><span class="s1">&#39;700px&#39;</span><span class="p">,</span> <span class="s1">&#39;600px&#39;</span><span class="p">)</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="n">view</span>
+</code></pre></div></p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_3/Vis_0.png" alt="hexane_rdf" width="70%" title="Hexane RDF.">
+    </label>
+</div>
+
+<p>Then, you can adjust the visualization using nglview <a href="https://nglviewer.org/ngl/api/manual/usage/selection-language.html">selection commands</a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">moltype</span> <span class="o">=</span> <span class="s1">&#39;HEX&#39;</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">view</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="n">view</span><span class="o">.</span><span class="n">add_point</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="n">selection</span> <span class="o">=</span> <span class="s1">&#39;@&#39;</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">universe</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s1">&#39;molnum 0&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">_ix</span><span class="p">])</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="n">view</span><span class="o">.</span><span class="n">add_spacefill</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
+</code></pre></div>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_3/Vis_1.png" alt="hexane_rdf" width="70%" title="Hexane RDF.">
+    </label>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Tutorial-1_Uploading_MD_Data/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Part III - Uploading data to NOMAD">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Part III - Uploading data to NOMAD
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Advanced/part4/" class="md-footer__link md-footer__link--next" aria-label="Next: Creating custom workflows">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Creating custom workflows
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.footer"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": 0.1}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+      
+        <script src="https://unpkg.com/cytoscape@3.19.1/dist/cytoscape.min.js"></script>
+      
+        <script src="../assets/custom.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

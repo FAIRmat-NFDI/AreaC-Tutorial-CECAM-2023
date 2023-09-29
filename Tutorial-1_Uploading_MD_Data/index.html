@@ -1,0 +1,852 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FAIRmat Area C tutorial 10.
+">
+      
+      
+        <meta name="author" content="FAIRmat consortium">
+      
+      
+      
+        <link rel="prev" href="../Tutorial-2_Overview_Page_and_Worfklow_Visualizer/">
+      
+      
+        <link rel="next" href="../Tutorial-3_Extracting_Data_and_Trajectory_Analysis/">
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
+    
+    
+      
+        <title>Part III - Uploading data to NOMAD - NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d451bc0e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a5377069.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Titillium Web";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#uploading-molecular-dynamics-data-to-nomad-40-min" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" class="md-header__button md-logo" aria-label="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" data-md-component="logo">
+      
+  <img src="../assets/nomad-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Part III - Uploading data to NOMAD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_2">
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" class="md-nav__button md-logo" aria-label="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" data-md-component="logo">
+      
+  <img src="../assets/nomad-logo.png" alt="logo">
+
+    </a>
+    NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part I - Exploring NOMAD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorial-2_Overview_Page_and_Worfklow_Visualizer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part II - Overview page and workflows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Part III - Uploading data to NOMAD
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Part III - Uploading data to NOMAD
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sections-of-the-uploads-page" class="md-nav__link">
+    Sections of the Uploads page
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-nomad-metainfo" class="md-nav__link">
+    The NOMAD Metainfo
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorial-3_Extracting_Data_and_Trajectory_Analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part IV - Working with the NOMAD archive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/part4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating custom workflows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/Upload_API/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using python API for uploading
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/AI_toolkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The AI toolkit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sections-of-the-uploads-page" class="md-nav__link">
+    Sections of the Uploads page
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-nomad-metainfo" class="md-nav__link">
+    The NOMAD Metainfo
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="uploading-molecular-dynamics-data-to-nomad-40-min">Uploading molecular dynamics data to NOMAD (~40 min)<a class="headerlink" href="#uploading-molecular-dynamics-data-to-nomad-40-min" title="Permanent link">&para;</a></h1>
+<p>There are several ways to upload your data to NOMAD:</p>
+<ul>
+<li>By dragging-and-dropping your files into the <code>PUBLISH &gt; Uploads</code> page.</li>
+<li>By using the shell command <code>curl</code> for sending files for upload.</li>
+<li>By using the python <code>response</code> library to submit a query to the NOMAD API.</li>
+</ul>
+<p>For this tutorial, we will stick to the simple drag-and-drop method. However, some information about the python API for uploading is provided under the <a href="../Advanced/Upload_API/"><code>Advanced &gt; Using python API for uploading</code></a>.</p>
+<p>In general, you can upload files one by one or upload entire file structures in <code>.zip</code> or <code>.tar.gz</code> formats. First, download the zip file with the example simulation data for this part of the tutorial:</p>
+<p><center>
+<a class="md-button" href="../assets/md_tutorial_1/water_workflow.zip" target="_blank">Download Test Data</a>
+</center></p>
+<p>Take a minute to examine the directory structure. If you are familiar with Gromacs you will immediately see the input/output from 3 simulations: an energy minimization (<code>Emin/</code>), an NPT equilibration (<code>Equil-NPT/</code>), and an NVT production run (<code>Prod-NVT/</code>). In the main directory, you will also see a .yaml file, which contains the NOMAD schema for connecting these 3 simulations into a workflow. More information about these custom workflow schemas can be found under <a href="../Advanced/part4/"><code>Advanced &gt; Creating custom workflows</code></a>.</p>
+<p>On the top-left menu, click on <code>PUBLISH &gt; Uploads</code>.</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_1/navigate_uploads.png" alt="Uploads page" width="90%" title="Uploads page.">
+    </label>
+</div>
+
+<p>Then click on <code>CREATE A NEW UPLOAD</code> and either drag-and-drop the <code>water_workflow.zip</code> file directly onto the page or click on the <code>CLICK OR DROP FILES</code> button to find it in your local directories.</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/uploading_and_publishing/gwupload.gif" alt="GW upload gif" width="90%" title="Creating a new upload with DFT+GW data.">
+    </label>
+</div>
+
+<p>After the files are uploaded, a <strong>processing</strong> is triggered. In brief, NOMAD interprets the files and divides them into two categories: <strong>mainfiles</strong> and <strong>auxiliary files</strong>. In the same upload, there might be multiple mainfiles and auxiliary files organized in a folder tree structure.</p>
+<details class="info" open="open">
+<summary>Info</summary>
+<p>The <strong>mainfiles</strong> are those files which are representative of a given computational calculation. The presence of a mainfile in the upload is required for NOMAD to recognize a calculation. NOMAD supports several computational codes for first principles calculations, molecular dynamics simulations, and lattice modeling, as well as workflow and database managers. Currently, both the Gromacs and Lammps packages are supported. We are also developing a <em>custom schema based on the H5MD format</em>, to allow users to upload simulation data run with any MD engine.</p>
+<p>For each supported code, NOMAD recognizes a single file as the mainfile. For example, the Gromacs mainfile is the native <code>.log</code> file created during the simulation. The remaining files that have not been identified as mainfiles are designated as <strong>auxiliary files</strong>. You can find further information about the various supported codes, mainfiles, and auxiliary files in the general NOMAD documentation under <a href="https://nomad-lab.eu/prod/v1/staging/docs/reference/parsers.html" target="_blank">Supported parsers</a>.</p>
+</details>
+<details class="tip">
+<summary>Tip</summary>
+<p>We recommend to keep as many auxiliary files as possible together with the mainfile, but without exceeding the uploads limit&mdash;32GB file size limit per upload. For the routine upload of simulations that exceed this limit, we suggest that you prune the trajectory file in advance, to store only a subset of the data on the NOMAD repository. In this case, the parsers should still correctly store the configurations as well as additional metadata dealing with the input parameters to the simulation.</p>
+<p>For special cases of larger simulations or datasets that must be stored in full, special processing procedures are required. In this case, you should contact the <a href="">NOMAD/FAIRmat team</a> for assistance. Alternatively, you can post questions or requests on the <a href="https://matsci.org/c/nomad/32" target="_blank">NOMAD MATSCI Community Discourse Forum</a>.</p>
+</details>
+<p>During the processing, NOMAD will store the simulation data and <em>metadata</em> within the NOMAD <em>Metainfo</em> schema. In this case, the parsing should take ~ 30 seconds. You should now see the successfully processed data overview:</p>
+<h2 id="sections-of-the-uploads-page">Sections of the Uploads page<a class="headerlink" href="#sections-of-the-uploads-page" title="Permanent link">&para;</a></h2>
+<p>At the top of the uploads page, you can modify certain general metadata fields.</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_1/water_workflow_header.png" alt="Top fields in uploads page." width="90%" title="Top fields in uploads page.">
+    </label>
+</div>
+
+<p>The name of the upload can be modify by clicking on the pen icon <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="m362.7 19.3-48.4 48.4 130 130 48.4-48.4c25-25 25-65.5 0-90.5l-39.4-39.5c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2c-2.5 8.5-.2 17.6 6 23.8s15.3 8.5 23.7 6.1L151 475.7c14.1-4.2 27-11.8 37.4-22.2l233.3-233.2-130-130z"/></svg></span>. The other icons correspond to:</p>
+<!--Confirm with Lauri the icons-->
+<ul>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M96 128a128 128 0 1 1 256 0 128 128 0 1 1-256 0zM0 482.3C0 383.8 79.8 304 178.3 304h91.4c98.5 0 178.3 79.8 178.3 178.3 0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM609.3 512H471.4c5.4-9.4 8.6-20.3 8.6-32v-8c0-60.7-27.1-115.2-69.8-151.8 2.4-.1 4.7-.2 7.1-.2h61.4c89.1 0 161.3 72.2 161.3 161.3 0 17-13.8 30.7-30.7 30.7zM432 256c-31 0-59-12.6-79.3-32.9 19.7-26.6 31.3-59.5 31.3-95.1 0-26.8-6.6-52.1-18.3-74.3C384.3 40.1 407.2 32 432 32c61.9 0 112 50.1 112 112s-50.1 112-112 112z"/></svg></span> <em>Manage members</em>: allows users to invite collaborators by defining co-authors and reviewers roles.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9-.1-2.7-.2-5.4-.2-8.1 0-88.4 71.6-160 160-160 59.3 0 111 32.2 138.7 80.2A95.51 95.51 0 0 1 448 96c53 0 96 43 96 96 0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167 80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24v134.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"/></svg></span> <em>Download files</em>: downloads all files present in the upload.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M48.5 224H40c-13.3 0-24-10.7-24-24V72c0-9.7 5.8-18.5 14.8-22.2S50.1 48.1 57 55l41.6 41.6c87.6-86.5 228.7-86.2 315.8 1 87.5 87.5 87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3c-62.2-62.2-162.7-62.5-225.3-1L185 183c6.9 6.9 8.9 17.2 5.2 26.2S177.7 224 168 224H48.5z"/></svg></span> <em>Reload</em>: reloads the uploads page.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M142.9 142.9c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2S334.3 224 344 224h128c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2S461.9 48.1 455 55l-41.6 41.6c-87.6-86.5-228.7-86.2-315.8 1-24.4 24.4-42 53.1-52.8 83.8-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5c7.7-21.8 20.2-42.3 37.8-59.8zM16 312v128c0 9.7 5.8 18.5 14.8 22.2s19.3 1.7 26.2-5.2l41.6-41.6c87.6 86.5 228.7 86.2 315.8-1 24.4-24.4 42.1-53.1 52.9-83.7 5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8-62.2 62.2-162.7 62.5-225.3 1L185 329c6.9-6.9 8.9-17.2 5.2-26.2S177.7 288 168 288H40c-13.3 0-24 10.7-24 24z"/></svg></span> <em>Reprocess</em>: triggers again the processing of the uploaded data.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span> <em>API</em>: generates a query with a JSON body to use by the NOMAD API.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M135.2 17.7 128 32H32C14.3 32 0 46.3 0 64s14.3 32 32 32h384c17.7 0 32-14.3 32-32s-14.3-32-32-32h-96l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32l21.2 339c1.6 25.3 22.6 45 47.9 45h245.8c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg></span> <em>Delete the upload</em>: deletes completely the upload.</li>
+</ul>
+<!-- ## The NOMAD API
+Another important functionality in NOMAD is being able to perform queries and analyze the resulting downloaded data from it. Once you have decided searching for a set of materials with certain properties and derived from your prefered methodology, NOMAD gives you another tool to perform a query via Application Programming Interface (API) queries or calls. This can be found by clicking the symbol `<>` at the top of the filter menus.
+<!-- In [Part II](part2.md), you will learn how to use an API query to get GW data and work with it in a Jupyter Notebook for analysis and plotting of the DFT and GW band structure. -->
+
+<!-- <div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/api.png" alt="API query" width="90%" title="Generating an API query from filters.">
+    </label>
+</div> -->
+
+<p>The remainder of the uploads page is divided in 4 sections. The first section, <em>(1) Prepare and upload your files</em>, shows the files and folder structure in the upload. You can add a <code>README.md</code> in the root directory and its content will be shown above this section..</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_1/water_workflow_files.png" alt="Uploaded files." width="90%" title="Uploaded files.">
+    </label>
+</div>
+
+<p>We will skip section 2 for now and come back to it in a second.</p>
+<p>The third section, <em>(3) Edit author metadata</em>, allows users to edit certain metadata fields from all entries recognized in the upload. This includes <em>comments</em>, where you can add as much extra information as you want, <em>references</em>, where you can add a URL to your upload (e.g., an article DOI), and <em>datasets</em>, where you can create or add the uploaded data into a more general dataset.</p>
+<p align="center">
+    <img src="../assets/uploading_and_publishing/edit_author_metadata.png" alt="Edit author metadata." width="50%" title="Edit author metadata.">
+</p>
+
+<p>The final section, (4) Publish_, lets the user to publish the data with or without an embargo. This will be explained more in detail in <a href="https://nomad-lab.eu/prod/v1/docs/data/upload.html" target="_blank">How-to publish data</a>.</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/uploading_and_publishing/publish.png" alt="Publish button." width="90%" title="Publish button.">
+    </label>
+</div>
+
+<details class="warning" open="open">
+<summary>Warning</summary>
+<p>Please, <strong><em>do not publish this test data</em></strong>! There is a <a href="https://nomad-lab.eu/prod/v1/test" target="_blank">test deployment of NOMAD</a> where you can safely perform test publishing, as the data is periodically deleted.</p>
+</details>
+<p>Now go back to the second section, <em>(2) Process data</em>, which shows the processed data and the generated entries in NOMAD:</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_1/Processed_data_edited.png" alt="Uploads page" width="90%" title="Uploads page.">
+    </label>
+</div>
+
+<p>Let's examine the production simulation by clicking the 3 dots to the right of the entry labeled <code>Prod-NVT/mdrun_Prod-NVT.log</code>, circled in green in the above image. You will now be on the <strong>OVERVIEW</strong> page for this entry, which aims to provide a simple description of this entry through visualizations of the system itself, some key observables, and some of the overarching metadata. The <strong>OVERVIEW</strong> page will be examined in detail in Tutorial 2. For now, we will focus on how the uploaded data is stored within the NOMAD repository. In addition to the <strong>OVERVIEW</strong> tab, there are 3 other tabs at the top of the page: <strong>FILES</strong>, <strong>DATA</strong>, and <strong>LOGS</strong>.</p>
+<p>Click on the <strong>FILES</strong> tab. Here you will find all the raw data that was uploaded via the .zip file, retained within the original file system structure. The raw files are stored in the repository and can be downloaded at any time.</p>
+<p>Now click on the <strong>LOGS</strong> tab. Here you will find some technical information about the data processing along with any warnings or errors that were raised by the NOMAD software.</p>
+<p>Finally, click on the <strong>DATA</strong> tab. Here you can navigate through the NOMAD <em>Metainfo</em> for this entry, i.e., the processed and normalized version of the simulation data and metadata.</p>
+<h2 id="the-nomad-metainfo">The NOMAD Metainfo<a class="headerlink" href="#the-nomad-metainfo" title="Permanent link">&para;</a></h2>
+<p>NOMAD stores all processed data in a well defined, structured, and machine readable format, known as the <code>archive</code>.
+The schema that defines the organization of (meta)data within the archive is known as the <code>MetaInfo</code>.
+More information can be found in the NOMAD docs: <a href="https://nomad-lab.eu/prod/v1/docs/schemas/basics.html" target="_blank">An Introduction to Schemas and Structured Data in NOMAD</a>.</p>
+<p>Duplicate your tab and go to <code>Analyze &gt; The NOMAD Metainfo</code> in the top-left menu of NOMAD. Here you can navigate through or search the entire set of NOMAD Metainfo definitions.</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part1_explore/nomadmetainfo.png" alt="The NOMAD metainfo" width="90%" title="The NOMAD metainfo.">
+    </label>
+</div>
+
+<p>The NOMAD Metainfo covers a very wide range of materials data beyond computational data, including electronic lab notebooks and a variety of experimental techniques.
+The most important archive sections for computational data is illustrated in the following diagram:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>archive
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── run
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│    ├── method
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│    │      ├── atom_parameters
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│    │      ├── dft
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│    │      ├── forcefield
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│    │      └── ...
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│    ├── system
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│    │      ├── atoms
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│    │      │     ├── positions
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│    │      │     ├── lattice_vectors
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│    │      │     └── ...
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│    │      └── ...
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│    └── calculation
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│           ├── energy
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│           ├── forces
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│           └── ...
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>└── workflow2
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>     ├── method
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>     ├── inputs
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>     ├── tasks
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>     ├── outputs
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>     └── results
+</code></pre></div>
+<p>Search through the NOMAD Metainfo sections displayed above to get an idea of what kinds of quantities are stored in each section. In <a href="../part2/">Part II</a>, you will learn how to explore the actual populated quantities of the Metainfo for specific entries.</p>
+<p>Navigate to section <strong>run</strong> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span> <strong>program</strong>, where we find some basic information about the simulation code (name and version):</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_1/Run_Program.png" alt="Uploads page" width="90%" title="Uploads page.">
+    </label>
+</div>
+
+<p>Now navigate to section <strong>run</strong> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span> <strong>method</strong>:</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_1/Run_Method.png" alt="Uploads page" width="90%" title="Uploads page.">
+    </label>
+</div>
+
+<p>Under <strong>atom_parameters</strong> you will find a list of force-field-dependent atom attributes such as mass and charge. Under <strong>force_field</strong> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span> <strong>model</strong> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span> <strong>contributions</strong> you will find a list of intramolecular interactions defined for this simulation. The development of metadata for a more comprehensive storage of force fields in NOMAD is currently underway. Under <strong>force_field</strong> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span> <strong>force_calculations</strong> you will find some basic input parameters dealing with the calculation of forces in this simulation.</p>
+<p>Navigate to section <strong>run</strong> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span> <strong>system</strong> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span> <strong>0</strong>:</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_1/Run_System_0.png" alt="Uploads page" width="90%" title="Uploads page.">
+    </label>
+</div>
+
+<p>The <strong>system</strong> section holds the configurational information from this entry. The first item in this section, <strong>0</strong>, corresponds to the first saved configuration within the simulation trajectory. Now click on the atoms section:</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_1/Run_System_0_Atoms.png" alt="Uploads page" width="90%" title="Uploads page.">
+    </label>
+</div>
+
+<p>There will be a prompt to ask if you would like to visualize the system. If you click yes, the particles within the simulation box will be displayed. (The visualizer can also be accessed with additional features in the <strong>OVERVIEW</strong> page). In the <strong>atoms</strong> section, various atom attributes are stored, e.g., the positions and velocities of each atom for this frame. Notice that the simulation trajectory is stored as a list of repeating dictionaries, as opposed to the typical dictionary of lists that may be found in trajectory analysis software, such as <em>MDAnalysis</em>. In short, this is done for consistency with data from other methods that are stored in the NOMAD repository. However, when working with the data from a particular entry, there are tools in NOMAD to easily convert the <em>Metainfo</em> to a more convenient format for analysis. More about this in Tutorial 3.</p>
+<p>Now click on the <strong>atoms_group</strong> section:</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_1/Run_System_0_AtomsGroup.png" alt="Uploads page" width="90%" title="Uploads page.">
+    </label>
+</div>
+
+<p>This section holds a hierarchical organization of the system (denoted in the following as the <em>topology</em>), based on the <em>bonds</em> defined in the force field used for this simulation. By default, the first level of this hierarchy contains <em>molecule groups</em>, which group together all molecules of the same type. Now, by clicking the <strong>atoms_group</strong> subsection of this group, you reach the next level down, which contains each molecule within the current molecule group. Similarly to these molecule groups and molecule levels, monomer groups and monomer levels will be defined for polymer systems. The individual atoms within each molecule are not explicitly stored within this hierarchy, but are simply referenced via their indices within the <strong>atoms</strong> section. Take a few minutes to examine this hierarchy and the stored quantities in more detail. Note that at the moment the hierarchy is only stored in the first entry of <strong>system</strong>.</p>
+<p>Now go back and navigate to section <strong>run</strong> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span> <strong>calculation</strong> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span> <strong>0</strong>:</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/md_tutorial_1/Run_Calculation_0.png" alt="Uploads page" width="90%" title="Uploads page.">
+    </label>
+</div>
+
+<p>The <strong>calculation</strong> section contains any saved thermodynamic quantities that are a function of a single configuration, e.g., energy, pressure, temperature, etc., as well as any saved force information for the atoms within each configuration.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Assignment</p>
+<ol>
+<li>
+<p>What are the oxygen and hydrogen atom types used in the force field for this simulation?</p>
+</li>
+<li>
+<p>What is the step number of the last saved configuration of this simulation? What is the corresponding time for this configuration?</p>
+</li>
+<li>
+<p>(CHALLENGE) Which thermostat is used for temperature coupling in this simulation? What is the frequency of temperature coupling?</p>
+</li>
+</ol>
+</div>
+<details class="success">
+<summary>Success</summary>
+<ol>
+<li>
+<p>OW, HW1, and HW2 (see <strong>run</strong> &rarr; <strong>method</strong> &rarr; <strong>atom_parameters</strong> &rarr; <em>atom_index</em> &rarr; <strong>label</strong>)</p>
+</li>
+<li>
+<p>step = 5000, time = 5 ps (see <strong>system</strong> &rarr; <strong>10</strong> &rarr; <strong>step</strong> and <strong>system</strong> &rarr; <strong>10</strong> &rarr; <strong>time</strong>, respectively)</p>
+</li>
+<li>
+<p>thermostat = "langevin_goga", frequency of coupling = 500 fs (see <strong>workflow</strong> &rarr; <strong>molecular_dynamics</strong> &rarr; <strong>integration_parameters</strong> &rarr; <strong>thermostat_parameters</strong> &rarr; <strong>thermostat_type</strong> and <strong>workflow</strong> &rarr; <strong>molecular_dynamics</strong> &rarr; <strong>integration_parameters</strong> &rarr; <strong>thermostat_parameters</strong> &rarr; <strong>coupling_constant</strong>, respectively).</p>
+</li>
+</ol>
+</details>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Tutorial-2_Overview_Page_and_Worfklow_Visualizer/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Part II - Overview page and workflows">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Part II - Overview page and workflows
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Tutorial-3_Extracting_Data_and_Trajectory_Analysis/" class="md-footer__link md-footer__link--next" aria-label="Next: Part IV - Working with the NOMAD archive">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Part IV - Working with the NOMAD archive
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.footer"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": 0.1}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+      
+        <script src="https://unpkg.com/cytoscape@3.19.1/dist/cytoscape.min.js"></script>
+      
+        <script src="../assets/custom.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

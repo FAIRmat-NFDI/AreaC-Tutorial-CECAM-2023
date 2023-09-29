@@ -1,0 +1,809 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FAIRmat Area C tutorial 10.
+">
+      
+      
+        <meta name="author" content="FAIRmat consortium">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
+    
+    
+      
+        <title>Part III: Numerical precision in ab initio calculations. - NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d451bc0e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a5377069.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Titillium Web";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#part-iii-numerical-precision-in-ab-initio-calculations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" class="md-header__button md-logo" aria-label="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" data-md-component="logo">
+      
+  <img src="../assets/nomad-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Part III: Numerical precision in ab initio calculations.
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_2">
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" class="md-nav__button md-logo" aria-label="NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23" data-md-component="logo">
+      
+  <img src="../assets/nomad-logo.png" alt="logo">
+
+    </a>
+    NOMAD (FAIRmat) Tutorial - CECAM workshop 29.09.23
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part I - Exploring NOMAD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorial-2_Overview_Page_and_Worfklow_Visualizer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part II - Overview page and workflows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorial-1_Uploading_MD_Data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part III - Uploading data to NOMAD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorial-3_Extracting_Data_and_Trajectory_Analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part IV - Working with the NOMAD archive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/part4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating custom workflows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/Upload_API/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using python API for uploading
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced/AI_toolkit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The AI toolkit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lay-out-of-the-precision-section" class="md-nav__link">
+    Lay-out of the Precision section
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k_section" class="md-nav__link">
+    Reciprocal space
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elec_section" class="md-nav__link">
+    Electronic Structure
+  </a>
+  
+    <nav class="md-nav" aria-label="Electronic Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#val_section" class="md-nav__link">
+    Valence Electrons
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-electrons" class="md-nav__link">
+    Core Electrons
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tier_section" class="md-nav__link">
+    Code-specific tiers
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="part-iii-numerical-precision-in-ab-initio-calculations">Part III: Numerical precision in <em>ab initio</em> calculations.<a class="headerlink" href="#part-iii-numerical-precision-in-ab-initio-calculations" title="Permanent link">&para;</a></h1>
+<p>In this part, you will learn about several new quantities and tools for working with numerical-precision settings in NOMAD.
+These tools will help you</p>
+<ol>
+<li>query for the level of precision or conformity that you need.</li>
+<li>deploy extracted data into a notebook to start performing data science.</li>
+</ol>
+<p>Note that <em>precision</em> specifies how close a calculation's convergence is with respect to the complete basis set limit, and not necessarily experiments (that would be <em>accuracy</em>).
+As such, it only really makes sense when comparing entries of the same system.
+It is best thought of as <em>a filter that gets applied after you have already chosen your material and method of interest</em>.</p>
+<p>Since these precision quantities are new and by times community-specific, this tutorial places the emphasis on their definitions.
+By times it also briefly touches on the bare minimum of theoretical knowledge required to handle them, but mostly leaves the interested reader with references to follow up on.
+There are also a couple of example instructions guiding you to a specific entry or for downloading processed data into a notebook.
+Lastly, watch out for the boxes with a pencil sign. They delve deeper into some topics and can be skipped at the first reading.</p>
+<h2 id="lay-out-of-the-precision-section">Lay-out of the Precision section<a class="headerlink" href="#lay-out-of-the-precision-section" title="Permanent link">&para;</a></h2>
+<p>To start, go to the Entries overview page &gt; FILTERS (side menu) &gt; Precision.
+To navigate to the Entries page, check out <a href="../part1/#entries_section">Part I - Exploring NOMAD</a>.
+The side menu in front of you is ordered so it starts out very general (<a href="#k_section"><strong>k-line Density</strong></a>, <a href="#tier_section"><strong>Code-specific Tier</strong></a>)
+and below the choice of <strong>Basis Set</strong>, only contains quantities specific to certain basis set types, e.g. <a href="#val_section"><strong>Plane-wave Cutoff</strong></a>, <a href="#val_section"><strong>APW Cutoff</strong></a>.
+The same quantities can be found for each entry in their OVERVIEW page &gt; DATA &gt; <strong>results</strong> &gt; <strong>method</strong> &gt; <strong>simulation</strong> &gt; <strong>precision</strong>.
+Following along with the example below, make sure your precision settings are sensible by filtering down to a well-defined system (cubic-centered Actinium) via FILTERS &gt; Material &gt; Ac &gt; only compositions that ... &gt; sorting by <strong>Formula</strong>.</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part3_convergence/GUI_filter_precision.gif" alt="Process of locating the precision side menu after filteriing for Ac" width="90%" title="Locating and using the Precision section in Entries - taken on June 12th, 2023 at 13:15h CEST">
+    </label>
+</div>
+
+<p>Some quantities are so specific and / or verbose, that they are relegated to DATA.
+This means that they do not show up in the side menu, nor the search bar.
+<a href="#mt_section">Muffin-tin spheres</a> gives an example of when it is interesting to check them out and how to do so.</p>
+<h2 id="k_section">Reciprocal space<a class="headerlink" href="#k_section" title="Permanent link">&para;</a></h2>
+<p>In periodic systems, the most universal numerical parameter is the integration of the reciprocal space, or k-space, and its sampling.
+With the sampling points often being spaced at fixed intervals, one can define a homogeneous <em>k-density</em>
+<span class="arithmatex">\(= \frac{\text{no. k-points}}{||\text{k-lattice vector}||}\)</span>.
+Then, as the k-density ramps up, the Bloch wavefunction converges. <!-- reference? -->
+Each (periodic) axis has its own k-density, and though one normally tries to keep these constant among them, fluctuations may happen due the discretized nature of the k-point sampling.
+To ensure that NOMAD users obtain data that meets their convergence needs, <strong><em>k-line density</em></strong> only shows the lowest density value.</p>
+<p>Many codes only support 3-D unit cells.
+Any lower-dimensional cases are then handled by introducing a physical separation (vacuum) between the otherwise periodic images, as well as reducing the k-point sampling to a minimum (1 grid point).
+Such edge cases can cause false positives, i.e. unphysically low k-line densities, given our current definition.
+NOMAD distinguishes dimensionality in <code>results.material.toplogy.dimensionality</code> and will therefore only provide a k-line density in a true 3-D case.
+You may also expect lower-dimensional cases to be supported in the near future, where only periodic axes are accounted for.</p>
+<p align="center">
+    <img src="../assets/part3_convergence/klinedensity.png" alt="Schematic representation of k-line density calculation." width="65%" title="k-line density for 3D and 2D lattices">
+</p>
+
+<div class="admonition note">
+<p class="admonition-title">Band structure calculations</p>
+<p>For their spatial resolution, band structures sample along line paths connecting several high-symmetry points instead of the reciprocal lattice vectors.
+Not only can each line path can have its own spacing, their projections onto the reciprocal lattice vectors will vary.
+In short, they deviate from the fixed spacing requirement, and therefore, NOMAD filters them out.
+Conceptually, this is fine, since k-line density's aim is provide context to convergence, where this type of sampling does not apply.</p>
+</div>
+<h2 id="elec_section">Electronic Structure<a class="headerlink" href="#elec_section" title="Permanent link">&para;</a></h2>
+<p>At the level of the unit cell, there are several paradigms on how to represent the electronic wavefunction.
+In this tutorial, we explore basis sets that start from plane waves, which mathematically mix well with the Bloch convolution.
+In particular, we address <em>projector-augmented waves</em> (PAW) and <em>augmented plane waves</em> (APW).
+As their names suggest, both extend the regular plane waves in regions where convergence is slow, namely around atomic nuclei.</p>
+<p>A big distinction between PAW and APW is where they each draw this divide:</p>
+<ul>
+<li>PAW: the deciding factor is the orbital energies, with those below a certain threshold accounted for in special-purpose pseudopotentials.
+  More on this in <a href="#pseudo_section">Pseudopotentials</a>.</li>
+<li>APW: here the divide is spatial in nature.
+  A (mostly) spherical region, i.e. the muffin-tin sphere, is drawn surrounding the nuclei.
+  The valence electrons reside in interstitial region between these spheres. </li>
+</ul>
+<h3 id="val_section">Valence Electrons<a class="headerlink" href="#val_section" title="Permanent link">&para;</a></h3>
+<p>The main parameter controlling the plane waves is the longest k-vector <span class="arithmatex">\(\mathbf{G}^{max}\)</span>.
+A basis set of plane waves is then generated at fixed intervals, i.e. the secondary parameter, up to <span class="arithmatex">\(\mathbf{G}^{max}\)</span>.
+Since the sampling is symmetric in each direction, the length, <span class="arithmatex">\(||\mathbf{G}^{max}||\)</span>, suffices.
+By convention, most plane wave (especially PAW) codes express the vector length in energy units, which NOMAD reports as <strong><em>plane-wave cutoff</em></strong>,
+<span class="arithmatex">\(E^{max}_{cut} = \frac{\left(\hbar ||\mathbf{G}_{cut}^{max}||\right)^2}{2m_e}\)</span>.</p>
+<p align="center">
+    <img src="../assets/part3_convergence/planewave.png" alt="Represenation of G^max sphere in reciprocal space, overlayed upon a pseudopotential landscape in real space." width="45%" title="plane wave sampling over pseudopotentials">
+</p>
+
+<p>In principle, one can follow the same reasoning for the APW paradigm.
+However, the cutoff energy alone gives an incomplete view.
+While in PAW the plane waves sample the whole supercell, in APW they are barred from the muffin-tin spheres.
+The convention here is to compare the length of <span class="arithmatex">\(G^{max}\)</span> to the largest muffin-tin radius in reciprocal space, yielding the unit-less fraction, <strong><em>APW cutoff</em></strong>,
+<span class="arithmatex">\(||\mathbf{R}_{MT}^{min}|| \cdot ||\mathbf{G}_{cut}^{max}||\)</span>.</p>
+<p align="center">
+    <img src="../assets/part3_convergence/muffintin.png" alt="Represenation of G^max sphere in reciprocal space, overlayed upon a muffin-tin potential landscape in real space." width="50%" title="plane wave sampling over a muffin-tin potential">
+</p>
+
+<p>NOMAD points out these differences by specifying the unit after the quantity name and between brackets.
+For more detail, hover over the quantity name.</p>
+<p>Both cutoff types can safely be increased to retrieve entries with progressively better converged valence electron wavefunctions.</p>
+<div class="admonition note">
+<p class="admonition-title">What about <em>grid spacing</em>?</p>
+<p>At the moment, the mesh of the reciprocal or fast Fourier-transformed (FFT) space is not yet extracted.
+It is on the <em>planned feature</em> list, though with low priority, considering that most of the convergence is already captured by the cutoff.
+If an upload or analysis ever requires a new feature, feel free to reach out to us via <a href="mailto:fairmat@physik.hu-berlin.de">fairmat@physik.hu-berlin.de</a>.</p>
+</div>
+<h3 id="core-electrons">Core Electrons<a class="headerlink" href="#core-electrons" title="Permanent link">&para;</a></h3>
+<p>The mathematical parameters describing the electronic core region are extracted, but do not appear in the side menu. <!-- core-electron treatment still exists in DFT -->
+To access them, select an entry, e.g. type <code>entry_id = zxhFQjN5Mny1FW5QEOGxWLPThF3r</code> in the search bar &gt; OVERVIEW &gt; DATA.
+In the DATA browser follow <strong>run</strong> (all computational data) &gt; <strong>method</strong> ( metadata describing the calculation setup) &gt; <strong>electrons_representation</strong>.
+This sections contains metadata on the mathematical description of the electronic structure.</p>
+<div class="click-zoom">
+    <label>
+        <input type="checkbox">
+        <img src="../assets/part3_convergence/GUI_data_er.gif" alt="Step-by-step guide on how to find electrons_representation in entry_id = zxhFQjN5Mny1FW5QEOGxWLPThF3r" width="90%" title="Finding electrons_representation - taken on June 12th, 2023 at 10:16h CEST">
+    </label>
+</div>
+
+<p>Each representation comes with a <strong>scope</strong> and a <strong>type</strong>, which specify the entity (e.g. wavefunction, density, exchange-correlation density, integration grid) and the overall basis set, respectively.
+Hardly any code sticks to a single set of parameters values, instead adapting them according to task at hand.
+For this reason there can be multiple electrons representations, each with their unique scope.
+Those reported in the search are always the settings for <code>scope = wavefunction</code>.</p>
+<p>As you have learned in <a href="#elec_section">Electronic Structure</a>, some basis sets divide the orbital set into widely different approaches.
+Each <strong>basis_set</strong> subsection describes and individual region.
+Here too, you will find <strong>scope</strong> and <strong>type</strong> with pretty much the same definitions.
+Take note though, since the basis set <strong>scope</strong> refers to the region it encodes.
+Examples include cases mentioned above, based on</p>
+<ul>
+<li>orbital energy: <em>core</em> vs <em>valence</em>.</li>
+<li>spatial boundaries: <em>muffin-tin</em> vs <em>interstitial</em></li>
+<li>Hamiltonian: <em>kinetic</em> and <em>electron-nucleus</em> interaction vs <em>electron-electron</em> interaction in the case of CP2k's Quickstep algorithm.</li>
+</ul>
+<h4 id="mt_section">Muffin-tin spheres<a class="headerlink" href="#mt_section" title="Permanent link">&para;</a></h4>
+<p>APW is an all-electron approach, meaning that all orbitals are relaxed during an electronic self-consistent (SCF) routine.
+By itself, APW is no longer state-of-the-art and has been followed up by extensions such as LAPW, SLAPW, and APW+lo.
+Throughout this tutorial, the term <em>APW</em> is used as a shorthand for this entire family of approaches, but in this section alone, it will refer to just the progenitor.</p>
+<p>While a full overview of the theory is beyond the scope of this tutorial, a quick rundown is necessary to explain some of the NOMAD design choices.
+The muffin-tin potential around the nucleus <span class="arithmatex">\(\alpha\)</span> allows the code to fall back on a more simple, spherically symmetric Hamiltonian to solve.
+The basis set thus consists out of the harmonics <span class="arithmatex">\(Y_L\left(r_\alpha\right)\)</span> with radially dependent weights <span class="arithmatex">\(u\left(r_\alpha, \epsilon\right)\)</span>.
+In the original APW approach, the energy parameter <span class="arithmatex">\(\epsilon\)</span> is a variable that should converge to the respective orbital energies.
+The core states then align with the well-known case of a multi-electron atom system and are tackled separately from the valence states. <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<p>The muffin-tin valence bands, meanwhile, have to match with their plane-wave counterparts at the boundary.
+While this formulation of APW is complete, it leads to a set of non-linear equations.
+More modern implementations linearize these equations by freezing the energy parameter <span class="arithmatex">\(\epsilon_{l,\alpha}\)</span> by nucleus and harmonic index <span class="arithmatex">\(l\)</span>. <sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>
+Obviously, a single <span class="arithmatex">\(\epsilon_{l,\alpha}\)</span> value per <span class="arithmatex">\(l\)</span>-channel cannot account for dispersion and (anti-)bonding effects, unless they match the state energy perfectly.
+Instead, corrections are worked in by adding higher-order derivatives of <span class="arithmatex">\(u\left(r_\alpha, \epsilon\right)\)</span> to the basis set.
+Likewise, each derivative order must also match up at the boundary.
+If the corrections run up to first-order, the approach is called LAPW, else SLAPW for those beyond.</p>
+<p>Another effect of constraining the energy parameter <span class="arithmatex">\(\epsilon\)</span> to <span class="arithmatex">\(l\)</span>, is that it cannot account for wavefunctions with different nodes or main quantum numbers <span class="arithmatex">\(n\)</span>.
+Some core states, however, are too high-energy to be well-contained within their muffin-tin spheres.
+They are typically referred to as <em>semicore</em> and have to be treated as valence states.
+The preferred way to tackle them, is by adding an additional wavefunction, similar to LAPW or SLAPW, but with a normalization requirements in lieu of some boundary constraints.
+These are called <em>local orbitals</em> (lo) and can be freely added by the user to supplement APW or LAPW.
+By no means are they restricted to describing semicore states, but can also tackle additional <em>unoccupied states</em> (used in beyond-DFT) as well.</p>
+<p align="center">
+    <img src="../assets/part3_convergence/apw_scheme.png" alt="APW family scheme" width="75%" title="Various radial wavefunction constructions in the APW family with their respective boundary conditions (BO). The red wavefunction represents the true solution, which can be variationally approximated, as shown in pink. The modern implementations use APW (blue) approximation, which can be further fine-tuned using its first-order derivative (LAPW, green). The local orbital (LO, orange) with its integration constraint is formulatd similar to LAPW.">
+</p>
+
+<p>While some APW codes require a manual setup for each orbital, e.g. Wien2k, others use a couple of "steering" parameters to generate the orbitals.
+In NOMAD, we typically to keep parameters as concise as possible, though in this case this is not practical for two reasons:</p>
+<ol>
+<li>There is no consensus on which steering parameters to use. Each code allows different levels of customization.</li>
+<li>The energy parameters provided by the user should not be directly used in the SCF routines.
+   Rather, the code will have some algorithm that optimizes the initial energy parameters based on the geometry.
+   As such, any orbital degeneracy is lifted.</li>
+</ol>
+<p>To capture the orbitals states completely, NOMAD instead "unrolls" the steering parameters down to individual radial valence orbitals, identified by their <em>type</em> (e.g. APW, LAPW, lo), associated <em>harmonic index</em> <span class="arithmatex">\(l\)</span>, <em>derivative order</em> of <span class="arithmatex">\(u\left( r \right)\)</span>, and of course, the initial energy parameter guess.
+The <em>sampling grid</em> inside the muffin-tin region, as well as the <em>treatment of the core electrons</em> are all specified at the basis set level.</p>
+<div class="admonition note">
+<p class="admonition-title">Uploading the right files</p>
+<p>Most APW codes leave the orbital specification out of their main input file.
+Similarly, they will also write out their actual initial guesses for the energy parameters out to another intermediate file.
+If you want NOMAD to pick up on these parameters, please include the files in the table below into your upload.
+They are automatically generated, so there are no extra steps involved.</p>
+<table>
+<thead>
+<tr>
+<th>code name</th>
+<th>file name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>exciting</em></td>
+<td><code>&lt;species&gt;.xml</code></td>
+</tr>
+<tr>
+<td>fleur</td>
+<td><code>out.xml</code> (the main output file)</td>
+</tr>
+<tr>
+<td>Wien2k</td>
+<td><code>&lt;calculation&gt;.inc1</code></td>
+</tr>
+<tr>
+<td>Elk</td>
+<td>Not supported yet</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="pseudo_section">Pseudopotentials<a class="headerlink" href="#pseudo_section" title="Permanent link">&para;</a></h4>
+<p>With the exception of APW, most plane wave codes hide the core structure via an effective potential for the valence electrons.
+Where most of these older pseudopotentials where constrained in their range of applications, those built for projector-augmented waves exhibit the highest degree of flexibility.</p>
+<p>Where before NOMAD would simply indicate the usage of pseudopotentials, it now gives a more complete description, such as:
+the <em>title</em>, the <em>density functional</em> (or sometimes GW) used to generate the pseudopotential, <em>projector</em> information, the recommended <em>minimum plane wave cutoff</em> to be used for the valence electrons, and whether or not it is <em>norm-conserving</em>.
+The latter is a useful (but more expensive) integration property and is a prerequisite for some methods. 
+To try this out for yourself, look up <code>entry_id = zz7J6c9cn_K5B4Ecbiasy4xQ-hYl</code> and navigate to OVERVIEW &gt; DATA &gt; <strong>run</strong> &gt; <strong>method</strong> &gt; <strong>atom_parameters</strong> (describes the calculation setup by elemental type) &gt; <strong>pseudopotential</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Why am I seeing double quantities?</p>
+<p>The NOMAD metainfo is semantically constructed. Consequentially, a quantity may belong under several categories.
+In this case, they always share the same name and definition though.
+Meanwhile, some quantities (e.g. <strong>pseudopotential</strong> vs <strong>pseudopotential_name</strong>) may appear to be similar, but are not exactly identical.
+Likely, one of them is legacy (<strong>pseudopotential_name</strong>). The legacy quantity will then be deprecated, though their actual removal may be scheduled later for compatibility reasons.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Disclaimer</p>
+<p>At the moment, parsing is restricted to VASP pseudopotentials, including non-standard or self-made versions.
+Wider code-support is being built out.
+NOMAD takes great care in complying with the copyright of the standard POTCAR files and their distribution, so all instances are stripped down to their metadata alone.</p>
+</div>
+<h2 id="tier_section">Code-specific tiers<a class="headerlink" href="#tier_section" title="Permanent link">&para;</a></h2>
+<p>Filtering for the aforementioned quantities requires quite some expertise, and it is hard often to weigh the significance of two parameters in the electronic convergence.
+Some codes have benchmarked their own suggested settings into a list of increasing precision, i.e. <em>tiers</em>.
+Tiers provide the user base with a relatively safe reference, without having to run any benchmarks themselves.
+Consequentially, they facilitate standardization and interoperability among users and / or publications.
+Typically, lower tiers are used to save on resources when exploring large materials' spaces and running large or long simulations.
+They can also act as starting points for higher tiers that provide high-quality data.</p>
+<p>Essentially, these tiers hide the high-dimensional parameter values behind a set of hierarchical categories.
+One such good example of this complexity can be found in <code>entry_id = z-wO_IzCW9sDvysmF500duxvDXDs</code>.
+The section <code>run.method.electrons_representation</code> contains the corresponding settings.
+To view all quantities, including those unique to the code, select <em>code specific</em> in the upper-right corner.
+These are hidden by default.</p>
+<p>Back in the Entries overview page, you can filter by tier by typing <code>&lt;code name&gt; - &lt;tier name&gt;</code> (e.g. <code>VASP - accurate</code>) into the NOMAD side menu &gt; Precision &gt; Code-specific Tier.
+<code>&lt;code name&gt;</code> is integral to the format, because tiers are code-specific.
+This quantity is not meant to provide some kind of comparison across codes.
+<code>&lt;tier name&gt;</code>, meanwhile, is case-sensitive, but suggestions will pop up once you start typing.</p>
+<p>Overall, <strong><em>Code-specific tier</em></strong> captures a lot of complexity at once, making it great for quick searches.
+Beware though: it is also very picky, and will strongly reduce the number of entries returned.</p>
+<div class="admonition note">
+<p class="admonition-title">Tier matching</p>
+<p>Contrary to other precision quantities like k-line density, plane-wave cutoff, or APW cutoff, tiers are discrete, not continuous.
+Settings between two tiers are hard to pin down, even qualitatively, since the setting parameters have differing weights.
+Therefore, NOMAD only assigns perfect matches.
+When even one value in the settings is altered by the user, the calculation is immediately disqualified from the tier.
+This does not mean that the data is invalid or less valuable, though, just that it will be not show up when the filter is applied.</p>
+</div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Andris Gulans, Stefan Kontur, Christian Meisenbichler, Dmitrii Nabok, Pasquale Pavone, Santiago Rigamonti, Stephan Sagmeister, Ute Werner, and Claudia Draxl. Exciting: a full-potential all-electron package implementing density-functional theory and many-body perturbation theory. <em>J. Phys.: Condens. Matter</em>, 26(36):363202, September 2014. URL: <a href="https://iopscience.iop.org/article/10.1088/0953-8984/26/36/363202">https://iopscience.iop.org/article/10.1088/0953-8984/26/36/363202</a> (visited on 2023-04-26), <a href="https://doi.org/10.1088/0953-8984/26/36/363202">doi:10.1088/0953-8984/26/36/363202</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>David J. Singh and Lars Nordström. <em>Planewaves, pseudopotentials, and the LAPW method</em>. Springer, New York, NY, 2nd ed edition, 2006. ISBN 978-0-387-28780-5 978-0-387-29684-5.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.footer"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": 0.1}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+      
+        <script src="https://unpkg.com/cytoscape@3.19.1/dist/cytoscape.min.js"></script>
+      
+        <script src="../assets/custom.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
