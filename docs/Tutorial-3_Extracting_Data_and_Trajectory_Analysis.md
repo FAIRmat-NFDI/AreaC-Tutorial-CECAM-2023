@@ -7,7 +7,7 @@ For this demonstration, we will utilize some tools from the nomad-lab software, 
 We suggest creating a virtual environment for this purpose. For example, using `conda`, you can set up the appropriate environment by first downloading the environment.yml file:
 
 <center>
-[Download environment.yml](../assets/md_tutorial_3/environment.yml){ .md-button }
+[Download environment.yml](assets/md_tutorial_3/environment.yml){ .md-button }
 </center>
 
 Then create a new conda environment with the following command:
@@ -30,7 +30,7 @@ conda env create -f environment.yml
 Or if you are using `virtualenv`:
 
 <center>
-[Download requirements.txt](../assets/md_tutorial_3/requirements.txt){ .md-button }
+[Download requirements.txt](assets/md_tutorial_3/requirements.txt){ .md-button }
 </center>
 
 ```python
@@ -86,7 +86,7 @@ In general, you can use the [NOMAD Application Programming Interface (API)](http
 - delete data
 - query all kinds of (meta)data: processed (from the archive), raw (from the repository), large bundles, individual entries, etc
 
-Each functionality has its own url, i.e. _endpoints_. There are over 60 different endpoints, each specialized in their own little subtask. You can find the full overview over at the [API dashboard](https://nomad-lab.eu/prod/v1/staging/api/v1/extensions/docs#/). It is highly recommended to have this page open when writing queries. Lastly, you can also use the dashboard to try out queries on the fly.
+Each functionality has its own url, i.e. _endpoints_. There are over 60 different endpoints, each specialized in their own little subtask. You can find the full overview over at the [API dashboard](https://nomad-lab.eu/prod/v1/staging/api/v1/extensions/docs#/){:target="_blank"}. It is highly recommended to have this page open when writing queries. Lastly, you can also use the dashboard to try out queries on the fly.
 
 In this first exercise, we will download the **processed molecular dynamics trajectory** of an **individual entry** to perform our own visualization and analysis.
 For this, we will be using the `/entries/{entry_id}`/archive. The `{entry_id}` here is variable, which you can get from the NOMAD website (or other API queries). Note that there are 3 versions of this endpoint: one that only gives you the metadata, one that returns the entire archive (`/download`), and a last wildcard that we will get into later (`/query`). These latter 2 options will be demonstrated below.
@@ -353,7 +353,7 @@ for frame_ind, frame in enumerate(section_system):
     </label>
 </div>
 
-As you may have noticed, one of our bottlenecks in visualizing the trajectory is downloading the data. This is due to the archive's size (35.8 MB, not too uncommon with MD entries). It may be the case that before committing to downloading the entire archive for further analysis we want to examine a particular quantity, e.g., the temperature trajectory. This is a job for the `/query` endpoint. Go back to the [API dashboard](https://nomad-lab.eu/prod/v1/staging/api/v1/extensions/docs#/entries%2Farchive/post_entry_archive_query_entries__entry_id__archive_query_post) and check out its schema.
+As you may have noticed, one of our bottlenecks in visualizing the trajectory is downloading the data. This is due to the archive's size (35.8 MB, not too uncommon with MD entries). It may be the case that before committing to downloading the entire archive for further analysis we want to examine a particular quantity, e.g., the temperature trajectory. This is a job for the `/query` endpoint. Go back to the [API dashboard](https://nomad-lab.eu/prod/v1/staging/api/v1/extensions/docs#/entries%2Farchive/post_entry_archive_query_entries__entry_id__archive_query_post){:target="_blank"} and check out its schema.
 
 This endpoint uses `post`, which is either used to add data (such as under `uploads`) or more complex queries and additional parameters, i.e. a more customizable `get` statement. This is in line with the standard semantics in HTTPS messages. In the case of our `/query` endpoint, the parameter we are looking for is `required` -the sections / quantities to be downloaded. Their specification follows the archive's tree structure as a nested dictionary. `requests` can append this information to the HTTPS body using the `json` argument. Below you will find the query specification. Pay attention to the optional use of indexes.
 

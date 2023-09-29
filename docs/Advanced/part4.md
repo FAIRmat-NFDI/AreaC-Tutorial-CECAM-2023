@@ -27,10 +27,10 @@ This part contains the basic knowledge on understanding and learning to use NOMA
 
 which can be downloaded here:
 <center>
-[Download example_files.zip](../../assets/part4_workflows/example_files.zip){ .md-button }
+[Download example_files.zip](../assets/part4_workflows/example_files.zip){ .md-button }
 </center>
 
-Each of the _mainfiles_ represent an electronic-structure calculation (either [DFT](https://en.wikipedia.org/wiki/Density_functional_theory), [TB](https://en.wikipedia.org/wiki/Tight_binding), or [DMFT](https://en.wikipedia.org/wiki/Dynamical_mean-field_theory)) which in turn is then parsed into a singular _entry_ in NOMAD. When dragged into the [NOMAD Upload page](https://nomad-lab.eu/prod/v1/staging/gui/user/uploads), these files should generate 8 entries in total. This folder structure presents a typical workflow calculation which can be represented as a provenance graph:
+Each of the _mainfiles_ represent an electronic-structure calculation (either [DFT](https://en.wikipedia.org/wiki/Density_functional_theory){:target="_blank"}, [TB](https://en.wikipedia.org/wiki/Tight_binding){:target="_blank"}, or [DMFT](https://en.wikipedia.org/wiki/Dynamical_mean-field_theory){:target="_blank"}) which in turn is then parsed into a singular _entry_ in NOMAD. When dragged into the [NOMAD Upload page](https://nomad-lab.eu/prod/v1/staging/gui/user/uploads){:target="_blank"}, these files should generate 8 entries in total. This folder structure presents a typical workflow calculation which can be represented as a provenance graph:
 ```mermaid
 graph LR;
     A2((Inputs)) --> B2[DFT];
@@ -60,7 +60,7 @@ The goal of this part is to set up the following workflows:
 
 The files for all these cases can be downloaded here:
 <center>
-[Download worfklowyaml_files.zip](../../assets/part4_workflows/workflowyaml_files.zip){ .md-button }
+[Download worfklowyaml_files.zip](../assets/part4_workflows/workflowyaml_files.zip){ .md-button }
 </center>
 
  You can try writing these files yourself first, and then compare them with the tested files.

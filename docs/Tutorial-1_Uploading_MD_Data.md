@@ -4,14 +4,14 @@ There are several ways to upload your data to NOMAD:
 
 - By dragging-and-dropping your files into the `PUBLISH > Uploads` page.
 - By using the shell command `curl` for sending files for upload.
-- By using the python `response` library to execute python-based [NOMAD API](../glossary/glossary.md/#api).
+- By using the python `response` library to submit a query to the NOMAD API.
 
 For this tutorial, we will stick to the simple drag-and-drop method. However, some information about the python API for uploading is provided under the [`Advanced > Using python API for uploading`](Advanced/Upload_API.md).
 
 In general, you can upload files one by one or upload entire file structures in `.zip` or `.tar.gz` formats. First, download the zip file with the example simulation data for this part of the tutorial:
 
 <center>
-[Download Test Data](../assets/md_tutorial_1/water_workflow.zip){ .md-button }
+[Download Test Data](assets/md_tutorial_1/water_workflow.zip){:target="_blank" .md-button }
 </center>
 
 Take a minute to examine the directory structure. If you are familiar with Gromacs you will immediately see the input/output from 3 simulations: an energy minimization (`Emin/`), an NPT equilibration (`Equil-NPT/`), and an NVT production run (`Prod-NVT/`). In the main directory, you will also see a .yaml file, which contains the NOMAD schema for connecting these 3 simulations into a workflow. More information about these custom workflow schemas can be found under [`Advanced > Creating custom workflows`](Advanced/part4.md).
@@ -42,13 +42,13 @@ After the files are uploaded, a **processing** is triggered. In brief, NOMAD int
 
     The **mainfiles** are those files which are representative of a given computational calculation. The presence of a mainfile in the upload is required for NOMAD to recognize a calculation. NOMAD supports several computational codes for first principles calculations, molecular dynamics simulations, and lattice modeling, as well as workflow and database managers. Currently, both the Gromacs and Lammps packages are supported. We are also developing a *custom schema based on the H5MD format*, to allow users to upload simulation data run with any MD engine.
 
-    For each supported code, NOMAD recognizes a single file as the mainfile. For example, the Gromacs mainfile is the native `.log` file created during the simulation. The remaining files that have not been identified as mainfiles are designated as **auxiliary files**. You can find further information about the various supported codes, mainfiles, and auxiliary files in the general NOMAD documentation under [Supported parsers](https://nomad-lab.eu/prod/v1/staging/docs/reference/parsers.html).
+    For each supported code, NOMAD recognizes a single file as the mainfile. For example, the Gromacs mainfile is the native `.log` file created during the simulation. The remaining files that have not been identified as mainfiles are designated as **auxiliary files**. You can find further information about the various supported codes, mainfiles, and auxiliary files in the general NOMAD documentation under [Supported parsers](https://nomad-lab.eu/prod/v1/staging/docs/reference/parsers.html){:target="_blank"}.
 
 
 ??? tip
     We recommend to keep as many auxiliary files as possible together with the mainfile, but without exceeding the uploads limit&mdash;32GB file size limit per upload. For the routine upload of simulations that exceed this limit, we suggest that you prune the trajectory file in advance, to store only a subset of the data on the NOMAD repository. In this case, the parsers should still correctly store the configurations as well as additional metadata dealing with the input parameters to the simulation.
 
-    For special cases of larger simulations or datasets that must be stored in full, special processing procedures are required. In this case, you should contact the [NOMAD/FAIRmat team]() for assistance. Alternatively, you can post questions or requests on the [NOMAD MATSCI Community Discourse Forum](https://matsci.org/c/nomad/32).
+    For special cases of larger simulations or datasets that must be stored in full, special processing procedures are required. In this case, you should contact the [NOMAD/FAIRmat team]() for assistance. Alternatively, you can post questions or requests on the [NOMAD MATSCI Community Discourse Forum](https://matsci.org/c/nomad/32){:target="_blank"}.
 
 During the processing, NOMAD will store the simulation data and *metadata* within the NOMAD *Metainfo* schema. In this case, the parsing should take ~ 30 seconds. You should now see the successfully processed data overview:
 
@@ -70,7 +70,7 @@ The name of the upload can be modify by clicking on the pen icon :fontawesome-so
 - :fontawesome-solid-cloud-arrow-down: _Download files_: downloads all files present in the upload.
 - :fontawesome-solid-rotate-left: _Reload_: reloads the uploads page.
 - :fontawesome-solid-rotate: _Reprocess_: triggers again the processing of the uploaded data.
-- :fontawesome-solid-angle-left::fontawesome-solid-angle-right: _API_: generates a JSON response to use by the [NOMAD API](../glossary/glossary.md/#api).
+- :fontawesome-solid-angle-left::fontawesome-solid-angle-right: _API_: generates a query with a JSON body to use by the NOMAD API.
 - :fontawesome-solid-trash: _Delete the upload_: deletes completely the upload.
 
 <!-- ## The NOMAD API
@@ -102,7 +102,7 @@ The third section, _(3) Edit author metadata_, allows users to edit certain meta
     <img src="../assets/uploading_and_publishing/edit_author_metadata.png" alt="Edit author metadata." width="50%" title="Edit author metadata.">
 </p>
 
-The final section, _(4) Publish_, lets the user to publish the data with or without an embargo. This will be explained more in detail in [How-to publish data](howto_publish_data.md).
+The final section, (4) Publish_, lets the user to publish the data with or without an embargo. This will be explained more in detail in [How-to publish data](howto_publish_data.md).
 
 <div class="click-zoom">
     <label>
@@ -113,9 +113,9 @@ The final section, _(4) Publish_, lets the user to publish the data with or with
 
 ???+ warning
 
-    Please do not publish this test data! There is a [test deployment of NOMAD](https://nomad-lab.eu/prod/v1/test) where you can safely perform test publishing, as the data is periodically deleted.
+    Please, ***do not publish this test data***! There is a [test deployment of NOMAD](https://nomad-lab.eu/prod/v1/test){:target="_blank"} where you can safely perform test publishing, as the data is periodically deleted.
 
-Now go back to the second section, _(2) Process data_, which shows the processed data and the generated [entries](../glossary/glossary.md/#entries) in NOMAD:
+Now go back to the second section, _(2) Process data_, which shows the processed data and the generated entries in NOMAD:
 
 <div class="click-zoom">
     <label>
@@ -136,7 +136,7 @@ Finally, click on the **DATA** tab. Here you can navigate through the NOMAD *Met
 
 NOMAD stores all processed data in a well defined, structured, and machine readable format, known as the `archive`.
 The schema that defines the organization of (meta)data within the archive is known as the `MetaInfo`.
-More information can be found in the NOMAD docs: [An Introduction to Schemas and Structured Data in NOMAD](https://nomad-lab.eu/prod/v1/docs/schema/introduction.html).
+More information can be found in the NOMAD docs: [An Introduction to Schemas and Structured Data in NOMAD](https://nomad-lab.eu/prod/v1/docs/schema/introduction.html){:target="_blank"}.
 
 Duplicate your tab and go to `Analyze > The NOMAD Metainfo` in the top-left menu of NOMAD. Here you can navigate through or search the entire set of NOMAD Metainfo definitions.
 

@@ -15,20 +15,20 @@ When the information contains strategies for steering clear from mistakes, it wi
 Each scenario assumes that you completed the previous ones, or that you are at least familiar with its objectives and terminology introduced.
 
 We start the tutorial with a brief overview of the _NOMAD Archive and Repository_ (in short, _NOMAD-lab_).
- A more general tutorial can be found in the [FAIRmat tutorial 1](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-1/tutorial-1-home).
+ A more general tutorial can be found in the [FAIRmat tutorial 1](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-1/tutorial-1-home){:target="_blank"}.
 
 ## Navigating to the NOMAD {#entries_section}
 
 With the structure clear, let us jump into the NOMAD website.
 Only... there are several access points.
-The general [_landing page_](https://nomad-lab.eu/nomad-lab/) will give you a quick rundown of the NOMAD-lab, as wells as it features.
+The general [_landing page_](https://nomad-lab.eu/nomad-lab/){:target="_blank"} will give you a quick rundown of the NOMAD-lab, as wells as it features.
 Furthermore, it provides several links to documentation, tutorials, and the history behind the project.
 
 When accessing the data, however, we want to locate the NOMAD-lab itself.
 There are 2 public versions available:
 
-1. [stable](https://nomad-lab.eu/prod/v1/gui/search/entries), as the default, under "Open NOMAD" (highlighted <span style="color:orange">orange</span>).
-2. [beta /staging](https://nomad-lab.eu/prod/v1/staging/gui/search/entries), which has the latest release and updates much more frequently. As such, it could also harbor unstable or untested features.
+1. [stable](https://nomad-lab.eu/prod/v1/gui/search/entries){:target="_blank"}, as the default, under "Open NOMAD" (highlighted <span style="color:orange">orange</span>).
+2. [beta /staging](https://nomad-lab.eu/prod/v1/staging/gui/search/entries){:target="_blank"}, which has the latest release and updates much more frequently. As such, it could also harbor unstable or untested features.
 
 Unless anything breaks, we recommend using the beta version.
 It has links at the bottom-right corner of the landing page, as well as under "SOLUTIONS" > "NOMAD" > "Try and Test" (highlighted <span style="color:red">red</span>).
@@ -49,7 +49,7 @@ It has links at the bottom-right corner of the landing page, as well as under "S
 </div>
 
 To ensure the long-term reproducibility of this tutorial, we provide you with a link to the beta version, but capped at September 14th, 2023.
-Please visit this [NOMAD page](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000) and take a look at its layout.
+Please visit this [NOMAD page](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000){:target="_blank"} and take a look at its layout.
 
 As denoted at the top left, the page we have in front of us is called _Entries_.
 When loading the page, you should also see an orange box in the left-bottom corner, warning you that you are using an experimental product. You can get rid of it by clicking the check mark (`✓`).
@@ -242,7 +242,7 @@ Are there any other filters that you would like to try out, or do you prefer che
     - use all 4 types of search bar queries.
     - recognize "OR" filter stacking.
 
-Start a fresh session by clearing the molecular dynamics related filters, or by restoring the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
+Start a fresh session by clearing the molecular dynamics related filters, or by restoring the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000){:target="_blank"}.
 
 In this scenario our objective is more vaguely defined, so we will **start by exploring** the database before focusing in.
 A good overview is fundamental for spotting interesting data.
@@ -304,7 +304,7 @@ The formatting here is far stricter.
 While you can switch back to the side menu at any time, we will , for educational purposes, rely solely on the search bar throughout this scenario.
 
 ???+ info "Optimade"
-    NOMAD also supports the [Optimade](https://www.optimade.org/documentation) API, which has its own query conventions (not covered in this tutorial).
+    NOMAD also supports the [Optimade](https://www.optimade.org/documentation){:target="_blank"} API, which has its own query conventions (not covered in this tutorial).
     To use the NOMAD-Optimade endpoint, scroll down to "Optimade" at the very bottom of the side menu.
 
 We have a lot of leeway in which filters we tackle first.
@@ -411,7 +411,7 @@ By now, you probably have a good instinct of where to find them in the side menu
 Perform an **equality query** for both **"HSE03" and "HSE06"** (prominent hybrids in solid state).
 
 ???+ info "Density functional nomenclature"
-    The functional naming in NOMAD follows the **convention established by [libxc](https://github.com/ElectronicStructureLibrary/libxc)**, a popular library for evaluating (semi)local functionals.
+    The functional naming in NOMAD follows the **convention established by [libxc](https://github.com/ElectronicStructureLibrary/libxc){:target="_blank"}**, a popular library for evaluating (semi)local functionals.
     In practice, this goes as `<hybrid flag>_<Jacob's Ladder>_<exchange-correlation part>_<name identifier>`, where **`<name identifier>` is the main ID** and the other tags simply provide metadata.
     `<hybrid flag>` is only present when the functional truly is a hybrid.
 
@@ -447,7 +447,7 @@ These can all be found under the filter subgroup "Precision".
 It is tough to estimate these parameters' actual impact.
 Therefore, they are best left till the end of the full query.
 Then you can evaluate the cost-benefit of reducing the dataset size for higher homogeneity or precision.
-For a full rundown on these newer features, feel free to check out [FAIRmat Tutorial 10](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home).
+For a full rundown on these newer features, feel free to check out [FAIRmat Tutorial 10](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-10/tutorial-10-home){:target="_blank"}.
 <!-- This feature is quite recent.
 For it to have a significant impact, the NOMAD database has to run over all of 13 million entries and reprocess them.
 In other words, new features will always lag behind in old data.
@@ -547,9 +547,9 @@ Formulate a **presence query** for the _density of states_, commonly abbreviated
     - set up a dashboard.
     - examine an entry summary.
 
-Go back again to the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000).
+Go back again to the [initial session](https://nomad-lab.eu/prod/v1/staging/gui/search/entries?upload_create_time[gte]=1419895487748&upload_create_time[lte]=1694679900000){:target="_blank"}.
 
-The obvious starting point would be use a search engine specialized in publications, such as [**Google Scholar**](https://scholar.google.com/).
+The obvious starting point would be use a search engine specialized in publications, such as [**Google Scholar**](https://scholar.google.com/){:target="_blank"}.
 Just searching by the author's (last?) name, yields a suggestion for "Robert A. Rose", who seems to be working in biomedicine.
 Not quite what we were looking for...
 You can **try adding some more terms** describing the field, e.g. _ab initio_, DFT or MOFs.
@@ -617,7 +617,7 @@ Overall, a **dashboard** should just provide a **quick summary**, for more speci
     Expanding their size is done by dragging the bottom-right corner (`∟`).
     Widgets start out at their minimal default.
 
-    For a great example of a rich dashboard, visit the [app under "Explore" > "Solar Cells"](https://nomad-lab.eu/prod/v1/staging/gui/search/solarcells).
+    For a great example of a rich dashboard, visit the [app under "Explore" > "Solar Cells"](https://nomad-lab.eu/prod/v1/staging/gui/search/solarcells){:target="_blank"}.
 
 ??? success
     Your dashboard should now look somewhat as in the reference figure.
@@ -695,7 +695,7 @@ Right-button click the **DOI hyperlink** and open the article in a new tab.
     When **in doubt, just hover** over the filter or quantity name.
 
 ??? success
-    You should now have [Machine learning the quantum-chemical properties of metal–organic frameworks for accelerated materials discovery](https://www.cell.com/matter/fulltext/S2590-2385(21)00070-9?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2590238521000709%3Fshowall%3Dtrue) in front of you.
+    You should now have [Machine learning the quantum-chemical properties of metal–organic frameworks for accelerated materials discovery](https://www.cell.com/matter/fulltext/S2590-2385(21)00070-9?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2590238521000709%3Fshowall%3Dtrue){:target="_blank"} in front of you.
     Indeed, next time you bump into your colleague, they will be surprised to learn that you already found it.
     Actually, any out of the 4 datasets would have brought you to the same paper as well.
     They are indeed part of the same publication.
@@ -719,10 +719,10 @@ Apparently there is _cited work (no. 147)_ that shows the effectiveness of HLE17
 
 !!! warning "Ignoring hidden complexity"
     While the naming of the datasets matches the density functional labels assigned by NOMAD, there could be other relevant information regarding the modelling.
-    A good practice would be check under ["Entry" > "DATA" > "run"](https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/data/run/0) to find data that has no associated filter, or
-    take a look at the raw input under ["Entry" > "FILES"](https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/files/_mainfile) in case the metadata was not extracted.
+    A good practice would be check under ["Entry" > "DATA" > "run"](https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/data/run/0){:target="_blank"} to find data that has no associated filter, or
+    take a look at the raw input under ["Entry" > "FILES"](https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/files/_mainfile){:target="_blank"} in case the metadata was not extracted.
 
-    In this case, the [INCAR](https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/files/INCAR/preview) contains **Van der Waals terms** (D3 according to the text) as well.
+    In this case, the [INCAR](https://nomad-lab.eu/prod/v1/staging/gui/search/entries/entry/id/zxxFhlU1kL7SMJuygceeubfXJMGb/files/INCAR/preview){:target="_blank"} contains **Van der Waals terms** (D3 according to the text) as well.
     This is perfectly normal practice when modeling hydrocarbon chains, but was **not picked up on by NOMAD**.
     Support will be added in the future.
 
@@ -736,7 +736,7 @@ Indeed, Andrew Rosen made a big contribution to our coverage of MOFs.
 Such **contributions from the community** are what drive NOMAD.
 You may consider contributing your data already during the research/analysis process, right before submitting a publication, or even later on (especially for data that you have from older publications!).
 
-Andrew first even published his data over at [figshare](https://figshare.com/articles/dataset/QMOF_Database/13147324) and shortly after uploaded it to NOMAD.
+Andrew first even published his data over at [figshare](https://figshare.com/articles/dataset/QMOF_Database/13147324){:target="_blank"} and shortly after uploaded it to NOMAD.
 It is good that he did, since NOMAD provides much more information (the full calculation) and covers a wide search range.
 Meanwhile, over at _figshare_, you have to download a zip folder, not knowing what to exactly expect.
 Andrew clearly put some effort in providing a structured overview, focusing heavily on the MOF description and little else.
